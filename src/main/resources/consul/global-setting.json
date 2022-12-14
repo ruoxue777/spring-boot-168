@@ -1,0 +1,11 @@
+{
+	"//comment": "consul: /config/ruoxue-spring-boot-168/global-setting/json",
+	"defaultPageSize": 50,
+ 	"//comment": "jwt",
+	"tokenSecret": "19816f04bf6089c0df8487871eb02d36",
+ 	"//comment": "mills, 5min=300000, 3d=259200000‬",
+	"expireTime": 259200000,
+ 	"//comment": "mills, 30min=1800000",
+	"refreshExpireTime": 259200000,
+	"issuer": "ruoxue-spring-boot-168"
+}

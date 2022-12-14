@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true">
+	<property name="LOG_PATTERN"
+		value="%d{yyyy-MM-dd'T'HH:mm:ss.SSSZ} [%thread] %p %c{1}#%M:%L - %m%n%ex" />
+	<property name="LOG_PATH"
+		value="logs" />
+	<property name="LOG_FILE"
+		value="spring-boot-168" />
+
+	<appender name="CONSOLE"
+		class="ch.qos.logback.core.ConsoleAppender">
+		<encoder charset="UTF-8">
+			<pattern>${LOG_PATTERN}</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="FILE"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${LOG_PATH}/${LOG_FILE}.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+            <fileNamePattern>${LOG_PATH}/${LOG_FILE}-%d{yyyy-MM-dd}-%i.log.gz</fileNamePattern>
+            <minIndex>1</minIndex>
+            <maxIndex>10</maxIndex>
+        </rollingPolicy>
+		<encoder charset="UTF-8">
+			<pattern>${LOG_PATTERN}</pattern>
+		</encoder>
+		<triggeringPolicy
+			class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+			<maxFileSize>100MB</maxFileSize>
+		</triggeringPolicy>
+	</appender>
+
+	<root level="INFO">
+		<appender-ref ref="CONSOLE" level="INFO"/>
+		<appender-ref ref="FILE" level="INFO"/>
+	</root>
+	<logger name="org.springframework.jdbc" level="INFO">
+		<appender-ref ref="CONSOLE" />
+	</logger>
+</configuration>
