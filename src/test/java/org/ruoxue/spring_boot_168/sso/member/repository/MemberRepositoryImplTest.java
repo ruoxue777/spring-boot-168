@@ -40,7 +40,7 @@ public class MemberRepositoryImplTest {
 	}
 	
 	@Test
-	public void findAll_Exception() {
+	public void findAllThrowException() {
         assertThatThrownBy(() -> {
             List<String> list = memberRepository.findAll();
             list.get(2);
