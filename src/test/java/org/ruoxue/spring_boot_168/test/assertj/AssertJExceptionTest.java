@@ -15,7 +15,7 @@ public class AssertJExceptionTest {
 	}
 	
 	@Test
-	public void assertThatThrownBy_1() {
+	public void isInstanceOf() {
 		assertThatThrownBy(() -> divide(1, 0))
 		.isInstanceOf(ArithmeticException.class)
 		.hasMessageContaining("zero")
@@ -23,7 +23,7 @@ public class AssertJExceptionTest {
 	}
 
 	@Test
-	public void assertThatThrownBy_2() {
+	public void hasMessageContaining() {
 		assertThatThrownBy(() -> {
 			List<Integer> list = Arrays.asList(1, 2);
 			list.get(2);
@@ -33,7 +33,7 @@ public class AssertJExceptionTest {
 	}
 	
 	@Test
-	public void assertThatThrownBy_3() {
+	public void hasCauseInstanceOf() {
 		assertThatThrownBy(() -> {
             try {
                 throw new IOException();
@@ -47,7 +47,7 @@ public class AssertJExceptionTest {
 	}	
 
 	@Test
-	public void assertThatExceptionOfType_1() {
+	public void isThrownBy() {
 		assertThatExceptionOfType(ArithmeticException.class)
 		.isThrownBy(() -> divide(1, 0))
 		.withMessageContaining("zero")
@@ -55,7 +55,7 @@ public class AssertJExceptionTest {
 	}
 	
 	@Test
-	public void assertThatExceptionOfType_2() {
+	public void withMessageContaining() {
 		assertThatExceptionOfType(IndexOutOfBoundsException.class)
 		.isThrownBy(() -> {
 			List<Integer> list = Arrays.asList(1, 2);
@@ -65,7 +65,7 @@ public class AssertJExceptionTest {
 	}
 	
 	@Test
-	public void assertThatExceptionOfType_3() {
+	public void withCauseExactlyInstanceOf() {
 		assertThatExceptionOfType(RuntimeException.class)
 		.isThrownBy(() -> {
             try {
@@ -79,12 +79,11 @@ public class AssertJExceptionTest {
 	}	
 
 	@Test
-	public void assertThatThrown() {
+	public void thrown() {
 		Throwable thrown = catchThrowable(() -> {
 			List<Integer> list = Arrays.asList(1, 2);
 			list.get(2);
 		});
-
 		assertThat(thrown)
 		.isInstanceOf(IndexOutOfBoundsException.class)
 		.hasMessageContaining("2");
