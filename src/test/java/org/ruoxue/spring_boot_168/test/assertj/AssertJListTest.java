@@ -2,6 +2,7 @@ package org.ruoxue.spring_boot_168.test.assertj;
 
 import static org.assertj.core.api.Assertions.*;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -111,5 +112,30 @@ public class AssertJListTest {
 		assertThat(list)
 		.anyMatch(e -> e.getName().equals("beef"))
 		.doesNotContainNull();
-	}			
+	}	
+	
+	@Test
+	public void filteredOn() {
+		int expectedSize = 1;
+		Food beef = new Food("beef", 1);
+		Food chicken = new Food("chicken", 2);
+		Food pork = new Food("pork", 3);
+		List<Food> list = Arrays.asList(beef, chicken, pork);
+		
+		assertThat(list)
+		.filteredOn(e -> e.getName().equals("chicken") && e.getQuantity() == 2)
+		.hasSize(expectedSize);
+	}	
+	
+	@Test
+	public void isEqualTo() {
+		Food beef = new Food("beef", 1);
+		Food chicken = new Food("chicken", 2);
+		Food pork = new Food("pork", 3);
+		List<Food> list = Arrays.asList(beef, chicken, pork);
+		List<Food> list2 = Arrays.asList(beef, chicken, pork);
+		
+		assertThat(list)
+		.isEqualTo(list2);
+	}	
 }
