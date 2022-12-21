@@ -62,7 +62,29 @@ public class AssertJMapTest {
 		map.put("Clare", 20);
 		
 		assertThat(map)
-		.doesNotContainKeys("Dora");
+		.doesNotContainKeys("Dora","Eva");
+	}	
+	
+	@Test
+	public void containsValues() {
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("Amy", 18);
+		map.put("Betty", 19);
+		map.put("Clare", 20);
+		
+		assertThat(map)
+		.containsValues(18, 19);
+	}	
+	
+	@Test
+	public void doesNotContainValue() {
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("Amy", 18);
+		map.put("Betty", 19);
+		map.put("Clare", 20);
+		
+		assertThat(map)
+		.doesNotContainValue(30);
 	}	
 	
 	@Test
@@ -125,4 +147,50 @@ public class AssertJMapTest {
 		.contains(amy, betty);
 		
 	}	
+	
+	@Test
+	public void anySatisfy() {
+		Person amy = new Person("Amy", 18, 3);
+		Person betty = new Person("Betty", 19, 3);
+		Person clare = new Person("Clare", 20 ,3);
+		Map<String, Person> map = new LinkedHashMap<String, Person>();
+		map.put(amy.getName(), amy);
+		map.put(betty.getName(), betty);
+		map.put(clare.getName(), clare); 
+		
+		assertThat(map)
+		.allSatisfy((k,v) -> {
+			 assertThat(v.getType()).isEqualTo(3);
+			 assertThat(v.getName()).isNotNull();
+		});
+		
+		assertThat(map)
+		.anySatisfy((k,v) -> {
+			 assertThat(v.getType()).isEqualTo(3);
+			 assertThat(v.getName()).isEqualTo("Amy");
+		});
+		
+		assertThat(map)
+		.noneSatisfy((k,v) -> {
+			 assertThat(v.getType()).isEqualTo(1);
+		});
+	}	
+	
+	@Test
+	public void isEqualTo() {
+		Person amy = new Person("Amy", 18, 3);
+		Person betty = new Person("Betty", 19, 3);
+		Person clare = new Person("Clare", 20 ,3);
+		Map<String, Person> map = new LinkedHashMap<String, Person>();
+		map.put(amy.getName(), amy);
+		map.put(betty.getName(), betty);
+		map.put(clare.getName(), clare); 
+		
+		Map<String, Person> map2 = new LinkedHashMap<String, Person>();
+		map2.put(amy.getName(), amy);
+		map2.put(betty.getName(), betty);
+		map2.put(clare.getName(), clare); 
+		
+		assertThat(map).isEqualTo(map2);
+	}
 }
