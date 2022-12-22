@@ -88,6 +88,28 @@ public class AssertJMapTest {
 	}	
 	
 	@Test
+	public void containsEntry() {
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("Amy", 18);
+		map.put("Betty", 19);
+		map.put("Clare", 20);
+		
+		assertThat(map)
+		.containsEntry("Amy", 18);
+	}		
+	
+	@Test
+	public void doesNotContainEntry() {
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("Amy", 18);
+		map.put("Betty", 19);
+		map.put("Clare", 20);
+		
+		assertThat(map)
+		.doesNotContainEntry("Dora", 28);
+	}	
+	
+	@Test
 	public void containsOnly() {
 		Map<String, Integer> map = new HashMap<String, Integer>();
 		map.put("Amy", 18);
