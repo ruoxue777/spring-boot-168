@@ -7,3 +7,4 @@
 4. [Log4j2 AsyncLogger](https://www.ruoxue.org/spring-boot-168-ep7-1-log4j2-asynclogger/)
 5. [Spring Boot Logging](https://www.ruoxue.org/spring-boot-168-ep8-spring-boot-logging/)
 6. [MessageSource I18n 國際化](https://www.ruoxue.org/spring-boot-168-ep9-messagesource-i18n/)
+7. [Spring Cloud Consul](https://www.ruoxue.org/spring-boot-168-ep14-spring-cloud-consul/)
