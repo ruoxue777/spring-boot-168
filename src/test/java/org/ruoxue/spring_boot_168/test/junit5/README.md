@@ -1,4 +1,4 @@
-# Spring Boot 168 AssertJ
+# Spring Boot 168 JUnit 5
 
 ## Related Articles
 1. [Spring Boot JUnit 5](https://www.ruoxue.org/spring-boot-168-ep12-spring-boot-junit-5/)
