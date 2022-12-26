@@ -8,4 +8,6 @@
 5. [Spring Data Redis](https://www.ruoxue.org/spring-boot-168-ep17-spring-data-redis/)
 6. [Spring Data MongoDB Single Database](https://www.ruoxue.org/spring-boot-168-ep19-spring-data-mongodb-single/)
 7. [Spring Data MongoDB Multiple Databases](https://www.ruoxue.org/spring-boot-168-ep20-spring-data-mongodb-multiple/)
+8. [Spring AMQP RabbitMQ](https://www.ruoxue.org/spring-boot-168-ep21-spring-amqp-rabbitmq/)
+9. [Spring Boot HttpClient](https://www.ruoxue.org/spring-boot-168-ep22-spring-boot-httpclient/)
 
