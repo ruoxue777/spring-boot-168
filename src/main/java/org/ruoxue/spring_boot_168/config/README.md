@@ -10,4 +10,7 @@
 7. [Spring Data MongoDB Multiple Databases](https://www.ruoxue.org/spring-boot-168-ep20-spring-data-mongodb-multiple/)
 8. [Spring AMQP RabbitMQ](https://www.ruoxue.org/spring-boot-168-ep21-spring-amqp-rabbitmq/)
 9. [Spring Boot HttpClient](https://www.ruoxue.org/spring-boot-168-ep22-spring-boot-httpclient/)
-
+10. [Spring Boot HttpAsyncClient](https://www.ruoxue.org/spring-boot-168-ep23-spring-boot-httpasyncclient/)
+11. [Spring Boot ThreadPool](https://www.ruoxue.org/spring-boot-168-ep24-spring-boot-threadpool/)
+12. [Spring Boot RestTemplate](https://www.ruoxue.org/spring-boot-168-ep28-spring-boot-resttemplate/)
+13. [HttpClient RestTemplate](https://www.ruoxue.org/spring-boot-168-ep28-1-httpclient-resttemplate/)

@@ -5,7 +5,7 @@
 Spring Boot 168 分享這些年來的成長與收穫，介紹 Java 平台的一個開源應用程式框架和控制反轉容器實現，一般稱為 Spring，該框架的一些核心功能理論上可用於任何 Java 應用，還為基於 Java 企業版平台構建的 Web 應用提供了大量的擴充支援。
 
 ## Spring Boot 168
-提供一系列範例，並單獨測試一個程式、過程或方法，進行正確性測試，來驗證產出結果。
+建立 Micro Service，介紹 Spring Boot 中的一些特性和觀念，開發快速為一個首要目標，提供一系列範例，並單獨測試一個程式、過程或方法，進行正確性測試，來驗證產出結果。
 
 ## Related Articles
 - [Spring Boot 168](https://www.ruoxue.org/spring-boot-168/)
