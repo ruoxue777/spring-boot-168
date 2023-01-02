@@ -18,7 +18,7 @@ public class JUnit5ParameterizedTest {
 
 	@ParameterizedTest
 	@ValueSource(ints = { 1, 2, 3 })
-	public void helloWorld(int value) {
+	public void numberWorld(int value) {
 		System.out.println(value);
 		assertTrue(value > 0);
 	}
