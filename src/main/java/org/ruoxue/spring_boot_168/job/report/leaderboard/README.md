@@ -1,4 +1,4 @@
-# Spring Boot 168 Config
+# Spring Boot 168 Leaderboard
 
 ## Related Articles
 1. [Spring Boot Scheduling Tasks](https://www.ruoxue.org/spring-boot-168-ep25-scheduling-tasks/)
