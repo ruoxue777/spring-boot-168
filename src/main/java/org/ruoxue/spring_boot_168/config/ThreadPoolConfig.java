@@ -1,7 +1,9 @@
 package org.ruoxue.spring_boot_168.config;
 
+import java.util.concurrent.ExecutorService;
 import java.util.concurrent.SynchronousQueue;
 import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.ThreadPoolExecutor.CallerRunsPolicy;
 import java.util.concurrent.TimeUnit;
 
 import org.springframework.context.annotation.Bean;
@@ -19,53 +21,47 @@ public class ThreadPoolConfig {
 	public static final int QUEUE_CAPACITY = 10;
 
 	@Bean(value = "sysThreadPool")
-	public ThreadPoolExecutor sysThreadPool() {
+	public ExecutorService sysThreadPool() {
 		String prefix = "SYS-T-";
-		ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(CORE_POOL_SIZE, //
+		ExecutorService executor = new ThreadPoolExecutor(CORE_POOL_SIZE, //
 				MAX_POOLSIZE, //
 				KEEP_LIVE_TIME, //
 				TimeUnit.MILLISECONDS, //
 				new SynchronousQueue<>(), //
 				new NamedThreadFactory(prefix), //
-				new ThreadPoolExecutor.CallerRunsPolicy() //
+				new CallerRunsPolicy() //
 		);
 		log.info("prefix: " + prefix);
-		log.info("corePoolSize: " + threadPoolExecutor.getCorePoolSize());
-		log.info("maximumPoolSize: " + threadPoolExecutor.getMaximumPoolSize());
-		return threadPoolExecutor;
+		return executor;
 	}
 
 	@Bean(value = "gameThreadPool")
-	public ThreadPoolExecutor gameThreadPool() {
+	public ExecutorService gameThreadPool() {
 		String prefix = "GAME-T-";
-		ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(CORE_POOL_SIZE, //
+		ExecutorService executor = new ThreadPoolExecutor(CORE_POOL_SIZE, //
 				MAX_POOLSIZE, //
 				KEEP_LIVE_TIME, //
 				TimeUnit.MILLISECONDS, //
 				new SynchronousQueue<>(), //
 				new NamedThreadFactory(prefix), //
-				new ThreadPoolExecutor.CallerRunsPolicy() //
+				new CallerRunsPolicy() //
 		);
 		log.info("prefix: " + prefix);
-		log.info("corePoolSize: " + threadPoolExecutor.getCorePoolSize());
-		log.info("maximumPoolSize: " + threadPoolExecutor.getMaximumPoolSize());
-		return threadPoolExecutor;
+		return executor;
 	}
 
 	@Bean(value = "mqThreadPool")
-	public ThreadPoolExecutor mqThreadPool() {
+	public ExecutorService mqThreadPool() {
 		String prefix = "MQ-T-";
-		ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(CORE_POOL_SIZE, //
+		ExecutorService executor = new ThreadPoolExecutor(CORE_POOL_SIZE, //
 				MAX_POOLSIZE, //
 				KEEP_LIVE_TIME, //
 				TimeUnit.MILLISECONDS, //
 				new SynchronousQueue<>(), //
 				new NamedThreadFactory(prefix), //
-				new ThreadPoolExecutor.CallerRunsPolicy() //
+				new CallerRunsPolicy() //
 		);
 		log.info("prefix: " + prefix);
-		log.info("corePoolSize: " + threadPoolExecutor.getCorePoolSize());
-		log.info("maximumPoolSize: " + threadPoolExecutor.getMaximumPoolSize());
-		return threadPoolExecutor;
+		return executor;
 	}
 }
