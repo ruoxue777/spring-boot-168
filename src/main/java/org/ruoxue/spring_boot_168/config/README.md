@@ -12,5 +12,6 @@
 9. [Spring Boot HttpClient](https://www.ruoxue.org/spring-boot-168-ep22-spring-boot-httpclient/)
 10. [Spring Boot HttpAsyncClient](https://www.ruoxue.org/spring-boot-168-ep23-spring-boot-httpasyncclient/)
 11. [Spring Boot ThreadPool](https://www.ruoxue.org/spring-boot-168-ep24-spring-boot-threadpool/)
-12. [Spring Boot RestTemplate](https://www.ruoxue.org/spring-boot-168-ep28-spring-boot-resttemplate/)
-13. [HttpClient RestTemplate](https://www.ruoxue.org/spring-boot-168-ep28-1-httpclient-resttemplate/)
+12. [Spring Boot Scheduling Tasks](https://www.ruoxue.org/spring-boot-168-ep25-scheduling-tasks/)
+13. [Spring Boot RestTemplate](https://www.ruoxue.org/spring-boot-168-ep28-spring-boot-resttemplate/)
+14. [HttpClient RestTemplate](https://www.ruoxue.org/spring-boot-168-ep28-1-httpclient-resttemplate/)
