@@ -8,39 +8,39 @@ import org.junit.jupiter.api.TestMethodOrder;
 @TestMethodOrder(MethodOrderer.DisplayName.class)
 public class JUnit5OrderDisplayNameTest {
 
-	@DisplayName("helloWorld1")
+	@DisplayName("itWorld1")
 	@Test
-	public void helloWorldZ() {
-		System.out.println("helloWorldZ");
+	public void itWorldZ() {
+		System.out.println("itWorldZ");
 	}
 
-	@DisplayName("helloWorld2")
+	@DisplayName("itWorld2")
 	@Test
-	public void helloWorldA() {
-		System.out.println("helloWorldA");
+	public void itWorldA() {
+		System.out.println("itWorldA");
 	}
 	
-	@DisplayName("helloWorld3")
+	@DisplayName("itWorld3")
 	@Test
-	public void helloWorldB() {
-		System.out.println("helloWorldB");
+	public void itWorldB() {
+		System.out.println("itWorldB");
 	}
 
-	@DisplayName("helloWorld4")
+	@DisplayName("itWorld4")
 	@Test
-	public void helloWorldY() {
-		System.out.println("helloWorldY");
+	public void itWorldY() {
+		System.out.println("itWorldY");
 	}
 
-	@DisplayName("helloWorld5")
+	@DisplayName("itWorld5")
 	@Test
-	public void helloWorldC() {
-		System.out.println("helloWorldC");
+	public void itWorldC() {
+		System.out.println("itWorldC");
 	}
 
-	@DisplayName("helloWorld6")
+	@DisplayName("itWorld6")
 	@Test
-	public void helloWorldX() {
-		System.out.println("helloWorldX");
+	public void itWorldX() {
+		System.out.println("itWorldX");
 	}
 }

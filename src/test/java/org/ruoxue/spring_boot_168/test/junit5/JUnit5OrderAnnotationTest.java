@@ -9,35 +9,35 @@ import org.junit.jupiter.api.TestMethodOrder;
 public class JUnit5OrderAnnotationTest {
 
 	@Test
-	public void helloWorld6() {
-		System.out.println("helloWorld6");
+	public void itWorld6() {
+		System.out.println("itWorld6");
 	}
 
 	@Order(3)
 	@Test
-	public void helloWorld1() {
-		System.out.println("helloWorld1");
+	public void itWorld1() {
+		System.out.println("itWorld1");
 	}
 
 	@Order(1)
 	@Test
-	public void helloWorld2() {
-		System.out.println("helloWorld2");
+	public void itWorld2() {
+		System.out.println("itWorld2");
 	}
 
 	@Test
-	public void helloWorld5() {
-		System.out.println("helloWorld5");
+	public void itWorld5() {
+		System.out.println("itWorld5");
 	}
 
 	@Order(2)
 	@Test
-	public void helloWorld3() {
-		System.out.println("helloWorld3");
+	public void itWorld3() {
+		System.out.println("itWorld3");
 	}
 
 	@Test
-	public void helloWorld4() {
-		System.out.println("helloWorld4");
+	public void itWorld4() {
+		System.out.println("itWorld4");
 	}
 }

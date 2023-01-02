@@ -29,7 +29,7 @@ public class JUnit5BeforeAllTest {
 	}
 
 	@RepeatedTest(value = 2)
-	public void helloWorld() {
-		System.out.println("Hello World");
+	public void javaWorld() {
+		System.out.println("Java World");
 	}
 }

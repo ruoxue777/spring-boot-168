@@ -8,32 +8,32 @@ import org.junit.jupiter.api.TestMethodOrder;
 public class JUnit5OrderMethodNameTest {
 
 	@Test
-	public void helloWorldZ() {
-		System.out.println("helloWorldZ");
+	public void itWorldZ() {
+		System.out.println("itWorldZ");
 	}
 
 	@Test
-	public void helloWorldA() {
-		System.out.println("helloWorldA");
+	public void itWorldA() {
+		System.out.println("itWorldA");
 	}
 
 	@Test
-	public void helloWorldB() {
-		System.out.println("helloWorldB");
+	public void itWorldB() {
+		System.out.println("itWorldB");
 	}
 
 	@Test
-	public void helloWorldY() {
-		System.out.println("helloWorldY");
+	public void itWorldY() {
+		System.out.println("itWorldY");
 	}
 
 	@Test
-	public void helloWorldC() {
-		System.out.println("helloWorldC");
+	public void itWorldC() {
+		System.out.println("itWorldC");
 	}
 
 	@Test
-	public void helloWorldX() {
-		System.out.println("helloWorldX");
+	public void itWorldX() {
+		System.out.println("itWorldX");
 	}
 }

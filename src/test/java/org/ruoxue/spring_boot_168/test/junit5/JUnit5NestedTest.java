@@ -14,21 +14,21 @@ public class JUnit5NestedTest {
 	}
 
 	@Nested
-	@DisplayName("Hello World")
-	public class HelloWorldTest {
+	@DisplayName("Spring World")
+	public class SpringWorldTest {
 		@Test
-		public void helloWorld() {
-			System.out.println("Hello World");
+		public void springWorld() {
+			System.out.println("Spring World");
 		}
 
 		@Test
-		public void helloWorld_2() {
-			System.out.println("Hello World 2");
+		public void springWorld_2() {
+			System.out.println("Spring World 2");
 		}
 
 		@Test
-		public void helloWorld_3() {
-			System.out.println("Hello World 3");
+		public void springWorld_3() {
+			System.out.println("Spring World 3");
 		}
 	}
 
@@ -53,12 +53,12 @@ public class JUnit5NestedTest {
 
 	@Disabled
 	@Test
-	public void helloWorld() {
-		System.out.println("Hello World");
+	public void springWorld() {
+		System.out.println("Spring World");
 	}
 
 	@Test
-	public void springWorld() {
-		System.out.println("Spring World");
+	public void itWorld() {
+		System.out.println("IT World");
 	}
 }
