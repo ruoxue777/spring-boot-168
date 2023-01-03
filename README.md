@@ -10,6 +10,12 @@ Spring Boot 168 分享這些年來的成長與收穫，介紹 Java 平台的一�
 ## Related Articles
 - [Spring Boot 168](https://www.ruoxue.org/spring-boot-168/)
 
+## Basics
+- [開發環境 Windows Eclipse](https://www.ruoxue.org/spring-boot-168-ep1-windows-eclipse/)
+- [開發環境 macOS IntelliJ](https://www.ruoxue.org/spring-boot-168-ep2-macos-intellij/)
+- [建置 Eclipse Gradle 專案](https://www.ruoxue.org/spring-boot-168-ep3-eclipse-gradle/)
+- [建置 Eclipse Maven 專案](https://www.ruoxue.org/spring-boot-168-ep4-eclipse-maven/)
+
 ## Meta Links
 - [關於我們](https://www.ruoxue.org/about-us/)
 - [聯絡我們](https://www.ruoxue.org/contact-us/)
