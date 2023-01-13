@@ -13,7 +13,11 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 public class AssertJListTest {
-	
+
+	public AssertJListTest() {
+
+	}
+
 	@NoArgsConstructor
 	@Getter
 	@Setter
@@ -34,157 +38,126 @@ public class AssertJListTest {
 	public void hasSize() {
 		int expectedSize = 3;
 		List<String> list = Arrays.asList("beef", "chicken", "pork");
-		
-		assertThat(list)
-		.hasSize(expectedSize);
+
+		assertThat(list).hasSize(expectedSize);
 	}
 
 	@Test
 	public void contains() {
 		List<String> list = Arrays.asList("beef", "chicken", "pork");
-	
-		assertThat(list)
-		.contains("chicken", "beef");
+
+		assertThat(list).contains("chicken", "beef");
 	}
-	
+
 	@Test
 	public void doesNotContain() {
 		List<String> list = Arrays.asList("beef", "chicken", "pork");
-	
-		assertThat(list)
-		.doesNotContain("duck");
-	}	
-	
+
+		assertThat(list).doesNotContain("duck");
+	}
+
 	@Test
 	public void containsOnly() {
 		List<String> list = Arrays.asList("beef", "chicken", "pork");
-		
-		assertThat(list)
-		.containsOnly("chicken", "pork" ,"beef");
+
+		assertThat(list).containsOnly("chicken", "pork", "beef");
 	}
-	
+
 	@Test
 	public void containsExactly() {
 		List<String> list = Arrays.asList("beef", "chicken", "pork");
-		
-		assertThat(list)
-		.containsExactly("beef", "chicken", "pork");
-	}	
-	
+
+		assertThat(list).containsExactly("beef", "chicken", "pork");
+	}
+
 	@Test
 	public void containsAnyOf() {
 		List<String> list = Arrays.asList("beef", "chicken", "pork");
-		
-		assertThat(list)
-		.containsAnyOf("duck", "chicken", "egg");
-	}	
+
+		assertThat(list).containsAnyOf("duck", "chicken", "egg");
+	}
 
 	@Test
 	public void containsAtIndex() {
 		List<String> list = Arrays.asList("beef", "chicken", "pork");
-		
-		assertThat(list)
-		.contains("beef", atIndex(0))
-		.contains("chicken", atIndex(1))
-		.contains("pork", atIndex(2));
+
+		assertThat(list).contains("beef", atIndex(0)).contains("chicken", atIndex(1)).contains("pork", atIndex(2));
 	}
-	
+
 	@Test
 	public void extracting() {
 		Food beef = new Food("beef", 1, 1);
 		Food chicken = new Food("chicken", 2, 1);
-		Food pork = new Food("pork", 3 ,1);
+		Food pork = new Food("pork", 3, 1);
 		List<Food> list = Arrays.asList(beef, chicken, pork);
-		
-		assertThat(list)
-		.extracting(Food::getName)
-		.containsExactly("beef", "chicken", "pork");
-	}	
+
+		assertThat(list).extracting(Food::getName).containsExactly("beef", "chicken", "pork");
+	}
 
 	@Test
 	public void extractingTuple() {
 		Food beef = new Food("beef", 1, 1);
 		Food chicken = new Food("chicken", 2, 1);
-		Food pork = new Food("pork", 3 ,1);
+		Food pork = new Food("pork", 3, 1);
 		List<Food> list = Arrays.asList(beef, chicken, pork);
-		
-		assertThat(list)
-		.extracting("name","quantity")
-		.containsExactly(
-				tuple("beef", 1d), 
-				tuple("chicken", 2d), 
-				tuple("pork", 3d)
-				);
-		
-		assertThat(list)
-		.extracting(e -> e.getName(), Food::getQuantity)
-		.containsExactly(
-				tuple("beef", 1d), 
-				tuple("chicken", 2d), 
-				tuple("pork", 3d)
-				);
-	}	
-	
+
+		assertThat(list).extracting("name", "quantity").containsExactly(tuple("beef", 1d), tuple("chicken", 2d),
+				tuple("pork", 3d));
+
+		assertThat(list).extracting(e -> e.getName(), Food::getQuantity).containsExactly(tuple("beef", 1d),
+				tuple("chicken", 2d), tuple("pork", 3d));
+	}
+
 	@Test
 	public void anyMatch() {
 		Food beef = new Food("beef", 1, 1);
 		Food chicken = new Food("chicken", 2, 1);
-		Food pork = new Food("pork", 3 ,1);
+		Food pork = new Food("pork", 3, 1);
 		List<Food> list = Arrays.asList(beef, chicken, pork);
-		
-		assertThat(list)
-		.allMatch(e -> e.getType() == 1)
-		.anyMatch(e -> e.getName().equals("beef"))
-		.noneMatch(e -> e.getType() == 0)
-		.doesNotContainNull();
-	}	
-	
+
+		assertThat(list).allMatch(e -> e.getType() == 1).anyMatch(e -> e.getName().equals("beef"))
+				.noneMatch(e -> e.getType() == 0).doesNotContainNull();
+	}
+
 	@Test
 	public void filteredOn() {
 		int expectedSize = 3;
 		Food beef = new Food("beef", 1, 1);
 		Food chicken = new Food("chicken", 2, 1);
-		Food pork = new Food("pork", 3 ,1);
+		Food pork = new Food("pork", 3, 1);
 		List<Food> list = Arrays.asList(beef, chicken, pork);
-		
-		assertThat(list)
-		.filteredOn(Food::getType, 1)
-		.containsOnly(beef, chicken, pork)
-		.hasSize(expectedSize);
-	}	
-	
+
+		assertThat(list).filteredOn(Food::getType, 1).containsOnly(beef, chicken, pork).hasSize(expectedSize);
+	}
+
 	@Test
 	public void anySatisfy() {
 		Food beef = new Food("beef", 1, 1);
 		Food chicken = new Food("chicken", 2, 1);
-		Food pork = new Food("pork", 3 ,1);
+		Food pork = new Food("pork", 3, 1);
 		List<Food> list = Arrays.asList(beef, chicken, pork);
 
-		assertThat(list)
-		.allSatisfy(e -> {
-			 assertThat(e.getType()).isEqualTo(1);
-			 assertThat(e.getName()).isNotNull();
+		assertThat(list).allSatisfy(e -> {
+			assertThat(e.getType()).isEqualTo(1);
+			assertThat(e.getName()).isNotNull();
 		});
-		
-		assertThat(list)
-		.anySatisfy(e -> {
-			 assertThat(e.getType()).isEqualTo(1);
-			 assertThat(e.getName()).isEqualTo("chicken");
+
+		assertThat(list).anySatisfy(e -> {
+			assertThat(e.getType()).isEqualTo(1);
+			assertThat(e.getName()).isEqualTo("chicken");
 		});
-		
-		assertThat(list)
-		.noneSatisfy(e -> assertThat(e.getType()).isEqualTo(0));
-	}	
-	
+
+		assertThat(list).noneSatisfy(e -> assertThat(e.getType()).isEqualTo(0));
+	}
+
 	@Test
 	public void isEqualTo() {
 		Food beef = new Food("beef", 1, 1);
 		Food chicken = new Food("chicken", 2, 1);
-		Food pork = new Food("pork", 3 ,1);
+		Food pork = new Food("pork", 3, 1);
 		List<Food> list = Arrays.asList(beef, chicken, pork);
 		List<Food> list2 = Arrays.asList(beef, chicken, pork);
-		
-		assertThat(list)
-		.isEqualTo(list2);
-	}	
+
+		assertThat(list).isEqualTo(list2);
+	}
 }
