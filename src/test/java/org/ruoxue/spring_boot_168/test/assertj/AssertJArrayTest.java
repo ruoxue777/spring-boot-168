@@ -11,6 +11,10 @@ import lombok.Setter;
 
 public class AssertJArrayTest {
 
+	public AssertJArrayTest() {
+
+	}
+
 	@NoArgsConstructor
 	@Getter
 	@Setter
@@ -69,16 +73,13 @@ public class AssertJArrayTest {
 
 		assertThat(array).containsAnyOf("duck", "juice", "egg");
 	}
-	
+
 	@Test
 	public void containsAtIndex() {
 		String[] array = new String[] { "coffee", "juice", "tea" };
-		
-		assertThat(array)
-		.contains("coffee", atIndex(0))
-		.contains("juice", atIndex(1))
-		.contains("tea", atIndex(2));
-	}	
+
+		assertThat(array).contains("coffee", atIndex(0)).contains("juice", atIndex(1)).contains("tea", atIndex(2));
+	}
 
 	@Test
 	public void extracting() {
@@ -87,10 +88,9 @@ public class AssertJArrayTest {
 		Drink tea = new Drink("tea", 6, 2);
 		Drink[] array = new Drink[] { coffee, juice, tea };
 
-		assertThat(array).extracting(Drink::getName)
-		.containsExactly("coffee", "juice", "tea");
+		assertThat(array).extracting(Drink::getName).containsExactly("coffee", "juice", "tea");
 	}
-	
+
 	@Test
 	public void extractingTuple() {
 		Drink coffee = new Drink("coffee", 4, 2);
@@ -98,18 +98,11 @@ public class AssertJArrayTest {
 		Drink tea = new Drink("tea", 6, 2);
 		Drink[] array = new Drink[] { coffee, juice, tea };
 
-		assertThat(array).extracting("name", "quantity")
-		.containsExactly(
-				tuple("coffee", 4d), 
-				tuple("juice", 5d),
+		assertThat(array).extracting("name", "quantity").containsExactly(tuple("coffee", 4d), tuple("juice", 5d),
 				tuple("tea", 6d));
 
-		assertThat(array)
-		.extracting(e -> e.getName(), Drink::getQuantity)
-		.containsExactly(
-				tuple("coffee", 4d),
-				tuple("juice", 5d), 
-				tuple("tea", 6d));
+		assertThat(array).extracting(e -> e.getName(), Drink::getQuantity).containsExactly(tuple("coffee", 4d),
+				tuple("juice", 5d), tuple("tea", 6d));
 	}
 
 	@Test
@@ -119,11 +112,8 @@ public class AssertJArrayTest {
 		Drink tea = new Drink("tea", 6, 2);
 		Drink[] array = new Drink[] { coffee, juice, tea };
 
-		assertThat(array)
-		.allMatch(e -> e.getType() == 2)
-		.anyMatch(e -> e.getName().equals("coffee"))
-		.noneMatch(e -> e.getType() == 0)
-		.doesNotContainNull();
+		assertThat(array).allMatch(e -> e.getType() == 2).anyMatch(e -> e.getName().equals("coffee"))
+				.noneMatch(e -> e.getType() == 0).doesNotContainNull();
 	}
 
 	@Test
@@ -134,12 +124,9 @@ public class AssertJArrayTest {
 		Drink tea = new Drink("tea", 6, 2);
 		Drink[] array = new Drink[] { coffee, juice, tea };
 
-		assertThat(array)
-		.filteredOn(Drink::getType, 2)
-		.containsOnly(coffee, juice, tea)
-		.hasSize(expectedSize);
+		assertThat(array).filteredOn(Drink::getType, 2).containsOnly(coffee, juice, tea).hasSize(expectedSize);
 	}
-	
+
 	@Test
 	public void anySatisfy() {
 		Drink coffee = new Drink("coffee", 4, 2);
@@ -147,22 +134,19 @@ public class AssertJArrayTest {
 		Drink tea = new Drink("tea", 6, 2);
 		Drink[] array = new Drink[] { coffee, juice, tea };
 
-		assertThat(array)
-		.allSatisfy(e -> {
-			 assertThat(e.getType()).isEqualTo(2);
-			 assertThat(e.getName()).isNotNull();
+		assertThat(array).allSatisfy(e -> {
+			assertThat(e.getType()).isEqualTo(2);
+			assertThat(e.getName()).isNotNull();
 		});
-		
-		assertThat(array)
-		.anySatisfy(e -> {
-			 assertThat(e.getType()).isEqualTo(2);
-			 assertThat(e.getName()).isEqualTo("juice");
+
+		assertThat(array).anySatisfy(e -> {
+			assertThat(e.getType()).isEqualTo(2);
+			assertThat(e.getName()).isEqualTo("juice");
 		});
-		
-		assertThat(array)
-		.noneSatisfy(e -> assertThat(e.getType()).isEqualTo(0));
-	}		
-	
+
+		assertThat(array).noneSatisfy(e -> assertThat(e.getType()).isEqualTo(0));
+	}
+
 	@Test
 	public void isEqualTo() {
 		Drink coffee = new Drink("coffee", 4, 2);
@@ -171,7 +155,6 @@ public class AssertJArrayTest {
 		Drink[] array = new Drink[] { coffee, juice, tea };
 		Drink[] array2 = new Drink[] { coffee, juice, tea };
 
-		assertThat(array)
-		.isEqualTo(array2);
-	}	
+		assertThat(array).isEqualTo(array2);
+	}
 }
