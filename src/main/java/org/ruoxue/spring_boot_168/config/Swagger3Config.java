@@ -36,7 +36,7 @@ public class Swagger3Config {
         return new ApiInfoBuilder()
                 .title("SB 168")
                 .description("SB 168")
-                .contact(new Contact("RX 若雪", "https://www.ruoxue.org", "ruoxue777@gmail.com"))
+                .contact(new Contact("若雪", "https://www.ruoxue.org", "ruoxueorg@gmail.com"))
                 .version("0.0.1")
                 .build();
     }

@@ -22,7 +22,7 @@ public class MessageSourceTest {
 		String name = messageSource.getMessage("spring-boot-168.contact.name", (Object[]) null,
 				Locale.TRADITIONAL_CHINESE);
 		System.out.println("name: " + name);
-		assertEquals("RX 若雪", name);
+		assertEquals("若雪", name);
 
 		String url = messageSource.getMessage("spring-boot-168.contact.url", (Object[]) null,
 				Locale.TRADITIONAL_CHINESE);
@@ -32,14 +32,14 @@ public class MessageSourceTest {
 		String email = messageSource.getMessage("spring-boot-168.contact.email", (Object[]) null,
 				Locale.TRADITIONAL_CHINESE);
 		System.out.println("email: " + email);
-		assertEquals("ruoxue777@gmail.com", email);
+		assertEquals("ruoxueorg@gmail.com", email);
 	}
 
 	@Test
 	public void getMessage_en_US() {
 		String name = messageSource.getMessage("spring-boot-168.contact.name", (Object[]) null, Locale.US);
 		System.out.println("name: " + name);
-		assertEquals("RX RuoXue", name);
+		assertEquals("Ruoxue", name);
 
 		String url = messageSource.getMessage("spring-boot-168.contact.url", (Object[]) null, Locale.US);
 		System.out.println("url: " + url);
@@ -47,6 +47,6 @@ public class MessageSourceTest {
 
 		String email = messageSource.getMessage("spring-boot-168.contact.email", (Object[]) null, Locale.US);
 		System.out.println("email: " + email);
-		assertEquals("ruoxue777@gmail.com", email);
+		assertEquals("ruoxueorg@gmail.com", email);
 	}
 }
