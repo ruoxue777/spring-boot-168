@@ -49,4 +49,22 @@ public class MessageSourceJUnit5Test {
 		System.out.println("email: " + email);
 		assertEquals("ruoxueorg@gmail.com", email);
 	}
+	
+	@Test
+	public void getMessage_zh_CN() {
+		String name = messageSource.getMessage("spring-boot-168.contact.name", (Object[]) null,
+				Locale.SIMPLIFIED_CHINESE);
+		System.out.println("name: " + name);
+		assertEquals("若雪", name);
+
+		String url = messageSource.getMessage("spring-boot-168.contact.url", (Object[]) null,
+				Locale.SIMPLIFIED_CHINESE);
+		System.out.println("url: " + url);
+		assertEquals("https://www.ruoxue.org", url);
+
+		String email = messageSource.getMessage("spring-boot-168.contact.email", (Object[]) null,
+				Locale.SIMPLIFIED_CHINESE);
+		System.out.println("email: " + email);
+		assertEquals("ruoxueorg@gmail.com", email);
+	}
 }
