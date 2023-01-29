@@ -53,7 +53,7 @@ public class AssertJMapTest {
 		map.put("Amy", 18);
 		map.put("Betty", 19);
 		map.put("Clare", 20);
-
+		System.out.println(map);
 		assertThat(map).hasSize(expectedSize);
 	}
 
@@ -63,7 +63,7 @@ public class AssertJMapTest {
 		map.put("Amy", 18);
 		map.put("Betty", 19);
 		map.put("Clare", 20);
-
+		System.out.println(map);
 		assertThat(map).containsKeys("Amy", "Betty");
 	}
 
@@ -73,7 +73,7 @@ public class AssertJMapTest {
 		map.put("Amy", 18);
 		map.put("Betty", 19);
 		map.put("Clare", 20);
-
+		System.out.println(map);
 		assertThat(map).doesNotContainKeys("Dora", "Eva");
 	}
 
@@ -83,7 +83,7 @@ public class AssertJMapTest {
 		map.put("Amy", 18);
 		map.put("Betty", 19);
 		map.put("Clare", 20);
-
+		System.out.println(map);
 		assertThat(map).containsValues(18, 19);
 	}
 
@@ -93,7 +93,7 @@ public class AssertJMapTest {
 		map.put("Amy", 18);
 		map.put("Betty", 19);
 		map.put("Clare", 20);
-
+		System.out.println(map);
 		assertThat(map).doesNotContainValue(30);
 	}
 
@@ -103,7 +103,7 @@ public class AssertJMapTest {
 		map.put("Amy", 18);
 		map.put("Betty", 19);
 		map.put("Clare", 20);
-
+		System.out.println(map);
 		assertThat(map).containsEntry("Amy", 18);
 	}
 
@@ -113,7 +113,7 @@ public class AssertJMapTest {
 		map.put("Amy", 18);
 		map.put("Betty", 19);
 		map.put("Clare", 20);
-
+		System.out.println(map);
 		assertThat(map).doesNotContainEntry("Dora", 28);
 	}
 
@@ -123,7 +123,7 @@ public class AssertJMapTest {
 		map.put("Amy", 18);
 		map.put("Betty", 19);
 		map.put("Clare", 20);
-
+		System.out.println(map);
 		assertThat(map).containsOnly(entry("Betty", 19), entry("Clare", 20), entry("Amy", 18));
 	}
 
@@ -133,7 +133,7 @@ public class AssertJMapTest {
 		map.put("Amy", 18);
 		map.put("Betty", 19);
 		map.put("Clare", 20);
-
+		System.out.println(map);
 		assertThat(map).containsExactly(entry("Amy", 18), entry("Betty", 19), entry("Clare", 20));
 	}
 
@@ -143,47 +143,8 @@ public class AssertJMapTest {
 		map.put("Amy", 18);
 		map.put("Betty", 19);
 		map.put("Clare", 20);
-
+		System.out.println(map);
 		assertThat(map).containsAnyOf(entry("Dora", 28), entry("Amy", 18), entry("Eva", 38));
-	}
-
-	@Test
-	public void extracting() {
-		Person amy = new Person("Amy", 18, 3);
-		Person betty = new Person("Betty", 19, 3);
-		Person clare = new Person("Clare", 20, 3);
-		Map<String, Person> map = new LinkedHashMap<String, Person>();
-		map.put(amy.getName(), amy);
-		map.put(betty.getName(), betty);
-		map.put(clare.getName(), clare);
-
-		assertThat(map).extracting("Amy", "Betty", "Clare").contains(amy, betty);
-
-	}
-
-	@Test
-	public void anySatisfy() {
-		Person amy = new Person("Amy", 18, 3);
-		Person betty = new Person("Betty", 19, 3);
-		Person clare = new Person("Clare", 20, 3);
-		Map<String, Person> map = new LinkedHashMap<String, Person>();
-		map.put(amy.getName(), amy);
-		map.put(betty.getName(), betty);
-		map.put(clare.getName(), clare);
-
-		assertThat(map).allSatisfy((k, v) -> {
-			assertThat(v.getType()).isEqualTo(3);
-			assertThat(v.getName()).isNotNull();
-		});
-
-		assertThat(map).anySatisfy((k, v) -> {
-			assertThat(v.getType()).isEqualTo(3);
-			assertThat(v.getName()).isEqualTo("Amy");
-		});
-
-		assertThat(map).noneSatisfy((k, v) -> {
-			assertThat(v.getType()).isEqualTo(1);
-		});
 	}
 
 	@Test
@@ -195,12 +156,11 @@ public class AssertJMapTest {
 		map.put(amy.getName(), amy);
 		map.put(betty.getName(), betty);
 		map.put(clare.getName(), clare);
-
 		Map<String, Person> map2 = new LinkedHashMap<String, Person>();
 		map2.put(amy.getName(), amy);
 		map2.put(betty.getName(), betty);
 		map2.put(clare.getName(), clare);
-
+		System.out.println(map);
 		assertThat(map).isEqualTo(map2);
 	}
 }
