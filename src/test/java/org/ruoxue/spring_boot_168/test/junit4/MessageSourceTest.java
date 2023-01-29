@@ -78,4 +78,22 @@ public class MessageSourceTest {
 				Locale.SIMPLIFIED_CHINESE);
 		System.out.println("content: " + content);
 	}
+
+	@Test
+	public void getMessage_ja_JP() {
+		String name = messageSource.getMessage("spring-boot-168.contact.name", (Object[]) null, Locale.JAPAN);
+		System.out.println("name: " + name);
+		assertEquals("ルクスエ", name);
+
+		String url = messageSource.getMessage("spring-boot-168.contact.url", (Object[]) null, Locale.JAPAN);
+		System.out.println("url: " + url);
+		assertEquals("https://www.ruoxue.org", url);
+
+		String email = messageSource.getMessage("spring-boot-168.contact.email", (Object[]) null, Locale.JAPAN);
+		System.out.println("email: " + email);
+		assertEquals("ruoxueorg@gmail.com", email);
+
+		String content = messageSource.getMessage("spring-boot-168.contact.content", (Object[]) null, Locale.JAPAN);
+		System.out.println("content: " + content);
+	}
 }
