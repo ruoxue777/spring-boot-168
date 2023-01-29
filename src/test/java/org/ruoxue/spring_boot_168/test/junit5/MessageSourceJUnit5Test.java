@@ -33,6 +33,10 @@ public class MessageSourceJUnit5Test {
 				Locale.TRADITIONAL_CHINESE);
 		System.out.println("email: " + email);
 		assertEquals("ruoxueorg@gmail.com", email);
+
+		String content = messageSource.getMessage("spring-boot-168.contact.content", (Object[]) null,
+				Locale.TRADITIONAL_CHINESE);
+		System.out.println("content: " + content);
 	}
 
 	@Test
@@ -48,8 +52,11 @@ public class MessageSourceJUnit5Test {
 		String email = messageSource.getMessage("spring-boot-168.contact.email", (Object[]) null, Locale.US);
 		System.out.println("email: " + email);
 		assertEquals("ruoxueorg@gmail.com", email);
+
+		String content = messageSource.getMessage("spring-boot-168.contact.content", (Object[]) null, Locale.US);
+		System.out.println("content: " + content);
 	}
-	
+
 	@Test
 	public void getMessage_zh_CN() {
 		String name = messageSource.getMessage("spring-boot-168.contact.name", (Object[]) null,
@@ -66,5 +73,10 @@ public class MessageSourceJUnit5Test {
 				Locale.SIMPLIFIED_CHINESE);
 		System.out.println("email: " + email);
 		assertEquals("ruoxueorg@gmail.com", email);
+
+		String content = messageSource.getMessage("spring-boot-168.contact.content", (Object[]) null,
+				Locale.SIMPLIFIED_CHINESE);
+		System.out.println("content: " + content);
+
 	}
 }
