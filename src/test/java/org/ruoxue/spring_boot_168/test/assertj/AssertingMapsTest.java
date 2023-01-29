@@ -15,9 +15,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-public class AssertJMapTest {
+public class AssertingMapsTest {
 
-	public AssertJMapTest() {
+	public AssertingMapsTest() {
 
 	}
 

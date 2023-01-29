@@ -145,5 +145,4 @@ public class AssertingListsTest {
 		System.out.println(list);
 		assertThat(list).noneSatisfy(e -> assertThat(e.getType()).isEqualTo(0));
 	}
-
 }

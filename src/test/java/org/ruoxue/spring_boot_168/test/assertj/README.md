@@ -7,3 +7,4 @@
 4. [AssertJ Map Assertions](https://www.ruoxue.org/spring-boot-168-ep-12-3-assertj-map-assertions/)
 5. [AssertJ Exception Assertions](https://www.ruoxue.org/spring-boot-168-ep-12-3-assertj-exception-assertions/)
 6. [Asserting Arrays with AssertJ](https://www.ruoxue.org/assertj-155-asserting-arrays-with-assertj/)
+7. [Asserting Lists with AssertJ](https://www.ruoxue.org/assertj-155-asserting-lists-with-assertj/)
