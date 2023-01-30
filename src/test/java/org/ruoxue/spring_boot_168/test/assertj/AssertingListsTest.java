@@ -24,12 +24,12 @@ public class AssertingListsTest {
 	@Getter
 	@Setter
 	@Builder
-	public static class Food {
+	public static class Fruit {
 		private String name;
 		private double quantity;
 		private int type;
 
-		public Food(String name, double quantity, int type) {
+		public Fruit(String name, double quantity, int type) {
 			this.name = name;
 			this.quantity = quantity;
 			this.type = type;
@@ -47,54 +47,54 @@ public class AssertingListsTest {
 
 	@Test
 	public void extracting() {
-		Food beef = new Food("beef", 1, 1);
-		Food chicken = new Food("chicken", 2, 1);
-		Food pork = new Food("pork", 3, 1);
-		List<Food> list = Arrays.asList(beef, chicken, pork);
+		Fruit apple = new Fruit("Apple", 1, 1);
+		Fruit banana = new Fruit("Banana", 2, 1);
+		Fruit cherry = new Fruit("Cherry", 3, 1);
+		List<Fruit> list = Arrays.asList(apple, banana, cherry);
 		System.out.println(list);
-		assertThat(list).extracting(Food::getName).containsExactly("beef", "chicken", "pork");
+		assertThat(list).extracting(Fruit::getName).containsExactly("Apple", "Banana", "Cherry");
 	}
 
 	@Test
 	public void extractingTuple() {
-		Food beef = new Food("beef", 1, 1);
-		Food chicken = new Food("chicken", 2, 1);
-		Food pork = new Food("pork", 3, 1);
-		List<Food> list = Arrays.asList(beef, chicken, pork);
+		Fruit apple = new Fruit("Apple", 1, 1);
+		Fruit banana = new Fruit("Banana", 2, 1);
+		Fruit cherry = new Fruit("Cherry", 3, 1);
+		List<Fruit> list = Arrays.asList(apple, banana, cherry);
 		System.out.println(list);
-		assertThat(list).extracting("name", "quantity").containsExactly(tuple("beef", 1d), tuple("chicken", 2d),
-				tuple("pork", 3d));
+		assertThat(list).extracting("name", "quantity").containsExactly(tuple("Apple", 1d), tuple("Banana", 2d),
+				tuple("Cherry", 3d));
 
-		assertThat(list).extracting(e -> e.getName(), Food::getQuantity).containsExactly(tuple("beef", 1d),
-				tuple("chicken", 2d), tuple("pork", 3d));
+		assertThat(list).extracting(e -> e.getName(), Fruit::getQuantity).containsExactly(tuple("Apple", 1d),
+				tuple("Banana", 2d), tuple("Cherry", 3d));
 	}
 
 	@Test
 	public void allMatch() {
-		Food beef = new Food("beef", 1, 1);
-		Food chicken = new Food("chicken", 2, 1);
-		Food pork = new Food("pork", 3, 1);
-		List<Food> list = Arrays.asList(beef, chicken, pork);
+		Fruit apple = new Fruit("Apple", 1, 1);
+		Fruit banana = new Fruit("Banana", 2, 1);
+		Fruit cherry = new Fruit("Cherry", 3, 1);
+		List<Fruit> list = Arrays.asList(apple, banana, cherry);
 		System.out.println(list);
 		assertThat(list).allMatch(e -> e.getType() == 1).doesNotContainNull();
 	}
 
 	@Test
 	public void anyMatch() {
-		Food beef = new Food("beef", 1, 1);
-		Food chicken = new Food("chicken", 2, 1);
-		Food pork = new Food("pork", 3, 1);
-		List<Food> list = Arrays.asList(beef, chicken, pork);
+		Fruit apple = new Fruit("Apple", 1, 1);
+		Fruit banana = new Fruit("Banana", 2, 1);
+		Fruit cherry = new Fruit("Cherry", 3, 1);
+		List<Fruit> list = Arrays.asList(apple, banana, cherry);
 		System.out.println(list);
-		assertThat(list).anyMatch(e -> e.getName().equals("beef")).doesNotContainNull();
+		assertThat(list).anyMatch(e -> e.getName().equals("Apple")).doesNotContainNull();
 	}
 
 	@Test
 	public void noneMatch() {
-		Food beef = new Food("beef", 1, 1);
-		Food chicken = new Food("chicken", 2, 1);
-		Food pork = new Food("pork", 3, 1);
-		List<Food> list = Arrays.asList(beef, chicken, pork);
+		Fruit apple = new Fruit("Apple", 1, 1);
+		Fruit banana = new Fruit("Banana", 2, 1);
+		Fruit cherry = new Fruit("Cherry", 3, 1);
+		List<Fruit> list = Arrays.asList(apple, banana, cherry);
 		System.out.println(list);
 		assertThat(list).noneMatch(e -> e.getType() == 0).doesNotContainNull();
 	}
@@ -102,20 +102,20 @@ public class AssertingListsTest {
 	@Test
 	public void filteredOn() {
 		int expectedSize = 3;
-		Food beef = new Food("beef", 1, 1);
-		Food chicken = new Food("chicken", 2, 1);
-		Food pork = new Food("pork", 3, 1);
-		List<Food> list = Arrays.asList(beef, chicken, pork);
+		Fruit apple = new Fruit("Apple", 1, 1);
+		Fruit banana = new Fruit("Banana", 2, 1);
+		Fruit cherry = new Fruit("Cherry", 3, 1);
+		List<Fruit> list = Arrays.asList(apple, banana, cherry);
 		System.out.println(list);
-		assertThat(list).filteredOn(Food::getType, 1).containsOnly(beef, chicken, pork).hasSize(expectedSize);
+		assertThat(list).filteredOn(Fruit::getType, 1).containsOnly(apple, banana, cherry).hasSize(expectedSize);
 	}
 
 	@Test
 	public void allSatisfy() {
-		Food beef = new Food("beef", 1, 1);
-		Food chicken = new Food("chicken", 2, 1);
-		Food pork = new Food("pork", 3, 1);
-		List<Food> list = Arrays.asList(beef, chicken, pork);
+		Fruit apple = new Fruit("Apple", 1, 1);
+		Fruit banana = new Fruit("Banana", 2, 1);
+		Fruit cherry = new Fruit("Cherry", 3, 1);
+		List<Fruit> list = Arrays.asList(apple, banana, cherry);
 		System.out.println(list);
 		assertThat(list).allSatisfy(e -> {
 			assertThat(e.getType()).isEqualTo(1);
@@ -125,23 +125,23 @@ public class AssertingListsTest {
 
 	@Test
 	public void anySatisfy() {
-		Food beef = new Food("beef", 1, 1);
-		Food chicken = new Food("chicken", 2, 1);
-		Food pork = new Food("pork", 3, 1);
-		List<Food> list = Arrays.asList(beef, chicken, pork);
+		Fruit apple = new Fruit("Apple", 1, 1);
+		Fruit banana = new Fruit("Banana", 2, 1);
+		Fruit cherry = new Fruit("Cherry", 3, 1);
+		List<Fruit> list = Arrays.asList(apple, banana, cherry);
 		System.out.println(list);
 		assertThat(list).anySatisfy(e -> {
 			assertThat(e.getType()).isEqualTo(1);
-			assertThat(e.getName()).isEqualTo("chicken");
+			assertThat(e.getName()).isEqualTo("Banana");
 		});
 	}
 
 	@Test
 	public void noneSatisfy() {
-		Food beef = new Food("beef", 1, 1);
-		Food chicken = new Food("chicken", 2, 1);
-		Food pork = new Food("pork", 3, 1);
-		List<Food> list = Arrays.asList(beef, chicken, pork);
+		Fruit apple = new Fruit("Apple", 1, 1);
+		Fruit banana = new Fruit("Banana", 2, 1);
+		Fruit cherry = new Fruit("Cherry", 3, 1);
+		List<Fruit> list = Arrays.asList(apple, banana, cherry);
 		System.out.println(list);
 		assertThat(list).noneSatisfy(e -> assertThat(e.getType()).isEqualTo(0));
 	}
