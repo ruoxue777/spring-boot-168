@@ -24,12 +24,12 @@ public class AssertJListTest {
 	@Getter
 	@Setter
 	@Builder
-	public static class Food {
+	public static class Fruit {
 		private String name;
 		private double quantity;
 		private int type;
 
-		public Food(String name, double quantity, int type) {
+		public Fruit(String name, double quantity, int type) {
 			this.name = name;
 			this.quantity = quantity;
 			this.type = type;
@@ -48,60 +48,60 @@ public class AssertJListTest {
 	@Test
 	public void hasSize() {
 		int expectedSize = 3;
-		List<String> list = Arrays.asList("beef", "chicken", "pork");
+		List<String> list = Arrays.asList("Apple", "Banana", "Cherry");
 		System.out.println(list);
 		assertThat(list).hasSize(expectedSize);
 	}
 
 	@Test
 	public void contains() {
-		List<String> list = Arrays.asList("beef", "chicken", "pork");
+		List<String> list = Arrays.asList("Apple", "Banana", "Cherry");
 		System.out.println(list);
-		assertThat(list).contains("chicken", "beef");
+		assertThat(list).contains("Banana", "Apple");
 	}
 
 	@Test
 	public void doesNotContain() {
-		List<String> list = Arrays.asList("beef", "chicken", "pork");
+		List<String> list = Arrays.asList("Apple", "Banana", "Cherry");
 		System.out.println(list);
-		assertThat(list).doesNotContain("duck");
+		assertThat(list).doesNotContain("Grape");
 	}
 
 	@Test
 	public void containsOnly() {
-		List<String> list = Arrays.asList("beef", "chicken", "pork");
+		List<String> list = Arrays.asList("Apple", "Banana", "Cherry");
 		System.out.println(list);
-		assertThat(list).containsOnly("chicken", "pork", "beef");
+		assertThat(list).containsOnly("Banana", "Cherry", "Apple");
 	}
 
 	@Test
 	public void containsExactly() {
-		List<String> list = Arrays.asList("beef", "chicken", "pork");
+		List<String> list = Arrays.asList("Apple", "Banana", "Cherry");
 		System.out.println(list);
-		assertThat(list).containsExactly("beef", "chicken", "pork");
+		assertThat(list).containsExactly("Apple", "Banana", "Cherry");
 	}
 
 	@Test
 	public void containsAnyOf() {
-		List<String> list = Arrays.asList("beef", "chicken", "pork");
+		List<String> list = Arrays.asList("Apple", "Banana", "Cherry");
 		System.out.println(list);
-		assertThat(list).containsAnyOf("duck", "chicken", "egg");
+		assertThat(list).containsAnyOf("Grape", "Banana", "Kiwifruit");
 	}
 
 	@Test
 	public void containsAtIndex() {
-		List<String> list = Arrays.asList("beef", "chicken", "pork");
+		List<String> list = Arrays.asList("Apple", "Banana", "Cherry");
 		System.out.println(list);
-		assertThat(list).contains("beef", atIndex(0)).contains("chicken", atIndex(1)).contains("pork", atIndex(2));
+		assertThat(list).contains("Apple", atIndex(0)).contains("Banana", atIndex(1)).contains("Cherry", atIndex(2));
 	}
 
 	@Test
 	public void isEqualTo() {
-		Food beef = new Food("beef", 1, 1);
-		Food chicken = new Food("chicken", 2, 1);
-		Food pork = new Food("pork", 3, 1);
-		List<Food> list = Arrays.asList(beef, chicken, pork);
-		List<Food> list2 = Arrays.asList(beef, chicken, pork);
+		Fruit apple = new Fruit("Apple", 1, 1);
+		Fruit banana = new Fruit("Banana", 2, 1);
+		Fruit cherry = new Fruit("Cherry", 3, 1);
+		List<Fruit> list = Arrays.asList(apple, banana, cherry);
+		List<Fruit> list2 = Arrays.asList(apple, banana, cherry);
 		System.out.println(list);
 		assertThat(list).isEqualTo(list2);
 	}
