@@ -3,6 +3,7 @@ buildscript {
 	version = '0.0.1-SNAPSHOT'
 	ext {
 		dependencyManagementPluginVersion = '1.0.15.RELEASE'
+		commonsLang3Version = '3.8.1'
 		springBootVersion = '2.1.7.RELEASE'
 		swaggerVersion = '3.0.0'
 		knife4jVersion = '3.0.3'
@@ -102,7 +103,7 @@ dependencies {
 	implementation "org.springframework.session:spring-session-data-redis:${springBootVersion}"
 
 	implementation 'org.apache.commons:commons-pool2:2.6.0'
-	implementation 'org.apache.commons:commons-lang3:3.8.1'
+	implementation "org.apache.commons:commons-lang3:${commonsLang3Version}"
 	
 	implementation "org.redisson:redisson-spring-boot-starter:${redissonVersion}"
 
