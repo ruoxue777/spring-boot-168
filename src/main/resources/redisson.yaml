@@ -1,8 +1,8 @@
 singleServerConfig:
   idleConnectionTimeout: 60000
   pingTimeout: 1000
-  connectTimeout: 60000
-  timeout: 3000
+  connectTimeout: 4000
+  timeout: 4000
   retryAttempts: 3
   retryInterval: 1500
   reconnectionTimeout: 3000
