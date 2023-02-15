@@ -149,17 +149,17 @@ public class AssertJMapTest {
 
 	@Test
 	public void isEqualTo() {
-		Fruit amy = new Fruit("Grape", 18, 3);
-		Fruit betty = new Fruit("Kiwifruit", 19, 3);
-		Fruit clare = new Fruit("Lemon", 20, 3);
+		Fruit grape = new Fruit("Grape", 18, 3);
+		Fruit kiwifruit = new Fruit("Kiwifruit", 19, 3);
+		Fruit lemon = new Fruit("Lemon", 20, 3);
 		Map<String, Fruit> map = new LinkedHashMap<String, Fruit>();
-		map.put(amy.getName(), amy);
-		map.put(betty.getName(), betty);
-		map.put(clare.getName(), clare);
+		map.put(grape.getName(), grape);
+		map.put(kiwifruit.getName(), kiwifruit);
+		map.put(lemon.getName(), lemon);
 		Map<String, Fruit> map2 = new LinkedHashMap<String, Fruit>();
-		map2.put(amy.getName(), amy);
-		map2.put(betty.getName(), betty);
-		map2.put(clare.getName(), clare);
+		map2.put(grape.getName(), grape);
+		map2.put(kiwifruit.getName(), kiwifruit);
+		map2.put(lemon.getName(), lemon);
 		System.out.println(map);
 		assertThat(map).isEqualTo(map2);
 	}

@@ -104,5 +104,4 @@ public class AssertingMapsTest {
 			assertThat(v.getType()).isEqualTo(1);
 		});
 	}
-
 }
