@@ -23,12 +23,12 @@ public class AssertJArrayTest {
 	@Getter
 	@Setter
 	@Builder
-	public static class Drink {
+	public static class Fruit {
 		private String name;
 		private double quantity;
 		private int type;
 
-		public Drink(String name, double quantity, int type) {
+		public Fruit(String name, double quantity, int type) {
 			this.name = name;
 			this.quantity = quantity;
 			this.type = type;
@@ -47,60 +47,60 @@ public class AssertJArrayTest {
 	@Test
 	public void hasSize() {
 		int expectedSize = 3;
-		String[] array = new String[] { "coffee", "juice", "tea" };
+		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
 		System.out.println(Arrays.toString(array));
 		assertThat(array).hasSize(expectedSize);
 	}
 
 	@Test
 	public void contains() {
-		String[] array = new String[] { "coffee", "juice", "tea" };
+		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
 		System.out.println(Arrays.toString(array));
-		assertThat(array).contains("juice", "coffee");
+		assertThat(array).contains("Guava", "Durian");
 	}
 
 	@Test
 	public void doesNotContain() {
-		String[] array = new String[] { "coffee", "juice", "tea" };
+		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
 		System.out.println(Arrays.toString(array));
-		assertThat(array).doesNotContain("duck");
+		assertThat(array).doesNotContain("Mango");
 	}
 
 	@Test
 	public void containsOnly() {
-		String[] array = new String[] { "coffee", "juice", "tea" };
+		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
 		System.out.println(Arrays.toString(array));
-		assertThat(array).containsOnly("juice", "tea", "coffee");
+		assertThat(array).containsOnly("Guava", "Pitaya", "Durian");
 	}
 
 	@Test
 	public void containsExactly() {
-		String[] array = new String[] { "coffee", "juice", "tea" };
+		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
 		System.out.println(Arrays.toString(array));
-		assertThat(array).containsExactly("coffee", "juice", "tea");
+		assertThat(array).containsExactly("Durian", "Guava", "Pitaya");
 	}
 
 	@Test
 	public void containsAnyOf() {
-		String[] array = new String[] { "coffee", "juice", "tea" };
+		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
 		System.out.println(Arrays.toString(array));
-		assertThat(array).containsAnyOf("duck", "juice", "egg");
+		assertThat(array).containsAnyOf("Durian", "Guava", "Mango");
 	}
 
 	@Test
 	public void containsAtIndex() {
-		String[] array = new String[] { "coffee", "juice", "tea" };
+		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
 		System.out.println(Arrays.toString(array));
-		assertThat(array).contains("coffee", atIndex(0)).contains("juice", atIndex(1)).contains("tea", atIndex(2));
+		assertThat(array).contains("Durian", atIndex(0)).contains("Guava", atIndex(1)).contains("Pitaya", atIndex(2));
 	}
 
 	@Test
 	public void isEqualTo() {
-		Drink coffee = new Drink("coffee", 4, 2);
-		Drink juice = new Drink("juice", 5, 2);
-		Drink tea = new Drink("tea", 6, 2);
-		Drink[] array = new Drink[] { coffee, juice, tea };
-		Drink[] array2 = new Drink[] { coffee, juice, tea };
+		Fruit durian = new Fruit("Durian", 4, 2);
+		Fruit guava = new Fruit("Guava", 5, 2);
+		Fruit pitaya = new Fruit("Pitaya", 6, 2);
+		Fruit[] array = new Fruit[] { durian, guava, pitaya };
+		Fruit[] array2 = new Fruit[] { durian, guava, pitaya };
 		System.out.println(Arrays.deepToString(array));
 		assertThat(array).isEqualTo(array2);
 	}

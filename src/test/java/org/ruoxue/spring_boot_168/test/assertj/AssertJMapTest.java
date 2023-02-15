@@ -25,14 +25,14 @@ public class AssertJMapTest {
 	@Getter
 	@Setter
 	@Builder
-	public static class Person {
+	public static class Fruit {
 		private String name;
-		private int age;
+		private double quantity;
 		private int type;
 
-		public Person(String name, int age, int type) {
+		public Fruit(String name, double quantity, int type) {
 			this.name = name;
-			this.age = age;
+			this.quantity = quantity;
 			this.type = type;
 		}
 
@@ -40,19 +40,19 @@ public class AssertJMapTest {
 			ToStringBuilder builder = new ToStringBuilder(this, ToStringStyle.JSON_STYLE);
 			builder.appendSuper(super.toString());
 			builder.append("name", name);
-			builder.append("age", age);
+			builder.append("quantity", quantity);
 			builder.append("type", type);
 			return builder.toString();
 		}
 	}
-
+	
 	@Test
 	public void hasSize() {
 		int expectedSize = 3;
 		Map<String, Integer> map = new HashMap<String, Integer>();
-		map.put("Amy", 18);
-		map.put("Betty", 19);
-		map.put("Clare", 20);
+		map.put("Grape", 18);
+		map.put("Kiwifruit", 19);
+		map.put("Lemon", 20);
 		System.out.println(map);
 		assertThat(map).hasSize(expectedSize);
 	}
@@ -60,29 +60,29 @@ public class AssertJMapTest {
 	@Test
 	public void containsKeys() {
 		Map<String, Integer> map = new HashMap<String, Integer>();
-		map.put("Amy", 18);
-		map.put("Betty", 19);
-		map.put("Clare", 20);
+		map.put("Grape", 18);
+		map.put("Kiwifruit", 19);
+		map.put("Lemon", 20);
 		System.out.println(map);
-		assertThat(map).containsKeys("Amy", "Betty");
+		assertThat(map).containsKeys("Grape", "Kiwifruit");
 	}
 
 	@Test
 	public void doesNotContainKeys() {
 		Map<String, Integer> map = new HashMap<String, Integer>();
-		map.put("Amy", 18);
-		map.put("Betty", 19);
-		map.put("Clare", 20);
+		map.put("Grape", 18);
+		map.put("Kiwifruit", 19);
+		map.put("Lemon", 20);
 		System.out.println(map);
-		assertThat(map).doesNotContainKeys("Dora", "Eva");
+		assertThat(map).doesNotContainKeys("Papaya", "Strawberry");
 	}
 
 	@Test
 	public void containsValues() {
 		Map<String, Integer> map = new HashMap<String, Integer>();
-		map.put("Amy", 18);
-		map.put("Betty", 19);
-		map.put("Clare", 20);
+		map.put("Grape", 18);
+		map.put("Kiwifruit", 19);
+		map.put("Lemon", 20);
 		System.out.println(map);
 		assertThat(map).containsValues(18, 19);
 	}
@@ -90,9 +90,9 @@ public class AssertJMapTest {
 	@Test
 	public void doesNotContainValue() {
 		Map<String, Integer> map = new HashMap<String, Integer>();
-		map.put("Amy", 18);
-		map.put("Betty", 19);
-		map.put("Clare", 20);
+		map.put("Grape", 18);
+		map.put("Kiwifruit", 19);
+		map.put("Lemon", 20);
 		System.out.println(map);
 		assertThat(map).doesNotContainValue(30);
 	}
@@ -100,63 +100,63 @@ public class AssertJMapTest {
 	@Test
 	public void containsEntry() {
 		Map<String, Integer> map = new HashMap<String, Integer>();
-		map.put("Amy", 18);
-		map.put("Betty", 19);
-		map.put("Clare", 20);
+		map.put("Grape", 18);
+		map.put("Kiwifruit", 19);
+		map.put("Lemon", 20);
 		System.out.println(map);
-		assertThat(map).containsEntry("Amy", 18);
+		assertThat(map).containsEntry("Grape", 18);
 	}
 
 	@Test
 	public void doesNotContainEntry() {
 		Map<String, Integer> map = new HashMap<String, Integer>();
-		map.put("Amy", 18);
-		map.put("Betty", 19);
-		map.put("Clare", 20);
+		map.put("Grape", 18);
+		map.put("Kiwifruit", 19);
+		map.put("Lemon", 20);
 		System.out.println(map);
-		assertThat(map).doesNotContainEntry("Dora", 28);
+		assertThat(map).doesNotContainEntry("Papaya", 28);
 	}
 
 	@Test
 	public void containsOnly() {
 		Map<String, Integer> map = new HashMap<String, Integer>();
-		map.put("Amy", 18);
-		map.put("Betty", 19);
-		map.put("Clare", 20);
+		map.put("Grape", 18);
+		map.put("Kiwifruit", 19);
+		map.put("Lemon", 20);
 		System.out.println(map);
-		assertThat(map).containsOnly(entry("Betty", 19), entry("Clare", 20), entry("Amy", 18));
+		assertThat(map).containsOnly(entry("Kiwifruit", 19), entry("Lemon", 20), entry("Grape", 18));
 	}
 
 	@Test
 	public void containsExactly() {
 		Map<String, Integer> map = new LinkedHashMap<String, Integer>();
-		map.put("Amy", 18);
-		map.put("Betty", 19);
-		map.put("Clare", 20);
+		map.put("Grape", 18);
+		map.put("Kiwifruit", 19);
+		map.put("Lemon", 20);
 		System.out.println(map);
-		assertThat(map).containsExactly(entry("Amy", 18), entry("Betty", 19), entry("Clare", 20));
+		assertThat(map).containsExactly(entry("Grape", 18), entry("Kiwifruit", 19), entry("Lemon", 20));
 	}
 
 	@Test
 	public void containsAnyOf() {
 		Map<String, Integer> map = new LinkedHashMap<String, Integer>();
-		map.put("Amy", 18);
-		map.put("Betty", 19);
-		map.put("Clare", 20);
+		map.put("Grape", 18);
+		map.put("Kiwifruit", 19);
+		map.put("Lemon", 20);
 		System.out.println(map);
-		assertThat(map).containsAnyOf(entry("Dora", 28), entry("Amy", 18), entry("Eva", 38));
+		assertThat(map).containsAnyOf(entry("Papaya", 28), entry("Grape", 18), entry("Strawberry", 38));
 	}
 
 	@Test
 	public void isEqualTo() {
-		Person amy = new Person("Amy", 18, 3);
-		Person betty = new Person("Betty", 19, 3);
-		Person clare = new Person("Clare", 20, 3);
-		Map<String, Person> map = new LinkedHashMap<String, Person>();
+		Fruit amy = new Fruit("Grape", 18, 3);
+		Fruit betty = new Fruit("Kiwifruit", 19, 3);
+		Fruit clare = new Fruit("Lemon", 20, 3);
+		Map<String, Fruit> map = new LinkedHashMap<String, Fruit>();
 		map.put(amy.getName(), amy);
 		map.put(betty.getName(), betty);
 		map.put(clare.getName(), clare);
-		Map<String, Person> map2 = new LinkedHashMap<String, Person>();
+		Map<String, Fruit> map2 = new LinkedHashMap<String, Fruit>();
 		map2.put(amy.getName(), amy);
 		map2.put(betty.getName(), betty);
 		map2.put(clare.getName(), clare);

@@ -24,14 +24,14 @@ public class AssertingMapsTest {
 	@Getter
 	@Setter
 	@Builder
-	public static class Person {
+	public static class Fruit {
 		private String name;
-		private int age;
+		private double quantity;
 		private int type;
 
-		public Person(String name, int age, int type) {
+		public Fruit(String name, double quantity, int type) {
 			this.name = name;
-			this.age = age;
+			this.quantity = quantity;
 			this.type = type;
 		}
 
@@ -39,7 +39,7 @@ public class AssertingMapsTest {
 			ToStringBuilder builder = new ToStringBuilder(this, ToStringStyle.JSON_STYLE);
 			builder.appendSuper(super.toString());
 			builder.append("name", name);
-			builder.append("age", age);
+			builder.append("quantity", quantity);
 			builder.append("type", type);
 			return builder.toString();
 		}
@@ -47,26 +47,26 @@ public class AssertingMapsTest {
 
 	@Test
 	public void extracting() {
-		Person amy = new Person("Amy", 18, 3);
-		Person betty = new Person("Betty", 19, 3);
-		Person clare = new Person("Clare", 20, 3);
-		Map<String, Person> map = new LinkedHashMap<String, Person>();
-		map.put(amy.getName(), amy);
-		map.put(betty.getName(), betty);
-		map.put(clare.getName(), clare);
+		Fruit grape = new Fruit("Grape", 18, 3);
+		Fruit kiwifruit = new Fruit("Kiwifruit", 19, 3);
+		Fruit lemon = new Fruit("Lemon", 20, 3);
+		Map<String, Fruit> map = new LinkedHashMap<String, Fruit>();
+		map.put(grape.getName(), grape);
+		map.put(kiwifruit.getName(), kiwifruit);
+		map.put(lemon.getName(), lemon);
 		System.out.println(map);
-		assertThat(map).extracting("Amy", "Betty", "Clare").contains(amy, betty);
+		assertThat(map).extracting("Grape", "Kiwifruit", "Lemon").contains(grape, kiwifruit);
 	}
 
 	@Test
 	public void allSatisfy() {
-		Person amy = new Person("Amy", 18, 3);
-		Person betty = new Person("Betty", 19, 3);
-		Person clare = new Person("Clare", 20, 3);
-		Map<String, Person> map = new LinkedHashMap<String, Person>();
-		map.put(amy.getName(), amy);
-		map.put(betty.getName(), betty);
-		map.put(clare.getName(), clare);
+		Fruit grape = new Fruit("Grape", 18, 3);
+		Fruit kiwifruit = new Fruit("Kiwifruit", 19, 3);
+		Fruit lemon = new Fruit("Lemon", 20, 3);
+		Map<String, Fruit> map = new LinkedHashMap<String, Fruit>();
+		map.put(grape.getName(), grape);
+		map.put(kiwifruit.getName(), kiwifruit);
+		map.put(lemon.getName(), lemon);
 		System.out.println(map);
 		assertThat(map).allSatisfy((k, v) -> {
 			assertThat(v.getType()).isEqualTo(3);
@@ -76,29 +76,29 @@ public class AssertingMapsTest {
 
 	@Test
 	public void anySatisfy() {
-		Person amy = new Person("Amy", 18, 3);
-		Person betty = new Person("Betty", 19, 3);
-		Person clare = new Person("Clare", 20, 3);
-		Map<String, Person> map = new LinkedHashMap<String, Person>();
-		map.put(amy.getName(), amy);
-		map.put(betty.getName(), betty);
-		map.put(clare.getName(), clare);
+		Fruit grape = new Fruit("Grape", 18, 3);
+		Fruit kiwifruit = new Fruit("Kiwifruit", 19, 3);
+		Fruit lemon = new Fruit("Lemon", 20, 3);
+		Map<String, Fruit> map = new LinkedHashMap<String, Fruit>();
+		map.put(grape.getName(), grape);
+		map.put(kiwifruit.getName(), kiwifruit);
+		map.put(lemon.getName(), lemon);
 		System.out.println(map);
 		assertThat(map).anySatisfy((k, v) -> {
 			assertThat(v.getType()).isEqualTo(3);
-			assertThat(v.getName()).isEqualTo("Amy");
+			assertThat(v.getName()).isEqualTo("Grape");
 		});
 	}
 
 	@Test
 	public void noneSatisfy() {
-		Person amy = new Person("Amy", 18, 3);
-		Person betty = new Person("Betty", 19, 3);
-		Person clare = new Person("Clare", 20, 3);
-		Map<String, Person> map = new LinkedHashMap<String, Person>();
-		map.put(amy.getName(), amy);
-		map.put(betty.getName(), betty);
-		map.put(clare.getName(), clare);
+		Fruit grape = new Fruit("Grape", 18, 3);
+		Fruit kiwifruit = new Fruit("Kiwifruit", 19, 3);
+		Fruit lemon = new Fruit("Lemon", 20, 3);
+		Map<String, Fruit> map = new LinkedHashMap<String, Fruit>();
+		map.put(grape.getName(), grape);
+		map.put(kiwifruit.getName(), kiwifruit);
+		map.put(lemon.getName(), lemon);
 		System.out.println(map);
 		assertThat(map).noneSatisfy((k, v) -> {
 			assertThat(v.getType()).isEqualTo(1);
