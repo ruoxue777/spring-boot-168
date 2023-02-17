@@ -66,7 +66,7 @@ public class ThreadPoolConfig {
 		return executor;
 	}
 
-	public class NamedThreadFactory implements ThreadFactory {
+	public static class NamedThreadFactory implements ThreadFactory {
 		private final AtomicInteger count = new AtomicInteger();
 		private final String prefix;
 
