@@ -1,7 +1,7 @@
 # Spring Boot 168 JUnit 5
 
 ## Related Articles
-1. [Spring Boot JUnit 5](https://www.ruoxue.org/junit-151-junit-5/)
+1. [Spring Boot JUnit 5](https://www.ruoxue.org/spring-boot-168-ep12-spring-boot-junit-5/)
 2. [JUnit 5 Test](https://www.ruoxue.org/junit-151-junit-5-test/)
 3. [JUnit 5 BeforeAll](https://www.ruoxue.org/junit-151-junit-5-beforeall/)
 4. [JUnit 5 Nested](https://www.ruoxue.org/junit-151-junit-5-nested/)
