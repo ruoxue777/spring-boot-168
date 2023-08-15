@@ -16,6 +16,13 @@ public class AssertJArrayTest {
 	}
 
 	@Test
+	public void doesNotContain() {
+		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
+		System.out.println(Arrays.toString(array));
+		assertThat(array).doesNotContain("Mango");
+	}
+
+	@Test
 	public void containsOnly() {
 		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
 		System.out.println(Arrays.toString(array));
@@ -41,13 +48,6 @@ public class AssertJArrayTest {
 		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
 		System.out.println(Arrays.toString(array));
 		assertThat(array).contains("Durian", atIndex(0)).contains("Guava", atIndex(1)).contains("Pitaya", atIndex(2));
-	}
-
-	@Test
-	public void doesNotContain() {
-		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
-		System.out.println(Arrays.toString(array));
-		assertThat(array).doesNotContain("Mango");
 	}
 
 	@Test
