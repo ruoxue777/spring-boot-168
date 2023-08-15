@@ -16,6 +16,11 @@ public class AssertJArrayWithExamplesTest {
 		System.out.println(Arrays.toString(array));
 		Condition<String[]> length = new Condition<String[]>(s -> s.length > 2, "length");
 		assertThat(array).has(length);
+
+		int[] intArray = new int[] { 1, 2, 3, 4, 5 };
+		System.out.println(Arrays.toString(intArray));
+		Condition<int[]> intLength = new Condition<int[]>(i -> i.length > 2, "length");
+		assertThat(intArray).has(intLength);
 	}
 
 	@Test
@@ -24,6 +29,10 @@ public class AssertJArrayWithExamplesTest {
 		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
 		System.out.println(Arrays.toString(array));
 		assertThat(array).hasSize(expectedSize);
+
+		int[] intArray = new int[] { 1, 2, 3, 4, 5 };
+		System.out.println(Arrays.toString(intArray));
+		assertThat(intArray).hasSize(5);
 	}
 
 	@Test
@@ -32,6 +41,10 @@ public class AssertJArrayWithExamplesTest {
 		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
 		System.out.println(Arrays.toString(array));
 		assertThat(array).hasSizeBetween(1, expectedSize);
+
+		int[] intArray = new int[] { 1, 2, 3, 4, 5 };
+		System.out.println(Arrays.toString(intArray));
+		assertThat(intArray).hasSizeBetween(1, 5);
 	}
 
 	@Test
