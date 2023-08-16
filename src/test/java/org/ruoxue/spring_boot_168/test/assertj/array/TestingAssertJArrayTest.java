@@ -16,6 +16,11 @@ class TestingAssertJArrayTest {
 		System.out.println(Arrays.toString(array));
 		Condition<String> length = new Condition<String>(s -> s.length() > 4, "length");
 		assertThat(array).are(length);
+
+		Integer[] intArray = new Integer[] { 1, 2, 3, 4, 5 };
+		System.out.println(Arrays.toString(intArray));
+		Condition<Integer> intValue = new Condition<Integer>(i -> i > 0, "value");
+		assertThat(intArray).are(intValue);
 	}
 
 	@Test
@@ -23,7 +28,12 @@ class TestingAssertJArrayTest {
 		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
 		System.out.println(Arrays.toString(array));
 		Condition<String> length = new Condition<String>(s -> s.length() > 5, "length");
-		assertThat(array).areAtLeast(1, length);
+		assertThat(array).areAtLeast(2, length);
+
+		Integer[] intArray = new Integer[] { 1, 2, 3, 4, 5 };
+		System.out.println(Arrays.toString(intArray));
+		Condition<Integer> intValue = new Condition<Integer>(i -> i > 1, "value");
+		assertThat(intArray).areAtLeast(2, intValue);
 	}
 
 	@Test
@@ -32,6 +42,11 @@ class TestingAssertJArrayTest {
 		System.out.println(Arrays.toString(array));
 		Condition<String> length = new Condition<String>(s -> s.length() > 5, "length");
 		assertThat(array).areAtLeastOne(length);
+
+		Integer[] intArray = new Integer[] { 1, 2, 3, 4, 5 };
+		System.out.println(Arrays.toString(intArray));
+		Condition<Integer> intValue = new Condition<Integer>(i -> i > 4, "value");
+		assertThat(intArray).areAtLeastOne(intValue);
 	}
 
 	@Test
@@ -40,6 +55,11 @@ class TestingAssertJArrayTest {
 		System.out.println(Arrays.toString(array));
 		Condition<String> length = new Condition<String>(s -> s.length() > 5, "length");
 		assertThat(array).areAtMost(2, length);
+
+		Integer[] intArray = new Integer[] { 1, 2, 3, 4, 5 };
+		System.out.println(Arrays.toString(intArray));
+		Condition<Integer> intValue = new Condition<Integer>(i -> i > 3, "value");
+		assertThat(intArray).areAtMost(2, intValue);
 	}
 
 	@Test
@@ -48,6 +68,11 @@ class TestingAssertJArrayTest {
 		System.out.println(Arrays.toString(array));
 		Condition<String> length = new Condition<String>(s -> s.length() > 5, "length");
 		assertThat(array).areExactly(2, length);
+
+		Integer[] intArray = new Integer[] { 1, 2, 3, 4, 5 };
+		System.out.println(Arrays.toString(intArray));
+		Condition<Integer> intValue = new Condition<Integer>(i -> i > 3, "value");
+		assertThat(intArray).areExactly(2, intValue);
 	}
 
 	@Test
@@ -56,6 +81,11 @@ class TestingAssertJArrayTest {
 		System.out.println(Arrays.toString(array));
 		Condition<String> length = new Condition<String>(s -> s.length() > 6, "length");
 		assertThat(array).areNot(length);
+
+		Integer[] intArray = new Integer[] { 1, 2, 3, 4, 5 };
+		System.out.println(Arrays.toString(intArray));
+		Condition<Integer> intValue = new Condition<Integer>(i -> i > 6, "value");
+		assertThat(intArray).areNot(intValue);
 	}
 
 	@Test
@@ -64,5 +94,10 @@ class TestingAssertJArrayTest {
 		System.out.println(Arrays.toString(array));
 		Supplier<String> description = () -> "AS Description";
 		assertThat(array).as(description);
+
+		Integer[] intArray = new Integer[] { 1, 2, 3, 4, 5 };
+		System.out.println(Arrays.toString(intArray));
+		Supplier<String> intDescription = () -> "Integer AS Description";
+		assertThat(intArray).as(intDescription);
 	}
 }

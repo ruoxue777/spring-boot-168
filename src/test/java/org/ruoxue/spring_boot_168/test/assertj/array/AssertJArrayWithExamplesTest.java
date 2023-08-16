@@ -120,8 +120,8 @@ public class AssertJArrayWithExamplesTest {
 		assertThat(array).doesNotHave(length);
 
 		int[] intArray = new int[] { 1, 2, 3, 4, 5 };
-		Condition<int[]> intLength = new Condition<int[]>(i -> i.length > 5, "length");
 		System.out.println(Arrays.toString(intArray));
+		Condition<int[]> intLength = new Condition<int[]>(i -> i.length > 5, "length");
 		assertThat(intArray).doesNotHave(intLength);
 	}
 
