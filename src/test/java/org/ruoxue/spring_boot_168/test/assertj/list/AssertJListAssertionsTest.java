@@ -1,4 +1,4 @@
-package org.ruoxue.spring_boot_168.test.assertj;
+package org.ruoxue.spring_boot_168.test.assertj.list;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -14,9 +14,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-public class AssertJListTest {
+public class AssertJListAssertionsTest {
 
-	public AssertJListTest() {
+	public AssertJListAssertionsTest() {
 
 	}
 

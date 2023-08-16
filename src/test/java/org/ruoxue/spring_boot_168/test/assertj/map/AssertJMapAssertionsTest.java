@@ -1,4 +1,4 @@
-package org.ruoxue.spring_boot_168.test.assertj;
+package org.ruoxue.spring_boot_168.test.assertj.map;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -15,9 +15,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-public class AssertJMapTest {
+public class AssertJMapAssertionsTest {
 
-	public AssertJMapTest() {
+	public AssertJMapAssertionsTest() {
 
 	}
 
