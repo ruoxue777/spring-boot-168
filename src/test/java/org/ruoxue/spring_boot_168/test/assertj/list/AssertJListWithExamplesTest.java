@@ -4,6 +4,8 @@ import static org.assertj.core.api.Assertions.*;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.assertj.core.api.Condition;
 import org.junit.jupiter.api.Test;
@@ -12,127 +14,127 @@ public class AssertJListWithExamplesTest {
 
 	@Test
 	public void has() {
-		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
-		System.out.println(Arrays.toString(array));
-		Condition<String[]> length = new Condition<String[]>(s -> s.length > 2, "length");
-		assertThat(array).has(length);
+		List<String> list = Arrays.asList("Apple", "Banana", "Cherry");
+		System.out.println(list);
+		Condition<List<?>> size = new Condition<List<?>>(s -> s.size() > 2, "size");
+		assertThat(list).has(size);
 
-		int[] intArray = new int[] { 1, 2, 3, 4, 5 };
-		System.out.println(Arrays.toString(intArray));
-		Condition<int[]> intLength = new Condition<int[]>(i -> i.length > 2, "length");
-		assertThat(intArray).has(intLength);
+		List<Integer> intList = Stream.of(6, 7, 8, 9, 10).collect(Collectors.toList());
+		System.out.println(intList);
+		Condition<List<?>> intSize = new Condition<List<?>>(i -> i.size() > 2, "size");
+		assertThat(intList).has(intSize);
 	}
 
 	@Test
 	public void hasSize() {
 		int expectedSize = 3;
-		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
-		System.out.println(Arrays.toString(array));
-		assertThat(array).hasSize(expectedSize);
+		List<String> list = Arrays.asList("Apple", "Banana", "Cherry");
+		System.out.println(list);
+		assertThat(list).hasSize(expectedSize);
 
-		int[] intArray = new int[] { 1, 2, 3, 4, 5 };
-		System.out.println(Arrays.toString(intArray));
-		assertThat(intArray).hasSize(5);
+		List<Integer> intList = Stream.of(6, 7, 8, 9, 10).collect(Collectors.toList());
+		System.out.println(intList);
+		assertThat(intList).hasSize(5);
 	}
 
 	@Test
 	public void hasSizeBetween() {
 		int expectedSize = 3;
-		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
-		System.out.println(Arrays.toString(array));
-		assertThat(array).hasSizeBetween(1, expectedSize);
+		List<String> list = Arrays.asList("Apple", "Banana", "Cherry");
+		System.out.println(list);
+		assertThat(list).hasSizeBetween(1, expectedSize);
 
-		int[] intArray = new int[] { 1, 2, 3, 4, 5 };
-		System.out.println(Arrays.toString(intArray));
-		assertThat(intArray).hasSizeBetween(1, 5);
+		List<Integer> intList = Stream.of(6, 7, 8, 9, 10).collect(Collectors.toList());
+		System.out.println(intList);
+		assertThat(intList).hasSizeBetween(1, 5);
 	}
 
 	@Test
 	public void hasSizeGreaterThan() {
 		int expectedSize = 2;
-		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
-		System.out.println(Arrays.toString(array));
-		assertThat(array).hasSizeGreaterThan(expectedSize);
+		List<String> list = Arrays.asList("Apple", "Banana", "Cherry");
+		System.out.println(list);
+		assertThat(list).hasSizeGreaterThan(expectedSize);
 
-		int[] intArray = new int[] { 1, 2, 3, 4, 5 };
-		System.out.println(Arrays.toString(intArray));
-		assertThat(intArray).hasSizeGreaterThan(expectedSize);
+		List<Integer> intList = Stream.of(6, 7, 8, 9, 10).collect(Collectors.toList());
+		System.out.println(intList);
+		assertThat(intList).hasSizeGreaterThan(expectedSize);
 	}
 
 	@Test
 	public void hasSizeLessThan() {
 		int expectedSize = 4;
-		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
-		System.out.println(Arrays.toString(array));
-		assertThat(array).hasSizeLessThan(expectedSize);
+		List<String> list = Arrays.asList("Apple", "Banana", "Cherry");
+		System.out.println(list);
+		assertThat(list).hasSizeLessThan(expectedSize);
 
-		int[] intArray = new int[] { 1, 2, 3, 4, 5 };
-		System.out.println(Arrays.toString(intArray));
-		assertThat(intArray).hasSizeLessThan(6);
+		List<Integer> intList = Stream.of(6, 7, 8, 9, 10).collect(Collectors.toList());
+		System.out.println(intList);
+		assertThat(intList).hasSizeLessThan(6);
 	}
 
 	@Test
 	public void hasToString() {
-		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
-		System.out.println(Arrays.toString(array));
-		assertThat(array).hasToString(array.toString());
+		List<String> list = Arrays.asList("Apple", "Banana", "Cherry");
+		System.out.println(list);
+		assertThat(list).hasToString(list.toString());
 
-		int[] intArray = new int[] { 1, 2, 3, 4, 5 };
-		System.out.println(Arrays.toString(intArray));
-		assertThat(intArray).hasToString(intArray.toString());
+		List<Integer> intList = Stream.of(6, 7, 8, 9, 10).collect(Collectors.toList());
+		System.out.println(intList);
+		assertThat(intList).hasToString(intList.toString());
 	}
 
 	@Test
 	public void hasSameSizeAs() {
-		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
-		List<String> list = Arrays.asList("Durian", "Guava", "Pitaya");
-		System.out.println(Arrays.toString(array));
+		List<String> list = Arrays.asList("Apple", "Banana", "Cherry");
+		List<String> list2 = Arrays.asList("Apple", "Banana", "Cherry");
 		System.out.println(list);
-		assertThat(array).hasSameSizeAs(list);
+		System.out.println(list2);
+		assertThat(list).hasSameSizeAs(list);
 
-		int[] intArray = new int[] { 1, 2, 3, 4, 5 };
-		List<Integer> intList = Arrays.asList(1, 2, 3, 4, 5);
-		System.out.println(Arrays.toString(intArray));
+		List<Integer> intList = Stream.of(6, 7, 8, 9, 10).collect(Collectors.toList());
+		List<Integer> intList2 = Arrays.asList(6, 7, 8, 9, 10);
 		System.out.println(intList);
-		assertThat(intArray).hasSameSizeAs(intList);
+		System.out.println(intList2);
+		assertThat(intList).hasSameSizeAs(intList2);
 	}
 
 	@Test
 	public void hasSameElementsAs() {
-		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
-		List<String> list = Arrays.asList("Durian", "Guava", "Pitaya");
-		System.out.println(Arrays.toString(array));
+		List<String> list = Arrays.asList("Apple", "Banana", "Cherry");
+		List<String> list2 = Arrays.asList("Apple", "Banana", "Cherry");
 		System.out.println(list);
-		assertThat(array).hasSameElementsAs(list);
+		System.out.println(list2);
+		assertThat(list).hasSameElementsAs(list2);
 
-		Integer[] intArray = new Integer[] { 1, 2, 3, 4, 5 };
-		List<Integer> intList = Arrays.asList(1, 2, 3, 4, 5);
-		System.out.println(Arrays.toString(intArray));
+		List<Integer> intList = Stream.of(6, 7, 8, 9, 10).collect(Collectors.toList());
+		List<Integer> intList2 = Arrays.asList(6, 7, 8, 9, 10);
 		System.out.println(intList);
-		assertThat(intArray).hasSameElementsAs(intList);
+		System.out.println(intList2);
+		assertThat(intList).hasSameElementsAs(intList2);
 	}
 
 	@Test
 	public void doesNotHave() {
-		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
-		System.out.println(Arrays.toString(array));
-		Condition<String[]> length = new Condition<String[]>(s -> s.length > 3, "length");
-		assertThat(array).doesNotHave(length);
+		List<String> list = Arrays.asList("Apple", "Banana", "Cherry");
+		System.out.println(list);
+		Condition<List<?>> size = new Condition<List<?>>(s -> s.size() > 3, "size");
+		assertThat(list).doesNotHave(size);
 
-		int[] intArray = new int[] { 1, 2, 3, 4, 5 };
-		System.out.println(Arrays.toString(intArray));
-		Condition<int[]> intLength = new Condition<int[]>(i -> i.length > 5, "length");
-		assertThat(intArray).doesNotHave(intLength);
+		List<Integer> intList = Stream.of(6, 7, 8, 9, 10).collect(Collectors.toList());
+		System.out.println(intList);
+		Condition<List<?>> intSize = new Condition<List<?>>(s -> s.size() > 5, "size");
+		assertThat(intList).doesNotHave(intSize);
 	}
 
 	@Test
 	public void doesNotHaveDuplicates() {
-		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
-		System.out.println(Arrays.toString(array));
-		assertThat(array).doesNotHaveDuplicates();
+		List<String> list = Arrays.asList("Apple", "Banana", "Cherry");
+		System.out.println(list);
+		assertThat(list).doesNotHaveDuplicates();
 
-		int[] intArray = new int[] { 1, 2, 3, 4, 5 };
-		System.out.println(Arrays.toString(intArray));
-		assertThat(intArray).doesNotHaveDuplicates();
+		List<Integer> intList = Stream.of(6, 7, 8, 9, 10).collect(Collectors.toList());
+		System.out.println(intList);
+		assertThat(intList).doesNotHaveDuplicates();
 	}
 }
