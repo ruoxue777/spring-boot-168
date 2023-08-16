@@ -2,7 +2,11 @@ package org.ruoxue.spring_boot_168.test.assertj.list;
 
 import static org.assertj.core.api.Assertions.*;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.junit.jupiter.api.Test;
 
@@ -10,127 +14,127 @@ public class AssertJListMethodsTest {
 
 	@Test
 	public void isNull() {
-		String[] array = null;
-		System.out.println(Arrays.toString(array));
-		assertThat(array).isNull();
+		List<String> list = null;
+		System.out.println(list);
+		assertThat(list).isNull();
 
-		int[] intArray = null;
-		System.out.println(Arrays.toString(intArray));
-		assertThat(intArray).isNull();
+		List<Integer> intList = null;
+		System.out.println(intList);
+		assertThat(intList).isNull();
 	}
 
 	@Test
 	public void isNotNull() {
-		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
-		System.out.println(Arrays.toString(array));
-		assertThat(array).isNotNull();
+		List<String> list = Arrays.asList("Apple", "Banana", "Cherry");
+		System.out.println(list);
+		assertThat(list).isNotNull();
 
-		int[] intArray = new int[] { 1, 2, 3, 4, 5 };
-		System.out.println(Arrays.toString(intArray));
-		assertThat(intArray).isNotNull();
+		List<Integer> intList = Stream.of(6, 7, 8, 9, 10).collect(Collectors.toList());
+		System.out.println(intList);
+		assertThat(intList).isNotNull();
 	}
 
 	@Test
 	public void isEmpty() {
-		String[] array = new String[] {};
-		System.out.println(Arrays.toString(array));
-		assertThat(array).isEmpty();
+		List<String> list = new ArrayList<>();
+		System.out.println(list);
+		assertThat(list).isEmpty();
 
-		int[] intArray = new int[] {};
-		System.out.println(Arrays.toString(intArray));
-		assertThat(intArray).isEmpty();
+		List<Integer> intList = new ArrayList<>();
+		System.out.println(intList);
+		assertThat(intList).isEmpty();
 	}
 
 	@Test
 	public void isNotEmpty() {
-		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
-		System.out.println(Arrays.toString(array));
-		assertThat(array).isNotEmpty();
+		List<String> list = Arrays.asList("Apple", "Banana", "Cherry");
+		System.out.println(list);
+		assertThat(list).isNotEmpty();
 
-		int[] intArray = new int[] { 1, 2, 3, 4, 5 };
-		System.out.println(Arrays.toString(intArray));
-		assertThat(intArray).isNotEmpty();
+		List<Integer> intList = Stream.of(6, 7, 8, 9, 10).collect(Collectors.toList());
+		System.out.println(intList);
+		assertThat(intList).isNotEmpty();
 	}
 
 	@Test
 	public void isInstanceOf() {
-		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
-		System.out.println(Arrays.toString(array));
-		assertThat(array).isInstanceOf(String[].class);
+		List<String> list = Arrays.asList("Apple", "Banana", "Cherry");
+		System.out.println(list);
+		assertThat(list).isInstanceOf(List.class);
 
-		int[] intArray = new int[] { 1, 2, 3, 4, 5 };
-		System.out.println(Arrays.toString(intArray));
-		assertThat(intArray).isInstanceOf(int[].class);
+		List<Integer> intList = Stream.of(6, 7, 8, 9, 10).collect(Collectors.toList());
+		System.out.println(intList);
+		assertThat(intList).isInstanceOf(List.class);
 	}
 
 	@Test
 	public void isNotInstanceOf() {
-		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
-		System.out.println(Arrays.toString(array));
-		assertThat(array).isNotInstanceOf(String.class);
+		List<String> list = Arrays.asList("Apple", "Banana", "Cherry");
+		System.out.println(list);
+		assertThat(list).isNotInstanceOf(String.class);
 
-		int[] intArray = new int[] { 1, 2, 3, 4, 5 };
-		System.out.println(Arrays.toString(intArray));
-		assertThat(intArray).isNotInstanceOf(int.class);
+		List<Integer> intList = Stream.of(6, 7, 8, 9, 10).collect(Collectors.toList());
+		System.out.println(intList);
+		assertThat(intList).isNotInstanceOf(Integer.class);
 	}
 
 	@Test
 	public void isEqualTo() {
-		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
-		String[] array2 = new String[] { "Durian", "Guava", "Pitaya" };
-		System.out.println(Arrays.toString(array));
-		System.out.println(Arrays.toString(array2));
-		assertThat(array).isEqualTo(array2);
+		List<String> list = Arrays.asList("Apple", "Banana", "Cherry");
+		List<String> list2 = Arrays.asList("Apple", "Banana", "Cherry");
+		System.out.println(list);
+		System.out.println(list2);
+		assertThat(list).isEqualTo(list2);
 
-		int[] intArray = new int[] { 1, 2, 3, 4, 5 };
-		int[] intArray2 = new int[] { 1, 2, 3, 4, 5 };
-		System.out.println(Arrays.toString(intArray));
-		System.out.println(Arrays.toString(intArray2));
-		assertThat(intArray).isEqualTo(intArray2);
+		List<Integer> intList = Stream.of(6, 7, 8, 9, 10).collect(Collectors.toList());
+		List<Integer> intList2 = Stream.of(6, 7, 8, 9, 10).collect(Collectors.toList());
+		System.out.println(intList);
+		System.out.println(intList2);
+		assertThat(intList).isEqualTo(intList2);
 	}
 
 	@Test
 	public void isNotEqualTo() {
-		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
-		String[] array2 = new String[] { "Durian", "Guava" };
-		System.out.println(Arrays.toString(array));
-		System.out.println(Arrays.toString(array2));
-		assertThat(array).isNotEqualTo(array2);
+		List<String> list = Arrays.asList("Apple", "Banana", "Cherry");
+		List<String> list2 = Arrays.asList("Apple", "Banana");
+		System.out.println(list);
+		System.out.println(list2);
+		assertThat(list).isNotEqualTo(list2);
 
-		int[] intArray = new int[] { 1, 2, 3, 4, 5 };
-		int[] intArray2 = new int[] { 1, 2, 3 };
-		System.out.println(Arrays.toString(intArray));
-		System.out.println(Arrays.toString(intArray2));
-		assertThat(intArray).isNotEqualTo(intArray2);
+		List<Integer> intList = Stream.of(6, 7, 8, 9, 10).collect(Collectors.toList());
+		int[] intList2 = new int[] { 1, 2, 3 };
+		System.out.println(intList);
+		System.out.println(intList2);
+		assertThat(intList).isNotEqualTo(intList2);
 	}
 
 	@Test
 	public void isSameAs() {
-		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
-		String[] array2 = array;
-		System.out.println(Arrays.toString(array));
-		System.out.println(Arrays.toString(array2));
-		assertThat(array).isSameAs(array2);
+		List<String> list = Arrays.asList("Apple", "Banana", "Cherry");
+		List<String> list2 = list;
+		System.out.println(list);
+		System.out.println(list2);
+		assertThat(list).isSameAs(list2);
 
-		int[] intArray = new int[] { 1, 2, 3, 4, 5 };
-		int[] intArray2 = intArray;
-		System.out.println(Arrays.toString(intArray));
-		System.out.println(Arrays.toString(intArray2));
-		assertThat(intArray).isSameAs(intArray2);
+		List<Integer> intList = Stream.of(6, 7, 8, 9, 10).collect(Collectors.toList());
+		List<Integer> intList2 = intList;
+		System.out.println(intList);
+		System.out.println(intList2);
+		assertThat(intList).isSameAs(intList2);
 	}
 
 	@Test
 	public void isNotSameAs() {
-		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
-		String[] array2 = new String[] { "Durian", "Guava", "Pitaya" };
-		System.out.println(Arrays.toString(array));
-		System.out.println(Arrays.toString(array2));
-		assertThat(array).isNotSameAs(array2);
+		List<String> list = Arrays.asList("Apple", "Banana", "Cherry");
+		String[] list2 = new String[] { "Durian", "Guava", "Pitaya" };
+		System.out.println(list);
+		System.out.println(list2);
+		assertThat(list).isNotSameAs(list2);
 
-		int[] intArray = new int[] { 1, 2, 3, 4, 5 };
-		int[] intArray2 = new int[] { 1, 2, 3, 4, 5 };
-		System.out.println(Arrays.toString(intArray));
-		System.out.println(Arrays.toString(intArray2));
-		assertThat(intArray).isNotSameAs(intArray2);
+		List<Integer> intList = Stream.of(6, 7, 8, 9, 10).collect(Collectors.toList());
+		List<Integer> intList2 = Stream.of(6, 7, 8).collect(Collectors.toList());
+		System.out.println(intList);
+		System.out.println(intList2);
+		assertThat(intList).isNotSameAs(intList2);
 	}
 }
