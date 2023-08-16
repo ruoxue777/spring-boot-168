@@ -3,7 +3,10 @@ package org.ruoxue.spring_boot_168.test.assertj.list;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.function.Supplier;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.assertj.core.api.Condition;
 import org.junit.jupiter.api.Test;
@@ -12,92 +15,92 @@ class TestingAssertJListTest {
 
 	@Test
 	public void are() {
-		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
-		System.out.println(Arrays.toString(array));
+		List<String> list = Arrays.asList("Apple", "Banana", "Cherry");
+		System.out.println(list);
 		Condition<String> length = new Condition<String>(s -> s.length() > 4, "length");
-		assertThat(array).are(length);
+		assertThat(list).are(length);
 
-		Integer[] intArray = new Integer[] { 1, 2, 3, 4, 5 };
-		System.out.println(Arrays.toString(intArray));
+		List<Integer> intList = Stream.of(6, 7, 8, 9, 10).collect(Collectors.toList());
+		System.out.println(intList);
 		Condition<Integer> intValue = new Condition<Integer>(i -> i > 0, "value");
-		assertThat(intArray).are(intValue);
+		assertThat(intList).are(intValue);
 	}
 
 	@Test
 	public void areAtLeast() {
-		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
-		System.out.println(Arrays.toString(array));
+		List<String> list = Arrays.asList("Apple", "Banana", "Cherry");
+		System.out.println(list);
 		Condition<String> length = new Condition<String>(s -> s.length() > 5, "length");
-		assertThat(array).areAtLeast(2, length);
+		assertThat(list).areAtLeast(2, length);
 
-		Integer[] intArray = new Integer[] { 1, 2, 3, 4, 5 };
-		System.out.println(Arrays.toString(intArray));
+		List<Integer> intList = Stream.of(6, 7, 8, 9, 10).collect(Collectors.toList());
+		System.out.println(intList);
 		Condition<Integer> intValue = new Condition<Integer>(i -> i > 1, "value");
-		assertThat(intArray).areAtLeast(2, intValue);
+		assertThat(intList).areAtLeast(2, intValue);
 	}
 
 	@Test
 	public void areAtLeastOne() {
-		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
-		System.out.println(Arrays.toString(array));
+		List<String> list = Arrays.asList("Apple", "Banana", "Cherry");
+		System.out.println(list);
 		Condition<String> length = new Condition<String>(s -> s.length() > 5, "length");
-		assertThat(array).areAtLeastOne(length);
+		assertThat(list).areAtLeastOne(length);
 
-		Integer[] intArray = new Integer[] { 1, 2, 3, 4, 5 };
-		System.out.println(Arrays.toString(intArray));
+		List<Integer> intList = Stream.of(6, 7, 8, 9, 10).collect(Collectors.toList());
+		System.out.println(intList);
 		Condition<Integer> intValue = new Condition<Integer>(i -> i > 4, "value");
-		assertThat(intArray).areAtLeastOne(intValue);
+		assertThat(intList).areAtLeastOne(intValue);
 	}
 
 	@Test
 	public void areAtMost() {
-		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
-		System.out.println(Arrays.toString(array));
+		List<String> list = Arrays.asList("Apple", "Banana", "Cherry");
+		System.out.println(list);
 		Condition<String> length = new Condition<String>(s -> s.length() > 5, "length");
-		assertThat(array).areAtMost(2, length);
+		assertThat(list).areAtMost(2, length);
 
-		Integer[] intArray = new Integer[] { 1, 2, 3, 4, 5 };
-		System.out.println(Arrays.toString(intArray));
-		Condition<Integer> intValue = new Condition<Integer>(i -> i > 3, "value");
-		assertThat(intArray).areAtMost(2, intValue);
+		List<Integer> intList = Stream.of(6, 7, 8, 9, 10).collect(Collectors.toList());
+		System.out.println(intList);
+		Condition<Integer> intValue = new Condition<Integer>(i -> i > 8, "value");
+		assertThat(intList).areAtMost(2, intValue);
 	}
 
 	@Test
 	public void areExactly() {
-		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
-		System.out.println(Arrays.toString(array));
+		List<String> list = Arrays.asList("Apple", "Banana", "Cherry");
+		System.out.println(list);
 		Condition<String> length = new Condition<String>(s -> s.length() > 5, "length");
-		assertThat(array).areExactly(2, length);
+		assertThat(list).areExactly(2, length);
 
-		Integer[] intArray = new Integer[] { 1, 2, 3, 4, 5 };
-		System.out.println(Arrays.toString(intArray));
-		Condition<Integer> intValue = new Condition<Integer>(i -> i > 3, "value");
-		assertThat(intArray).areExactly(2, intValue);
+		List<Integer> intList = Stream.of(6, 7, 8, 9, 10).collect(Collectors.toList());
+		System.out.println(intList);
+		Condition<Integer> intValue = new Condition<Integer>(i -> i > 8, "value");
+		assertThat(intList).areExactly(2, intValue);
 	}
 
 	@Test
 	public void areNot() {
-		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
-		System.out.println(Arrays.toString(array));
-		Condition<String> length = new Condition<String>(s -> s.length() > 6, "length");
-		assertThat(array).areNot(length);
+		List<String> list = Arrays.asList("Apple", "Banana", "Cherry");
+		System.out.println(list);
+		Condition<String> length = new Condition<String>(s -> s.length() > 7, "length");
+		assertThat(list).areNot(length);
 
-		Integer[] intArray = new Integer[] { 1, 2, 3, 4, 5 };
-		System.out.println(Arrays.toString(intArray));
-		Condition<Integer> intValue = new Condition<Integer>(i -> i > 6, "value");
-		assertThat(intArray).areNot(intValue);
+		List<Integer> intList = Stream.of(6, 7, 8, 9, 10).collect(Collectors.toList());
+		System.out.println(intList);
+		Condition<Integer> intValue = new Condition<Integer>(i -> i > 10, "value");
+		assertThat(intList).areNot(intValue);
 	}
 
 	@Test
 	public void as() {
-		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
-		System.out.println(Arrays.toString(array));
+		List<String> list = Arrays.asList("Apple", "Banana", "Cherry");
+		System.out.println(list);
 		Supplier<String> description = () -> "AS Description";
-		assertThat(array).as(description);
+		assertThat(list).as(description);
 
-		Integer[] intArray = new Integer[] { 1, 2, 3, 4, 5 };
-		System.out.println(Arrays.toString(intArray));
+		List<Integer> intList = Stream.of(6, 7, 8, 9, 10).collect(Collectors.toList());
+		System.out.println(intList);
 		Supplier<String> intDescription = () -> "Integer AS Description";
-		assertThat(intArray).as(intDescription);
+		assertThat(intList).as(intDescription);
 	}
 }
