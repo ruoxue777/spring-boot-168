@@ -65,6 +65,10 @@ public class AssertJArrayWithExamplesTest {
 		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
 		System.out.println(Arrays.toString(array));
 		assertThat(array).hasSizeLessThan(expectedSize);
+
+		int[] intArray = new int[] { 1, 2, 3, 4, 5 };
+		System.out.println(Arrays.toString(intArray));
+		assertThat(intArray).hasSizeLessThan(6);
 	}
 
 	@Test
@@ -72,6 +76,10 @@ public class AssertJArrayWithExamplesTest {
 		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
 		System.out.println(Arrays.toString(array));
 		assertThat(array).hasToString(array.toString());
+
+		int[] intArray = new int[] { 1, 2, 3, 4, 5 };
+		System.out.println(Arrays.toString(intArray));
+		assertThat(intArray).hasToString(intArray.toString());
 	}
 
 	@Test
@@ -81,6 +89,12 @@ public class AssertJArrayWithExamplesTest {
 		System.out.println(Arrays.toString(array));
 		System.out.println(list);
 		assertThat(array).hasSameSizeAs(list);
+
+		int[] intArray = new int[] { 1, 2, 3, 4, 5 };
+		List<Integer> intList = Arrays.asList(1, 2, 3, 4, 5);
+		System.out.println(Arrays.toString(intArray));
+		System.out.println(intList);
+		assertThat(intArray).hasSameSizeAs(intList);
 	}
 
 	@Test
@@ -90,14 +104,25 @@ public class AssertJArrayWithExamplesTest {
 		System.out.println(Arrays.toString(array));
 		System.out.println(list);
 		assertThat(array).hasSameElementsAs(list);
+
+		Integer[] intArray = new Integer[] { 1, 2, 3, 4, 5 };
+		List<Integer> intList = Arrays.asList(1, 2, 3, 4, 5);
+		System.out.println(Arrays.toString(intArray));
+		System.out.println(intList);
+		assertThat(intArray).hasSameElementsAs(intList);
 	}
 
 	@Test
 	public void doesNotHave() {
 		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
 		System.out.println(Arrays.toString(array));
-		Condition<String[]> length = new Condition<String[]>(s -> s.length > 4, "length");
+		Condition<String[]> length = new Condition<String[]>(s -> s.length > 3, "length");
 		assertThat(array).doesNotHave(length);
+
+		int[] intArray = new int[] { 1, 2, 3, 4, 5 };
+		Condition<int[]> intLength = new Condition<int[]>(i -> i.length > 5, "length");
+		System.out.println(Arrays.toString(intArray));
+		assertThat(intArray).doesNotHave(intLength);
 	}
 
 	@Test
@@ -105,5 +130,9 @@ public class AssertJArrayWithExamplesTest {
 		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
 		System.out.println(Arrays.toString(array));
 		assertThat(array).doesNotHaveDuplicates();
+
+		int[] intArray = new int[] { 1, 2, 3, 4, 5 };
+		System.out.println(Arrays.toString(intArray));
+		assertThat(intArray).doesNotHaveDuplicates();
 	}
 }

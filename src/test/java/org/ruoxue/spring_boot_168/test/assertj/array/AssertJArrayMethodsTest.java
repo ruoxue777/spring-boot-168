@@ -101,7 +101,7 @@ public class AssertJArrayMethodsTest {
 		int[] intArray2 = new int[] { 1, 2, 3 };
 		System.out.println(Arrays.toString(intArray));
 		System.out.println(Arrays.toString(intArray2));
-		assertThat(intArray).isEqualTo(intArray2);
+		assertThat(intArray).isNotEqualTo(intArray2);
 	}
 
 	@Test
