@@ -79,7 +79,7 @@ public class AssertJListAssertionsTest {
 
 	@Test
 	public void containsNull() {
-		List<String> list = Arrays.asList("Apple", "Banana", "Cherry");
+		List<String> list = Arrays.asList("Apple", "Banana", null);
 		System.out.println(list);
 		assertThat(list).containsNull();
 
@@ -90,13 +90,12 @@ public class AssertJListAssertionsTest {
 
 	@Test
 	public void doesNotContainNull() {
-		List<String> list = Arrays.asList("Apple", "Banana", null);
+		List<String> list = Arrays.asList("Apple", "Banana", "Cherry");
 		System.out.println(list);
-		assertThat(list).containsNull();
+		assertThat(list).doesNotContainNull();
 
 		List<Integer> intList = Stream.of(6, 7, 8, 9, 10).collect(Collectors.toList());
 		System.out.println(intList);
 		assertThat(intList).doesNotContainNull();
 	}
-
 }
