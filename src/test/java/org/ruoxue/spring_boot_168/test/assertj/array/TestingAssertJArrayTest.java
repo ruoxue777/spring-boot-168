@@ -8,7 +8,7 @@ import java.util.function.Supplier;
 import org.assertj.core.api.Condition;
 import org.junit.jupiter.api.Test;
 
-class TestingAssertJArrayTest {
+public class TestingAssertJArrayTest {
 
 	@Test
 	public void are() {
@@ -45,7 +45,7 @@ class TestingAssertJArrayTest {
 
 		Integer[] intArray = new Integer[] { 1, 2, 3, 4, 5 };
 		System.out.println(Arrays.toString(intArray));
-		Condition<Integer> intValue = new Condition<Integer>(i -> i > 4, "value");
+		Condition<Integer> intValue = new Condition<Integer>(i -> i >  4, "value");
 		assertThat(intArray).areAtLeastOne(intValue);
 	}
 
