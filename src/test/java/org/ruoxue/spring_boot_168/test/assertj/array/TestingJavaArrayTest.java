@@ -43,7 +43,7 @@ public class TestingJavaArrayTest {
 
 		Integer[] intArray = new Integer[] { 1, 2, 3, 4, 5 };
 		System.out.println(Arrays.toString(intArray));
-		assertThat(new Integer(3)).isIn(intArray);
+		assertThat(3).isIn(intArray);
 	}
 
 	@Test
@@ -54,7 +54,7 @@ public class TestingJavaArrayTest {
 
 		Integer[] intArray = new Integer[] { 1, 2, 3, 4, 5 };
 		System.out.println(Arrays.toString(intArray));
-		assertThat(new Integer(9)).isNotIn(intArray);
+		assertThat(9).isNotIn(intArray);
 	}
 
 	@Test
