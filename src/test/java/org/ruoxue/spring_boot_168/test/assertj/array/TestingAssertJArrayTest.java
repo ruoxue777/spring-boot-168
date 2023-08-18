@@ -3,6 +3,7 @@ package org.ruoxue.spring_boot_168.test.assertj.array;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.function.Supplier;
 
 import org.assertj.core.api.Condition;
@@ -45,7 +46,7 @@ public class TestingAssertJArrayTest {
 
 		Integer[] intArray = new Integer[] { 1, 2, 3, 4, 5 };
 		System.out.println(Arrays.toString(intArray));
-		Condition<Integer> intValue = new Condition<Integer>(i -> i >  4, "value");
+		Condition<Integer> intValue = new Condition<Integer>(i -> i > 4, "value");
 		assertThat(intArray).areAtLeastOne(intValue);
 	}
 
@@ -90,14 +91,15 @@ public class TestingAssertJArrayTest {
 
 	@Test
 	public void as() {
+		int expectedSize = 2;
 		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
-		System.out.println(Arrays.toString(array));
-		Supplier<String> description = () -> "AS Description";
-		assertThat(array).as(description);
-
-		Integer[] intArray = new Integer[] { 1, 2, 3, 4, 5 };
-		System.out.println(Arrays.toString(intArray));
-		Supplier<String> intDescription = () -> "Integer AS Description";
-		assertThat(intArray).as(intDescription);
+		String text = "Length expected: [" + expectedSize + "] but was: [" + array.length + "]";
+		try {
+			Supplier<String> desc = () -> text;
+			assertThat(array).as(desc).hasSize(expectedSize);
+		} catch (AssertionError e) {
+			e.printStackTrace();
+			assertThat(e).hasMessageContaining(text);
+		}
 	}
 }

@@ -93,14 +93,15 @@ class TestingAssertJListTest {
 
 	@Test
 	public void as() {
+		int expectedSize = 2;
 		List<String> list = Arrays.asList("Apple", "Banana", "Cherry");
-		System.out.println(list);
-		Supplier<String> description = () -> "AS Description";
-		assertThat(list).as(description);
-
-		List<Integer> intList = Stream.of(6, 7, 8, 9, 10).collect(Collectors.toList());
-		System.out.println(intList);
-		Supplier<String> intDescription = () -> "Integer AS Description";
-		assertThat(intList).as(intDescription);
+		String text = "Size expected: [" + expectedSize + "] but was: [" + list.size() + "]";
+		try {
+			Supplier<String> desc = () -> text;
+			assertThat(list).as(desc).hasSize(expectedSize);
+		} catch (AssertionError e) {
+			e.printStackTrace();
+			assertThat(e).hasMessageContaining(text);
+		}
 	}
 }
