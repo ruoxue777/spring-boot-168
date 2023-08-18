@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.assertj.core.api.Condition;
 import org.junit.jupiter.api.Test;
 
 public class UnitTestMapWithAssertJTest {
@@ -15,7 +16,17 @@ public class UnitTestMapWithAssertJTest {
 		map.put("Grape", 18);
 		map.put("Kiwifruit", 19);
 		map.put("Lemon", 20);
-		assertThat(map).is(null);
+		System.out.println(map);
+		Condition<Map<?, ?>> size = new Condition<Map<?, ?>>(s -> s.size() > 2, "size");
+		assertThat(map).is(size);
+
+		Map<Integer, Integer> intMap = new HashMap<>();
+		intMap.put(1, 18);
+		intMap.put(2, 19);
+		intMap.put(3, 20);
+		System.out.println(intMap);
+		Condition<Map<?, ?>> intSize = new Condition<Map<?, ?>>(i -> i.size() > 2, "size");
+		assertThat(intMap).is(intSize);
 	}
 
 	@Test
@@ -24,7 +35,17 @@ public class UnitTestMapWithAssertJTest {
 		map.put("Grape", 18);
 		map.put("Kiwifruit", 19);
 		map.put("Lemon", 20);
-		assertThat(map).isNot(null);
+		System.out.println(map);
+		Condition<Map<?, ?>> size = new Condition<Map<?, ?>>(s -> s.size() > 3, "size");
+		assertThat(map).isNot(size);
+
+		Map<Integer, Integer> intMap = new HashMap<>();
+		intMap.put(1, 18);
+		intMap.put(2, 19);
+		intMap.put(3, 20);
+		System.out.println(intMap);
+		Condition<Map<?, ?>> intSize = new Condition<Map<?, ?>>(i -> i.size() > 3, "size");
+		assertThat(intMap).isNot(intSize);
 	}
 
 	@Test
@@ -33,7 +54,15 @@ public class UnitTestMapWithAssertJTest {
 		map.put("Grape", 18);
 		map.put("Kiwifruit", 19);
 		map.put("Lemon", 20);
-		assertThat(map).isIn((Iterable) null);
+		System.out.println(map);
+		assertThat("Kiwifruit").isIn(map.keySet());
+
+		Map<Integer, Integer> intMap = new HashMap<>();
+		intMap.put(1, 18);
+		intMap.put(2, 19);
+		intMap.put(3, 20);
+		System.out.println(intMap);
+		assertThat(2).isIn(intMap.keySet());
 	}
 
 	@Test
@@ -42,7 +71,15 @@ public class UnitTestMapWithAssertJTest {
 		map.put("Grape", 18);
 		map.put("Kiwifruit", 19);
 		map.put("Lemon", 20);
-		assertThat(map).isNotIn((Iterable) null);
+		System.out.println(map);
+		assertThat("Papaya").isNotIn(map.keySet());
+
+		Map<Integer, Integer> intMap = new HashMap<>();
+		intMap.put(1, 18);
+		intMap.put(2, 19);
+		intMap.put(3, 20);
+		System.out.println(intMap);
+		assertThat(99).isNotIn(intMap.keySet());
 	}
 
 	@Test
