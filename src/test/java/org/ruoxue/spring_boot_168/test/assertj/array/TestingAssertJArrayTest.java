@@ -3,7 +3,6 @@ package org.ruoxue.spring_boot_168.test.assertj.array;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Arrays;
-import java.util.List;
 import java.util.function.Supplier;
 
 import org.assertj.core.api.Condition;
