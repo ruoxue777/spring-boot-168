@@ -43,6 +43,17 @@ public class AssertJListAssertionsTest {
 		System.out.println(intList);
 		assertThat(intList).containsOnly(10, 9, 8, 7, 6);
 	}
+	
+	@Test
+	public void containsOnlyOnce() {
+		List<String> list = Arrays.asList("Apple", "Banana", "Cherry");
+		System.out.println(list);
+		assertThat(list).containsOnlyOnce("Banana");
+
+		List<Integer> intList = Stream.of(6, 7, 8, 9, 10).collect(Collectors.toList());
+		System.out.println(intList);
+		assertThat(intList).containsOnlyOnce(8);
+	}
 
 	@Test
 	public void containsExactly() {

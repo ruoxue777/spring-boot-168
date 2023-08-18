@@ -2,8 +2,10 @@ package org.ruoxue.spring_boot_168.test.assertj.map;
 
 import static org.assertj.core.api.Assertions.*;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.junit.jupiter.api.Test;
@@ -25,6 +27,25 @@ public class AssertJMapAssertionsTest {
 		intMap.put(3, 20);
 		System.out.println(intMap);
 		assertThat(intMap).containsKeys(1, 2);
+	}
+
+	@Test
+	public void containsOnlyKeys() {
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("Grape", 18);
+		map.put("Kiwifruit", 19);
+		map.put("Lemon", 20);
+		System.out.println(map);
+		List<String> keys = Arrays.asList("Lemon", "Grape", "Kiwifruit");
+		assertThat(map).containsOnlyKeys(keys);
+
+		Map<Integer, Integer> intMap = new HashMap<Integer, Integer>();
+		intMap.put(1, 18);
+		intMap.put(2, 19);
+		intMap.put(3, 20);
+		System.out.println(intMap);
+		List<Integer> intKeys = Arrays.asList(3, 1, 2);
+		assertThat(intMap).containsOnlyKeys(intKeys);
 	}
 
 	@Test
@@ -154,7 +175,7 @@ public class AssertJMapAssertionsTest {
 		map.put("Lemon", 20);
 		System.out.println(map);
 		assertThat(map).containsAnyOf(entry("Papaya", 28), entry("Grape", 18), entry("Strawberry", 38));
-		
+
 		Map<Integer, Integer> intMap = new HashMap<Integer, Integer>();
 		intMap.put(1, 18);
 		intMap.put(2, 19);

@@ -40,6 +40,17 @@ public class AssertJArrayAssertionsTest {
 		System.out.println(Arrays.toString(intArray));
 		assertThat(intArray).containsOnly(5, 4, 1, 2, 3);
 	}
+	
+	@Test
+	public void containsOnlyOnce() {
+		String[] array = new String[] { "Durian", "Guava", "Pitaya"};
+		System.out.println(Arrays.toString(array));
+		assertThat(array).containsOnlyOnce("Guava");
+
+		int[] intArray = new int[] { 1, 2, 3, 4, 5 };
+		System.out.println(Arrays.toString(intArray));
+		assertThat(intArray).containsOnlyOnce(3);
+	}
 
 	@Test
 	public void containsExactly() {
