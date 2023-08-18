@@ -8,7 +8,7 @@ import java.util.function.Supplier;
 import org.assertj.core.api.Condition;
 import org.junit.jupiter.api.Test;
 
-class TestingAssertJMapTest {
+public class TestingAssertJMapTest {
 
 	@Test
 	public void are() {
