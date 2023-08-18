@@ -3,6 +3,8 @@ package org.ruoxue.spring_boot_168.test.assertj.map;
 import static org.assertj.core.api.Assertions.*;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.junit.jupiter.api.Test;
 
@@ -10,127 +12,175 @@ public class AssertJMapMethodsTest {
 
 	@Test
 	public void isNull() {
-		String[] array = null;
-		System.out.println(Arrays.toString(array));
-		assertThat(array).isNull();
+		Map<String, Integer> map = null;
+		System.out.println(map);
+		assertThat(map).isNull();
 
-		int[] intArray = null;
-		System.out.println(Arrays.toString(intArray));
-		assertThat(intArray).isNull();
+		Map<Integer, Integer> intMap = null;
+		System.out.println(intMap);
+		assertThat(intMap).isNull();
 	}
 
 	@Test
 	public void isNotNull() {
-		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
-		System.out.println(Arrays.toString(array));
-		assertThat(array).isNotNull();
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("Grape", 18);
+		map.put("Kiwifruit", 19);
+		map.put("Lemon", 20);
+		System.out.println(map);
+		assertThat(map).isNotNull();
 
-		int[] intArray = new int[] { 1, 2, 3, 4, 5 };
-		System.out.println(Arrays.toString(intArray));
-		assertThat(intArray).isNotNull();
+		Map<Integer, Integer> intMap = new HashMap<Integer, Integer>();
+		intMap.put(1, 18);
+		intMap.put(2, 19);
+		intMap.put(3, 20);
+		System.out.println(intMap);
+		assertThat(intMap).isNotNull();
 	}
 
 	@Test
 	public void isEmpty() {
-		String[] array = new String[] {};
-		System.out.println(Arrays.toString(array));
-		assertThat(array).isEmpty();
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		System.out.println(map);
+		assertThat(map).isEmpty();
 
-		int[] intArray = new int[] {};
-		System.out.println(Arrays.toString(intArray));
-		assertThat(intArray).isEmpty();
+		Map<Integer, Integer> intMap = new HashMap<Integer, Integer>();
+		System.out.println(intMap);
+		assertThat(intMap).isEmpty();
 	}
 
 	@Test
 	public void isNotEmpty() {
-		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
-		System.out.println(Arrays.toString(array));
-		assertThat(array).isNotEmpty();
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("Grape", 18);
+		map.put("Kiwifruit", 19);
+		map.put("Lemon", 20);
+		System.out.println(map);
+		assertThat(map).isNotEmpty();
 
-		int[] intArray = new int[] { 1, 2, 3, 4, 5 };
-		System.out.println(Arrays.toString(intArray));
-		assertThat(intArray).isNotEmpty();
+		Map<Integer, Integer> intMap = new HashMap<Integer, Integer>();
+		intMap.put(1, 18);
+		intMap.put(2, 19);
+		intMap.put(3, 20);
+		System.out.println(intMap);
+		assertThat(intMap).isNotEmpty();
 	}
 
 	@Test
 	public void isInstanceOf() {
-		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
-		System.out.println(Arrays.toString(array));
-		assertThat(array).isInstanceOf(String[].class);
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("Grape", 18);
+		map.put("Kiwifruit", 19);
+		map.put("Lemon", 20);
+		System.out.println(map);
+		assertThat(map).isInstanceOf(Map.class);
 
-		int[] intArray = new int[] { 1, 2, 3, 4, 5 };
-		System.out.println(Arrays.toString(intArray));
-		assertThat(intArray).isInstanceOf(int[].class);
+		Map<Integer, Integer> intMap = new HashMap<Integer, Integer>();
+		intMap.put(1, 18);
+		intMap.put(2, 19);
+		intMap.put(3, 20);
+		System.out.println(intMap);
+		assertThat(intMap).isInstanceOf(Map.class);
 	}
 
 	@Test
 	public void isNotInstanceOf() {
-		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
-		System.out.println(Arrays.toString(array));
-		assertThat(array).isNotInstanceOf(String.class);
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("Grape", 18);
+		map.put("Kiwifruit", 19);
+		map.put("Lemon", 20);
+		System.out.println(map);
+		assertThat(map).isNotInstanceOf(String.class);
 
-		int[] intArray = new int[] { 1, 2, 3, 4, 5 };
-		System.out.println(Arrays.toString(intArray));
-		assertThat(intArray).isNotInstanceOf(int.class);
+		Map<Integer, Integer> intMap = new HashMap<Integer, Integer>();
+		intMap.put(1, 18);
+		intMap.put(2, 19);
+		intMap.put(3, 20);
+		System.out.println(intMap);
+		assertThat(intMap).isNotInstanceOf(Integer.class);
 	}
 
 	@Test
 	public void isEqualTo() {
-		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
-		String[] array2 = new String[] { "Durian", "Guava", "Pitaya" };
-		System.out.println(Arrays.toString(array));
-		System.out.println(Arrays.toString(array2));
-		assertThat(array).isEqualTo(array2);
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("Grape", 18);
+		map.put("Kiwifruit", 19);
+		map.put("Lemon", 20);
+		Map<String, Integer> map2 = new HashMap<String, Integer>(map);
+		System.out.println(map);
+		System.out.println(map2);
+		assertThat(map).isEqualTo(map2);
 
-		int[] intArray = new int[] { 1, 2, 3, 4, 5 };
-		int[] intArray2 = new int[] { 1, 2, 3, 4, 5 };
-		System.out.println(Arrays.toString(intArray));
-		System.out.println(Arrays.toString(intArray2));
-		assertThat(intArray).isEqualTo(intArray2);
+		Map<Integer, Integer> intMap = new HashMap<Integer, Integer>();
+		intMap.put(1, 18);
+		intMap.put(2, 19);
+		intMap.put(3, 20);
+		Map<Integer, Integer> intMap2 = new HashMap<Integer, Integer>(intMap);
+		System.out.println(intMap);
+		System.out.println(intMap2);
+		assertThat(intMap).isEqualTo(intMap2);
 	}
 
 	@Test
 	public void isNotEqualTo() {
-		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
-		String[] array2 = new String[] { "Durian", "Guava" };
-		System.out.println(Arrays.toString(array));
-		System.out.println(Arrays.toString(array2));
-		assertThat(array).isNotEqualTo(array2);
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("Grape", 18);
+		map.put("Kiwifruit", 19);
+		map.put("Lemon", 20);
+		Map<String, Integer> map2 = new HashMap<String, Integer>();
+		System.out.println(map);
+		System.out.println(map2);
+		assertThat(map).isNotEqualTo(map2);
 
-		int[] intArray = new int[] { 1, 2, 3, 4, 5 };
-		int[] intArray2 = new int[] { 1, 2, 3 };
-		System.out.println(Arrays.toString(intArray));
-		System.out.println(Arrays.toString(intArray2));
-		assertThat(intArray).isNotEqualTo(intArray2);
+		Map<Integer, Integer> intMap = new HashMap<Integer, Integer>();
+		intMap.put(1, 18);
+		intMap.put(2, 19);
+		intMap.put(3, 20);
+		Map<Integer, Integer> intMap2 = new HashMap<Integer, Integer>();
+		System.out.println(intMap);
+		System.out.println(intMap2);
+		assertThat(intMap).isNotEqualTo(intMap2);
 	}
 
 	@Test
 	public void isSameAs() {
-		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
-		String[] array2 = array;
-		System.out.println(Arrays.toString(array));
-		System.out.println(Arrays.toString(array2));
-		assertThat(array).isSameAs(array2);
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("Grape", 18);
+		map.put("Kiwifruit", 19);
+		map.put("Lemon", 20);
+		Map<String, Integer> map2 = map;
+		System.out.println(map);
+		System.out.println(map2);
+		assertThat(map).isSameAs(map2);
 
-		int[] intArray = new int[] { 1, 2, 3, 4, 5 };
-		int[] intArray2 = intArray;
-		System.out.println(Arrays.toString(intArray));
-		System.out.println(Arrays.toString(intArray2));
-		assertThat(intArray).isSameAs(intArray2);
+		Map<Integer, Integer> intMap = new HashMap<Integer, Integer>();
+		intMap.put(1, 18);
+		intMap.put(2, 19);
+		intMap.put(3, 20);
+		Map<Integer, Integer> intMap2 = intMap;
+		System.out.println(intMap);
+		System.out.println(intMap2);
+		assertThat(intMap).isSameAs(intMap2);
 	}
 
 	@Test
 	public void isNotSameAs() {
-		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
-		String[] array2 = new String[] { "Durian", "Guava", "Pitaya" };
-		System.out.println(Arrays.toString(array));
-		System.out.println(Arrays.toString(array2));
-		assertThat(array).isNotSameAs(array2);
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("Grape", 18);
+		map.put("Kiwifruit", 19);
+		map.put("Lemon", 20);
+		Map<String, Integer> map2 = map;
+		System.out.println(map);
+		System.out.println(map2);
+		assertThat(map).isSameAs(map2);
 
-		int[] intArray = new int[] { 1, 2, 3, 4, 5 };
-		int[] intArray2 = new int[] { 1, 2, 3, 4, 5 };
-		System.out.println(Arrays.toString(intArray));
-		System.out.println(Arrays.toString(intArray2));
-		assertThat(intArray).isNotSameAs(intArray2);
+		Map<Integer, Integer> intMap = new HashMap<Integer, Integer>();
+		intMap.put(1, 18);
+		intMap.put(2, 19);
+		intMap.put(3, 20);
+		Map<Integer, Integer> intMap2 = intMap;
+		System.out.println(intMap);
+		System.out.println(intMap2);
+		assertThat(intMap).isSameAs(intMap2);
 	}
 }
