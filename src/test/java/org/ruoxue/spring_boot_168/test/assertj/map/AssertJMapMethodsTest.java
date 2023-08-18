@@ -66,37 +66,18 @@ public class AssertJMapMethodsTest {
 	}
 
 	@Test
-	public void isInstanceOf() {
-		Map<String, Integer> map = new HashMap<>();
-		map.put("Grape", 18);
-		map.put("Kiwifruit", 19);
-		map.put("Lemon", 20);
+	public void isNullOrEmpty() {
+		Map<String, Integer> map = null;
 		System.out.println(map);
-		assertThat(map).isInstanceOf(Map.class);
-
-		Map<Integer, Integer> intMap = new HashMap<>();
-		intMap.put(1, 18);
-		intMap.put(2, 19);
-		intMap.put(3, 20);
-		System.out.println(intMap);
-		assertThat(intMap).isInstanceOf(Map.class);
-	}
-
-	@Test
-	public void isNotInstanceOf() {
-		Map<String, Integer> map = new HashMap<>();
-		map.put("Grape", 18);
-		map.put("Kiwifruit", 19);
-		map.put("Lemon", 20);
+		map = new HashMap<>();
 		System.out.println(map);
-		assertThat(map).isNotInstanceOf(String.class);
+		assertThat(map).isNullOrEmpty();
 
-		Map<Integer, Integer> intMap = new HashMap<>();
-		intMap.put(1, 18);
-		intMap.put(2, 19);
-		intMap.put(3, 20);
+		Map<Integer, Integer> intMap = null;
 		System.out.println(intMap);
-		assertThat(intMap).isNotInstanceOf(Integer.class);
+		intMap = new HashMap<>();
+		System.out.println(intMap);
+		assertThat(intMap).isNullOrEmpty();
 	}
 
 	@Test
