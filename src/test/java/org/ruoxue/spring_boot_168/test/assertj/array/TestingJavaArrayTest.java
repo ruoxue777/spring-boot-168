@@ -58,23 +58,45 @@ public class TestingJavaArrayTest {
 	}
 
 	@Test
+	public void isInstanceOf() {
+		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
+		System.out.println(Arrays.toString(array));
+		assertThat(array).isInstanceOf(String[].class);
+
+		int[] intArray = new int[] { 1, 2, 3, 4, 5 };
+		System.out.println(Arrays.toString(intArray));
+		assertThat(intArray).isInstanceOf(int[].class);
+	}
+
+	@Test
+	public void isNotInstanceOf() {
+		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
+		System.out.println(Arrays.toString(array));
+		assertThat(array).isNotInstanceOf(String.class);
+
+		int[] intArray = new int[] { 1, 2, 3, 4, 5 };
+		System.out.println(Arrays.toString(intArray));
+		assertThat(intArray).isNotInstanceOf(int.class);
+	}
+
+	@Test
 	public void startsWith() {
 		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
 		System.out.println(Arrays.toString(array));
 		assertThat(array).startsWith("Durian");
 
-		Integer[] intArray = new Integer[] { 1, 2, 3, 4, 5 };
+		int[] intArray = new int[] { 1, 2, 3, 4, 5 };
 		System.out.println(Arrays.toString(intArray));
 		assertThat(intArray).startsWith(1);
 	}
-	
+
 	@Test
 	public void endsWith() {
 		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
 		System.out.println(Arrays.toString(array));
 		assertThat(array).endsWith("Pitaya");
 
-		Integer[] intArray = new Integer[] { 1, 2, 3, 4, 5 };
+		int[] intArray = new int[] { 1, 2, 3, 4, 5 };
 		System.out.println(Arrays.toString(intArray));
 		assertThat(intArray).endsWith(5);
 	}

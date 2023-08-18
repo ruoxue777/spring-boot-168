@@ -53,25 +53,19 @@ public class AssertJArrayMethodsTest {
 	}
 
 	@Test
-	public void isInstanceOf() {
-		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
+	public void isNullOrEmpty() {
+		String[] array = null;
 		System.out.println(Arrays.toString(array));
-		assertThat(array).isInstanceOf(String[].class);
-
-		int[] intArray = new int[] { 1, 2, 3, 4, 5 };
-		System.out.println(Arrays.toString(intArray));
-		assertThat(intArray).isInstanceOf(int[].class);
-	}
-
-	@Test
-	public void isNotInstanceOf() {
-		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
+		assertThat(array).isNullOrEmpty();
+		array = new String[] {};
 		System.out.println(Arrays.toString(array));
-		assertThat(array).isNotInstanceOf(String.class);
+		assertThat(array).isNullOrEmpty();
 
-		int[] intArray = new int[] { 1, 2, 3, 4, 5 };
+		int[] intArray = null;
 		System.out.println(Arrays.toString(intArray));
-		assertThat(intArray).isNotInstanceOf(int.class);
+		intArray = new int[] {};
+		System.out.println(Arrays.toString(intArray));
+		assertThat(intArray).isNullOrEmpty();
 	}
 
 	@Test
