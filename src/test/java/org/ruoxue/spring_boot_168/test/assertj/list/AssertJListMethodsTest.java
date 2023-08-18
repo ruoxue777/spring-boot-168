@@ -57,25 +57,19 @@ public class AssertJListMethodsTest {
 	}
 
 	@Test
-	public void isInstanceOf() {
-		List<String> list = Arrays.asList("Apple", "Banana", "Cherry");
+	public void isNullOrEmpty() {
+		List<String> list = null;
 		System.out.println(list);
-		assertThat(list).isInstanceOf(List.class);
-
-		List<Integer> intList = Stream.of(6, 7, 8, 9, 10).collect(Collectors.toList());
-		System.out.println(intList);
-		assertThat(intList).isInstanceOf(List.class);
-	}
-
-	@Test
-	public void isNotInstanceOf() {
-		List<String> list = Arrays.asList("Apple", "Banana", "Cherry");
+		assertThat(list).isNullOrEmpty();
+		list = new ArrayList<>();
 		System.out.println(list);
-		assertThat(list).isNotInstanceOf(String.class);
+		assertThat(list).isNullOrEmpty();
 
-		List<Integer> intList = Stream.of(6, 7, 8, 9, 10).collect(Collectors.toList());
+		List<Integer> intList = null;
 		System.out.println(intList);
-		assertThat(intList).isNotInstanceOf(Integer.class);
+		intList = new ArrayList<>();
+		System.out.println(intList);
+		assertThat(intList).isNullOrEmpty();
 	}
 
 	@Test
@@ -126,13 +120,13 @@ public class AssertJListMethodsTest {
 	@Test
 	public void isNotSameAs() {
 		List<String> list = Arrays.asList("Apple", "Banana", "Cherry");
-		String[] list2 = new String[] { "Durian", "Guava", "Pitaya" };
+		List<String> list2 = new ArrayList<>(list);
 		System.out.println(list);
 		System.out.println(list2);
 		assertThat(list).isNotSameAs(list2);
 
 		List<Integer> intList = Stream.of(6, 7, 8, 9, 10).collect(Collectors.toList());
-		List<Integer> intList2 = Stream.of(6, 7, 8).collect(Collectors.toList());
+		List<Integer> intList2 = new ArrayList<>(intList);
 		System.out.println(intList);
 		System.out.println(intList2);
 		assertThat(intList).isNotSameAs(intList2);
