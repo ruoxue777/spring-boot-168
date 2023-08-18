@@ -2,7 +2,6 @@ package org.ruoxue.spring_boot_168.test.assertj.map;
 
 import static org.assertj.core.api.Assertions.*;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 

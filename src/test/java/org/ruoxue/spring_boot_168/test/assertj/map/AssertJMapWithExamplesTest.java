@@ -2,8 +2,8 @@ package org.ruoxue.spring_boot_168.test.assertj.map;
 
 import static org.assertj.core.api.Assertions.*;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.assertj.core.api.Condition;
 import org.junit.jupiter.api.Test;
@@ -12,127 +12,155 @@ public class AssertJMapWithExamplesTest {
 
 	@Test
 	public void has() {
-		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
-		System.out.println(Arrays.toString(array));
-		Condition<String[]> length = new Condition<String[]>(s -> s.length > 2, "length");
-		assertThat(array).has(length);
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("Grape", 18);
+		map.put("Kiwifruit", 19);
+		map.put("Lemon", 20);
+		System.out.println(map);
+		Condition<Map<?, ?>> size = new Condition<Map<?, ?>>(s -> s.size() > 2, "size");
+		assertThat(map).has(size);
 
-		int[] intArray = new int[] { 1, 2, 3, 4, 5 };
-		System.out.println(Arrays.toString(intArray));
-		Condition<int[]> intLength = new Condition<int[]>(i -> i.length > 2, "length");
-		assertThat(intArray).has(intLength);
+		Map<Integer, Integer> intMap = new HashMap<Integer, Integer>();
+		intMap.put(1, 18);
+		intMap.put(2, 19);
+		intMap.put(3, 20);
+		System.out.println(intMap);
+		Condition<Map<?, ?>> intSize = new Condition<Map<?, ?>>(i -> i.size() > 2, "size");
+		assertThat(intMap).has(intSize);
 	}
 
 	@Test
 	public void hasSize() {
 		int expectedSize = 3;
-		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
-		System.out.println(Arrays.toString(array));
-		assertThat(array).hasSize(expectedSize);
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("Grape", 18);
+		map.put("Kiwifruit", 19);
+		map.put("Lemon", 20);
+		System.out.println(map);
+		assertThat(map).hasSize(expectedSize);
 
-		int[] intArray = new int[] { 1, 2, 3, 4, 5 };
-		System.out.println(Arrays.toString(intArray));
-		assertThat(intArray).hasSize(5);
+		Map<Integer, Integer> intMap = new HashMap<Integer, Integer>();
+		intMap.put(1, 18);
+		intMap.put(2, 19);
+		intMap.put(3, 20);
+		System.out.println(intMap);
+		assertThat(intMap).hasSize(expectedSize);
 	}
 
 	@Test
 	public void hasSizeBetween() {
 		int expectedSize = 3;
-		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
-		System.out.println(Arrays.toString(array));
-		assertThat(array).hasSizeBetween(1, expectedSize);
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("Grape", 18);
+		map.put("Kiwifruit", 19);
+		map.put("Lemon", 20);
+		System.out.println(map);
+		assertThat(map).hasSizeBetween(1, expectedSize);
 
-		int[] intArray = new int[] { 1, 2, 3, 4, 5 };
-		System.out.println(Arrays.toString(intArray));
-		assertThat(intArray).hasSizeBetween(1, 5);
+		Map<Integer, Integer> intMap = new HashMap<Integer, Integer>();
+		intMap.put(1, 18);
+		intMap.put(2, 19);
+		intMap.put(3, 20);
+		System.out.println(intMap);
+		assertThat(intMap).hasSizeBetween(1, expectedSize);
 	}
 
 	@Test
 	public void hasSizeGreaterThan() {
 		int expectedSize = 2;
-		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
-		System.out.println(Arrays.toString(array));
-		assertThat(array).hasSizeGreaterThan(expectedSize);
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("Grape", 18);
+		map.put("Kiwifruit", 19);
+		map.put("Lemon", 20);
+		System.out.println(map);
+		assertThat(map).hasSizeGreaterThan(expectedSize);
 
-		int[] intArray = new int[] { 1, 2, 3, 4, 5 };
-		System.out.println(Arrays.toString(intArray));
-		assertThat(intArray).hasSizeGreaterThan(expectedSize);
+		Map<Integer, Integer> intMap = new HashMap<Integer, Integer>();
+		intMap.put(1, 18);
+		intMap.put(2, 19);
+		intMap.put(3, 20);
+		System.out.println(intMap);
+		assertThat(intMap).hasSizeGreaterThan(expectedSize);
 	}
 
 	@Test
 	public void hasSizeLessThan() {
 		int expectedSize = 4;
-		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
-		System.out.println(Arrays.toString(array));
-		assertThat(array).hasSizeLessThan(expectedSize);
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("Grape", 18);
+		map.put("Kiwifruit", 19);
+		map.put("Lemon", 20);
+		System.out.println(map);
+		assertThat(map).hasSizeLessThan(expectedSize);
 
-		int[] intArray = new int[] { 1, 2, 3, 4, 5 };
-		System.out.println(Arrays.toString(intArray));
-		assertThat(intArray).hasSizeLessThan(6);
+		Map<Integer, Integer> intMap = new HashMap<Integer, Integer>();
+		intMap.put(1, 18);
+		intMap.put(2, 19);
+		intMap.put(3, 20);
+		System.out.println(intMap);
+		assertThat(intMap).hasSizeLessThan(expectedSize);
 	}
 
 	@Test
 	public void hasToString() {
-		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
-		System.out.println(Arrays.toString(array));
-		assertThat(array).hasToString(array.toString());
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("Grape", 18);
+		map.put("Kiwifruit", 19);
+		map.put("Lemon", 20);
+		System.out.println(map);
+		assertThat(map).hasToString(map.toString());
 
-		int[] intArray = new int[] { 1, 2, 3, 4, 5 };
-		System.out.println(Arrays.toString(intArray));
-		assertThat(intArray).hasToString(intArray.toString());
+		Map<Integer, Integer> intMap = new HashMap<Integer, Integer>();
+		intMap.put(1, 18);
+		intMap.put(2, 19);
+		intMap.put(3, 20);
+		System.out.println(intMap);
+		assertThat(intMap).hasToString(intMap.toString());
 	}
 
 	@Test
 	public void hasSameSizeAs() {
-		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
-		List<String> list = Arrays.asList("Durian", "Guava", "Pitaya");
-		System.out.println(Arrays.toString(array));
-		System.out.println(list);
-		assertThat(array).hasSameSizeAs(list);
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("Grape", 18);
+		map.put("Kiwifruit", 19);
+		map.put("Lemon", 20);
+		Map<String, Integer> map2 = new HashMap<String, Integer>();
+		map2.put("Grape", 18);
+		map2.put("Kiwifruit", 19);
+		map2.put("Lemon", 20);
+		System.out.println(map);
+		System.out.println(map2);
+		assertThat(map).hasSameSizeAs(map2);
 
-		int[] intArray = new int[] { 1, 2, 3, 4, 5 };
-		List<Integer> intList = Arrays.asList(1, 2, 3, 4, 5);
-		System.out.println(Arrays.toString(intArray));
-		System.out.println(intList);
-		assertThat(intArray).hasSameSizeAs(intList);
-	}
-
-	@Test
-	public void hasSameElementsAs() {
-		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
-		List<String> list = Arrays.asList("Durian", "Guava", "Pitaya");
-		System.out.println(Arrays.toString(array));
-		System.out.println(list);
-		assertThat(array).hasSameElementsAs(list);
-
-		Integer[] intArray = new Integer[] { 1, 2, 3, 4, 5 };
-		List<Integer> intList = Arrays.asList(1, 2, 3, 4, 5);
-		System.out.println(Arrays.toString(intArray));
-		System.out.println(intList);
-		assertThat(intArray).hasSameElementsAs(intList);
+		Map<Integer, Integer> intMap = new HashMap<Integer, Integer>();
+		intMap.put(1, 18);
+		intMap.put(2, 19);
+		intMap.put(3, 20);
+		Map<Integer, Integer> intMap2 = new HashMap<Integer, Integer>();
+		intMap2.put(1, 18);
+		intMap2.put(2, 19);
+		intMap2.put(3, 20);
+		System.out.println(intMap);
+		System.out.println(intMap2);
+		assertThat(intMap).hasSameSizeAs(intMap2);
 	}
 
 	@Test
 	public void doesNotHave() {
-		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
-		System.out.println(Arrays.toString(array));
-		Condition<String[]> length = new Condition<String[]>(s -> s.length > 3, "length");
-		assertThat(array).doesNotHave(length);
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("Grape", 18);
+		map.put("Kiwifruit", 19);
+		map.put("Lemon", 20);
+		System.out.println(map);
+		Condition<Map<?, ?>> size = new Condition<Map<?, ?>>(s -> s.size() > 3, "size");
+		assertThat(map).doesNotHave(size);
 
-		int[] intArray = new int[] { 1, 2, 3, 4, 5 };
-		System.out.println(Arrays.toString(intArray));
-		Condition<int[]> intLength = new Condition<int[]>(i -> i.length > 5, "length");
-		assertThat(intArray).doesNotHave(intLength);
-	}
-
-	@Test
-	public void doesNotHaveDuplicates() {
-		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
-		System.out.println(Arrays.toString(array));
-		assertThat(array).doesNotHaveDuplicates();
-
-		int[] intArray = new int[] { 1, 2, 3, 4, 5 };
-		System.out.println(Arrays.toString(intArray));
-		assertThat(intArray).doesNotHaveDuplicates();
+		Map<Integer, Integer> intMap = new HashMap<Integer, Integer>();
+		intMap.put(1, 18);
+		intMap.put(2, 19);
+		intMap.put(3, 20);
+		System.out.println(intMap);
+		Condition<Map<?, ?>> intSize = new Condition<Map<?, ?>>(i -> i.size() > 3, "size");
+		assertThat(intMap).doesNotHave(intSize);
 	}
 }
