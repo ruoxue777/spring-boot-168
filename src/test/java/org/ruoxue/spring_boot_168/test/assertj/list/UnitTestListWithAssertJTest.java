@@ -8,7 +8,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-public class TestingJavaListTest {
+public class UnitTestListWithAssertJTest {
 
 	@Test
 	public void is() {

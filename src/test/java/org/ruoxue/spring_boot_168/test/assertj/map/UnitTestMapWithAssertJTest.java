@@ -8,7 +8,7 @@ import java.util.Map;
 
 import org.junit.jupiter.api.Test;
 
-public class TestingJavaMapTest {
+public class UnitTestMapWithAssertJTest {
 
 	@Test
 	public void is() {

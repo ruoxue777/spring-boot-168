@@ -7,7 +7,7 @@ import java.util.Arrays;
 import org.assertj.core.api.Condition;
 import org.junit.jupiter.api.Test;
 
-public class TestingJavaArrayTest {
+public class UnitTestArrayWithAssertJTest {
 
 	@Test
 	public void is() {
