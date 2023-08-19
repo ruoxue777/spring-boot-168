@@ -5,4 +5,5 @@
 2. [AssertJ Map Methods](https://www.ruoxue.org/assertj-155-assertj-map-methods/)
 3. [AssertJ Map in Java with Examples](https://www.ruoxue.org/assertj-155-assertj-map-in-java-with-examples/)
 4. [Testing with AssertJ Map in Java](https://www.ruoxue.org/assertj-155-testing-with-assertj-map-in-java/)
-5. [Asserting Maps with AssertJ](https://www.ruoxue.org/assertj-155-asserting-maps-with-assertj/)
+5. [Unit Test Map with AssertJ](https://www.ruoxue.org/assertj-155-unit-test-map-with-assertj/)
+6. [Asserting Maps with AssertJ](https://www.ruoxue.org/assertj-155-asserting-maps-with-assertj/)
