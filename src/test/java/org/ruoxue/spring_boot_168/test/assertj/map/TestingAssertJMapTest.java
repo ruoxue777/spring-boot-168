@@ -133,7 +133,6 @@ public class TestingAssertJMapTest {
 		map.put("Kiwifruit", 19);
 		map.put("Lemon", 20);
 		String text = "Size expected: [" + expectedSize + "] but was: [" + map.size() + "]";
-		System.out.println(map);
 		try {
 			Supplier<String> desc = () -> text;
 			assertThat(map).as(desc).hasSize(expectedSize);
