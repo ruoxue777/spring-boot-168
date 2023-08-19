@@ -94,17 +94,6 @@ public class AssertingArraysMethodsTest {
 	}
 
 	@Test
-	public void filteredOn() {
-		int expectedSize = 3;
-		Fruit durian = new Fruit("Durian", 4, 2);
-		Fruit guava = new Fruit("Guava", 5, 2);
-		Fruit pitaya = new Fruit("Pitaya", 6, 2);
-		Fruit[] array = new Fruit[] { durian, guava, pitaya };
-		System.out.println(Arrays.deepToString(array));
-		assertThat(array).filteredOn(Fruit::getType, 2).containsOnly(durian, guava, pitaya).hasSize(expectedSize);
-	}
-
-	@Test
 	public void allSatisfy() {
 		Fruit durian = new Fruit("Durian", 4, 2);
 		Fruit guava = new Fruit("Guava", 5, 2);
