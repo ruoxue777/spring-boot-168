@@ -123,5 +123,4 @@ public class AssertingArraysMethodsTest {
 		System.out.println(Arrays.deepToString(array));
 		assertThat(array).filteredOnNull("name").hasSize(expectedSize);
 	}
-
 }
