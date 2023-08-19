@@ -1,4 +1,4 @@
-package org.ruoxue.spring_boot_168.test.assertj;
+package org.ruoxue.spring_boot_168.test.assertj.array;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -14,10 +14,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 public class AssertingArraysTest {
-
-	public AssertingArraysTest() {
-
-	}
 
 	@NoArgsConstructor
 	@Getter

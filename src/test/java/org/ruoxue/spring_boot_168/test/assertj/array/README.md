@@ -7,4 +7,6 @@
 4. [Testing with AssertJ Array in Java](https://www.ruoxue.org/assertj-155-testing-with-assertj-array-in-java/)
 5. [Unit Test Array with AssertJ](https://www.ruoxue.org/assertj-155-unit-test-array-with-assertj/)
 6. [Asserting Arrays with AssertJ](https://www.ruoxue.org/assertj-155-asserting-arrays-with-assertj/)
+7. [Asserting Arrays Methods](https://www.ruoxue.org/assertj-155-asserting-arrays-methods/)
+8. [Asserting Arrays in Java with Examples](https://www.ruoxue.org/assertj-155-asserting-arrays-in-java-with-examples/)
 
