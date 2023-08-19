@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.atIndex;
 
 import java.util.Arrays;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
@@ -43,6 +44,17 @@ public class UnitTestAssertJArrayWithExamplesTest {
 	}
 
 	@Test
+	public void doesNotContainSequence() {
+		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
+		System.out.println(Arrays.toString(array));
+		assertThat(array).doesNotContainSequence("Mango", "Orange");
+
+		Integer[] intArray = new Integer[] { 1, 2, 3, 4, 5 };
+		System.out.println(Arrays.toString(intArray));
+		assertThat(intArray).doesNotContainSequence(8, 9);
+	}
+
+	@Test
 	public void containsSubsequence() {
 		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
 		System.out.println(Arrays.toString(array));
@@ -51,6 +63,30 @@ public class UnitTestAssertJArrayWithExamplesTest {
 		int[] intArray = new int[] { 1, 2, 3, 4, 5 };
 		System.out.println(Arrays.toString(intArray));
 		assertThat(intArray).containsSubsequence(4, 5);
+	}
+
+	@Test
+	public void doesNotContainSubsequence() {
+		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
+		System.out.println(Arrays.toString(array));
+		assertThat(array).doesNotContainSubsequence("Mango", "Orange");
+
+		Integer[] intArray = new Integer[] { 1, 2, 3, 4, 5 };
+		System.out.println(Arrays.toString(intArray));
+		assertThat(intArray).doesNotContainSubsequence(8, 9);
+	}
+
+	@Test
+	public void doesNotContainAnyElementsOf() {
+		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
+		List<String> list = Arrays.asList("Mango", "Orange");
+		System.out.println(Arrays.toString(array));
+		assertThat(array).doesNotContainAnyElementsOf(list);
+
+		Integer[] intArray = new Integer[] { 1, 2, 3, 4, 5 };
+		List<Integer> intList = Arrays.asList(8, 9);
+		System.out.println(Arrays.toString(intArray));
+		assertThat(intArray).doesNotContainAnyElementsOf(intList);
 	}
 
 	@Test
