@@ -43,7 +43,7 @@ public class AssertJListAssertionsTest {
 		System.out.println(intList);
 		assertThat(intList).containsOnly(10, 9, 8, 7, 6);
 	}
-	
+
 	@Test
 	public void containsOnlyOnce() {
 		List<String> list = Arrays.asList("Apple", "Banana", "Cherry");
@@ -53,6 +53,32 @@ public class AssertJListAssertionsTest {
 		List<Integer> intList = Stream.of(6, 7, 8, 9, 10).collect(Collectors.toList());
 		System.out.println(intList);
 		assertThat(intList).containsOnlyOnce(8);
+	}
+
+	@Test
+	public void containsOnlyNulls() {
+		List<String> list = Arrays.asList(null, null, null);
+		System.out.println(list);
+		assertThat(list).containsOnlyNulls();
+
+		List<Integer> intList = Arrays.asList(null, null, null, null, null);
+		System.out.println(intList);
+		assertThat(intList).containsOnlyNulls();
+	}
+
+	@Test
+	public void containsAll() {
+		List<String> list = Arrays.asList("Apple", "Banana", "Cherry");
+		List<String> list2 = Arrays.asList("Apple", "Banana");
+		System.out.println(list);
+		System.out.println(list2);
+		assertThat(list).containsAll(list2);
+
+		List<Integer> intList = Stream.of(6, 7, 8, 9, 10).collect(Collectors.toList());
+		List<Integer> intList2 = Arrays.asList(6, 7, 8);
+		System.out.println(intList);
+		System.out.println(intList2);
+		assertThat(intList).containsAll(intList2);
 	}
 
 	@Test
@@ -67,46 +93,13 @@ public class AssertJListAssertionsTest {
 	}
 
 	@Test
-	public void containsAnyOf() {
+	public void containsExactlyInAnyOrder() {
 		List<String> list = Arrays.asList("Apple", "Banana", "Cherry");
 		System.out.println(list);
-		assertThat(list).containsAnyOf("Grape", "Banana", "Kiwifruit");
+		assertThat(list).containsExactlyInAnyOrder("Cherry", "Apple", "Banana");
 
 		List<Integer> intList = Stream.of(6, 7, 8, 9, 10).collect(Collectors.toList());
 		System.out.println(intList);
-		assertThat(intList).containsAnyOf(6, 1);
-	}
-
-	@Test
-	public void containsAtIndex() {
-		List<String> list = Arrays.asList("Apple", "Banana", "Cherry");
-		System.out.println(list);
-		assertThat(list).contains("Apple", atIndex(0)).contains("Banana", atIndex(1)).contains("Cherry", atIndex(2));
-
-		List<Integer> intList = Stream.of(6, 7, 8, 9, 10).collect(Collectors.toList());
-		System.out.println(intList);
-		assertThat(intList).contains(6, atIndex(0)).contains(8, atIndex(2));
-	}
-
-	@Test
-	public void containsNull() {
-		List<String> list = Arrays.asList("Apple", "Banana", null);
-		System.out.println(list);
-		assertThat(list).containsNull();
-
-		List<Integer> intList = Stream.of(6, 7, 8, 9, null).collect(Collectors.toList());
-		System.out.println(intList);
-		assertThat(intList).containsNull();
-	}
-
-	@Test
-	public void doesNotContainNull() {
-		List<String> list = Arrays.asList("Apple", "Banana", "Cherry");
-		System.out.println(list);
-		assertThat(list).doesNotContainNull();
-
-		List<Integer> intList = Stream.of(6, 7, 8, 9, 10).collect(Collectors.toList());
-		System.out.println(intList);
-		assertThat(intList).doesNotContainNull();
+		assertThat(intList).containsExactlyInAnyOrder(9, 10, 6, 7, 8);
 	}
 }
