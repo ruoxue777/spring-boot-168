@@ -47,11 +47,11 @@ public class UnitTestAssertJArrayWithExamplesTest {
 	public void doesNotContainSequence() {
 		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
 		System.out.println(Arrays.toString(array));
-		assertThat(array).doesNotContainSequence("Mango", "Orange");
+		assertThat(array).doesNotContainSequence("Mango", "Guava");
 
 		Integer[] intArray = new Integer[] { 1, 2, 3, 4, 5 };
 		System.out.println(Arrays.toString(intArray));
-		assertThat(intArray).doesNotContainSequence(8, 9);
+		assertThat(intArray).doesNotContainSequence(9, 3);
 	}
 
 	@Test
@@ -69,11 +69,11 @@ public class UnitTestAssertJArrayWithExamplesTest {
 	public void doesNotContainSubsequence() {
 		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
 		System.out.println(Arrays.toString(array));
-		assertThat(array).doesNotContainSubsequence("Mango", "Orange");
+		assertThat(array).doesNotContainSubsequence("Mango", "Guava");
 
 		Integer[] intArray = new Integer[] { 1, 2, 3, 4, 5 };
 		System.out.println(Arrays.toString(intArray));
-		assertThat(intArray).doesNotContainSubsequence(8, 9);
+		assertThat(intArray).doesNotContainSubsequence(9, 3);
 	}
 
 	@Test
@@ -81,11 +81,13 @@ public class UnitTestAssertJArrayWithExamplesTest {
 		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
 		List<String> list = Arrays.asList("Mango", "Orange");
 		System.out.println(Arrays.toString(array));
+		System.out.println(list);
 		assertThat(array).doesNotContainAnyElementsOf(list);
 
 		Integer[] intArray = new Integer[] { 1, 2, 3, 4, 5 };
 		List<Integer> intList = Arrays.asList(8, 9);
 		System.out.println(Arrays.toString(intArray));
+		System.out.println(intList);
 		assertThat(intArray).doesNotContainAnyElementsOf(intList);
 	}
 
