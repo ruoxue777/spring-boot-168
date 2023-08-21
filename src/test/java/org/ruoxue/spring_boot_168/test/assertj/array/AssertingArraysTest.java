@@ -110,6 +110,7 @@ public class AssertingArraysTest {
 		Fruit guava = new Fruit(null, 1, 2);
 		Fruit pitaya = new Fruit("Pitaya", -1, 3);
 		Fruit[] array = new Fruit[] { durian, guava, pitaya };
+		System.out.println(Arrays.deepToString(array));
 		assertThat(array).filteredOnAssertions(e -> {
 			double result = 1 / 0;
 		});
