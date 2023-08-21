@@ -88,7 +88,7 @@ public class UnitTestAssertJListWithExamplesTest {
 		List<Integer> intList = Arrays.asList(1, 2, 3, 4, 5);
 		List<Integer> intList2 = Arrays.asList(8, 9);
 		System.out.println(intList);
-		System.out.println(intList);
+		System.out.println(intList2);
 		assertThat(intList).doesNotContainAnyElementsOf(intList2);
 	}
 
