@@ -7,6 +7,7 @@ import java.util.Arrays;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import org.junit.jupiter.api.Test;
+import org.ruoxue.spring_boot_168.test.assertj.array.AssertingArraysMethodsTest.Fruit;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -41,87 +42,53 @@ public class AssertingArraysWithExamplesTest {
 	}
 
 	@Test
-	public void extracting() {
-		Fruit durian = new Fruit("Durian", 4, 2);
-		Fruit guava = new Fruit("Guava", 5, 2);
-		Fruit pitaya = new Fruit("Pitaya", 6, 2);
-		Fruit[] array = new Fruit[] { durian, guava, pitaya };
-		System.out.println(Arrays.deepToString(array));
-		assertThat(array).extracting(Fruit::getName).containsExactly("Durian", "Guava", "Pitaya");
-	}
-
-	@Test
-	public void extractingTuple() {
-		Fruit durian = new Fruit("Durian", 4, 2);
-		Fruit guava = new Fruit("Guava", 5, 2);
-		Fruit pitaya = new Fruit("Pitaya", 6, 2);
-		Fruit[] array = new Fruit[] { durian, guava, pitaya };
-		System.out.println(Arrays.deepToString(array));
-		assertThat(array).extracting("name", "quantity").containsExactly(tuple("Durian", 4d), tuple("Guava", 5d),
-				tuple("Pitaya", 6d));
-		assertThat(array).extracting(e -> e.getName(), Fruit::getQuantity).containsExactly(tuple("Durian", 4d),
-				tuple("Guava", 5d), tuple("Pitaya", 6d));
-	}
-
-	@Test
 	public void allMatch() {
-		Fruit durian = new Fruit("Durian", 4, 2);
-		Fruit guava = new Fruit("Guava", 5, 2);
-		Fruit pitaya = new Fruit("Pitaya", 6, 2);
+		Fruit durian = new Fruit("Durian", Double.MAX_VALUE, 2);
+		Fruit guava = new Fruit("Guava", 1, 2);
+		Fruit pitaya = new Fruit("Pitaya", -1, 2);
 		Fruit[] array = new Fruit[] { durian, guava, pitaya };
 		System.out.println(Arrays.deepToString(array));
-		assertThat(array).allMatch(e -> e.getType() == 2).doesNotContainNull();
+		assertThat(array).allMatch(e -> e.getType() == 2).isNotEmpty();
 	}
 
 	@Test
 	public void anyMatch() {
-		Fruit durian = new Fruit("Durian", 4, 2);
-		Fruit guava = new Fruit("Guava", 5, 2);
-		Fruit pitaya = new Fruit("Pitaya", 6, 2);
+		Fruit durian = new Fruit("Durian", Double.MAX_VALUE, 1);
+		Fruit guava = new Fruit("Guava", 1, 2);
+		Fruit pitaya = new Fruit("Pitaya", -1, 3);
 		Fruit[] array = new Fruit[] { durian, guava, pitaya };
 		System.out.println(Arrays.deepToString(array));
-		assertThat(array).anyMatch(e -> e.getName().equals("Durian")).doesNotContainNull();
+		assertThat(array).anyMatch(e -> e.getName().equals("Durian")).isNotEmpty();
 	}
 
 	@Test
 	public void noneMatch() {
-		Fruit durian = new Fruit("Durian", 4, 2);
-		Fruit guava = new Fruit("Guava", 5, 2);
-		Fruit pitaya = new Fruit("Pitaya", 6, 2);
+		Fruit durian = new Fruit("Durian", Double.MAX_VALUE, 1);
+		Fruit guava = new Fruit("Guava", 1, 2);
+		Fruit pitaya = new Fruit("Pitaya", -1, 3);
 		Fruit[] array = new Fruit[] { durian, guava, pitaya };
 		System.out.println(Arrays.deepToString(array));
-		assertThat(array).noneMatch(e -> e.getType() == 0).doesNotContainNull();
-	}
-
-	@Test
-	public void filteredOn() {
-		int expectedSize = 3;
-		Fruit durian = new Fruit("Durian", 4, 2);
-		Fruit guava = new Fruit("Guava", 5, 2);
-		Fruit pitaya = new Fruit("Pitaya", 6, 2);
-		Fruit[] array = new Fruit[] { durian, guava, pitaya };
-		System.out.println(Arrays.deepToString(array));
-		assertThat(array).filteredOn(Fruit::getType, 2).containsOnly(durian, guava, pitaya).hasSize(expectedSize);
+		assertThat(array).noneMatch(e -> e.getType() == 0).isNotEmpty();
 	}
 
 	@Test
 	public void allSatisfy() {
-		Fruit durian = new Fruit("Durian", 4, 2);
-		Fruit guava = new Fruit("Guava", 5, 2);
-		Fruit pitaya = new Fruit("Pitaya", 6, 2);
+		Fruit durian = new Fruit("Durian", Double.MAX_VALUE, 2);
+		Fruit guava = new Fruit("Guava", 1, 2);
+		Fruit pitaya = new Fruit("Pitaya", -1, 2);
 		Fruit[] array = new Fruit[] { durian, guava, pitaya };
 		System.out.println(Arrays.deepToString(array));
 		assertThat(array).allSatisfy(e -> {
 			assertThat(e.getType()).isEqualTo(2);
-			assertThat(e.getName()).isNotNull();
+			assertThat(e.getName().length()).isGreaterThan(4);
 		});
 	}
 
 	@Test
 	public void anySatisfy() {
-		Fruit durian = new Fruit("Durian", 4, 2);
-		Fruit guava = new Fruit("Guava", 5, 2);
-		Fruit pitaya = new Fruit("Pitaya", 6, 2);
+		Fruit durian = new Fruit("Durian", Double.MAX_VALUE, 1);
+		Fruit guava = new Fruit("Guava", 1, 2);
+		Fruit pitaya = new Fruit("Pitaya", -1, 3);
 		Fruit[] array = new Fruit[] { durian, guava, pitaya };
 		System.out.println(Arrays.deepToString(array));
 		assertThat(array).anySatisfy(e -> {
@@ -132,11 +99,14 @@ public class AssertingArraysWithExamplesTest {
 
 	@Test
 	public void noneSatisfy() {
-		Fruit durian = new Fruit("Durian", 4, 2);
-		Fruit guava = new Fruit("Guava", 5, 2);
-		Fruit pitaya = new Fruit("Pitaya", 6, 2);
+		Fruit durian = new Fruit("Durian", Double.MAX_VALUE, 1);
+		Fruit guava = new Fruit("Guava", 1, 2);
+		Fruit pitaya = new Fruit("Pitaya", -1, 3);
 		Fruit[] array = new Fruit[] { durian, guava, pitaya };
 		System.out.println(Arrays.deepToString(array));
-		assertThat(array).noneSatisfy(e -> assertThat(e.getType()).isEqualTo(0));
+		assertThat(array).noneSatisfy(e -> {
+			assertThat(e.getType()).isEqualTo(0);
+			assertThat(e.getName().length()).isLessThan(5);
+		});
 	}
 }
