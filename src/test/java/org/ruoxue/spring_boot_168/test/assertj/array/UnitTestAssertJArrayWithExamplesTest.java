@@ -47,11 +47,11 @@ public class UnitTestAssertJArrayWithExamplesTest {
 	public void doesNotContainSequence() {
 		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
 		System.out.println(Arrays.toString(array));
-		assertThat(array).doesNotContainSequence("Mango", "Guava");
+		assertThat(array).doesNotContainSequence("Durian", "Pitaya");
 
 		Integer[] intArray = new Integer[] { 1, 2, 3, 4, 5 };
 		System.out.println(Arrays.toString(intArray));
-		assertThat(intArray).doesNotContainSequence(9, 3);
+		assertThat(intArray).doesNotContainSequence(1, 5);
 	}
 
 	@Test
