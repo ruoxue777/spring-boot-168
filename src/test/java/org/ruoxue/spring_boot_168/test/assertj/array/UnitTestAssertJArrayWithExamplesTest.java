@@ -58,22 +58,22 @@ public class UnitTestAssertJArrayWithExamplesTest {
 	public void containsSubsequence() {
 		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
 		System.out.println(Arrays.toString(array));
-		assertThat(array).containsSubsequence("Guava", "Pitaya");
+		assertThat(array).containsSubsequence("Durian", "Pitaya");
 
 		int[] intArray = new int[] { 1, 2, 3, 4, 5 };
 		System.out.println(Arrays.toString(intArray));
-		assertThat(intArray).containsSubsequence(4, 5);
+		assertThat(intArray).containsSubsequence(1, 5);
 	}
 
 	@Test
 	public void doesNotContainSubsequence() {
 		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
 		System.out.println(Arrays.toString(array));
-		assertThat(array).doesNotContainSubsequence("Mango", "Guava");
+		assertThat(array).doesNotContainSubsequence("Pitaya", "Durian");
 
 		Integer[] intArray = new Integer[] { 1, 2, 3, 4, 5 };
 		System.out.println(Arrays.toString(intArray));
-		assertThat(intArray).doesNotContainSubsequence(9, 3);
+		assertThat(intArray).doesNotContainSubsequence(5, 1);
 	}
 
 	@Test

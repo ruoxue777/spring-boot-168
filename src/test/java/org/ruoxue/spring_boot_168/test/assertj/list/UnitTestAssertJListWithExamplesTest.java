@@ -59,22 +59,22 @@ public class UnitTestAssertJListWithExamplesTest {
 	public void containsSubsequence() {
 		List<String> list = Arrays.asList("Apple", "Banana", "Cherry");
 		System.out.println(list);
-		assertThat(list).containsSubsequence("Banana", "Cherry");
+		assertThat(list).containsSubsequence("Apple", "Cherry");
 
 		List<Integer> intList = Stream.of(6, 7, 8, 9, 10).collect(Collectors.toList());
 		System.out.println(intList);
-		assertThat(intList).containsSubsequence(9, 10);
+		assertThat(intList).containsSubsequence(6, 10);
 	}
 
 	@Test
 	public void doesNotContainSubsequence() {
 		List<String> list = Arrays.asList("Apple", "Banana", "Cherry");
 		System.out.println(list);
-		assertThat(list).doesNotContainSubsequence("Grape", "Banana");
+		assertThat(list).doesNotContainSubsequence("Cherry", "Apple");
 
 		List<Integer> intList = Stream.of(6, 7, 8, 9, 10).collect(Collectors.toList());
 		System.out.println(intList);
-		assertThat(intList).doesNotContainSubsequence(1, 8);
+		assertThat(intList).doesNotContainSubsequence(10, 6);
 	}
 
 	@Test
