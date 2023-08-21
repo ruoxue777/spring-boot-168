@@ -2,6 +2,7 @@ package org.ruoxue.spring_boot_168.test.assertj.array;
 
 import static org.assertj.core.api.Assertions.*;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -24,11 +25,17 @@ public class AssertingArraysMethodsTest {
 		private String name;
 		private double quantity;
 		private int type;
+		private List<String> origins = new ArrayList<>();
 
-		public Fruit(String name, double quantity, int type) {
+		public Fruit(String name, double quantity, int type, List<String> origins) {
 			this.name = name;
 			this.quantity = quantity;
 			this.type = type;
+			this.origins = origins;
+		}
+
+		public Fruit(String name, double quantity, int type) {
+			this(name, quantity, type, new ArrayList<>());
 		}
 
 		public String toString() {
@@ -37,6 +44,7 @@ public class AssertingArraysMethodsTest {
 			builder.append("name", name);
 			builder.append("quantity", quantity);
 			builder.append("type", type);
+			builder.append("origins", origins);
 			return builder.toString();
 		}
 	}
@@ -46,10 +54,10 @@ public class AssertingArraysMethodsTest {
 		Fruit durian = new Fruit("Durian", Double.MAX_VALUE, 1);
 		Fruit guava = new Fruit("Guava", 1, 2);
 		Fruit pitaya = new Fruit("Pitaya", -1, 3);
-		List<Fruit> list = Arrays.asList(durian, guava, pitaya);
-		System.out.println(list);
-		assertThat(list).extracting(e -> e.getName()).contains("Durian", "Guava", "Pitaya");
-		assertThat(list).extracting(e -> e.getType()).containsOnly(1, 2, 3);
+		Fruit[] array = new Fruit[] { durian, guava, pitaya };
+		System.out.println(Arrays.deepToString(array));
+		assertThat(array).extracting(e -> e.getName()).contains("Durian", "Guava");
+		assertThat(array).extracting(e -> e.getType()).containsOnly(1, 2, 3);
 	}
 
 	@Test
@@ -57,38 +65,64 @@ public class AssertingArraysMethodsTest {
 		Fruit durian = new Fruit("Durian", Double.MAX_VALUE, 1);
 		Fruit guava = new Fruit("Guava", 1, 2);
 		Fruit pitaya = new Fruit("Pitaya", -1, 3);
-		List<Fruit> list = Arrays.asList(durian, guava, pitaya);
-		System.out.println(list);
-		assertThat(list).extracting("name").contains("Durian", "Guava", "Pitaya");
-		assertThat(list).extracting("type").containsOnly(1, 2, 3);
+		Fruit[] array = new Fruit[] { durian, guava, pitaya };
+		System.out.println(Arrays.deepToString(array));
+		assertThat(array).extracting("name").containsAll(Arrays.asList("Durian", "Guava"));
+		assertThat(array).extracting("type").containsExactly(1, 2, 3);
 	}
 
 	@Test
-	public void extractingWithThrowingExtractor() {
+	public void extractingWithMethodReference() {
 		Fruit durian = new Fruit("Durian", Double.MAX_VALUE, 1);
 		Fruit guava = new Fruit("Guava", 1, 2);
 		Fruit pitaya = new Fruit("Pitaya", -1, 3);
-		List<Fruit> list = Arrays.asList(durian, guava, pitaya);
-		System.out.println(list);
-		assertThat(list).extracting(Fruit::getName).contains("Durian", "Guava", "Pitaya");
-		assertThat(list).extracting(Fruit::getType).containsOnly(1, 2, 3);
+		Fruit[] array = new Fruit[] { durian, guava, pitaya };
+		System.out.println(Arrays.deepToString(array));
+		assertThat(array).extracting(Fruit::getName).containsExactlyInAnyOrder("Pitaya", "Durian", "Guava");
+		assertThat(array).extracting(Fruit::getType).containsAnyOf(1, 2);
 	}
 
 	@Test
 	public void extractingTuple() {
-		Fruit durian = new Fruit("Durian", 4, 2);
-		Fruit guava = new Fruit("Guava", 5, 2);
-		Fruit pitaya = new Fruit("Pitaya", 6, 2);
+		Fruit durian = new Fruit("Durian", Double.MAX_VALUE, 1);
+		Fruit guava = new Fruit("Guava", 1, 2);
+		Fruit pitaya = new Fruit("Pitaya", -1, 3);
 		Fruit[] array = new Fruit[] { durian, guava, pitaya };
 		System.out.println(Arrays.deepToString(array));
-		assertThat(array).extracting("name", "quantity").contains(tuple("Durian", 4d), tuple("Guava", 5d),
-				tuple("Pitaya", 6d));
-		assertThat(array).extracting(e -> e.getName(), Fruit::getQuantity).contains(tuple("Durian", 4d),
-				tuple("Guava", 5d), tuple("Pitaya", 6d));
+		assertThat(array).extracting("name", "quantity").containsSequence(tuple("Guava", 1d), tuple("Pitaya", -1d));
+		assertThat(array).extracting(e -> e.getName(), Fruit::getQuantity)
+				.containsSubsequence(tuple("Durian", Double.MAX_VALUE), tuple("Pitaya", -1d));
 	}
-	
+
 	@Test
 	public void extractingResultOf() {
-		
+		Fruit durian = new Fruit("Durian", Double.MAX_VALUE, 1);
+		Fruit guava = new Fruit("Guava", 1, 2);
+		Fruit pitaya = new Fruit("Pitaya", -1, 3);
+		Fruit[] array = new Fruit[] { durian, guava, pitaya };
+		System.out.println(Arrays.deepToString(array));
+		assertThat(array).extractingResultOf("getName").doesNotContainNull();
+		assertThat(array).extractingResultOf("getQuantity", Double.class).hasSize(3);
+	}
+
+	@Test
+	public void flatExtracting() {
+		Fruit durian = new Fruit("Durian", Double.MAX_VALUE, 1, Arrays.asList("France"));
+		Fruit guava = new Fruit("Guava", 1, 2, Arrays.asList("Greece", "Germany"));
+		Fruit pitaya = new Fruit("Pitaya", -1, 3, Arrays.asList("India", "Iceland"));
+		Fruit[] array = new Fruit[] { durian, guava, pitaya };
+		System.out.println(Arrays.deepToString(array));
+		assertThat(array).flatExtracting("origins").containsOnly("France", "Greece", "Germany", "India", "Iceland");
+	}
+
+	@Test
+	public void flatExtractingWithMethodReference() {
+		Fruit durian = new Fruit("Durian", Double.MAX_VALUE, 1, Arrays.asList("France"));
+		Fruit guava = new Fruit("Guava", 1, 2, Arrays.asList("Greece", "Germany"));
+		Fruit pitaya = new Fruit("Pitaya", -1, 3, Arrays.asList("India", "Iceland"));
+		Fruit[] array = new Fruit[] { durian, guava, pitaya };
+		System.out.println(Arrays.deepToString(array));
+		assertThat(array).flatExtracting(Fruit::getOrigins).containsOnly("France", "Greece", "Germany", "India",
+				"Iceland");
 	}
 }
