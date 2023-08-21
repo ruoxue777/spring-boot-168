@@ -153,10 +153,10 @@ public class UnitTestAssertJMapWithExamplesTest {
 		map.put("Grape", 18);
 		map.put("Kiwifruit", 19);
 		map.put("Lemon", 20);
-		Map<String, Integer> map2 = new HashMap<>();
+		Map<String, Integer> map2 = new LinkedHashMap<>();
 		map2.put("Lemon", 20);
-		map2.put("Grape", 18);
 		map2.put("Kiwifruit", 19);
+		map2.put("Grape", 18);
 		System.out.println(map);
 		System.out.println(map2);
 		assertThat(map).containsExactlyInAnyOrderEntriesOf(map2);
@@ -165,10 +165,10 @@ public class UnitTestAssertJMapWithExamplesTest {
 		intMap.put(1, 18);
 		intMap.put(2, 19);
 		intMap.put(3, 20);
-		Map<Integer, Integer> intMap2 = new HashMap<>();
+		Map<Integer, Integer> intMap2 = new LinkedHashMap<>();
 		intMap2.put(3, 20);
-		intMap2.put(1, 18);
 		intMap2.put(2, 19);
+		intMap2.put(1, 18);
 		System.out.println(intMap);
 		System.out.println(intMap2);
 		assertThat(intMap).containsExactlyInAnyOrderEntriesOf(intMap2);
