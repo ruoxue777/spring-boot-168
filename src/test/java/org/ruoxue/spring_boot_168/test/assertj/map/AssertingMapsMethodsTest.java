@@ -78,27 +78,28 @@ public class AssertingMapsMethodsTest {
 		map.put(lemon.getName(), lemon);
 		System.out.println(map);
 		assertThat(map).extracting("Grape", "Kiwifruit").containsOnly(grape, kiwifruit);
+		assertThat(map).extracting("Lemon").extracting("name").isEqualTo("Lemon");
 	}
 
 	@Test
 	public void extractingByKey() {
-		Fruit grape = new Fruit("Grape", 18, 3);
-		Fruit kiwifruit = new Fruit("Kiwifruit", 19, 3);
-		Fruit lemon = new Fruit("Lemon", 20, 3);
+		Fruit grape = new Fruit("Grape", Double.MAX_VALUE, 1);
+		Fruit kiwifruit = new Fruit("Kiwifruit", 1, 2);
+		Fruit lemon = new Fruit("Lemon", -1, 3);
 		Map<String, Fruit> map = new LinkedHashMap<String, Fruit>();
 		map.put(grape.getName(), grape);
 		map.put(kiwifruit.getName(), kiwifruit);
 		map.put(lemon.getName(), lemon);
 		System.out.println(map);
-		assertThat(map).extractingByKey("Grape").isEqualTo(grape);
+		assertThat(map).extractingByKey("Grape").extracting(Fruit::getType).isEqualTo(1);
 		assertThat(map).extractingByKey("Papaya").isNull();
 	}
 
 	@Test
 	public void extractingByKeys() {
-		Fruit grape = new Fruit("Grape", 18, 3);
-		Fruit kiwifruit = new Fruit("Kiwifruit", 19, 3);
-		Fruit lemon = new Fruit("Lemon", 20, 3);
+		Fruit grape = new Fruit("Grape", Double.MAX_VALUE, 1);
+		Fruit kiwifruit = new Fruit("Kiwifruit", 1, 2);
+		Fruit lemon = new Fruit("Lemon", -1, 3);
 		Map<String, Fruit> map = new LinkedHashMap<String, Fruit>();
 		map.put(grape.getName(), grape);
 		map.put(kiwifruit.getName(), kiwifruit);

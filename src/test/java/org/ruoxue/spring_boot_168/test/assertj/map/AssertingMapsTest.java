@@ -50,6 +50,7 @@ public class AssertingMapsTest {
 		map.put(kiwifruit.getName(), kiwifruit);
 		map.put(lemon.getName(), lemon);
 		System.out.println(map);
+		
 	}
 
 	@Test
