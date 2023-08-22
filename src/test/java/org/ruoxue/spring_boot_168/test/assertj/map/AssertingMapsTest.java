@@ -16,10 +16,6 @@ import lombok.Setter;
 
 public class AssertingMapsTest {
 
-	public AssertingMapsTest() {
-
-	}
-
 	@NoArgsConstructor
 	@Getter
 	@Setter
