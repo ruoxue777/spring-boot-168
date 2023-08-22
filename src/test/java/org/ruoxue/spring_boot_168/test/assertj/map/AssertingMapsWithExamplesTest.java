@@ -101,7 +101,7 @@ public class AssertingMapsWithExamplesTest {
 		map.put(lemon.getName(), lemon);
 		System.out.println(map);
 		Condition<Map.Entry<String, Fruit>> lengthQuantity = new Condition<>(
-				entry -> entry.getKey().length() > 6 && entry.getValue().getQuantity() > 0, "length quantity");
+				e -> e.getKey().length() > 6 && e.getValue().getQuantity() > 0, "length quantity");
 		assertThat(map).hasEntrySatisfying(lengthQuantity);
 	}
 

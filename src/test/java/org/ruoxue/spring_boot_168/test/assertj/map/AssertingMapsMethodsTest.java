@@ -5,8 +5,10 @@ import static org.assertj.core.api.Assertions.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
@@ -62,63 +64,75 @@ public class AssertingMapsMethodsTest {
 		map.put(kiwifruit.getName(), kiwifruit);
 		map.put(lemon.getName(), lemon);
 		System.out.println(map);
-		assertThat(map).extracting(m -> m.get("Grape")).isNotNull();
+		assertThat(map).extracting(m -> m.get("Grape"), m -> m.get("Kiwifruit")).contains(grape, kiwifruit);
 		assertThat(map).extracting(m -> m.get("Papaya")).isNull();
 	}
 
 	@Test
-	public void extractingTuple() {
-		Fruit grape = new Fruit("Grape", Double.MAX_VALUE, 1);
-		Fruit kiwifruit = new Fruit("Kiwifruit", 1, 2);
-		Fruit lemon = new Fruit("Lemon", -1, 3);
+	public void extractingWithFieldName() {
+		Fruit grape = new Fruit("Grape", Double.MAX_VALUE, 1, Arrays.asList("Australia"));
+		Fruit kiwifruit = new Fruit("Kiwifruit", 1, 2, Arrays.asList("Canada", "Norway"));
+		Fruit lemon = new Fruit("Lemon", -1, 3, Arrays.asList("Poland", "Japan"));
 		Map<String, Fruit> map = new HashMap<String, Fruit>();
 		map.put(grape.getName(), grape);
 		map.put(kiwifruit.getName(), kiwifruit);
 		map.put(lemon.getName(), lemon);
 		System.out.println(map);
-		assertThat(array).extracting("name", "quantity").containsSequence(tuple("Guava", 1d), tuple("Pitaya", -1d));
-		assertThat(array).extracting(e -> e.getName(), Fruit::getQuantity)
-				.containsSubsequence(tuple("Durian", Double.MAX_VALUE), tuple("Pitaya", -1d));
+		assertThat(map).extracting("Grape", "Kiwifruit").containsOnly(grape, kiwifruit);
 	}
 
 	@Test
-	public void extractingResultOf() {
-		Fruit grape = new Fruit("Grape", Double.MAX_VALUE, 1);
-		Fruit kiwifruit = new Fruit("Kiwifruit", 1, 2);
-		Fruit lemon = new Fruit("Lemon", -1, 3);
-		Map<String, Fruit> map = new HashMap<String, Fruit>();
+	public void extractingByKey() {
+		Fruit grape = new Fruit("Grape", 18, 3);
+		Fruit kiwifruit = new Fruit("Kiwifruit", 19, 3);
+		Fruit lemon = new Fruit("Lemon", 20, 3);
+		Map<String, Fruit> map = new LinkedHashMap<String, Fruit>();
 		map.put(grape.getName(), grape);
 		map.put(kiwifruit.getName(), kiwifruit);
 		map.put(lemon.getName(), lemon);
 		System.out.println(map);
-		assertThat(map).extractingResultOf("getName").doesNotContainNull();
-		assertThat(array).extractingResultOf("getQuantity", Double.class).hasSize(3);
+		assertThat(map).extractingByKey("Grape").isEqualTo(grape);
+		assertThat(map).extractingByKey("Papaya").isNull();
+	}
+
+	@Test
+	public void extractingByKeys() {
+		Fruit grape = new Fruit("Grape", 18, 3);
+		Fruit kiwifruit = new Fruit("Kiwifruit", 19, 3);
+		Fruit lemon = new Fruit("Lemon", 20, 3);
+		Map<String, Fruit> map = new LinkedHashMap<String, Fruit>();
+		map.put(grape.getName(), grape);
+		map.put(kiwifruit.getName(), kiwifruit);
+		map.put(lemon.getName(), lemon);
+		System.out.println(map);
+		assertThat(map).extractingByKeys("Grape", "Kiwifruit").containsOnly(grape, kiwifruit);
+		assertThat(map).extractingByKeys("Papaya", "Lemon").contains(lemon);
+	}
+
+	@Test
+	public void extractingFromEntries() {
+		Fruit grape = new Fruit("Grape", 18, 3);
+		Fruit kiwifruit = new Fruit("Kiwifruit", 19, 3);
+		Fruit lemon = new Fruit("Lemon", 20, 3);
+		Map<String, Fruit> map = new LinkedHashMap<String, Fruit>();
+		map.put(grape.getName(), grape);
+		map.put(kiwifruit.getName(), kiwifruit);
+		map.put(lemon.getName(), lemon);
+		System.out.println(map);
+		Function<Map.Entry<String, Fruit>, Object> function = e -> e.getValue();
+		assertThat(map).extractingFromEntries(function).containsOnly(grape, kiwifruit, lemon);
 	}
 
 	@Test
 	public void flatExtracting() {
-		Fruit grape = new Fruit("Grape", Double.MAX_VALUE, 1);
-		Fruit kiwifruit = new Fruit("Kiwifruit", 1, 2);
-		Fruit lemon = new Fruit("Lemon", -1, 3);
+		Fruit grape = new Fruit("Grape", Double.MAX_VALUE, 1, Arrays.asList("Australia"));
+		Fruit kiwifruit = new Fruit("Kiwifruit", 1, 2, Arrays.asList("Canada", "Norway"));
+		Fruit lemon = new Fruit("Lemon", -1, 3, Arrays.asList("Poland", "Japan"));
 		Map<String, Fruit> map = new HashMap<String, Fruit>();
 		map.put(grape.getName(), grape);
 		map.put(kiwifruit.getName(), kiwifruit);
 		map.put(lemon.getName(), lemon);
 		System.out.println(map);
-		assertThat(array).flatExtracting("origins").containsOnly("France", "Greece", "Germany", "India", "Iceland");
-	}
-
-	@Test
-	public void flatExtractingWithMethodReference() {
-		Fruit grape = new Fruit("Grape", Double.MAX_VALUE, 1);
-		Fruit kiwifruit = new Fruit("Kiwifruit", 1, 2);
-		Fruit lemon = new Fruit("Lemon", -1, 3);
-		Map<String, Fruit> map = new HashMap<String, Fruit>();
-		map.put(grape.getName(), grape);
-		map.put(kiwifruit.getName(), kiwifruit);
-		map.put(lemon.getName(), lemon);
-		System.out.println(map);
-		assertThat(array).flatExtracting(Fruit::getOrigins).containsOnly("France", "Greece", "Germany", "India",
-				"Iceland");
+		assertThat(map).flatExtracting("Grape", "Kiwifruit").containsOnly(grape, kiwifruit);
 	}
 }

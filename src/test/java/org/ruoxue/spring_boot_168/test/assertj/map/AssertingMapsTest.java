@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.*;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.function.Function;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
@@ -41,66 +42,18 @@ public class AssertingMapsTest {
 		}
 	}
 
-
-	@Test
-	public void extractingByKey() {
-		Fruit grape = new Fruit("Grape", 18, 3);
-		Fruit kiwifruit = new Fruit("Kiwifruit", 19, 3);
-		Fruit lemon = new Fruit("Lemon", 20, 3);
-		Map<String, Fruit> map = new LinkedHashMap<String, Fruit>();
-		map.put(grape.getName(), grape);
-		map.put(kiwifruit.getName(), kiwifruit);
-		map.put(lemon.getName(), lemon);
-		System.out.println(map);
-		assertThat(map).allSatisfy((k, v) -> {
-			assertThat(v.getType()).isEqualTo(3);
-			assertThat(v.getName()).isNotNull();
-		});
-	}
-
-	@Test
-	public void extractingByKeys() {
-		Fruit grape = new Fruit("Grape", 18, 3);
-		Fruit kiwifruit = new Fruit("Kiwifruit", 19, 3);
-		Fruit lemon = new Fruit("Lemon", 20, 3);
-		Map<String, Fruit> map = new LinkedHashMap<String, Fruit>();
-		map.put(grape.getName(), grape);
-		map.put(kiwifruit.getName(), kiwifruit);
-		map.put(lemon.getName(), lemon);
-		System.out.println(map);
-		assertThat(map).anySatisfy((k, v) -> {
-			assertThat(v.getType()).isEqualTo(3);
-			assertThat(v.getName()).isEqualTo("Grape");
-		});
-	}
-
-	@Test
-	public void extractingFromEntries() {
-		Fruit grape = new Fruit("Grape", 18, 3);
-		Fruit kiwifruit = new Fruit("Kiwifruit", 19, 3);
-		Fruit lemon = new Fruit("Lemon", 20, 3);
-		Map<String, Fruit> map = new LinkedHashMap<String, Fruit>();
-		map.put(grape.getName(), grape);
-		map.put(kiwifruit.getName(), kiwifruit);
-		map.put(lemon.getName(), lemon);
-		System.out.println(map);
-		assertThat(map).noneSatisfy((k, v) -> {
-			assertThat(v.getType()).isEqualTo(1);
-		});
-	}
-	
 	@Test
 	public void usingDefaultComparator() {
-		
+
 	}
-	
+
 	@Test
 	public void usingComparator() {
-		
+
 	}
-	
+
 	@Test
 	public void usingRecursiveComparison() {
-		
+
 	}
 }
