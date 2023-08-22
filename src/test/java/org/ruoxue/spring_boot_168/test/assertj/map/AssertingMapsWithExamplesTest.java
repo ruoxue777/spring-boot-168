@@ -2,10 +2,12 @@ package org.ruoxue.spring_boot_168.test.assertj.map;
 
 import static org.assertj.core.api.Assertions.*;
 
-import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
+import org.assertj.core.api.Condition;
 import org.junit.jupiter.api.Test;
 
 import lombok.Builder;
@@ -41,71 +43,93 @@ public class AssertingMapsWithExamplesTest {
 	}
 
 	@Test
-	public void allMatch() {
-		Fruit durian = new Fruit("Durian", Double.MAX_VALUE, 2);
-		Fruit guava = new Fruit("Guava", 1, 2);
-		Fruit pitaya = new Fruit("Pitaya", -1, 2);
-		Fruit[] array = new Fruit[] { durian, guava, pitaya };
-		System.out.println(Arrays.deepToString(array));
-		assertThat(array).allMatch(e -> e.getType() == 2).isNotEmpty();
-	}
-
-	@Test
-	public void anyMatch() {
-		Fruit durian = new Fruit("Durian", Double.MAX_VALUE, 1);
-		Fruit guava = new Fruit("Guava", 1, 2);
-		Fruit pitaya = new Fruit("Pitaya", -1, 3);
-		Fruit[] array = new Fruit[] { durian, guava, pitaya };
-		System.out.println(Arrays.deepToString(array));
-		assertThat(array).anyMatch(e -> e.getName().equals("Durian")).isNotEmpty();
-	}
-
-	@Test
-	public void noneMatch() {
-		Fruit durian = new Fruit("Durian", Double.MAX_VALUE, 1);
-		Fruit guava = new Fruit("Guava", 1, 2);
-		Fruit pitaya = new Fruit("Pitaya", -1, 3);
-		Fruit[] array = new Fruit[] { durian, guava, pitaya };
-		System.out.println(Arrays.deepToString(array));
-		assertThat(array).noneMatch(e -> e.getType() == 0).isNotEmpty();
-	}
-
-	@Test
 	public void allSatisfy() {
-		Fruit durian = new Fruit("Durian", Double.MAX_VALUE, 2);
-		Fruit guava = new Fruit("Guava", 1, 2);
-		Fruit pitaya = new Fruit("Pitaya", -1, 2);
-		Fruit[] array = new Fruit[] { durian, guava, pitaya };
-		System.out.println(Arrays.deepToString(array));
-		assertThat(array).allSatisfy(e -> {
-			assertThat(e.getType()).isEqualTo(2);
-			assertThat(e.getName().length()).isGreaterThan(4);
+		Fruit grape = new Fruit("Grape", Double.MAX_VALUE, 2);
+		Fruit kiwifruit = new Fruit("Kiwifruit", 1, 2);
+		Fruit lemon = new Fruit("Lemon", -1, 2);
+		Map<String, Fruit> map = new HashMap<String, Fruit>();
+		map.put(grape.getName(), grape);
+		map.put(kiwifruit.getName(), kiwifruit);
+		map.put(lemon.getName(), lemon);
+		System.out.println(map);
+		assertThat(map).allSatisfy((k, v) -> {
+			assertThat(v.getType()).isEqualTo(2);
+			assertThat(v.getName()).isNotNull();
 		});
 	}
 
 	@Test
 	public void anySatisfy() {
-		Fruit durian = new Fruit("Durian", Double.MAX_VALUE, 1);
-		Fruit guava = new Fruit("Guava", 1, 2);
-		Fruit pitaya = new Fruit("Pitaya", -1, 3);
-		Fruit[] array = new Fruit[] { durian, guava, pitaya };
-		System.out.println(Arrays.deepToString(array));
-		assertThat(array).anySatisfy(e -> {
-			assertThat(e.getType()).isEqualTo(2);
-			assertThat(e.getName()).isEqualTo("Guava");
+		Fruit grape = new Fruit("Grape", Double.MAX_VALUE, 1);
+		Fruit kiwifruit = new Fruit("Kiwifruit", 1, 2);
+		Fruit lemon = new Fruit("Lemon", -1, 3);
+		Map<String, Fruit> map = new HashMap<String, Fruit>();
+		map.put(grape.getName(), grape);
+		map.put(kiwifruit.getName(), kiwifruit);
+		map.put(lemon.getName(), lemon);
+		System.out.println(map);
+		assertThat(map).anySatisfy((k, v) -> {
+			assertThat(v.getType()).isEqualTo(2);
+			assertThat(v.getName()).isEqualTo("Kiwifruit");
 		});
 	}
 
 	@Test
 	public void noneSatisfy() {
-		Fruit durian = new Fruit("Durian", Double.MAX_VALUE, 1);
-		Fruit guava = new Fruit("Guava", 1, 2);
-		Fruit pitaya = new Fruit("Pitaya", -1, 3);
-		Fruit[] array = new Fruit[] { durian, guava, pitaya };
-		System.out.println(Arrays.deepToString(array));
-		assertThat(array).noneSatisfy(e -> {
-			assertThat(e.getType()).isEqualTo(0);
-			assertThat(e.getName().length()).isLessThan(5);
+		Fruit grape = new Fruit("Grape", Double.MAX_VALUE, 1);
+		Fruit kiwifruit = new Fruit("Kiwifruit", 1, 2);
+		Fruit lemon = new Fruit("Lemon", -1, 3);
+		Map<String, Fruit> map = new HashMap<String, Fruit>();
+		map.put(grape.getName(), grape);
+		map.put(kiwifruit.getName(), kiwifruit);
+		map.put(lemon.getName(), lemon);
+		System.out.println(map);
+		assertThat(map).noneSatisfy((k, v) -> {
+			assertThat(v.getType()).isEqualTo(0);
+			assertThat(v.getName().length()).isLessThan(5);
 		});
+	}
+
+	@Test
+	public void hasEntrySatisfying() {
+		Fruit grape = new Fruit("Grape", Double.MAX_VALUE, 1);
+		Fruit kiwifruit = new Fruit("Kiwifruit", 1, 2);
+		Fruit lemon = new Fruit("Lemon", -1, 3);
+		Map<String, Fruit> map = new HashMap<String, Fruit>();
+		map.put(grape.getName(), grape);
+		map.put(kiwifruit.getName(), kiwifruit);
+		map.put(lemon.getName(), lemon);
+		System.out.println(map);
+		Condition<Map.Entry<String, Fruit>> lengthQuantity = new Condition<>(
+				entry -> entry.getKey().length() > 6 && entry.getValue().getQuantity() > 0, "length quantity");
+		assertThat(map).hasEntrySatisfying(lengthQuantity);
+	}
+
+	@Test
+	public void hasKeySatisfying() {
+		Fruit grape = new Fruit("Grape", Double.MAX_VALUE, 1);
+		Fruit kiwifruit = new Fruit("Kiwifruit", 1, 2);
+		Fruit lemon = new Fruit("Lemon", -1, 3);
+		Map<String, Fruit> map = new HashMap<String, Fruit>();
+		map.put(grape.getName(), grape);
+		map.put(kiwifruit.getName(), kiwifruit);
+		map.put(lemon.getName(), lemon);
+		System.out.println(map);
+		Condition<String> length = new Condition<String>(s -> s.length() > 6, "length");
+		assertThat(map).hasKeySatisfying(length);
+	}
+
+	@Test
+	public void hasValueSatisfying() {
+		Fruit grape = new Fruit("Grape", Double.MAX_VALUE, 1);
+		Fruit kiwifruit = new Fruit("Kiwifruit", 1, 2);
+		Fruit lemon = new Fruit("Lemon", -1, 3);
+		Map<String, Fruit> map = new HashMap<String, Fruit>();
+		map.put(grape.getName(), grape);
+		map.put(kiwifruit.getName(), kiwifruit);
+		map.put(lemon.getName(), lemon);
+		System.out.println(map);
+		Condition<Fruit> quantity = new Condition<Fruit>(o -> o.quantity > 0, "quantity");
+		assertThat(map).hasValueSatisfying(quantity);
 	}
 }
