@@ -13,7 +13,6 @@ import java.util.function.Function;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import org.junit.jupiter.api.Test;
-import org.ruoxue.spring_boot_168.test.assertj.map.AssertingMapsWithExamplesTest.Fruit;
 
 import lombok.Builder;
 import lombok.Getter;
