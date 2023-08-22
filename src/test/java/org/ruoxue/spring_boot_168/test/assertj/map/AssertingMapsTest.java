@@ -1,8 +1,12 @@
 package org.ruoxue.spring_boot_168.test.assertj.map;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import org.junit.jupiter.api.Test;
+import org.ruoxue.spring_boot_168.test.assertj.map.AssertingMapsMethodsTest.Fruit;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -38,16 +42,37 @@ public class AssertingMapsTest {
 
 	@Test
 	public void usingDefaultComparator() {
-
+		Fruit grape = new Fruit("Grape", Double.MAX_VALUE, 1);
+		Fruit kiwifruit = new Fruit("Kiwifruit", 1, 2);
+		Fruit lemon = new Fruit("Lemon", -1, 3);
+		Map<String, Fruit> map = new HashMap<String, Fruit>();
+		map.put(grape.getName(), grape);
+		map.put(kiwifruit.getName(), kiwifruit);
+		map.put(lemon.getName(), lemon);
+		System.out.println(map);
 	}
 
 	@Test
 	public void usingComparator() {
-
+		Fruit grape = new Fruit("Grape", Double.MAX_VALUE, 1);
+		Fruit kiwifruit = new Fruit("Kiwifruit", 1, 2);
+		Fruit lemon = new Fruit("Lemon", -1, 3);
+		Map<String, Fruit> map = new HashMap<String, Fruit>();
+		map.put(grape.getName(), grape);
+		map.put(kiwifruit.getName(), kiwifruit);
+		map.put(lemon.getName(), lemon);
+		System.out.println(map);
 	}
 
 	@Test
 	public void usingRecursiveComparison() {
-
+		Fruit grape = new Fruit("Grape", Double.MAX_VALUE, 1);
+		Fruit kiwifruit = new Fruit("Kiwifruit", 1, 2);
+		Fruit lemon = new Fruit("Lemon", -1, 3);
+		Map<String, Fruit> map = new HashMap<String, Fruit>();
+		map.put(grape.getName(), grape);
+		map.put(kiwifruit.getName(), kiwifruit);
+		map.put(lemon.getName(), lemon);
+		System.out.println(map);
 	}
 }
