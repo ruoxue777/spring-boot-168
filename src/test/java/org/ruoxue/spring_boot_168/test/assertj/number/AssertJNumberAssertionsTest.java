@@ -63,28 +63,6 @@ public class AssertJNumberAssertionsTest {
 	}
 
 	@Test
-	public void isOdd() {
-		int value = 151;
-		System.out.println(value);
-		assertThat(value).isOdd();
-
-		value = 1;
-		System.out.println(value);
-		assertThat(value).isOdd();
-	}
-
-	@Test
-	public void isEven() {
-		int value = 156;
-		System.out.println(value);
-		assertThat(value).isEven();
-
-		value = 2;
-		System.out.println(value);
-		assertThat(value).isEven();
-	}
-
-	@Test
 	public void isCloseTo() {
 		int value = 155;
 		System.out.println(value);

@@ -10,121 +10,97 @@ public class AssertJNumberMethodsTest {
 
 	@Test
 	public void isNull() {
-		String[] array = null;
-		System.out.println(Arrays.toString(array));
-		assertThat(array).isNull();
+		Integer value = null;
+		System.out.println(value);
+		assertThat(value).isNull();
 
-		int[] intArray = null;
-		System.out.println(Arrays.toString(intArray));
-		assertThat(intArray).isNull();
+		Double doubleValue = null;
+		System.out.println(doubleValue);
+		assertThat(doubleValue).isNull();
 	}
 
 	@Test
 	public void isNotNull() {
-		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
-		System.out.println(Arrays.toString(array));
-		assertThat(array).isNotNull();
+		Integer value = 155;
+		System.out.println(value);
+		assertThat(value).isNotNull();
 
-		int[] intArray = new int[] { 1, 2, 3, 4, 5 };
-		System.out.println(Arrays.toString(intArray));
-		assertThat(intArray).isNotNull();
-	}
-
-	@Test
-	public void isEmpty() {
-		String[] array = new String[] {};
-		System.out.println(Arrays.toString(array));
-		assertThat(array).isEmpty();
-
-		int[] intArray = new int[] {};
-		System.out.println(Arrays.toString(intArray));
-		assertThat(intArray).isEmpty();
-	}
-
-	@Test
-	public void isNotEmpty() {
-		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
-		System.out.println(Arrays.toString(array));
-		assertThat(array).isNotEmpty();
-
-		int[] intArray = new int[] { 1, 2, 3, 4, 5 };
-		System.out.println(Arrays.toString(intArray));
-		assertThat(intArray).isNotEmpty();
-	}
-
-	@Test
-	public void isNullOrEmpty() {
-		String[] array = null;
-		System.out.println(Arrays.toString(array));
-		assertThat(array).isNullOrEmpty();
-		array = new String[] {};
-		System.out.println(Arrays.toString(array));
-		assertThat(array).isNullOrEmpty();
-
-		int[] intArray = null;
-		System.out.println(Arrays.toString(intArray));
-		intArray = new int[] {};
-		System.out.println(Arrays.toString(intArray));
-		assertThat(intArray).isNullOrEmpty();
+		Double doubleValue = 151.2d;
+		System.out.println(doubleValue);
+		assertThat(doubleValue).isNotNull();
 	}
 
 	@Test
 	public void isEqualTo() {
-		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
-		String[] array2 = new String[] { "Durian", "Guava", "Pitaya" };
-		System.out.println(Arrays.toString(array));
-		System.out.println(Arrays.toString(array2));
-		assertThat(array).isEqualTo(array2);
+		int value = 155;
+		System.out.println(value);
+		assertThat(value).isEqualTo(155);
 
-		int[] intArray = new int[] { 1, 2, 3, 4, 5 };
-		int[] intArray2 = new int[] { 1, 2, 3, 4, 5 };
-		System.out.println(Arrays.toString(intArray));
-		System.out.println(Arrays.toString(intArray2));
-		assertThat(intArray).isEqualTo(intArray2);
+		Double doubleValue = 151.2d;
+		System.out.println(doubleValue);
+		assertThat(doubleValue).isEqualTo(151.2d);
 	}
 
 	@Test
 	public void isNotEqualTo() {
-		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
-		String[] array2 = new String[] { "Durian", "Guava" };
-		System.out.println(Arrays.toString(array));
-		System.out.println(Arrays.toString(array2));
-		assertThat(array).isNotEqualTo(array2);
+		int value = 155;
+		System.out.println(value);
+		assertThat(value).isNotEqualTo(1);
 
-		int[] intArray = new int[] { 1, 2, 3, 4, 5 };
-		int[] intArray2 = new int[] { 1, 2, 3 };
-		System.out.println(Arrays.toString(intArray));
-		System.out.println(Arrays.toString(intArray2));
-		assertThat(intArray).isNotEqualTo(intArray2);
+		Double doubleValue = 151.2d;
+		System.out.println(doubleValue);
+		assertThat(doubleValue).isNotEqualTo(1.2d);
 	}
 
 	@Test
 	public void isSameAs() {
-		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
-		String[] array2 = array;
-		System.out.println(Arrays.toString(array));
-		System.out.println(Arrays.toString(array2));
-		assertThat(array).isSameAs(array2);
+		Integer value = 155;
+		Integer value2 = value;
+		System.out.println(value);
+		System.out.println(value2);
+		assertThat(value).isSameAs(value2);
 
-		int[] intArray = new int[] { 1, 2, 3, 4, 5 };
-		int[] intArray2 = intArray;
-		System.out.println(Arrays.toString(intArray));
-		System.out.println(Arrays.toString(intArray2));
-		assertThat(intArray).isSameAs(intArray2);
+		Double doubleValue = 151.2d;
+		Double doubleValue2 = doubleValue;
+		System.out.println(doubleValue);
+		System.out.println(doubleValue2);
+		assertThat(doubleValue).isSameAs(doubleValue2);
 	}
 
 	@Test
 	public void isNotSameAs() {
-		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
-		String[] array2 = new String[] { "Durian", "Guava", "Pitaya" };
-		System.out.println(Arrays.toString(array));
-		System.out.println(Arrays.toString(array2));
-		assertThat(array).isNotSameAs(array2);
+		int value = 155;
+		int value2 = value;
+		System.out.println(value);
+		System.out.println(value2);
+		assertThat(value).isNotSameAs(value2);
 
-		int[] intArray = new int[] { 1, 2, 3, 4, 5 };
-		int[] intArray2 = new int[] { 1, 2, 3, 4, 5 };
-		System.out.println(Arrays.toString(intArray));
-		System.out.println(Arrays.toString(intArray2));
-		assertThat(intArray).isNotSameAs(intArray2);
+		double doubleValue = 151.2d;
+		double doubleValue2 = doubleValue;
+		System.out.println(doubleValue);
+		System.out.println(doubleValue2);
+		assertThat(doubleValue).isNotSameAs(doubleValue2);
+	}
+
+	@Test
+	public void isOdd() {
+		int value = 151;
+		System.out.println(value);
+		assertThat(value).isOdd();
+
+		value = 1;
+		System.out.println(value);
+		assertThat(value).isOdd();
+	}
+
+	@Test
+	public void isEven() {
+		int value = 156;
+		System.out.println(value);
+		assertThat(value).isEven();
+
+		value = 2;
+		System.out.println(value);
+		assertThat(value).isEven();
 	}
 }
