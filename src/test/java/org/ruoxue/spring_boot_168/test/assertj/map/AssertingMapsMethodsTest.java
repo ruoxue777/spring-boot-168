@@ -58,7 +58,7 @@ public class AssertingMapsMethodsTest {
 		Fruit grape = new Fruit("Grape", Double.MAX_VALUE, 1);
 		Fruit kiwifruit = new Fruit("Kiwifruit", 1, 2);
 		Fruit lemon = new Fruit("Lemon", -1, 3);
-		Map<String, Fruit> map = new HashMap<String, Fruit>();
+		Map<String, Fruit> map = new HashMap<>();
 		map.put(grape.getName(), grape);
 		map.put(kiwifruit.getName(), kiwifruit);
 		map.put(lemon.getName(), lemon);
@@ -72,7 +72,7 @@ public class AssertingMapsMethodsTest {
 		Fruit grape = new Fruit("Grape", Double.MAX_VALUE, 1, Arrays.asList("Australia"));
 		Fruit kiwifruit = new Fruit("Kiwifruit", 1, 2, Arrays.asList("Canada", "Norway"));
 		Fruit lemon = new Fruit("Lemon", -1, 3, Arrays.asList("Poland", "Japan"));
-		Map<String, Fruit> map = new HashMap<String, Fruit>();
+		Map<String, Fruit> map = new HashMap<>();
 		map.put(grape.getName(), grape);
 		map.put(kiwifruit.getName(), kiwifruit);
 		map.put(lemon.getName(), lemon);
@@ -130,7 +130,7 @@ public class AssertingMapsMethodsTest {
 		Fruit grape = new Fruit("Grape", Double.MAX_VALUE, 1, Arrays.asList("Australia"));
 		Fruit kiwifruit = new Fruit("Kiwifruit", 1, 2, Arrays.asList("Canada", "Norway"));
 		Fruit lemon = new Fruit("Lemon", -1, 3, Arrays.asList("Poland", "Japan"));
-		Map<String, Fruit> map = new HashMap<String, Fruit>();
+		Map<String, Fruit> map = new HashMap<>();
 		map.put(grape.getName(), grape);
 		map.put(kiwifruit.getName(), kiwifruit);
 		map.put(lemon.getName(), lemon);

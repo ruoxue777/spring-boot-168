@@ -46,7 +46,7 @@ public class AssertingMapsTest {
 		Fruit grape = new Fruit("Grape", Double.MAX_VALUE, 1);
 		Fruit kiwifruit = new Fruit("Kiwifruit", 1, 2);
 		Fruit lemon = new Fruit("Lemon", -1, 3);
-		Map<String, Fruit> map = new HashMap<String, Fruit>();
+		Map<String, Fruit> map = new HashMap<>();
 		map.put(grape.getName(), grape);
 		map.put(kiwifruit.getName(), kiwifruit);
 		map.put(lemon.getName(), lemon);
@@ -60,15 +60,16 @@ public class AssertingMapsTest {
 		Fruit grape = new Fruit("Grape", Double.MAX_VALUE, 1);
 		Fruit kiwifruit = new Fruit("Kiwifruit", 1, 2);
 		Fruit lemon = new Fruit("Lemon", -1, 3);
-		Map<String, Fruit> map = new HashMap<String, Fruit>();
+		Map<String, Fruit> map = new HashMap<>();
 		map.put(grape.getName(), grape);
 		map.put(kiwifruit.getName(), kiwifruit);
 		map.put(lemon.getName(), lemon);
+		Map<String, Fruit> map2 = new HashMap();
+		map2.put(grape.getName(), grape);
+		map2.put(kiwifruit.getName(), kiwifruit);
 		System.out.println(map);
-		Comparator<Map> ignoreCaseComparator = (s1, s2) -> s1.size() - s2.size();
-////		assertThat(map).extracting("Grape").extracting("name").usingComparator(ignoreCaseComparator).startsWith("fr")
-////				.endsWith("ODO");
-		assertThat(map).usingComparator(ignoreCaseComparator);
+		Comparator<Map<String, Fruit>> comparator = (m1, m2) -> Integer.compare(m1.size(), m2.size());
+		assertThat(map).usingComparator(comparator);
 	}
 
 	@Test
@@ -76,7 +77,7 @@ public class AssertingMapsTest {
 		Fruit grape = new Fruit("Grape", Double.MAX_VALUE, 1);
 		Fruit kiwifruit = new Fruit("Kiwifruit", 1, 2);
 		Fruit lemon = new Fruit("Lemon", -1, 3);
-		Map<String, Fruit> map = new HashMap<String, Fruit>();
+		Map<String, Fruit> map = new HashMap<>();
 		map.put(grape.getName(), grape);
 		map.put(kiwifruit.getName(), kiwifruit);
 		map.put(lemon.getName(), lemon);
@@ -88,7 +89,7 @@ public class AssertingMapsTest {
 		Fruit grape = new Fruit("Grape", Double.MAX_VALUE, 1);
 		Fruit kiwifruit = new Fruit("Kiwifruit", 1, 2);
 		Fruit lemon = new Fruit("Lemon", -1, 3);
-		Map<String, Fruit> map = new HashMap<String, Fruit>();
+		Map<String, Fruit> map = new HashMap<>();
 		map.put(grape.getName(), grape);
 		map.put(kiwifruit.getName(), kiwifruit);
 		map.put(lemon.getName(), lemon);
