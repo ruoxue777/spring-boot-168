@@ -2,6 +2,8 @@ package org.ruoxue.spring_boot_168.test.assertj.string;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.Arrays;
+
 import org.junit.jupiter.api.Test;
 
 public class UnitTestAssertJStringWithExamplesTest {
@@ -46,25 +48,28 @@ public class UnitTestAssertJStringWithExamplesTest {
 		assertThat(value).containsIgnoringNewLines("rtj", "155");
 	}
 
-//	@Test
-//	public void containsPattern() {
-//		String value = "Assertj 155";
-//		System.out.println(value);
-//		assertThat(value).containsSequence("Guava", "Pitaya");
-//	}
-//	
-//	@Test
-//	public void doesNotContainPattern() {
-//		String value = "Assertj 155";
-//		System.out.println(value);
-//		assertThat(value).containsSequence("Guava", "Pitaya");
-//	}
+	@Test
+	public void containsPattern() {
+		String value = "Assertj 155";
+		System.out.println(value);
+		assertThat(value).containsPattern("As.e");
+		assertThat(value).containsPattern("1\\d5");
+	}
+	
+	@Test
+	public void doesNotContainPattern() {
+		String value = "Assertj 155";
+		System.out.println(value);
+		assertThat(value).doesNotContainPattern("As.x");
+		assertThat(value).doesNotContainPattern("1\\d9");
+	}
 
 	@Test
 	public void containsSequence() {
 		String value = "Assertj 155 JUnit 151";
 		System.out.println(value);
 		assertThat(value).containsSequence("Assertj", " ", "155");
+		assertThat(value).containsSequence(Arrays.asList("Assertj", " ", "155"));
 		assertThat(value).containsSequence("JUnit", " ", "151");
 	}
 
@@ -73,6 +78,7 @@ public class UnitTestAssertJStringWithExamplesTest {
 		String value = "Assertj 155 JUnit 151";
 		System.out.println(value);
 		assertThat(value).containsSubsequence("Assertj", "JUnit");
+		assertThat(value).containsSubsequence(Arrays.asList("Assertj", "JUnit"));
 		assertThat(value).containsSubsequence("155", " ", "151");
 	}
 }
