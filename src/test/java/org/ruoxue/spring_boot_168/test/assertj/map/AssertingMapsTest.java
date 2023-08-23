@@ -54,7 +54,6 @@ public class AssertingMapsTest {
 
 	}
 
-//Comparator.comparing(LeaderboardObj::getRank)
 	@Test
 	public void usingComparator() {
 		Fruit grape = new Fruit("Grape", Double.MAX_VALUE, 1);
