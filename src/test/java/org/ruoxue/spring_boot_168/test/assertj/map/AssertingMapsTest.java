@@ -1,7 +1,5 @@
 package org.ruoxue.spring_boot_168.test.assertj.map;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
@@ -14,6 +12,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class AssertingMapsTest {
 
@@ -66,10 +65,10 @@ public class AssertingMapsTest {
 		map.put(kiwifruit.getName(), kiwifruit);
 		map.put(lemon.getName(), lemon);
 		System.out.println(map);
-//		Comparator<Map> ignoreCaseComparator = (s1, s2) -> s1.name.toLowerCase().compareTo(s2.name.toLowerCase());
+		Comparator<Map> ignoreCaseComparator = (s1, s2) -> s1.size() - s2.size();
 ////		assertThat(map).extracting("Grape").extracting("name").usingComparator(ignoreCaseComparator).startsWith("fr")
 ////				.endsWith("ODO");
-//		assertThat(map).usingComparator(ignoreCaseComparator);
+		assertThat(map).usingComparator(ignoreCaseComparator);
 	}
 
 	@Test
