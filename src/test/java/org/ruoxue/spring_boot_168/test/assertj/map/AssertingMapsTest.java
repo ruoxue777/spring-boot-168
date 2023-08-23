@@ -1,5 +1,8 @@
 package org.ruoxue.spring_boot_168.test.assertj.map;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -49,11 +52,28 @@ public class AssertingMapsTest {
 		map.put(kiwifruit.getName(), kiwifruit);
 		map.put(lemon.getName(), lemon);
 		System.out.println(map);
-		
+
+	}
+
+//Comparator.comparing(LeaderboardObj::getRank)
+	@Test
+	public void usingComparator() {
+		Fruit grape = new Fruit("Grape", Double.MAX_VALUE, 1);
+		Fruit kiwifruit = new Fruit("Kiwifruit", 1, 2);
+		Fruit lemon = new Fruit("Lemon", -1, 3);
+		Map<String, Fruit> map = new HashMap<String, Fruit>();
+		map.put(grape.getName(), grape);
+		map.put(kiwifruit.getName(), kiwifruit);
+		map.put(lemon.getName(), lemon);
+		System.out.println(map);
+//		Comparator<Map> ignoreCaseComparator = (s1, s2) -> s1.name.toLowerCase().compareTo(s2.name.toLowerCase());
+////		assertThat(map).extracting("Grape").extracting("name").usingComparator(ignoreCaseComparator).startsWith("fr")
+////				.endsWith("ODO");
+//		assertThat(map).usingComparator(ignoreCaseComparator);
 	}
 
 	@Test
-	public void usingComparator() {
+	public void usingElementComparator() {
 		Fruit grape = new Fruit("Grape", Double.MAX_VALUE, 1);
 		Fruit kiwifruit = new Fruit("Kiwifruit", 1, 2);
 		Fruit lemon = new Fruit("Lemon", -1, 3);
