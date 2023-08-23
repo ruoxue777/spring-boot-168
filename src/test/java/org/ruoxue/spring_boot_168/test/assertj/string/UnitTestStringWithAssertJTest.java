@@ -11,9 +11,16 @@ public class UnitTestStringWithAssertJTest {
 	public void is() {
 		String value = "AssertJ 155";
 		System.out.println(value);
-		Condition<String> length = new Condition<String>(s -> s.length() > 2, "length");
+		Condition<String> length = new Condition<String>(s -> s.length() > 10, "length");
 		System.out.println(value);
 		assertThat(value).is(length);
+
+		value = "AssertJ";
+		System.out.println(value);
+		length = new Condition<String>(s -> s.length() > 6, "length");
+		System.out.println(value);
+		assertThat(value).is(length);
+
 	}
 
 	@Test
@@ -22,20 +29,33 @@ public class UnitTestStringWithAssertJTest {
 		System.out.println(value);
 		Condition<String> length = new Condition<String>(s -> s.length() > 11, "length");
 		assertThat(value).isNot(length);
+
+		value = "AssertJ";
+		System.out.println(value);
+		length = new Condition<String>(s -> s.length() > 7, "length");
+		assertThat(value).isNot(length);
 	}
 
 	@Test
 	public void isIn() {
-		String value = "AssertJ 155";
+		String value = "AssertJ";
 		System.out.println(value);
-		assertThat(" ").isIn(value);
+		assertThat(value).isIn("AssertJ", "155");
+
+		value = "155";
+		System.out.println(value);
+		assertThat(value).isIn("AssertJ", "155");
 	}
 
 	@Test
 	public void isNotIn() {
-		String value = "AssertJ 155";
+		String value = "AssertJ";
 		System.out.println(value);
-		assertThat("JUnit").isNotIn(value);
+		assertThat(value).isNotIn("JUnit", "151");
+
+		value = "155";
+		System.out.println(value);
+		assertThat(value).isNotIn("JUnit", "151");
 	}
 
 	@Test
@@ -43,11 +63,20 @@ public class UnitTestStringWithAssertJTest {
 		String value = "AssertJ 155";
 		System.out.println(value);
 		assertThat(value).isInstanceOf(String.class);
+
+		value = new String("AssertJ 155");
+		System.out.println(value);
+		assertThat(value).isInstanceOf(String.class);
+
 	}
 
 	@Test
 	public void isNotInstanceOf() {
 		String value = "AssertJ 155";
+		System.out.println(value);
+		assertThat(value).isNotInstanceOf(String[].class);
+
+		value = new String("AssertJ 155");
 		System.out.println(value);
 		assertThat(value).isNotInstanceOf(String[].class);
 	}
@@ -57,6 +86,10 @@ public class UnitTestStringWithAssertJTest {
 		String value = "AssertJ 155";
 		System.out.println(value);
 		assertThat(value).startsWith("AssertJ");
+
+		value = "155 AssertJ";
+		System.out.println(value);
+		assertThat(value).startsWith("155");
 	}
 
 	@Test
@@ -64,5 +97,9 @@ public class UnitTestStringWithAssertJTest {
 		String value = "AssertJ 155";
 		System.out.println(value);
 		assertThat(value).endsWith("155");
+
+		value = "155 AssertJ";
+		System.out.println(value);
+		assertThat(value).endsWith("AssertJ");
 	}
 }

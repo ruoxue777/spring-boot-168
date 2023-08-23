@@ -11,11 +11,19 @@ public class AssertJStringMethodsTest {
 		String value = null;
 		System.out.println(value);
 		assertThat(value).isNull();
+
+		String value2 = null;
+		System.out.println(value2);
+		assertThat(value2).isNull();
 	}
 
 	@Test
 	public void isNotNull() {
 		String value = "AssertJ 155";
+		System.out.println(value);
+		assertThat(value).isNotNull();
+
+		value = "AssertJ";
 		System.out.println(value);
 		assertThat(value).isNotNull();
 	}
@@ -25,11 +33,19 @@ public class AssertJStringMethodsTest {
 		String value = "";
 		System.out.println(value);
 		assertThat(value).isEmpty();
+
+		String value2 = "";
+		System.out.println(value2);
+		assertThat(value2).isEmpty();
 	}
 
 	@Test
 	public void isNotEmpty() {
 		String value = "AssertJ 155";
+		System.out.println(value);
+		assertThat(value).isNotEmpty();
+
+		value = "AssertJ";
 		System.out.println(value);
 		assertThat(value).isNotEmpty();
 	}
@@ -49,13 +65,22 @@ public class AssertJStringMethodsTest {
 		String value = "AssertJ 155";
 		System.out.println(value);
 		assertThat(value).isEqualTo("AssertJ 155");
+
+		value = "AssertJ";
+		System.out.println(value);
+		assertThat(value).isEqualTo("AssertJ");
+
 	}
 
 	@Test
 	public void isNotEqualTo() {
 		String value = "AssertJ 155";
 		System.out.println(value);
-		assertThat(value).isNotEqualTo("155");
+		assertThat(value).isNotEqualTo("AssertJ");
+
+		value = "AssertJ";
+		System.out.println(value);
+		assertThat(value).isNotEqualTo("JUnit");
 	}
 
 	@Test
@@ -65,12 +90,24 @@ public class AssertJStringMethodsTest {
 		System.out.println(value);
 		System.out.println(value2);
 		assertThat(value).isSameAs(value2);
+
+		value = "AssertJ";
+		value2 = value;
+		System.out.println(value);
+		System.out.println(value2);
+		assertThat(value).isSameAs(value2);
 	}
 
 	@Test
 	public void isNotSameAs() {
 		String value = "AssertJ 155";
 		String value2 = new String("AssertJ 155");
+		System.out.println(value);
+		System.out.println(value2);
+		assertThat(value).isNotSameAs(value2);
+
+		value = "AssertJ";
+		value2 = new String("AssertJ");
 		System.out.println(value);
 		System.out.println(value2);
 		assertThat(value).isNotSameAs(value2);
