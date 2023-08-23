@@ -5,26 +5,23 @@ import static org.assertj.core.api.Assertions.*;
 import java.util.Arrays;
 import java.util.List;
 
+import org.assertj.core.data.Offset;
 import org.junit.jupiter.api.Test;
 
 public class AssertJNumberAssertionsTest {
 
 	@Test
-	public void contains() {
-		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
-		System.out.println(Arrays.toString(array));
-		assertThat(array).contains("Guava", "Durian");
-
-		int[] intArray = new int[] { 1, 2, 3, 4, 5 };
-		System.out.println(Arrays.toString(intArray));
-		assertThat(intArray).contains(1, 2, 3);
+	public void isCloseTo() {
+		Integer value = 155;
+		assertThat(value).isCloseTo(new Integer(150), Offset.offset(5));
+		assertThat(value).isCloseTo(new Integer(160), Offset.offset(5));
 	}
 
 	@Test
 	public void doesNotContain() {
-		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
-		System.out.println(Arrays.toString(array));
-		assertThat(array).doesNotContain("Mango");
+		String[] value = new String[] { "Durian", "Guava", "Pitaya" };
+		System.out.println(Arrays.toString(value));
+		assertThat(value).doesNotContain("Mango");
 
 		int[] intArray = new int[] { 1, 2, 3, 4, 5 };
 		System.out.println(Arrays.toString(intArray));
@@ -33,9 +30,9 @@ public class AssertJNumberAssertionsTest {
 
 	@Test
 	public void containsOnly() {
-		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
-		System.out.println(Arrays.toString(array));
-		assertThat(array).containsOnly("Guava", "Pitaya", "Durian");
+		String[] value = new String[] { "Durian", "Guava", "Pitaya" };
+		System.out.println(Arrays.toString(value));
+		assertThat(value).containsOnly("Guava", "Pitaya", "Durian");
 
 		int[] intArray = new int[] { 1, 2, 3, 4, 5 };
 		System.out.println(Arrays.toString(intArray));
@@ -44,9 +41,9 @@ public class AssertJNumberAssertionsTest {
 
 	@Test
 	public void containsOnlyOnce() {
-		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
-		System.out.println(Arrays.toString(array));
-		assertThat(array).containsOnlyOnce("Guava");
+		String[] value = new String[] { "Durian", "Guava", "Pitaya" };
+		System.out.println(Arrays.toString(value));
+		assertThat(value).containsOnlyOnce("Guava");
 
 		int[] intArray = new int[] { 1, 2, 3, 4, 5 };
 		System.out.println(Arrays.toString(intArray));
@@ -55,9 +52,9 @@ public class AssertJNumberAssertionsTest {
 
 	@Test
 	public void containsOnlyNulls() {
-		String[] array = new String[] { null, null, null };
-		System.out.println(Arrays.toString(array));
-		assertThat(array).containsOnlyNulls();
+		String[] value = new String[] { null, null, null };
+		System.out.println(Arrays.toString(value));
+		assertThat(value).containsOnlyNulls();
 
 		Integer[] intArray = new Integer[] { null, null, null, null, null };
 		System.out.println(Arrays.toString(intArray));
@@ -66,11 +63,11 @@ public class AssertJNumberAssertionsTest {
 
 	@Test
 	public void containsAll() {
-		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
+		String[] value = new String[] { "Durian", "Guava", "Pitaya" };
 		List<String> list = Arrays.asList("Durian", "Guava");
-		System.out.println(Arrays.toString(array));
+		System.out.println(Arrays.toString(value));
 		System.out.println(list);
-		assertThat(array).containsAll(list);
+		assertThat(value).containsAll(list);
 
 		Integer[] intArray = new Integer[] { 1, 2, 3, 4, 5 };
 		List<Integer> intList = Arrays.asList(1, 2, 3);
@@ -81,9 +78,9 @@ public class AssertJNumberAssertionsTest {
 
 	@Test
 	public void containsExactly() {
-		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
-		System.out.println(Arrays.toString(array));
-		assertThat(array).containsExactly("Durian", "Guava", "Pitaya");
+		String[] value = new String[] { "Durian", "Guava", "Pitaya" };
+		System.out.println(Arrays.toString(value));
+		assertThat(value).containsExactly("Durian", "Guava", "Pitaya");
 
 		int[] intArray = new int[] { 1, 2, 3, 4, 5 };
 		System.out.println(Arrays.toString(intArray));
@@ -92,9 +89,9 @@ public class AssertJNumberAssertionsTest {
 
 	@Test
 	public void containsExactlyInAnyOrder() {
-		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
-		System.out.println(Arrays.toString(array));
-		assertThat(array).containsExactlyInAnyOrder("Guava", "Pitaya", "Durian");
+		String[] value = new String[] { "Durian", "Guava", "Pitaya" };
+		System.out.println(Arrays.toString(value));
+		assertThat(value).containsExactlyInAnyOrder("Guava", "Pitaya", "Durian");
 
 		int[] intArray = new int[] { 1, 2, 3, 4, 5 };
 		System.out.println(Arrays.toString(intArray));
