@@ -68,7 +68,7 @@ public class AssertingMapsMethodsTest {
 	}
 
 	@Test
-	public void extractingWithFieldName() {
+	public void extractingWithKey() {
 		Fruit grape = new Fruit("Grape", Double.MAX_VALUE, 1, Arrays.asList("Australia"));
 		Fruit kiwifruit = new Fruit("Kiwifruit", 1, 2, Arrays.asList("Canada", "Norway"));
 		Fruit lemon = new Fruit("Lemon", -1, 3, Arrays.asList("Poland", "Japan"));
@@ -111,16 +111,18 @@ public class AssertingMapsMethodsTest {
 
 	@Test
 	public void extractingFromEntries() {
-		Fruit grape = new Fruit("Grape", 18, 3);
-		Fruit kiwifruit = new Fruit("Kiwifruit", 19, 3);
-		Fruit lemon = new Fruit("Lemon", 20, 3);
+		Fruit grape = new Fruit("Grape", Double.MAX_VALUE, 1);
+		Fruit kiwifruit = new Fruit("Kiwifruit", 1, 2);
+		Fruit lemon = new Fruit("Lemon", -1, 3);
 		Map<String, Fruit> map = new LinkedHashMap<String, Fruit>();
 		map.put(grape.getName(), grape);
 		map.put(kiwifruit.getName(), kiwifruit);
 		map.put(lemon.getName(), lemon);
 		System.out.println(map);
-		Function<Map.Entry<String, Fruit>, Object> function = e -> e.getValue();
-		assertThat(map).extractingFromEntries(function).containsOnly(grape, kiwifruit, lemon);
+		Function<Map.Entry<String, Fruit>, Object> value = e -> e.getValue();
+		assertThat(map).extractingFromEntries(value).containsOnly(grape, kiwifruit, lemon);
+		Function<Map.Entry<String, Fruit>, Object> type = e -> e.getValue().getType();
+		assertThat(map).extractingFromEntries(type).containsOnly(1, 2, 3);
 	}
 
 	@Test
