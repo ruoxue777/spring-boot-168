@@ -2,8 +2,6 @@ package org.ruoxue.spring_boot_168.test.assertj.string;
 
 import static org.assertj.core.api.Assertions.*;
 
-import java.util.Arrays;
-
 import org.junit.jupiter.api.Test;
 
 public class AssertJStringMethodsTest {
