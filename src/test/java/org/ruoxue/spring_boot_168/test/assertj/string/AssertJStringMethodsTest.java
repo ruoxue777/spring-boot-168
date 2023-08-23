@@ -10,31 +10,23 @@ public class AssertJStringMethodsTest {
 
 	@Test
 	public void isNull() {
-		String[] array = null;
-		System.out.println(Arrays.toString(array));
-		assertThat(array).isNull();
-
-		int[] intArray = null;
-		System.out.println(Arrays.toString(intArray));
-		assertThat(intArray).isNull();
+		String value = null;
+		System.out.println(value);
+		assertThat(value).isNull();
 	}
 
 	@Test
 	public void isNotNull() {
-		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
-		System.out.println(Arrays.toString(array));
-		assertThat(array).isNotNull();
-
-		int[] intArray = new int[] { 1, 2, 3, 4, 5 };
-		System.out.println(Arrays.toString(intArray));
-		assertThat(intArray).isNotNull();
+		String value = "AssertJ 155";
+		System.out.println(value);
+		assertThat(value).isNotNull();
 	}
 
 	@Test
 	public void isEmpty() {
-		String[] array = new String[] {};
-		System.out.println(Arrays.toString(array));
-		assertThat(array).isEmpty();
+		String[] value = new String[] {};
+		System.out.println(Arrays.toString(value));
+		assertThat(value).isEmpty();
 
 		int[] intArray = new int[] {};
 		System.out.println(Arrays.toString(intArray));
@@ -43,9 +35,9 @@ public class AssertJStringMethodsTest {
 
 	@Test
 	public void isNotEmpty() {
-		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
-		System.out.println(Arrays.toString(array));
-		assertThat(array).isNotEmpty();
+		String[] value = new String[] { "Durian", "Guava", "Pitaya" };
+		System.out.println(Arrays.toString(value));
+		assertThat(value).isNotEmpty();
 
 		int[] intArray = new int[] { 1, 2, 3, 4, 5 };
 		System.out.println(Arrays.toString(intArray));
@@ -54,12 +46,12 @@ public class AssertJStringMethodsTest {
 
 	@Test
 	public void isNullOrEmpty() {
-		String[] array = null;
-		System.out.println(Arrays.toString(array));
-		assertThat(array).isNullOrEmpty();
-		array = new String[] {};
-		System.out.println(Arrays.toString(array));
-		assertThat(array).isNullOrEmpty();
+		String[] value = null;
+		System.out.println(Arrays.toString(value));
+		assertThat(value).isNullOrEmpty();
+		value = new String[] {};
+		System.out.println(Arrays.toString(value));
+		assertThat(value).isNullOrEmpty();
 
 		int[] intArray = null;
 		System.out.println(Arrays.toString(intArray));
@@ -70,11 +62,11 @@ public class AssertJStringMethodsTest {
 
 	@Test
 	public void isEqualTo() {
-		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
-		String[] array2 = new String[] { "Durian", "Guava", "Pitaya" };
-		System.out.println(Arrays.toString(array));
-		System.out.println(Arrays.toString(array2));
-		assertThat(array).isEqualTo(array2);
+		String[] value = new String[] { "Durian", "Guava", "Pitaya" };
+		String[] value2 = new String[] { "Durian", "Guava", "Pitaya" };
+		System.out.println(Arrays.toString(value));
+		System.out.println(Arrays.toString(value2));
+		assertThat(value).isEqualTo(value2);
 
 		int[] intArray = new int[] { 1, 2, 3, 4, 5 };
 		int[] intArray2 = new int[] { 1, 2, 3, 4, 5 };
@@ -85,11 +77,11 @@ public class AssertJStringMethodsTest {
 
 	@Test
 	public void isNotEqualTo() {
-		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
-		String[] array2 = new String[] { "Durian", "Guava" };
-		System.out.println(Arrays.toString(array));
-		System.out.println(Arrays.toString(array2));
-		assertThat(array).isNotEqualTo(array2);
+		String[] value = new String[] { "Durian", "Guava", "Pitaya" };
+		String[] value2 = new String[] { "Durian", "Guava" };
+		System.out.println(Arrays.toString(value));
+		System.out.println(Arrays.toString(value2));
+		assertThat(value).isNotEqualTo(value2);
 
 		int[] intArray = new int[] { 1, 2, 3, 4, 5 };
 		int[] intArray2 = new int[] { 1, 2, 3 };
@@ -100,11 +92,11 @@ public class AssertJStringMethodsTest {
 
 	@Test
 	public void isSameAs() {
-		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
-		String[] array2 = array;
-		System.out.println(Arrays.toString(array));
-		System.out.println(Arrays.toString(array2));
-		assertThat(array).isSameAs(array2);
+		String[] value = new String[] { "Durian", "Guava", "Pitaya" };
+		String[] value2 = value;
+		System.out.println(Arrays.toString(value));
+		System.out.println(Arrays.toString(value2));
+		assertThat(value).isSameAs(value2);
 
 		int[] intArray = new int[] { 1, 2, 3, 4, 5 };
 		int[] intArray2 = intArray;
@@ -115,11 +107,11 @@ public class AssertJStringMethodsTest {
 
 	@Test
 	public void isNotSameAs() {
-		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
-		String[] array2 = new String[] { "Durian", "Guava", "Pitaya" };
-		System.out.println(Arrays.toString(array));
-		System.out.println(Arrays.toString(array2));
-		assertThat(array).isNotSameAs(array2);
+		String[] value = new String[] { "Durian", "Guava", "Pitaya" };
+		String[] value2 = new String[] { "Durian", "Guava", "Pitaya" };
+		System.out.println(Arrays.toString(value));
+		System.out.println(Arrays.toString(value2));
+		assertThat(value).isNotSameAs(value2);
 
 		int[] intArray = new int[] { 1, 2, 3, 4, 5 };
 		int[] intArray2 = new int[] { 1, 2, 3, 4, 5 };

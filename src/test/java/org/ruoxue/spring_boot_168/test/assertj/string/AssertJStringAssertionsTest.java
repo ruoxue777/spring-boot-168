@@ -8,15 +8,15 @@ public class AssertJStringAssertionsTest {
 
 	@Test
 	public void contains() {
-		String value = "Assertj 155";
+		String value = "AssertJ 155";
 		System.out.println(value);
-		assertThat(value).contains("Assertj", "155");
-		assertThat(value).contains("rtj", "5");
+		assertThat(value).contains("AssertJ", "155");
+		assertThat(value).contains("rtJ", "5");
 	}
 
 	@Test
 	public void doesNotContain() {
-		String value = "Assertj 155";
+		String value = "AssertJ 155";
 		System.out.println(value);
 		assertThat(value).doesNotContain("JUnit", "151");
 		assertThat(value).doesNotContain("nit", "51");
@@ -24,9 +24,9 @@ public class AssertJStringAssertionsTest {
 
 	@Test
 	public void containsOnlyOnce() {
-		String value = "Assertj 155";
+		String value = "AssertJ 155";
 		System.out.println(value);
-		assertThat(value).containsOnlyOnce("rtj");
+		assertThat(value).containsOnlyOnce("rtJ");
 		assertThat(value).containsOnlyOnce("55");
 	}
 
@@ -42,10 +42,10 @@ public class AssertJStringAssertionsTest {
 
 	@Test
 	public void doesNotContainOnlyWhitespaces() {
-		String value = "Assertj 155";
+		String value = "AssertJ 155";
 		System.out.println(value);
 		assertThat(value).doesNotContainOnlyWhitespaces();
-		value = "Assertj ";
+		value = "AssertJ ";
 		System.out.println(value);
 		assertThat(value).doesNotContainOnlyWhitespaces();
 	}
@@ -62,20 +62,20 @@ public class AssertJStringAssertionsTest {
 
 	@Test
 	public void containsWhitespaces() {
-		String value = "Assertj 155";
+		String value = "AssertJ 155";
 		System.out.println(value);
 		assertThat(value).containsWhitespaces();
-		value = "Assertj ";
+		value = "AssertJ ";
 		System.out.println(value);
 		assertThat(value).containsWhitespaces();
 	}
 
 	@Test
 	public void doesNotContainAnyWhitespaces() {
-		String value = "Assertj155";
+		String value = "AssertJ155";
 		System.out.println(value);
 		assertThat(value).doesNotContainAnyWhitespaces();
-		value = "Assertj";
+		value = "AssertJ";
 		System.out.println(value);
 		assertThat(value).doesNotContainAnyWhitespaces();
 	}
