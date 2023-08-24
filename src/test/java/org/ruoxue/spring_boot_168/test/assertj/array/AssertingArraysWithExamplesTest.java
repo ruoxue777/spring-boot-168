@@ -47,7 +47,8 @@ public class AssertingArraysWithExamplesTest {
 		Fruit pitaya = new Fruit("Pitaya", -1, 2);
 		Fruit[] array = new Fruit[] { durian, guava, pitaya };
 		System.out.println(Arrays.deepToString(array));
-		assertThat(array).allMatch(e -> e.getType() == 2).isNotEmpty();
+		assertThat(array).allMatch(e -> e.getName().length() > 4).contains(durian, guava, pitaya);
+		assertThat(array).allMatch(e -> e.getType() == 2).hasSize(3);
 	}
 
 	@Test
@@ -57,7 +58,8 @@ public class AssertingArraysWithExamplesTest {
 		Fruit pitaya = new Fruit("Pitaya", -1, 3);
 		Fruit[] array = new Fruit[] { durian, guava, pitaya };
 		System.out.println(Arrays.deepToString(array));
-		assertThat(array).anyMatch(e -> e.getName().equals("Durian")).isNotEmpty();
+		assertThat(array).anyMatch(e -> e.getName().equals("Durian")).contains(durian);
+		assertThat(array).anyMatch(e -> e.getType() > 2).hasSize(3);
 	}
 
 	@Test
@@ -67,7 +69,8 @@ public class AssertingArraysWithExamplesTest {
 		Fruit pitaya = new Fruit("Pitaya", -1, 3);
 		Fruit[] array = new Fruit[] { durian, guava, pitaya };
 		System.out.println(Arrays.deepToString(array));
-		assertThat(array).noneMatch(e -> e.getType() == 0).isNotEmpty();
+		assertThat(array).noneMatch(e -> e.getName().length() > 7).contains(durian, guava, pitaya);
+		assertThat(array).noneMatch(e -> e.getType() == 0).hasSize(3);
 	}
 
 	@Test
