@@ -48,7 +48,8 @@ public class AssertingListsWithExamplesTest {
 		Fruit cherry = new Fruit("Cherry", -1, 2);
 		List<Fruit> list = Arrays.asList(apple, banana, cherry);
 		System.out.println(list);
-		assertThat(list).allMatch(e -> e.getType() == 2).isNotEmpty();
+		assertThat(list).allMatch(e -> e.getName().length() > 4).contains(apple, banana, cherry);
+		assertThat(list).allMatch(e -> e.getType() == 2).hasSize(3);
 	}
 
 	@Test
@@ -58,7 +59,8 @@ public class AssertingListsWithExamplesTest {
 		Fruit cherry = new Fruit("Cherry", -1, 3);
 		List<Fruit> list = Arrays.asList(apple, banana, cherry);
 		System.out.println(list);
-		assertThat(list).anyMatch(e -> e.getName().equals("Apple")).isNotEmpty();
+		assertThat(list).anyMatch(e -> e.getName().equals("Apple")).contains(apple);
+		assertThat(list).anyMatch(e -> e.getType() > 2).hasSize(3);
 	}
 
 	@Test
@@ -68,7 +70,8 @@ public class AssertingListsWithExamplesTest {
 		Fruit cherry = new Fruit("Cherry", -1, 3);
 		List<Fruit> list = Arrays.asList(apple, banana, cherry);
 		System.out.println(list);
-		assertThat(list).noneMatch(e -> e.getType() == 0).isNotEmpty();
+		assertThat(list).noneMatch(e -> e.getName().length() > 7).contains(apple, banana, cherry);
+		assertThat(list).noneMatch(e -> e.getType() == 0).hasSize(3);
 	}
 
 	@Test
