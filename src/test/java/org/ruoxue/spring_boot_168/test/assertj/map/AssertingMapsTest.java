@@ -1,8 +1,8 @@
 package org.ruoxue.spring_boot_168.test.assertj.map;
 
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.function.Predicate;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
@@ -42,7 +42,7 @@ public class AssertingMapsTest {
 	}
 
 	@Test
-	public void usingDefaultComparator() {
+	public void matches() {
 		Fruit grape = new Fruit("Grape", Double.MAX_VALUE, 1);
 		Fruit kiwifruit = new Fruit("Kiwifruit", 1, 2);
 		Fruit lemon = new Fruit("Lemon", -1, 3);
@@ -51,11 +51,55 @@ public class AssertingMapsTest {
 		map.put(kiwifruit.getName(), kiwifruit);
 		map.put(lemon.getName(), lemon);
 		System.out.println(map);
+		Predicate<Map<String, Fruit>> size = m -> m.size() > 2;
+		assertThat(map).matches(size, "size");
+		assertThat(map).matches(m -> m.get("Kiwifruit") != null, "isNotNull");
+	}
+
+//	@Test
+//	public void satisfies() {
+//		Fruit grape = new Fruit("Grape", Double.MAX_VALUE, 1);
+//		Fruit kiwifruit = new Fruit("Kiwifruit", 1, 2);
+//		Fruit lemon = new Fruit("Lemon", -1, 3);
+//		Map<String, Fruit> map = new HashMap<>();
+//		map.put(grape.getName(), grape);
+//		map.put(kiwifruit.getName(), kiwifruit);
+//		map.put(lemon.getName(), lemon);
+//		System.out.println(map);
+////		Condition<Map<String, Fruit>> size = new Condition(m -> m.size() > 2,"size");
+////		Condition<Fruit> length = new Condition<Fruit>(o -> o.name.length() > 5, "length");
+//		assertThat(map).satisfies(null);
+//	}
+//
+//	@Test
+//	public void satisfiesAnyOf() {
+//		Fruit grape = new Fruit("Grape", Double.MAX_VALUE, 1);
+//		Fruit kiwifruit = new Fruit("Kiwifruit", 1, 2);
+//		Fruit lemon = new Fruit("Lemon", -1, 3);
+//		Map<String, Fruit> map = new HashMap<>();
+//		map.put(grape.getName(), grape);
+//		map.put(kiwifruit.getName(), kiwifruit);
+//		map.put(lemon.getName(), lemon);
+//		System.out.println(map);
+//		assertThat(map).satisfiesAnyOf(null);
+//	}
+
+	@Test
+	public void hasFieldOrProperty() {
+		Fruit grape = new Fruit("Grape", Double.MAX_VALUE, 1);
+		Fruit kiwifruit = new Fruit("Kiwifruit", 1, 2);
+		Fruit lemon = new Fruit("Lemon", -1, 3);
+		Map<String, Fruit> map = new HashMap<>();
+		map.put(grape.getName(), grape);
+		map.put(kiwifruit.getName(), kiwifruit);
+		map.put(lemon.getName(), lemon);
+		System.out.println(map);
+		assertThat(map).hasFieldOrProperty("Kiwifruit");
 
 	}
 
 	@Test
-	public void usingComparator() {
+	public void hasFieldOrPropertyWithValue() {
 		Fruit grape = new Fruit("Grape", Double.MAX_VALUE, 1);
 		Fruit kiwifruit = new Fruit("Kiwifruit", 1, 2);
 		Fruit lemon = new Fruit("Lemon", -1, 3);
@@ -63,28 +107,19 @@ public class AssertingMapsTest {
 		map.put(grape.getName(), grape);
 		map.put(kiwifruit.getName(), kiwifruit);
 		map.put(lemon.getName(), lemon);
-		Map<String, Fruit> map2 = new HashMap();
-		map2.put(grape.getName(), grape);
-		map2.put(kiwifruit.getName(), kiwifruit);
 		System.out.println(map);
-		Comparator<Map<String, Fruit>> comparator = (m1, m2) -> Integer.compare(m1.size(), m2.size());
-		assertThat(map).usingComparator(comparator);
+		assertThat(map).hasFieldOrPropertyWithValue("Kiwifruit", kiwifruit);
 	}
 
 	@Test
-	public void usingElementComparator() {
-		Fruit grape = new Fruit("Grape", Double.MAX_VALUE, 1);
-		Fruit kiwifruit = new Fruit("Kiwifruit", 1, 2);
-		Fruit lemon = new Fruit("Lemon", -1, 3);
+	public void hasAllNullFieldsOrPropertiesExcept() {
 		Map<String, Fruit> map = new HashMap<>();
-		map.put(grape.getName(), grape);
-		map.put(kiwifruit.getName(), kiwifruit);
-		map.put(lemon.getName(), lemon);
 		System.out.println(map);
+		assertThat(map).hasAllNullFieldsOrPropertiesExcept("size", "modCount", "threshold", "loadFactor", "entrySet");
 	}
 
 	@Test
-	public void usingRecursiveComparison() {
+	public void hasNoNullFieldsOrPropertiesExcept() {
 		Fruit grape = new Fruit("Grape", Double.MAX_VALUE, 1);
 		Fruit kiwifruit = new Fruit("Kiwifruit", 1, 2);
 		Fruit lemon = new Fruit("Lemon", -1, 3);
@@ -93,5 +128,6 @@ public class AssertingMapsTest {
 		map.put(kiwifruit.getName(), kiwifruit);
 		map.put(lemon.getName(), lemon);
 		System.out.println(map);
+		assertThat(map).hasNoNullFieldsOrPropertiesExcept("keySet", "values");
 	}
 }
