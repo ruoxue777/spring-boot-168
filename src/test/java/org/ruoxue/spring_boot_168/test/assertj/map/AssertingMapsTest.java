@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
+import org.assertj.core.api.Condition;
 import org.junit.jupiter.api.Test;
 
 import lombok.Builder;
@@ -51,26 +52,28 @@ public class AssertingMapsTest {
 		map.put(kiwifruit.getName(), kiwifruit);
 		map.put(lemon.getName(), lemon);
 		System.out.println(map);
-		Predicate<Map<String, Fruit>> size = m -> m.size() > 2;
-		assertThat(map).matches(size, "size");
 		assertThat(map).matches(m -> m.get("Kiwifruit") != null, "isNotNull");
+		
+		Predicate<Map<String, Fruit>> keyQuantity = m -> m.entrySet().stream()
+				.anyMatch((Map.Entry<String, Fruit> e) -> "Kiwifruit".equals(e.getKey())
+						&& Double.doubleToLongBits(e.getValue().getQuantity()) == Double.doubleToLongBits(1));
+		assertThat(map).matches(keyQuantity, "KeyQuantity");
 	}
 
-//	@Test
-//	public void satisfies() {
-//		Fruit grape = new Fruit("Grape", Double.MAX_VALUE, 1);
-//		Fruit kiwifruit = new Fruit("Kiwifruit", 1, 2);
-//		Fruit lemon = new Fruit("Lemon", -1, 3);
-//		Map<String, Fruit> map = new HashMap<>();
-//		map.put(grape.getName(), grape);
-//		map.put(kiwifruit.getName(), kiwifruit);
-//		map.put(lemon.getName(), lemon);
-//		System.out.println(map);
-////		Condition<Map<String, Fruit>> size = new Condition(m -> m.size() > 2,"size");
-////		Condition<Fruit> length = new Condition<Fruit>(o -> o.name.length() > 5, "length");
-//		assertThat(map).satisfies(null);
-//	}
-//
+	@Test
+	public void satisfies() {
+		Fruit grape = new Fruit("Grape", Double.MAX_VALUE, 1);
+		Fruit kiwifruit = new Fruit("Kiwifruit", 1, 2);
+		Fruit lemon = new Fruit("Lemon", -1, 3);
+		Map<String, Fruit> map = new HashMap<>();
+		map.put(grape.getName(), grape);
+		map.put(kiwifruit.getName(), kiwifruit);
+		map.put(lemon.getName(), lemon);
+		System.out.println(map);
+		Condition<Map<String, Fruit>> size = new Condition<Map<String, Fruit>>(m -> m.size() > 2, "size");
+		assertThat(map).satisfies(size);
+	}
+
 //	@Test
 //	public void satisfiesAnyOf() {
 //		Fruit grape = new Fruit("Grape", Double.MAX_VALUE, 1);
