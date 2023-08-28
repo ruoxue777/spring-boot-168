@@ -52,12 +52,12 @@ public class AssertingMapsTest {
 		map.put(kiwifruit.getName(), kiwifruit);
 		map.put(lemon.getName(), lemon);
 		System.out.println(map);
-		assertThat(map).matches(m -> m.get("Kiwifruit") != null, "isNotNull");
-		
+		assertThat(map).matches(m -> m.get("Kiwifruit") != null);
+
 		Predicate<Map<String, Fruit>> keyQuantity = m -> m.entrySet().stream()
 				.anyMatch((Map.Entry<String, Fruit> e) -> "Kiwifruit".equals(e.getKey())
-						&& Double.doubleToLongBits(e.getValue().getQuantity()) == Double.doubleToLongBits(1));
-		assertThat(map).matches(keyQuantity, "KeyQuantity");
+						&& Double.compare(e.getValue().getQuantity(), 1d) == 0);
+		assertThat(map).matches(keyQuantity, "keyQuantity");
 	}
 
 	@Test
@@ -72,20 +72,28 @@ public class AssertingMapsTest {
 		System.out.println(map);
 		Condition<Map<String, Fruit>> size = new Condition<Map<String, Fruit>>(m -> m.size() > 2, "size");
 		assertThat(map).satisfies(size);
+
+		Predicate<Map<String, Fruit>> predcate = m -> m.entrySet().stream()
+				.anyMatch((Map.Entry<String, Fruit> e) -> "Kiwifruit".equals(e.getKey())
+						&& Double.doubleToLongBits(e.getValue().getQuantity()) == Double.doubleToLongBits(1d));
+		Condition<Map<String, Fruit>> keyQuantity = new Condition<Map<String, Fruit>>(predcate, "keyQuantity");
+		assertThat(map).satisfies(keyQuantity);
 	}
 
-//	@Test
-//	public void satisfiesAnyOf() {
-//		Fruit grape = new Fruit("Grape", Double.MAX_VALUE, 1);
-//		Fruit kiwifruit = new Fruit("Kiwifruit", 1, 2);
-//		Fruit lemon = new Fruit("Lemon", -1, 3);
-//		Map<String, Fruit> map = new HashMap<>();
-//		map.put(grape.getName(), grape);
-//		map.put(kiwifruit.getName(), kiwifruit);
-//		map.put(lemon.getName(), lemon);
-//		System.out.println(map);
-//		assertThat(map).satisfiesAnyOf(null);
-//	}
+	@Test
+	public void satisfiesAnyOf() {
+		Fruit grape = new Fruit("Grape", Double.MAX_VALUE, 1);
+		Fruit kiwifruit = new Fruit("Kiwifruit", 1, 2);
+		Fruit lemon = new Fruit("Lemon", -1, 3);
+		Map<String, Fruit> map = new HashMap<>();
+		map.put(grape.getName(), grape);
+		map.put(kiwifruit.getName(), kiwifruit);
+		map.put(lemon.getName(), lemon);
+		System.out.println(map);
+		assertThat(map).satisfiesAnyOf(m -> {
+			assertThat(m.get("Kiwifruit")).isNotNull();
+		});
+	}
 
 	@Test
 	public void hasFieldOrProperty() {
