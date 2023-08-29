@@ -65,7 +65,7 @@ public class AssertJStringAssertionsTest {
 		String value = "AssertJ 155";
 		System.out.println(value);
 		assertThat(value).containsWhitespaces();
-		value = "AssertJ ";
+		value = " ";
 		System.out.println(value);
 		assertThat(value).containsWhitespaces();
 	}
