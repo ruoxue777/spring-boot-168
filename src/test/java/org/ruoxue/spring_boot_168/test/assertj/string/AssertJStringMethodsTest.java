@@ -69,7 +69,6 @@ public class AssertJStringMethodsTest {
 		value = "AssertJ";
 		System.out.println(value);
 		assertThat(value).isEqualTo("AssertJ");
-
 	}
 
 	@Test
