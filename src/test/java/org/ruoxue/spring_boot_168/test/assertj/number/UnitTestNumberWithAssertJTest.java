@@ -66,7 +66,6 @@ public class UnitTestNumberWithAssertJTest {
 		double doubleValue = 1d;
 		System.out.println(doubleValue);
 		assertThat(doubleValue).isInstanceOf(Double.class);
-
 	}
 
 	@Test
