@@ -9,97 +9,74 @@ public class UnitTestNumberWithAssertJTest {
 
 	@Test
 	public void is() {
-		String value = "AssertJ 155";
+		int value = 1;
 		System.out.println(value);
-		Condition<String> length = new Condition<String>(s -> s.length() > 10, "length");
-		System.out.println(value);
-		assertThat(value).is(length);
+		Condition<Integer> greaterThan = new Condition<Integer>(i -> i > 0, "greaterThan");
+		assertThat(value).is(greaterThan);
 
-		value = "AssertJ";
-		System.out.println(value);
-		length = new Condition<String>(s -> s.length() > 6, "length");
-		System.out.println(value);
-		assertThat(value).is(length);
-
+		double doubleValue = 1d;
+		System.out.println(doubleValue);
+		Condition<Double> doubleGreaterThan = new Condition<Double>(i -> Double.compare(i, 0) == 1,
+				"doubleGreaterThan");
+		assertThat(doubleValue).is(doubleGreaterThan);
 	}
 
 	@Test
 	public void isNot() {
-		String value = "AssertJ 155";
+		int value = 1;
 		System.out.println(value);
-		Condition<String> length = new Condition<String>(s -> s.length() > 11, "length");
-		assertThat(value).isNot(length);
+		Condition<Integer> greaterThan = new Condition<Integer>(i -> i < 0, "greaterThan");
+		assertThat(value).isNot(greaterThan);
 
-		value = "AssertJ";
-		System.out.println(value);
-		length = new Condition<String>(s -> s.length() > 7, "length");
-		assertThat(value).isNot(length);
+		double doubleValue = 1d;
+		System.out.println(doubleValue);
+		Condition<Double> doubleGreaterThan = new Condition<Double>(i -> Double.compare(i, 0) == -1,
+				"doubleGreaterThan");
+		assertThat(doubleValue).isNot(doubleGreaterThan);
 	}
 
 	@Test
 	public void isIn() {
-		String value = "AssertJ";
+		int value = 1;
 		System.out.println(value);
-		assertThat(value).isIn("AssertJ", "155");
+		assertThat(value).isIn(1, 3, 5);
 
-		value = "155";
-		System.out.println(value);
-		assertThat(value).isIn("AssertJ", "155");
+		double doubleValue = 1d;
+		System.out.println(doubleValue);
+		assertThat(doubleValue).isIn(1d, 2d, 3d);
 	}
 
 	@Test
 	public void isNotIn() {
-		String value = "AssertJ";
+		int value = 1;
 		System.out.println(value);
-		assertThat(value).isNotIn("JUnit", "151");
+		assertThat(value).isNotIn(2, 4, 6);
 
-		value = "155";
-		System.out.println(value);
-		assertThat(value).isNotIn("JUnit", "151");
+		double doubleValue = 1d;
+		System.out.println(doubleValue);
+		assertThat(doubleValue).isNotIn(2d, 4d, 6d);
 	}
 
 	@Test
 	public void isInstanceOf() {
-		String value = "AssertJ 155";
+		int value = 1;
 		System.out.println(value);
-		assertThat(value).isInstanceOf(String.class);
+		assertThat(value).isInstanceOf(Integer.class);
 
-		value = new String("AssertJ 155");
-		System.out.println(value);
-		assertThat(value).isInstanceOf(String.class);
+		double doubleValue = 1d;
+		System.out.println(doubleValue);
+		assertThat(doubleValue).isInstanceOf(Double.class);
 
 	}
 
 	@Test
 	public void isNotInstanceOf() {
-		String value = "AssertJ 155";
+		int value = 1;
 		System.out.println(value);
-		assertThat(value).isNotInstanceOf(String[].class);
+		assertThat(value).isNotInstanceOf(int.class);
 
-		value = new String("AssertJ 155");
-		System.out.println(value);
-		assertThat(value).isNotInstanceOf(String[].class);
-	}
-
-	@Test
-	public void startsWith() {
-		String value = "AssertJ 155";
-		System.out.println(value);
-		assertThat(value).startsWith("AssertJ");
-
-		value = "155 AssertJ";
-		System.out.println(value);
-		assertThat(value).startsWith("155");
-	}
-
-	@Test
-	public void endsWith() {
-		String value = "AssertJ 155";
-		System.out.println(value);
-		assertThat(value).endsWith("155");
-
-		value = "155 AssertJ";
-		System.out.println(value);
-		assertThat(value).endsWith("AssertJ");
+		double doubleValue = 1d;
+		System.out.println(doubleValue);
+		assertThat(doubleValue).isNotInstanceOf(double.class);
 	}
 }
