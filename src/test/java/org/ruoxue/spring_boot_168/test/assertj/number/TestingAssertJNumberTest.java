@@ -1,6 +1,7 @@
 package org.ruoxue.spring_boot_168.test.assertj.number;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.within;
 
 import java.util.Comparator;
 import org.junit.jupiter.api.Test;
@@ -8,58 +9,69 @@ import org.junit.jupiter.api.Test;
 public class TestingAssertJNumberTest {
 
 	@Test
-	// A=65, a=97
 	public void isLessThan() {
-		String value = "AssertJ 155";
+		int value = 0;
 		System.out.println(value);
-		assertThat(value).isLessThan("as").isLessThan("bs");
-		assertThat(value).isLessThan("aS").isLessThan("At");
+		assertThat(value).isLessThan(1);
+
+		double doubleValue = 0d;
+		System.out.println(doubleValue);
+		assertThat(doubleValue).isLessThan(1d);
 	}
 
 	@Test
-	// A=65, a=97
 	public void isLessThanOrEqualTo() {
-		String value = "AssertJ 155";
+		int value = 0;
 		System.out.println(value);
-		assertThat(value).isLessThanOrEqualTo("AssertJ 155").isLessThanOrEqualTo("bs");
-		assertThat(value).isLessThanOrEqualTo("assertj 155").isLessThanOrEqualTo("At");
+		assertThat(value).isLessThanOrEqualTo(0).isLessThanOrEqualTo(1);
+
+		double doubleValue = 0d;
+		System.out.println(doubleValue);
+		assertThat(doubleValue).isLessThanOrEqualTo(0d).isLessThanOrEqualTo(1d);
 	}
 
 	@Test
-	// A=65, a=97
 	public void isGreaterThan() {
-		String value = "assertj 155";
+		int value = 0;
 		System.out.println(value);
-		assertThat(value).isGreaterThan("As").isGreaterThan("Bs");
-		assertThat(value).isGreaterThan("aS").isGreaterThan("aT");
+		assertThat(value).isGreaterThan(-1);
+
+		double doubleValue = 0d;
+		System.out.println(doubleValue);
+		assertThat(doubleValue).isGreaterThan(-1d);
 	}
 
 	@Test
-	// A=65, a=97
 	public void isGreaterThanOrEqualTo() {
-		String value = "assertj 155";
+		int value = 0;
 		System.out.println(value);
-		assertThat(value).isGreaterThanOrEqualTo("AssertJ 155").isGreaterThanOrEqualTo("Bs");
-		assertThat(value).isGreaterThanOrEqualTo("assertj 155").isGreaterThanOrEqualTo("aT");
+		assertThat(value).isGreaterThanOrEqualTo(0).isGreaterThanOrEqualTo(-1);
+
+		double doubleValue = 0d;
+		System.out.println(doubleValue);
+		assertThat(doubleValue).isGreaterThanOrEqualTo(0d).isGreaterThanOrEqualTo(-1d);
 	}
 
 	@Test
 	public void usingDefaultComparator() {
-		String value = "AssertJ 155";
+		int value = 1;
 		System.out.println(value);
-		assertThat(value).usingDefaultComparator().contains("AssertJ", "155").doesNotContain("rtJx");
-		value = "AssertJ";
-		assertThat(value).usingDefaultComparator().startsWith("Ass").endsWith("rtJ");
+		assertThat(value).usingDefaultComparator().isPositive().isCloseTo(-4, within(5));
+		
+		double doubleValue = 1d;
+		System.out.println(doubleValue);
+		assertThat(doubleValue).usingDefaultComparator().isPositive().isCloseTo(-4d, within(5d));
 	}
 
 	@Test
 	public void usingComparator() {
-		String value = "AssertJ 155";
+		int value = 1;
 		System.out.println(value);
-		Comparator<String> ignoreCaseComparator = (s1, s2) -> s1.toLowerCase().compareTo(s2.toLowerCase());
-		assertThat(value).usingComparator(ignoreCaseComparator).contains("ASSERTJ", "155").doesNotContain("RTJX");
-		value = "AssertJ";
-		assertThat(value).usingComparator(ignoreCaseComparator).startsWith("ASS").endsWith("rtJ");
+		System.out.println(value);
+		Comparator<Integer> absComparator = (s1, s2) -> s1.compareTo(Math.abs(s2));
+		assertThat(value).usingComparator(absComparator).isEqualTo(-1);
+//		value = "AssertJ";
+//		assertThat(value).usingComparator(ignoreCaseComparator).startsWith("ASS").endsWith("rtJ");
 	}
 
 	@Test
