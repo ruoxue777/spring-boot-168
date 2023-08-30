@@ -57,7 +57,7 @@ public class TestingAssertJNumberTest {
 		int value = 1;
 		System.out.println(value);
 		assertThat(value).usingDefaultComparator().isPositive().isCloseTo(-4, within(5));
-		
+
 		double doubleValue = 1d;
 		System.out.println(doubleValue);
 		assertThat(doubleValue).usingDefaultComparator().isPositive().isCloseTo(-4d, within(5d));
@@ -67,21 +67,25 @@ public class TestingAssertJNumberTest {
 	public void usingComparator() {
 		int value = 1;
 		System.out.println(value);
-		System.out.println(value);
-		Comparator<Integer> absComparator = (s1, s2) -> s1.compareTo(Math.abs(s2));
+		Comparator<Integer> absComparator = (i1, i2) -> Integer.compare(i1, Math.abs(i2));
 		assertThat(value).usingComparator(absComparator).isEqualTo(-1);
-//		value = "AssertJ";
-//		assertThat(value).usingComparator(ignoreCaseComparator).startsWith("ASS").endsWith("rtJ");
+
+		double doubleValue = 1d;
+		System.out.println(doubleValue);
+		Comparator<Double> doubleAbsComparator = (d1, d2) -> Double.compare(d1, Math.abs(d2));
+		assertThat(doubleValue).usingComparator(doubleAbsComparator).isEqualTo(-1d);
 	}
 
 	@Test
 	public void usingComparatorWithDescription() {
-		String value = "AssertJ 155";
+		int value = 1;
 		System.out.println(value);
-		Comparator<String> ignoreCaseComparator = (s1, s2) -> s1.toLowerCase().compareTo(s2.toLowerCase());
-		assertThat(value).usingComparator(ignoreCaseComparator, "ignoreCase").contains("ASSERTJ", "155")
-				.doesNotContain("RTJX");
-		value = "AssertJ";
-		assertThat(value).usingComparator(ignoreCaseComparator, "ignoreCase").startsWith("ASS").endsWith("rtJ");
+		Comparator<Integer> absComparator = (i1, i2) -> Integer.compare(i1, Math.abs(i2));
+		assertThat(value).usingComparator(absComparator, "absComparator").isEqualTo(-1);
+
+		double doubleValue = 1d;
+		System.out.println(doubleValue);
+		Comparator<Double> doubleAbsComparator = (d1, d2) -> Double.compare(d1, Math.abs(d2));
+		assertThat(doubleValue).usingComparator(doubleAbsComparator, "doubleAbsComparator").isEqualTo(-1d);
 	}
 }
