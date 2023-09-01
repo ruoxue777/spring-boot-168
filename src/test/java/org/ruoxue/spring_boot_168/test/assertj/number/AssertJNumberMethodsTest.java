@@ -86,9 +86,9 @@ public class AssertJNumberMethodsTest {
 		System.out.println(value);
 		assertThat(value).isOdd();
 
-		value = 1;
-		System.out.println(value);
-		assertThat(value).isOdd();
+		int value2 = 1;
+		System.out.println(value2);
+		assertThat(value2).isOdd();
 	}
 
 	@Test
@@ -97,8 +97,8 @@ public class AssertJNumberMethodsTest {
 		System.out.println(value);
 		assertThat(value).isEven();
 
-		value = 2;
-		System.out.println(value);
-		assertThat(value).isEven();
+		int value2 = 2;
+		System.out.println(value2);
+		assertThat(value2).isEven();
 	}
 }
