@@ -10,18 +10,18 @@ public class AssertJLocalDateTimeMethodsTest {
 
 	@Test
 	public void isNull() {
-		String value = null;
+		LocalDateTime value = null;
 		System.out.println(value);
 		assertThat(value).isNull();
 
-		String value2 = null;
+		LocalDateTime value2 = null;
 		System.out.println(value2);
 		assertThat(value2).isNull();
 	}
 
 	@Test
 	public void isNotNull() {
-		LocalDateTime value = LocalDateTime.of(2023, 10, 31, 5, 6, 7);
+		LocalDateTime value = LocalDateTime.parse("2023-10-31T05:06:07");
 		System.out.println(value);
 		assertThat(value).isNotNull();
 
@@ -32,24 +32,24 @@ public class AssertJLocalDateTimeMethodsTest {
 
 	@Test
 	public void isEqualTo() {
-		LocalDateTime value = LocalDateTime.of(2023, 10, 31, 5, 6, 7);
+		LocalDateTime value = LocalDateTime.parse("2023-10-31T05:06:07");
 		System.out.println(value);
-//		assertThat(value).isEqualTo("AssertJ 155");
-//
-//		value = "AssertJ";
-//		System.out.println(value);
-//		assertThat(value).isEqualTo("AssertJ");
+		assertThat(value).isEqualTo(LocalDateTime.of(2023, 10, 31, 5, 6, 7));
+
+		value = LocalDateTime.of(2023, 10, 31, 5, 6, 7);
+		System.out.println(value);
+		assertThat(value).isEqualTo(LocalDateTime.parse("2023-10-31T05:06:07"));
 	}
 
 	@Test
 	public void isNotEqualTo() {
 		LocalDateTime value = LocalDateTime.of(2023, 10, 31, 5, 6, 7);
 		System.out.println(value);
-//		assertThat(value).isNotEqualTo("AssertJ");
-//
-//		value = "AssertJ";
-//		System.out.println(value);
-//		assertThat(value).isNotEqualTo("JUnit");
+		assertThat(value).isNotEqualTo(LocalDateTime.parse("2023-10-31T00:00:00"));
+
+		value = LocalDateTime.parse("2023-10-31T00:00:00");
+		System.out.println(value);
+		assertThat(value).isNotEqualTo(LocalDateTime.of(2023, 10, 31, 5, 6, 7));
 	}
 
 	@Test
@@ -58,27 +58,27 @@ public class AssertJLocalDateTimeMethodsTest {
 		LocalDateTime value2 = value;
 		System.out.println(value);
 		System.out.println(value2);
-//		assertThat(value).isSameAs(value2);
-//
-//		value = "AssertJ";
-//		value2 = value;
-//		System.out.println(value);
-//		System.out.println(value2);
-//		assertThat(value).isSameAs(value2);
+		assertThat(value).isSameAs(value2);
+
+		value = LocalDateTime.parse("2023-10-31T05:06:07");
+		value2 = value;
+		System.out.println(value);
+		System.out.println(value2);
+		assertThat(value).isSameAs(value2);
 	}
 
 	@Test
 	public void isNotSameAs() {
 		LocalDateTime value = LocalDateTime.of(2023, 10, 31, 5, 6, 7);
-		String value2 = new String("AssertJ 155");
+		LocalDateTime value2 = LocalDateTime.parse("2023-10-31T05:06:07");
 		System.out.println(value);
 		System.out.println(value2);
-//		assertThat(value).isNotSameAs(value2);
-//
-//		value =  LocalDateTime.of(2023, 10, 31, 5, 6, 7);
-//		value2 = new String("AssertJ");
-//		System.out.println(value);
-//		System.out.println(value2);
-//		assertThat(value).isNotSameAs(value2);
+		assertThat(value).isNotSameAs(value2);
+
+		value = LocalDateTime.parse("2023-10-31T05:06:07");
+		value2 = LocalDateTime.of(2023, 10, 31, 5, 6, 7);
+		System.out.println(value);
+		System.out.println(value2);
+		assertThat(value).isNotSameAs(value2);
 	}
 }
