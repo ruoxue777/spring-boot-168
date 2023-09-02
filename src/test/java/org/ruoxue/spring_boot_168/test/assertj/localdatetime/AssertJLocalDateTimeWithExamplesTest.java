@@ -13,13 +13,13 @@ public class AssertJLocalDateTimeWithExamplesTest {
 	public void has() {
 		LocalDateTime value = LocalDateTime.of(2023, 10, 31, 5, 6, 7);
 		System.out.println(value);
-//		Condition<String> length = new Condition<String>(s -> s.length() > 2, "length");
-//		assertThat(value).has(length);
-//
-//		value = null;
-//		System.out.println(value);
-//		Condition<String> nullz = new Condition<String>(s -> s == null, "null");
-//		assertThat(value).has(nullz);
+		Condition<LocalDateTime> year = new Condition<LocalDateTime>(d -> d.getYear() > 2022, "year");
+		assertThat(value).has(year);
+
+		value = null;
+		System.out.println(value);
+		Condition<LocalDateTime> nullz = new Condition<LocalDateTime>(d -> d == null, "null");
+		assertThat(value).has(nullz);
 	}
 
 	@Test
