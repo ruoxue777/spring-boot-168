@@ -3,7 +3,9 @@ package org.ruoxue.spring_boot_168.test.assertj.list;
 import static org.assertj.core.api.Assertions.*;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -112,5 +114,22 @@ public class UnitTestAssertJListWithExamplesTest {
 		List<Integer> intList = Stream.of(6, 7, 8, 9, 10).collect(Collectors.toList());
 		System.out.println(intList);
 		assertThat(intList).doesNotContainNull();
+	}
+
+	@Test
+	public void contains() {
+		List<String> list = Arrays.asList("Apple", "Banana", "Cherry");
+		System.out.println(list);
+		Set<String> set = new HashSet<String>();
+		set.add("Banana");
+		set.add("Grape");
+		System.out.println(set);
+		
+		assertThat(list)
+			.contains("Apple")
+			.containsAnyOf("Apple", "Grape")
+			.containsExactly("Apple", "Banana", "Cherry")
+			.doesNotContain("Grape")
+			.anyMatch(set::contains);
 	}
 }
