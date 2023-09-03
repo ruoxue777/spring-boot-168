@@ -95,5 +95,4 @@ public class AssertJLocalDateTimeMethodsTest {
 			assertThat(value).isEqualTo(LocalDateTime.of(2023, 10, 31, 5, 6, 8));
 		}).isInstanceOf(AssertionError.class);
 	}
-
 }
