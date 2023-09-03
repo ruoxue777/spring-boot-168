@@ -3,6 +3,7 @@ package org.ruoxue.spring_boot_168.test.assertj.localdatetime;
 import static org.assertj.core.api.Assertions.*;
 
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 
 import org.junit.jupiter.api.Test;
 
@@ -81,4 +82,21 @@ public class AssertJLocalDateTimeMethodsTest {
 		System.out.println(value2);
 		assertThat(value).isNotSameAs(value2);
 	}
+
+	@Test
+	public void isEqualToThrowError() {
+		LocalDateTime value = LocalDateTime.parse("2023-10-31T05:06:07");
+		System.out.println(value);
+		assertThat(value).isEqualTo(LocalDateTime.of(2023, 10, 31, 5, 6, 8));
+	}
+
+	@Test
+	public void isEqualToThrownBy() {
+		assertThatThrownBy(() -> {
+			LocalDateTime value = LocalDateTime.parse("2023-10-31T05:06:07");
+			System.out.println(value);
+			assertThat(value).isEqualTo(LocalDateTime.of(2023, 10, 31, 5, 6, 8));
+		}).isInstanceOf(AssertionError.class);
+	}
+
 }
