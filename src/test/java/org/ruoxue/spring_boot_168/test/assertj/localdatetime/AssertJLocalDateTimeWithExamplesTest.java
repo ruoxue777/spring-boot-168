@@ -14,12 +14,12 @@ public class AssertJLocalDateTimeWithExamplesTest {
 	public void has() {
 		LocalDateTime value = LocalDateTime.of(2023, 10, 31, 5, 6, 7);
 		System.out.println(value);
-		Condition<LocalDateTime> year = new Condition<LocalDateTime>(d -> d.getYear() > 2022, "year");
+		Condition<LocalDateTime> year = new Condition<LocalDateTime>(l -> l.getYear() > 2022, "year");
 		assertThat(value).has(year);
 
 		value = null;
 		System.out.println(value);
-		Condition<LocalDateTime> nullz = new Condition<LocalDateTime>(d -> d == null, "null");
+		Condition<LocalDateTime> nullz = new Condition<LocalDateTime>(l -> l == null, "null");
 		assertThat(value).has(nullz);
 	}
 
@@ -126,12 +126,12 @@ public class AssertJLocalDateTimeWithExamplesTest {
 	public void doesNotHave() {
 		LocalDateTime value = LocalDateTime.of(2023, 10, 31, 5, 6, 7);
 		System.out.println(value);
-		Condition<LocalDateTime> year = new Condition<LocalDateTime>(d -> d.getYear() > 2023, "year");
+		Condition<LocalDateTime> year = new Condition<LocalDateTime>(l -> l.getYear() > 2023, "year");
 		assertThat(value).doesNotHave(year);
 
 		value = null;
 		System.out.println(value);
-		Condition<LocalDateTime> nullz = new Condition<LocalDateTime>(d -> d != null, "null");
+		Condition<LocalDateTime> nullz = new Condition<LocalDateTime>(l -> l != null, "null");
 		assertThat(value).doesNotHave(nullz);
 	}
 }

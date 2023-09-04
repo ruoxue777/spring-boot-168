@@ -2,6 +2,8 @@ package org.ruoxue.spring_boot_168.test.assertj.localdatetime;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import java.time.LocalDateTime;
+import java.util.Comparator;
+
 import org.junit.jupiter.api.Test;
 
 public class TestingAssertJLocalDateTimeTest {
@@ -10,69 +12,73 @@ public class TestingAssertJLocalDateTimeTest {
 	public void isBefore() {
 		LocalDateTime value = LocalDateTime.of(2023, 10, 31, 5, 6, 7);
 		System.out.println(value);
-//		assertThat(value).isBefore(other)
-//		assertThat(value).isLessThan("aS").isLessThan("At");
+		assertThat(value).isBefore(LocalDateTime.of(2023, 10, 31, 5, 6, 12));
+		assertThat(value).isBefore(LocalDateTime.of(2023, 10, 31, 5, 7, 7));
 	}
 
 	@Test
 	public void isBeforeOrEqualTo() {
 		LocalDateTime value = LocalDateTime.of(2023, 10, 31, 5, 6, 7);
 		System.out.println(value);
-//		assertThat(value).isBeforeOrEqualTo(other)
-//		assertThat(value).isLessThanOrEqualTo("assertj 155").isLessThanOrEqualTo("At");
+		assertThat(value).isBeforeOrEqualTo(LocalDateTime.of(2023, 10, 31, 5, 6, 12));
+		assertThat(value).isBeforeOrEqualTo(LocalDateTime.of(2023, 10, 31, 5, 6, 7));
 	}
 
 	@Test
 	public void isAfter() {
 		LocalDateTime value = LocalDateTime.of(2023, 10, 31, 5, 6, 7);
 		System.out.println(value);
-//		assertThat(value).isAfter(other)
-//		assertThat(value).isGreaterThan("aS").isGreaterThan("aT");
+		assertThat(value).isAfter(LocalDateTime.of(2023, 10, 31, 5, 6, 2));
+		assertThat(value).isAfter(LocalDateTime.of(2023, 10, 31, 5, 5, 7));
 	}
 
 	@Test
 	public void isAfterOrEqualTo() {
 		LocalDateTime value = LocalDateTime.of(2023, 10, 31, 5, 6, 7);
 		System.out.println(value);
-//		assertThat(value).isAfterOrEqualTo(other)
-//		assertThat(value).isGreaterThanOrEqualTo("assertj 155").isGreaterThanOrEqualTo("aT");
+		assertThat(value).isAfterOrEqualTo(LocalDateTime.of(2023, 10, 31, 5, 6, 2));
+		assertThat(value).isAfterOrEqualTo(LocalDateTime.of(2023, 10, 31, 5, 6, 7));
 	}
 
 	@Test
 	public void isBetween() {
 		LocalDateTime value = LocalDateTime.of(2023, 10, 31, 5, 6, 7);
 		System.out.println(value);
-//		assertThat(value).isBetween(startInclusive, endInclusive);
-//		assertThat(value).isGreaterThanOrEqualTo("assertj 155").isGreaterThanOrEqualTo("aT");
+		assertThat(value).isBetween(LocalDateTime.of(2023, 10, 31, 5, 6, 2), LocalDateTime.of(2023, 10, 31, 5, 6, 12));
+		assertThat(value).isBetween(LocalDateTime.of(2023, 10, 31, 4, 6, 7), LocalDateTime.of(2023, 10, 31, 6, 6, 7));
 	}
 
 	@Test
 	public void usingDefaultComparator() {
 		LocalDateTime value = LocalDateTime.of(2023, 10, 31, 5, 6, 7);
 		System.out.println(value);
-//		assertThat(value).usingDefaultComparator().contains("AssertJ", "155").doesNotContain("rtJx");
-//		value = "AssertJ";
-//		assertThat(value).usingDefaultComparator().startsWith("Ass").endsWith("rtJ");
+		assertThat(value).usingDefaultComparator().isEqualTo(LocalDateTime.of(2023, 10, 31, 5, 6, 7));
+
+		value = LocalDateTime.parse("2023-10-31T05:06:07");
+		assertThat(value).usingDefaultComparator().isEqualTo(LocalDateTime.of(2023, 10, 31, 5, 6, 7));
 	}
 
 	@Test
 	public void usingComparator() {
 		LocalDateTime value = LocalDateTime.of(2023, 10, 31, 5, 6, 7);
 		System.out.println(value);
-//		Comparator<String> ignoreCaseComparator = (s1, s2) -> s1.toLowerCase().compareTo(s2.toLowerCase());
-//		assertThat(value).usingComparator(ignoreCaseComparator).contains("ASSERTJ", "155").doesNotContain("RTJX");
-//		value = "AssertJ";
-//		assertThat(value).usingComparator(ignoreCaseComparator).startsWith("ASS").endsWith("rtJ");
+		Comparator<LocalDateTime> ignoreTimeComparator = (l1, l2) -> l1.toLocalDate().compareTo(l2.toLocalDate());
+		assertThat(value).usingComparator(ignoreTimeComparator).isEqualTo(LocalDateTime.of(2023, 10, 31, 0, 0, 0));
+
+		value = LocalDateTime.parse("2023-10-31T05:06:07");
+		assertThat(value).usingComparator(ignoreTimeComparator).isEqualTo(LocalDateTime.of(2023, 10, 31, 0, 0, 0));
 	}
 
 	@Test
 	public void usingComparatorWithDescription() {
 		LocalDateTime value = LocalDateTime.of(2023, 10, 31, 5, 6, 7);
 		System.out.println(value);
-//		Comparator<String> ignoreCaseComparator = (s1, s2) -> s1.toLowerCase().compareTo(s2.toLowerCase());
-//		assertThat(value).usingComparator(ignoreCaseComparator, "ignoreCase").contains("ASSERTJ", "155")
-//				.doesNotContain("RTJX");
-//		value = "AssertJ";
-//		assertThat(value).usingComparator(ignoreCaseComparator, "ignoreCase").startsWith("ASS").endsWith("rtJ");
+		Comparator<LocalDateTime> ignoreTimeComparator = (l1, l2) -> l1.toLocalDate().compareTo(l2.toLocalDate());
+		assertThat(value).usingComparator(ignoreTimeComparator, "ignoreTime")
+				.isEqualTo(LocalDateTime.of(2023, 10, 31, 0, 0, 0));
+
+		value = LocalDateTime.parse("2023-10-31T05:06:07");
+		assertThat(value).usingComparator(ignoreTimeComparator, "ignoreTime")
+				.isEqualTo(LocalDateTime.of(2023, 10, 31, 0, 0, 0));
 	}
 }
