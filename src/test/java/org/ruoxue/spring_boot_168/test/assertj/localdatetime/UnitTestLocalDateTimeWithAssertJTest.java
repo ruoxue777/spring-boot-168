@@ -15,7 +15,6 @@ public class UnitTestLocalDateTimeWithAssertJTest {
 		LocalDateTime value = LocalDateTime.parse("2023-10-31T05:06:07");
 		System.out.println(value);
 		Condition<LocalDateTime> year = new Condition<LocalDateTime>(l -> l.getYear() > 2022, "year");
-		System.out.println(value);
 		assertThat(value).is(year);
 
 		value = null;
