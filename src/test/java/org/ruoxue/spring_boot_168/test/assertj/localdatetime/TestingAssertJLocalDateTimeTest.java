@@ -45,8 +45,16 @@ public class TestingAssertJLocalDateTimeTest {
 		LocalDateTime value = LocalDateTime.of(2023, 10, 31, 5, 6, 7);
 		System.out.println(value);
 		assertThat(value).isBetween(LocalDateTime.of(2023, 10, 31, 5, 6, 2), LocalDateTime.of(2023, 10, 31, 5, 6, 12));
-		assertThat(value).isBetween(LocalDateTime.of(2023, 10, 31, 4, 6, 7), LocalDateTime.of(2023, 10, 31, 6, 6, 7));
+		assertThat(value).isBetween(LocalDateTime.of(2023, 10, 31, 5, 6, 7), LocalDateTime.of(2023, 10, 31, 6, 6, 7));
 	}
+	
+	@Test
+	public void isStrictlyBetween() {
+		LocalDateTime value = LocalDateTime.of(2023, 10, 31, 5, 6, 7);
+		System.out.println(value);
+		assertThat(value).isStrictlyBetween(LocalDateTime.of(2023, 10, 31, 5, 6, 2), LocalDateTime.of(2023, 10, 31, 5, 6, 12));
+		assertThat(value).isStrictlyBetween(LocalDateTime.of(2023, 10, 31, 5, 6, 6), LocalDateTime.of(2023, 10, 31, 6, 6, 7));
+	}	
 
 	@Test
 	public void usingDefaultComparator() {
