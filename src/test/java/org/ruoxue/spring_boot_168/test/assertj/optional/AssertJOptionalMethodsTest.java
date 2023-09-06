@@ -21,11 +21,11 @@ public class AssertJOptionalMethodsTest {
 
 	@Test
 	public void isNotNull() {
-		Optional<String> value = Optional.of("AssertJ 155");
+		Optional<String> value = Optional.of("AssertJ");
 		System.out.println(value);
 		assertThat(value).isNotNull();
 
-		Optional<Integer> intValue = Optional.of(0);
+		Optional<Integer> intValue = Optional.of(155);
 		System.out.println(intValue);
 		assertThat(intValue).isNotNull();
 	}
@@ -43,68 +43,46 @@ public class AssertJOptionalMethodsTest {
 
 	@Test
 	public void isNotEmpty() {
-		Optional<String> value = Optional.of("AssertJ 155");
+		Optional<String> value = Optional.of("AssertJ");
 		System.out.println(value);
 		assertThat(value).isNotEmpty();
 
-		Optional<Integer> intValue = Optional.of(0);
+		Optional<Integer> intValue = Optional.of(155);
 		System.out.println(intValue);
 		assertThat(intValue).isNotEmpty();
 	}
 
 	@Test
-	public void isPresent() {
-		Optional<String> value = Optional.of("AssertJ 155");
-		System.out.println(value);
-		assertThat(value).isPresent();
-
-		Optional<Integer> intValue = Optional.of(0);
-		System.out.println(intValue);
-		assertThat(intValue).isPresent();
-	}
-
-	@Test
-	public void isNotPresent() {
-		Optional<String> value = Optional.empty();
-		System.out.println(value);
-		assertThat(value).isNotPresent();
-
-		Optional<Integer> intValue = Optional.empty();
-		System.out.println(intValue);
-		assertThat(intValue).isNotPresent();
-	}
-
-	@Test
 	public void isEqualTo() {
-		Optional<String> value = Optional.of("AssertJ 155");
+		Optional<String> value = Optional.of("AssertJ");
 		System.out.println(value);
-		assertThat(value).isEqualTo(Optional.of("AssertJ 155"));
+		assertThat(value).isEqualTo(Optional.of("AssertJ"));
 
-		Optional<Integer> intValue = Optional.of(0);
+		Optional<Integer> intValue = Optional.of(155);
 		System.out.println(intValue);
-		assertThat(intValue).isEqualTo(Optional.of(0));
+		assertThat(intValue).isEqualTo(Optional.of(155));
 	}
 
 	@Test
 	public void isNotEqualTo() {
-		Optional<String> value = Optional.of("AssertJ 155");
+		Optional<String> value = Optional.of("AssertJ");
 		System.out.println(value);
 		assertThat(value).isNotEqualTo(Optional.empty());
 
-		Optional<Integer> intValue = Optional.of(0);
+		Optional<Integer> intValue = Optional.of(155);
 		System.out.println(intValue);
 		assertThat(intValue).isNotEqualTo(Optional.empty());
 	}
 
 	@Test
 	public void isSameAs() {
-		Optional<String> value = Optional.of("AssertJ 155");
+		Optional<String> value = Optional.of("AssertJ");
 		Optional<String> value2 = value;
 		System.out.println(value);
 		System.out.println(value2);
 		assertThat(value).isSameAs(value2);
 
-		Optional<Integer> intValue = Optional.of(0);
+		Optional<Integer> intValue = Optional.of(155);
 		Optional<Integer> intValue2 = intValue;
 		System.out.println(intValue);
 		System.out.println(intValue2);
@@ -113,14 +91,14 @@ public class AssertJOptionalMethodsTest {
 
 	@Test
 	public void isNotSameAs() {
-		Optional<String> value = Optional.of("AssertJ 155");
-		Optional<String> value2 = Optional.of("AssertJ 155");
+		Optional<String> value = Optional.of("AssertJ");
+		Optional<String> value2 = Optional.of("AssertJ");
 		System.out.println(value);
 		System.out.println(value2);
 		assertThat(value).isNotSameAs(value2);
 
-		Optional<Integer> intValue = Optional.of(0);
-		Optional<Integer> intValue2 = Optional.of(0);
+		Optional<Integer> intValue = Optional.of(155);
+		Optional<Integer> intValue2 = Optional.of(155);
 		System.out.println(intValue);
 		System.out.println(intValue2);
 		assertThat(intValue).isNotSameAs(intValue2);
