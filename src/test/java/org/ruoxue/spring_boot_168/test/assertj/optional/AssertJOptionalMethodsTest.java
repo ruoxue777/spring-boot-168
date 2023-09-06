@@ -60,7 +60,7 @@ public class AssertJOptionalMethodsTest {
 
 		Optional<Integer> intValue = Optional.of(0);
 		System.out.println(intValue);
-		assertThat(intValue).isNotEmpty();
+		assertThat(intValue).isPresent();
 	}
 
 	@Test
