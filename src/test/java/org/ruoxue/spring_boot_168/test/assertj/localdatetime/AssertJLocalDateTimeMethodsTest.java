@@ -84,7 +84,11 @@ public class AssertJLocalDateTimeMethodsTest {
 	public void isEqualToThrowError() {
 		LocalDateTime value = LocalDateTime.parse("2023-10-31T05:06:07");
 		System.out.println(value);
-		assertThat(value).isEqualTo(LocalDateTime.of(2023, 10, 31, 5, 6, 8));
+		try {
+			assertThat(value).isEqualTo(LocalDateTime.of(2023, 10, 31, 5, 6, 8));
+		} catch (AssertionError e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Test

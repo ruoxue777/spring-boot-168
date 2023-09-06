@@ -2,6 +2,8 @@ package org.ruoxue.spring_boot_168.test.assertj.optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.Optional;
+import static org.assertj.core.api.Assertions.anyOf;
 import org.assertj.core.api.Condition;
 import org.junit.jupiter.api.Test;
 
@@ -9,75 +11,76 @@ public class UnitTestOptionalWithAssertJTest {
 
 	@Test
 	public void is() {
-		String value = "AssertJ 155";
+		Optional<String> value = Optional.of("AssertJ");
 		System.out.println(value);
-		Condition<String> length = new Condition<String>(s -> s.length() > 10, "length");
-		System.out.println(value);
-		assertThat(value).is(length);
+		Condition<Optional<String>> isNotEmpty = new Condition<Optional<String>>(o -> !o.get().isEmpty(), "isEmpty");
+		Condition<Optional<String>> length = new Condition<Optional<String>>(o -> o.get().length() > 2, "length");
+		assertThat(value).is(anyOf(isNotEmpty, length));
 
-		value = "AssertJ";
-		System.out.println(value);
-		length = new Condition<String>(s -> s.length() > 6, "length");
-		System.out.println(value);
-		assertThat(value).is(length);
-
+		Optional<Integer> intValue = Optional.of(155);
+		System.out.println(intValue);
+		Condition<Optional<Integer>> greaterThan = new Condition<Optional<Integer>>(o -> o.get() > 0, "greaterThan");
+		Condition<Optional<Integer>> lessThan = new Condition<Optional<Integer>>(o -> o.get() < 160, "lessThan");
+		assertThat(intValue).is(anyOf(greaterThan, lessThan));
 	}
 
 	@Test
 	public void isNot() {
-		String value = "AssertJ 155";
+		Optional<String> value = Optional.of("AssertJ");
 		System.out.println(value);
-		Condition<String> length = new Condition<String>(s -> s.length() > 11, "length");
-		assertThat(value).isNot(length);
+		Condition<Optional<String>> isEmpty = new Condition<Optional<String>>(o -> o.get().isEmpty(), "isEmpty");
+		Condition<Optional<String>> length = new Condition<Optional<String>>(o -> o.get().length() < 2, "length");
+		assertThat(value).isNot(anyOf(isEmpty, length));
 
-		value = "AssertJ";
-		System.out.println(value);
-		length = new Condition<String>(s -> s.length() > 7, "length");
-		assertThat(value).isNot(length);
+		Optional<Integer> intValue = Optional.of(155);
+		System.out.println(intValue);
+		Condition<Optional<Integer>> lessThan = new Condition<Optional<Integer>>(o -> o.get() < 0, "greaterThan");
+		Condition<Optional<Integer>> greaterThan = new Condition<Optional<Integer>>(o -> o.get() > 155, "lessThan");
+		assertThat(intValue).isNot(anyOf(greaterThan, lessThan));
 	}
 
 	@Test
 	public void isIn() {
-		String value = "AssertJ";
+		Optional<String> value = Optional.of("AssertJ");
 		System.out.println(value);
-		assertThat(value).isIn("AssertJ", "155");
+		assertThat(value).isIn(Optional.of("AssertJ"), Optional.of("155"));
 
-		value = "155";
-		System.out.println(value);
-		assertThat(value).isIn("AssertJ", "155");
+		Optional<Integer> intValue = Optional.of(155);
+		System.out.println(intValue);
+		assertThat(intValue).isIn(Optional.of("AssertJ"), Optional.of(155));
 	}
 
 	@Test
 	public void isNotIn() {
-		String value = "AssertJ";
+		Optional<String> value = Optional.of("AssertJ");
 		System.out.println(value);
-		assertThat(value).isNotIn("JUnit", "151");
+		assertThat(value).isNotIn(Optional.of("JUnit"), Optional.of("151"));
 
-		value = "155";
-		System.out.println(value);
-		assertThat(value).isNotIn("JUnit", "151");
+		Optional<Integer> intValue = Optional.of(155);
+		System.out.println(intValue);
+		assertThat(intValue).isNotIn(Optional.of("JUnit"), Optional.of(151));
 	}
 
 	@Test
 	public void isInstanceOf() {
-		String value = "AssertJ 155";
+		Optional<String> value = Optional.of("AssertJ");
 		System.out.println(value);
-		assertThat(value).isInstanceOf(String.class);
+		assertThat(value).isInstanceOf(Optional.class);
 
-		value = new String("AssertJ 155");
-		System.out.println(value);
-		assertThat(value).isInstanceOf(String.class);
+		Optional<Integer> intValue = Optional.of(155);
+		System.out.println(intValue);
+		assertThat(intValue).isInstanceOf(Optional.class);
 
 	}
 
 	@Test
 	public void isNotInstanceOf() {
-		String value = "AssertJ 155";
+		Optional<String> value = Optional.of("AssertJ");
 		System.out.println(value);
-		assertThat(value).isNotInstanceOf(String[].class);
+		assertThat(value).isNotInstanceOf(String.class);
 
-		value = new String("AssertJ 155");
-		System.out.println(value);
-		assertThat(value).isNotInstanceOf(String[].class);
+		Optional<Integer> intValue = Optional.of(155);
+		System.out.println(intValue);
+		assertThat(intValue).isNotInstanceOf(Integer.class);
 	}
 }

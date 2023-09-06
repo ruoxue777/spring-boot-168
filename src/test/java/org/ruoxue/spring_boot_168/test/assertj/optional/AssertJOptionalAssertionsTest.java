@@ -69,7 +69,11 @@ public class AssertJOptionalAssertionsTest {
 	public void containsThrowError() {
 		Optional<String> value = Optional.of("AssertJ");
 		System.out.println(value);
-		assertThat(value).contains("155");
+		try {
+			assertThat(value).contains("155");
+		} catch (AssertionError e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Test

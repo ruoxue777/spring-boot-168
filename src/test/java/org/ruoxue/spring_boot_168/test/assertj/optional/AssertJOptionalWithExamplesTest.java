@@ -13,8 +13,8 @@ public class AssertJOptionalWithExamplesTest {
 	public void has() {
 		Optional<String> value = Optional.of("AssertJ");
 		System.out.println(value);
-		Condition<Optional<String>> isPresent = new Condition<Optional<String>>(o -> o.isPresent(), "isPresent");
-		assertThat(value).has(isPresent);
+		Condition<Optional<String>> length = new Condition<Optional<String>>(o -> o.get().length() > 2, "length");
+		assertThat(value).has(length);
 
 		Optional<Integer> intValue = Optional.of(155);
 		System.out.println(intValue);
