@@ -80,26 +80,4 @@ public class UnitTestOptionalWithAssertJTest {
 		System.out.println(value);
 		assertThat(value).isNotInstanceOf(String[].class);
 	}
-
-	@Test
-	public void startsWith() {
-		String value = "AssertJ 155";
-		System.out.println(value);
-		assertThat(value).startsWith("AssertJ");
-
-		value = "155 AssertJ";
-		System.out.println(value);
-		assertThat(value).startsWith("155");
-	}
-
-	@Test
-	public void endsWith() {
-		String value = "AssertJ 155";
-		System.out.println(value);
-		assertThat(value).endsWith("155");
-
-		value = "155 AssertJ";
-		System.out.println(value);
-		assertThat(value).endsWith("AssertJ");
-	}
 }

@@ -3,73 +3,89 @@ package org.ruoxue.spring_boot_168.test.assertj.optional;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Comparator;
+import java.util.Optional;
+import java.util.function.Function;
+
 import org.junit.jupiter.api.Test;
 
 public class TestingAssertJOptionalTest {
 
 	@Test
-	// A=65, a=97
-	public void isLessThan() {
-		String value = "AssertJ 155";
+	public void map() {
+		Optional<String> value = Optional.of("AssertJ");
 		System.out.println(value);
-		assertThat(value).isLessThan("as").isLessThan("bs");
-		assertThat(value).isLessThan("aS").isLessThan("At");
+		Function<String, String> upperCase = s -> s.toUpperCase();
+		assertThat(value).map(upperCase).contains("ASSERTJ");
+
+		value = Optional.ofNullable(null);
+		System.out.println(value);
+		assertThat(value).map(upperCase).isEmpty();
+
+		Optional<Integer> intValue = Optional.of(-155);
+		System.out.println(intValue);
+		Function<Integer, Integer> abs = i -> Math.abs(i);
+		assertThat(intValue).map(abs).contains(155);
+
+		intValue = Optional.ofNullable(null);
+		System.out.println(intValue);
+		assertThat(intValue).map(abs).isEmpty();
 	}
 
 	@Test
-	// A=65, a=97
-	public void isLessThanOrEqualTo() {
-		String value = "AssertJ 155";
+	public void flatMap() {
+		Optional<String> value = Optional.of("AssertJ");
 		System.out.println(value);
-		assertThat(value).isLessThanOrEqualTo("AssertJ 155").isLessThanOrEqualTo("bs");
-		assertThat(value).isLessThanOrEqualTo("assertj 155").isLessThanOrEqualTo("At");
-	}
+		Function<String, Optional<String>> upperCase = s -> s == null ? Optional.empty() : Optional.of(s.toUpperCase());
+		assertThat(value).flatMap(upperCase).contains("ASSERTJ");
 
-	@Test
-	// A=65, a=97
-	public void isGreaterThan() {
-		String value = "assertj 155";
+		value = Optional.ofNullable(null);
 		System.out.println(value);
-		assertThat(value).isGreaterThan("As").isGreaterThan("Bs");
-		assertThat(value).isGreaterThan("aS").isGreaterThan("aT");
-	}
+		assertThat(value).flatMap(upperCase).isEmpty();
 
-	@Test
-	// A=65, a=97
-	public void isGreaterThanOrEqualTo() {
-		String value = "assertj 155";
-		System.out.println(value);
-		assertThat(value).isGreaterThanOrEqualTo("AssertJ 155").isGreaterThanOrEqualTo("Bs");
-		assertThat(value).isGreaterThanOrEqualTo("assertj 155").isGreaterThanOrEqualTo("aT");
+		Optional<Integer> intValue = Optional.of(-155);
+		System.out.println(intValue);
+		Function<Integer, Optional<Integer>> abs = i -> i == null ? Optional.empty() : Optional.of(Math.abs(i));
+		assertThat(intValue).flatMap(abs).contains(155);
+
+		intValue = Optional.ofNullable(null);
+		System.out.println(intValue);
+		assertThat(intValue).flatMap(abs).isEmpty();
 	}
 
 	@Test
 	public void usingDefaultComparator() {
-		String value = "AssertJ 155";
+		Optional<String> value = Optional.of("AssertJ");
 		System.out.println(value);
-		assertThat(value).usingDefaultComparator().contains("AssertJ", "155").doesNotContain("rtJx");
-		value = "AssertJ";
-		assertThat(value).usingDefaultComparator().startsWith("Ass").endsWith("rtJ");
+		assertThat(value).usingDefaultComparator().contains("AssertJ");
+
+		Optional<Integer> intValue = Optional.of(155);
+		System.out.println(intValue);
+		assertThat(intValue).usingDefaultComparator().contains(155);
 	}
 
 	@Test
 	public void usingComparator() {
-		String value = "AssertJ 155";
+		Optional<String> value = Optional.of("AssertJ");
 		System.out.println(value);
-		Comparator<String> ignoreCaseComparator = (s1, s2) -> s1.toLowerCase().compareTo(s2.toLowerCase());
-		assertThat(value).usingComparator(ignoreCaseComparator).contains("ASSERTJ", "155").doesNotContain("RTJX");
-		value = "AssertJ";
-		assertThat(value).usingComparator(ignoreCaseComparator).startsWith("ASS").endsWith("rtJ");
+		Comparator<Optional<String>> ignoreCase = (s1, s2) -> s1.get().toLowerCase().compareTo(s2.get().toLowerCase());
+		assertThat(value).usingComparator(ignoreCase).hasValue("AssertJ");
+
+		Optional<Integer> intValue = Optional.of(155);
+		System.out.println(intValue);
+		Comparator<Optional<Integer>> abs = (i1, i2) -> Double.compare(i1.get(), Math.abs(i2.get()));
+		assertThat(intValue).usingComparator(abs).hasValue(155);
 	}
 
 	@Test
 	public void usingComparatorWithDescription() {
-		String value = "AssertJ 155";
+		Optional<String> value = Optional.of("AssertJ");
 		System.out.println(value);
-		Comparator<String> ignoreCaseComparator = (s1, s2) -> s1.toLowerCase().compareTo(s2.toLowerCase());
-		assertThat(value).usingComparator(ignoreCaseComparator, "ignoreCase").contains("ASSERTJ", "155")
-				.doesNotContain("RTJX");
-		value = "AssertJ";
-		assertThat(value).usingComparator(ignoreCaseComparator, "ignoreCase").startsWith("ASS").endsWith("rtJ");
+		Comparator<Optional<String>> ignoreCase = (s1, s2) -> s1.get().toLowerCase().compareTo(s2.get().toLowerCase());
+		assertThat(value).usingComparator(ignoreCase, "ignoreCase").hasValue("AssertJ");
+
+		Optional<Integer> intValue = Optional.of(155);
+		System.out.println(intValue);
+		Comparator<Optional<Integer>> abs = (i1, i2) -> Double.compare(i1.get(), Math.abs(i2.get()));
+		assertThat(intValue).usingComparator(abs, "abs").hasValue(155);
 	}
 }

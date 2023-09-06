@@ -8,7 +8,6 @@ import org.junit.jupiter.api.Test;
 
 public class AssertJOptionalAssertionsTest {
 
-
 	@Test
 	public void isPresent() {
 		Optional<String> value = Optional.of("AssertJ");
@@ -30,7 +29,7 @@ public class AssertJOptionalAssertionsTest {
 		System.out.println(intValue);
 		assertThat(intValue).isNotPresent();
 	}
-	
+
 	@Test
 	public void contains() {
 		Optional<String> value = Optional.of("AssertJ");
