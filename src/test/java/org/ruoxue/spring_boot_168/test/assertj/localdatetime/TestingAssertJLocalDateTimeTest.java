@@ -70,23 +70,23 @@ public class TestingAssertJLocalDateTimeTest {
 	public void usingComparator() {
 		LocalDateTime value = LocalDateTime.of(2023, 10, 31, 5, 6, 7);
 		System.out.println(value);
-		Comparator<LocalDateTime> ignoreTimeComparator = (l1, l2) -> l1.toLocalDate().compareTo(l2.toLocalDate());
-		assertThat(value).usingComparator(ignoreTimeComparator).isEqualTo(LocalDateTime.of(2023, 10, 31, 0, 0, 0));
+		Comparator<LocalDateTime> ignoreTime = (l1, l2) -> l1.toLocalDate().compareTo(l2.toLocalDate());
+		assertThat(value).usingComparator(ignoreTime).isEqualTo(LocalDateTime.of(2023, 10, 31, 0, 0, 0));
 
 		value = LocalDateTime.parse("2023-10-31T05:06:07");
-		assertThat(value).usingComparator(ignoreTimeComparator).isEqualTo(LocalDateTime.of(2023, 10, 31, 0, 0, 0));
+		assertThat(value).usingComparator(ignoreTime).isEqualTo(LocalDateTime.of(2023, 10, 31, 0, 0, 0));
 	}
 
 	@Test
 	public void usingComparatorWithDescription() {
 		LocalDateTime value = LocalDateTime.of(2023, 10, 31, 5, 6, 7);
 		System.out.println(value);
-		Comparator<LocalDateTime> ignoreTimeComparator = (l1, l2) -> l1.toLocalDate().compareTo(l2.toLocalDate());
-		assertThat(value).usingComparator(ignoreTimeComparator, "ignoreTime")
+		Comparator<LocalDateTime> ignoreTime = (l1, l2) -> l1.toLocalDate().compareTo(l2.toLocalDate());
+		assertThat(value).usingComparator(ignoreTime, "ignoreTime")
 				.isEqualTo(LocalDateTime.of(2023, 10, 31, 0, 0, 0));
 
 		value = LocalDateTime.parse("2023-10-31T05:06:07");
-		assertThat(value).usingComparator(ignoreTimeComparator, "ignoreTime")
+		assertThat(value).usingComparator(ignoreTime, "ignoreTime")
 				.isEqualTo(LocalDateTime.of(2023, 10, 31, 0, 0, 0));
 	}
 }

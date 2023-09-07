@@ -56,20 +56,20 @@ public class TestingAssertJStringTest {
 	public void usingComparator() {
 		String value = "AssertJ 155";
 		System.out.println(value);
-		Comparator<String> ignoreCaseComparator = (s1, s2) -> s1.toLowerCase().compareTo(s2.toLowerCase());
-		assertThat(value).usingComparator(ignoreCaseComparator).contains("ASSERTJ", "155").doesNotContain("RTJX");
+		Comparator<String> ignoreCase = (s1, s2) -> s1.toLowerCase().compareTo(s2.toLowerCase());
+		assertThat(value).usingComparator(ignoreCase).contains("ASSERTJ", "155").doesNotContain("RTJX");
 		value = "AssertJ";
-		assertThat(value).usingComparator(ignoreCaseComparator).startsWith("ASS").endsWith("rtJ");
+		assertThat(value).usingComparator(ignoreCase).startsWith("ASS").endsWith("rtJ");
 	}
 
 	@Test
 	public void usingComparatorWithDescription() {
 		String value = "AssertJ 155";
 		System.out.println(value);
-		Comparator<String> ignoreCaseComparator = (s1, s2) -> s1.toLowerCase().compareTo(s2.toLowerCase());
-		assertThat(value).usingComparator(ignoreCaseComparator, "ignoreCase").contains("ASSERTJ", "155")
+		Comparator<String> ignoreCase = (s1, s2) -> s1.toLowerCase().compareTo(s2.toLowerCase());
+		assertThat(value).usingComparator(ignoreCase, "ignoreCase").contains("ASSERTJ", "155")
 				.doesNotContain("RTJX");
 		value = "AssertJ";
-		assertThat(value).usingComparator(ignoreCaseComparator, "ignoreCase").startsWith("ASS").endsWith("rtJ");
+		assertThat(value).usingComparator(ignoreCase, "ignoreCase").startsWith("ASS").endsWith("rtJ");
 	}
 }

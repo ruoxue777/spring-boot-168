@@ -14,8 +14,8 @@ public class UnitTestOptionalWithAssertJTest {
 		Optional<String> value = Optional.of("AssertJ");
 		System.out.println(value);
 		Condition<Optional<String>> isNotEmpty = new Condition<Optional<String>>(o -> !o.get().isEmpty(), "isEmpty");
-		Condition<Optional<String>> length = new Condition<Optional<String>>(o -> o.get().length() > 2, "length");
-		assertThat(value).is(anyOf(isNotEmpty, length));
+		Condition<Optional<String>> lengthGreaterThan = new Condition<Optional<String>>(o -> o.get().length() > 2, "lengthGreaterThan");
+		assertThat(value).is(anyOf(isNotEmpty, lengthGreaterThan));
 
 		Optional<Integer> intValue = Optional.of(155);
 		System.out.println(intValue);
@@ -29,8 +29,8 @@ public class UnitTestOptionalWithAssertJTest {
 		Optional<String> value = Optional.of("AssertJ");
 		System.out.println(value);
 		Condition<Optional<String>> isEmpty = new Condition<Optional<String>>(o -> o.get().isEmpty(), "isEmpty");
-		Condition<Optional<String>> length = new Condition<Optional<String>>(o -> o.get().length() < 2, "length");
-		assertThat(value).isNot(anyOf(isEmpty, length));
+		Condition<Optional<String>> lengthLessThan = new Condition<Optional<String>>(o -> o.get().length() < 2, "lengthLessThan");
+		assertThat(value).isNot(anyOf(isEmpty, lengthLessThan));
 
 		Optional<Integer> intValue = Optional.of(155);
 		System.out.println(intValue);

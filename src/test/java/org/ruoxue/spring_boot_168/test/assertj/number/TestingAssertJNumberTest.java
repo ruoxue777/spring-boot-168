@@ -67,25 +67,25 @@ public class TestingAssertJNumberTest {
 	public void usingComparator() {
 		int value = 1;
 		System.out.println(value);
-		Comparator<Integer> absComparator = (i1, i2) -> Integer.compare(i1, Math.abs(i2));
-		assertThat(value).usingComparator(absComparator).isEqualTo(-1);
+		Comparator<Integer> abs = (i1, i2) -> Integer.compare(i1, Math.abs(i2));
+		assertThat(value).usingComparator(abs).isEqualTo(-1);
 
 		double doubleValue = 1d;
 		System.out.println(doubleValue);
-		Comparator<Double> doubleAbsComparator = (d1, d2) -> Double.compare(d1, Math.abs(d2));
-		assertThat(doubleValue).usingComparator(doubleAbsComparator).isEqualTo(-1d);
+		Comparator<Double> doubleAbs = (d1, d2) -> Double.compare(d1, Math.abs(d2));
+		assertThat(doubleValue).usingComparator(doubleAbs).isEqualTo(-1d);
 	}
 
 	@Test
 	public void usingComparatorWithDescription() {
 		int value = 1;
 		System.out.println(value);
-		Comparator<Integer> absComparator = (i1, i2) -> Integer.compare(i1, Math.abs(i2));
-		assertThat(value).usingComparator(absComparator, "absComparator").isEqualTo(-1);
+		Comparator<Integer> abs = (i1, i2) -> Integer.compare(i1, Math.abs(i2));
+		assertThat(value).usingComparator(abs, "abs").isEqualTo(-1);
 
 		double doubleValue = 1d;
 		System.out.println(doubleValue);
-		Comparator<Double> doubleAbsComparator = (d1, d2) -> Double.compare(d1, Math.abs(d2));
-		assertThat(doubleValue).usingComparator(doubleAbsComparator, "doubleAbsComparator").isEqualTo(-1d);
+		Comparator<Double> doubleAbs = (d1, d2) -> Double.compare(d1, Math.abs(d2));
+		assertThat(doubleValue).usingComparator(doubleAbs, "doubleAbs").isEqualTo(-1d);
 	}
 }

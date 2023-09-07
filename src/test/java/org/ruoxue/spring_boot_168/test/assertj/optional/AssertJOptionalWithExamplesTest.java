@@ -13,8 +13,8 @@ public class AssertJOptionalWithExamplesTest {
 	public void has() {
 		Optional<String> value = Optional.of("AssertJ");
 		System.out.println(value);
-		Condition<Optional<String>> length = new Condition<Optional<String>>(o -> o.get().length() > 2, "length");
-		assertThat(value).has(length);
+		Condition<Optional<String>> lengthGreaterThan = new Condition<Optional<String>>(o -> o.get().length() > 2, "lengthGreaterThan");
+		assertThat(value).has(lengthGreaterThan);
 
 		Optional<Integer> intValue = Optional.of(155);
 		System.out.println(intValue);
@@ -78,8 +78,8 @@ public class AssertJOptionalWithExamplesTest {
 	public void hasValueSatisfyingWithCondition() {
 		Optional<String> value = Optional.of("AssertJ");
 		System.out.println(value);
-		Condition<String> length = new Condition<String>(s -> s.length() > 2, "length");
-		assertThat(value).hasValueSatisfying(length);
+		Condition<String> lengthGreaterThan = new Condition<String>(s -> s.length() > 2, "lengthGreaterThan");
+		assertThat(value).hasValueSatisfying(lengthGreaterThan);
 
 		Optional<Integer> intValue = Optional.of(155);
 		System.out.println(intValue);
@@ -91,9 +91,9 @@ public class AssertJOptionalWithExamplesTest {
 	public void doesNotHave() {
 		Optional<String> value = Optional.of("AssertJ");
 		System.out.println(value);
-		Condition<Optional<String>> length = new Condition<Optional<String>>(o -> o.get().length() < 2,
-				"length");
-		assertThat(value).doesNotHave(length);
+		Condition<Optional<String>> lengthLessThan = new Condition<Optional<String>>(o -> o.get().length() < 2,
+				"lengthLessThan");
+		assertThat(value).doesNotHave(lengthLessThan);
 
 		Optional<Integer> intValue = Optional.of(155);
 		System.out.println(intValue);
