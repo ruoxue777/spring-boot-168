@@ -70,7 +70,6 @@ public class UnitTestOptionalWithAssertJTest {
 		Optional<Integer> intValue = Optional.of(155);
 		System.out.println(intValue);
 		assertThat(intValue).isInstanceOf(Optional.class);
-
 	}
 
 	@Test

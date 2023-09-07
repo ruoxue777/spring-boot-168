@@ -91,9 +91,9 @@ public class AssertJOptionalWithExamplesTest {
 	public void doesNotHave() {
 		Optional<String> value = Optional.of("AssertJ");
 		System.out.println(value);
-		Condition<Optional<String>> isPresent = new Condition<Optional<String>>(o -> false == o.isPresent(),
-				"isPresent");
-		assertThat(value).doesNotHave(isPresent);
+		Condition<Optional<String>> length = new Condition<Optional<String>>(o -> o.get().length() < 2,
+				"length");
+		assertThat(value).doesNotHave(length);
 
 		Optional<Integer> intValue = Optional.of(155);
 		System.out.println(intValue);
