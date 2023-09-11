@@ -1,4 +1,4 @@
-package org.ruoxue.spring_boot_168.test.assertj;
+package org.ruoxue.spring_boot_168.test.assertj.exception;
 
 import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.*;
@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
-public class AssertJExceptionTest {
+public class AssertJExceptionAssertionsTest {
 
 	public int divide(int value1, int value2) {
 		return value1 / value2;
@@ -72,5 +72,4 @@ public class AssertJExceptionTest {
 		});
 		assertThat(thrown).isInstanceOf(IndexOutOfBoundsException.class).hasMessageContaining("2");
 	}
-
 }
