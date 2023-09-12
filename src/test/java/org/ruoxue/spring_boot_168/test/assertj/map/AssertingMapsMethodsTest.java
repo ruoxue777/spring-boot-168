@@ -12,6 +12,7 @@ import java.util.function.Function;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
+import org.assertj.core.api.InstanceOfAssertFactories;
 import org.junit.jupiter.api.Test;
 
 import lombok.Builder;
@@ -91,8 +92,10 @@ public class AssertingMapsMethodsTest {
 		map.put(kiwifruit.getName(), kiwifruit);
 		map.put(lemon.getName(), lemon);
 		System.out.println(map);
-		assertThat(map).extractingByKey("Grape").extracting(Fruit::getType).isEqualTo(1);
-		assertThat(map).extractingByKey("Papaya").isNull();
+		assertThat(map).extractingByKey("Grape").extracting(Fruit::getName, as(InstanceOfAssertFactories.STRING))
+				.isEqualTo("Grape");
+		assertThat(map).extractingByKey("Lemon").extracting(Fruit::getType, as(InstanceOfAssertFactories.INTEGER))
+				.isEqualTo(3);
 	}
 
 	@Test
