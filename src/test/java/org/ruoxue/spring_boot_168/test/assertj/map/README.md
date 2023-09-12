@@ -10,4 +10,5 @@
 7. [Asserting Maps with AssertJ](https://www.ruoxue.org/assertj-155-asserting-maps-with-assertj/)
 8. [Asserting Maps Methods](https://www.ruoxue.org/assertj-155-asserting-maps-methods/)
 9. [Asserting Maps in Java with Examples](https://www.ruoxue.org/assertj-155-asserting-maps-in-java-with-examples/)
+10. [Assert Map Value in Java](https://www.ruoxue.org/assertj-155-assert-map-value-in-java/)
 

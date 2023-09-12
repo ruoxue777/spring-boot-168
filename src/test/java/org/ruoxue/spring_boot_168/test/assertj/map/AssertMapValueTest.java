@@ -65,8 +65,6 @@ public class AssertMapValueTest {
 		SimpleFruit grape = new SimpleFruit();
 		SimpleFruit kiwifruit = new SimpleFruit();
 		SimpleFruit lemon = new SimpleFruit();
-		lemon.setName(null);
-		lemon.setOrigins(null);
 		Map<String, SimpleFruit> map = new HashMap<>();
 		map.put("Grape", grape);
 		map.put("Kiwifruit", kiwifruit);
