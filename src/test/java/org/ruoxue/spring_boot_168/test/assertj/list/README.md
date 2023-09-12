@@ -10,4 +10,4 @@
 7. [Asserting Lists with AssertJ](https://www.ruoxue.org/assertj-155-asserting-lists-with-assertj/)
 8. [Asserting Lists Methods](https://www.ruoxue.org/assertj-155-asserting-lists-methods/)
 9. [Asserting Lists in Java with Examples](https://www.ruoxue.org/assertj-155-asserting-lists-in-java-with-examples/)
-
+10. [Assert List Value in Java](https://www.ruoxue.org/assertj-155-assert-list-value-in-java/)

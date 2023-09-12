@@ -10,4 +10,5 @@
 7. [Asserting Arrays with AssertJ](https://www.ruoxue.org/assertj-155-asserting-arrays-with-assertj/)
 8. [Asserting Arrays Methods](https://www.ruoxue.org/assertj-155-asserting-arrays-methods/)
 9. [Asserting Arrays in Java with Examples](https://www.ruoxue.org/assertj-155-asserting-arrays-in-java-with-examples/)
+10. [Assert Array Value in Java](https://www.ruoxue.org/assertj-155-assert-array-value-in-java/)
 
