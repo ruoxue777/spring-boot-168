@@ -1,6 +1,8 @@
 package org.ruoxue.spring_boot_168.test.assertj.map;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.function.Predicate;
 
@@ -9,7 +11,6 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 import org.assertj.core.api.Condition;
 import org.junit.jupiter.api.Test;
 
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -20,11 +21,11 @@ public class AssertingMapsTest {
 	@NoArgsConstructor
 	@Getter
 	@Setter
-	@Builder
 	public static class Fruit {
 		private String name;
 		private double quantity;
 		private int type;
+		private List<String> origins = new ArrayList<>();
 
 		public Fruit(String name, double quantity, int type) {
 			this.name = name;
@@ -38,6 +39,27 @@ public class AssertingMapsTest {
 			builder.append("name", name);
 			builder.append("quantity", quantity);
 			builder.append("type", type);
+			builder.append("origins", origins);
+			return builder.toString();
+		}
+	}
+
+	@NoArgsConstructor
+	@Getter
+	@Setter
+	public static class SimpleFruit {
+		private String name;
+		private List<String> origins = new ArrayList<>();
+
+		public SimpleFruit(String name) {
+			this.name = name;
+		}
+
+		public String toString() {
+			ToStringBuilder builder = new ToStringBuilder(this, ToStringStyle.JSON_STYLE);
+			builder.appendSuper(super.toString());
+			builder.append("name", name);
+			builder.append("origins", origins);
 			return builder.toString();
 		}
 	}
@@ -123,14 +145,49 @@ public class AssertingMapsTest {
 	}
 
 	@Test
-	public void hasAllNullFieldsOrPropertiesExcept() {
-		Map<String, Fruit> map = new HashMap<>();
+	public void hasAllNullFieldsOrProperties() {
+		SimpleFruit grape = new SimpleFruit("Grape");
+		grape.setName(null);
+		grape.setOrigins(null);
+		SimpleFruit kiwifruit = new SimpleFruit("Kiwifruit");
+		kiwifruit.setName(null);
+		kiwifruit.setOrigins(null);
+		SimpleFruit lemon = new SimpleFruit("Lemon");
+		lemon.setName(null);
+		lemon.setOrigins(null);
+		Map<String, SimpleFruit> map = new HashMap<>();
+		map.put("Grape", grape);
+		map.put("Kiwifruit", kiwifruit);
+		map.put("Lemon", lemon);
 		System.out.println(map);
-		assertThat(map).hasAllNullFieldsOrPropertiesExcept("size", "modCount", "threshold", "loadFactor", "entrySet");
+		assertThat(map).allSatisfy((k, v) -> {
+			assertThat(v).hasAllNullFieldsOrProperties();
+		});
 	}
 
 	@Test
-	public void hasNoNullFieldsOrPropertiesExcept() {
+	public void hasAllNullFieldsOrPropertiesExcept() {
+		Fruit grape = new Fruit("Grape", Double.MAX_VALUE, 1);
+		grape.setName(null);
+		grape.setOrigins(null);
+		Fruit kiwifruit = new Fruit("Kiwifruit", 1, 2);
+		kiwifruit.setName(null);
+		kiwifruit.setOrigins(null);
+		Fruit lemon = new Fruit("Lemon", -1, 3);
+		lemon.setName(null);
+		lemon.setOrigins(null);
+		Map<String, Fruit> map = new HashMap<>();
+		map.put("Grape", grape);
+		map.put("Kiwifruit", kiwifruit);
+		map.put("Lemon", lemon);
+		System.out.println(map);
+		assertThat(map).allSatisfy((k, v) -> {
+			assertThat(v).hasAllNullFieldsOrPropertiesExcept("type", "quantity");
+		});
+	}
+
+	@Test
+	public void hasNoNullFieldsOrProperties() {
 		Fruit grape = new Fruit("Grape", Double.MAX_VALUE, 1);
 		Fruit kiwifruit = new Fruit("Kiwifruit", 1, 2);
 		Fruit lemon = new Fruit("Lemon", -1, 3);
@@ -139,6 +196,26 @@ public class AssertingMapsTest {
 		map.put(kiwifruit.getName(), kiwifruit);
 		map.put(lemon.getName(), lemon);
 		System.out.println(map);
-		assertThat(map).hasNoNullFieldsOrPropertiesExcept("keySet", "values");
+		assertThat(map).allSatisfy((k, v) -> {
+			assertThat(v).hasNoNullFieldsOrProperties();
+		});
+	}
+
+	@Test
+	public void hasNoNullFieldsOrPropertiesExcept() {
+		Fruit grape = new Fruit("Grape", Double.MAX_VALUE, 1);
+		grape.setOrigins(null);
+		Fruit kiwifruit = new Fruit("Kiwifruit", 1, 2);
+		kiwifruit.setOrigins(null);
+		Fruit lemon = new Fruit("Lemon", -1, 3);
+		lemon.setOrigins(null);
+		Map<String, Fruit> map = new HashMap<>();
+		map.put(grape.getName(), grape);
+		map.put(kiwifruit.getName(), kiwifruit);
+		map.put(lemon.getName(), lemon);
+		System.out.println(map);
+		assertThat(map).allSatisfy((k, v) -> {
+			assertThat(v).hasNoNullFieldsOrPropertiesExcept("origins");
+		});
 	}
 }
