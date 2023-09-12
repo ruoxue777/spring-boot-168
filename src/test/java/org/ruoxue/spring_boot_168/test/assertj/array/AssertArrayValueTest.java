@@ -63,9 +63,9 @@ public class AssertArrayValueTest {
 
 	@Test
 	public void matches() {
-		Fruit durian = new Fruit("Durian", Double.MAX_VALUE, 2);
+		Fruit durian = new Fruit("Durian", Double.MAX_VALUE, 1);
 		Fruit guava = new Fruit("Guava", 1, 2);
-		Fruit pitaya = new Fruit("Pitaya", -1, 2);
+		Fruit pitaya = new Fruit("Pitaya", -1, 3);
 		Fruit[] array = new Fruit[] { durian, guava, pitaya };
 		System.out.println(Arrays.deepToString(array));
 		assertThat(array).matches(a -> a.length > 2);
