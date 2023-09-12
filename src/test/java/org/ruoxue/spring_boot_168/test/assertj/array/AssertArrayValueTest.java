@@ -19,7 +19,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-class AssertArrayValueTest {
+public class AssertArrayValueTest {
 
 	@NoArgsConstructor
 	@Getter
@@ -47,15 +47,13 @@ class AssertArrayValueTest {
 		}
 	}
 
-	@NoArgsConstructor
 	@Getter
 	@Setter
 	public static class SimpleFruit {
 		private String name;
-		private List<String> origins = new ArrayList<>();
+		private List<String> origins;
 
-		public SimpleFruit(String name) {
-			this.name = name;
+		public SimpleFruit() {
 		}
 
 		public String toString() {
