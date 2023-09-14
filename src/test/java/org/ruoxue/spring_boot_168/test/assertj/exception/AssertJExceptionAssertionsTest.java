@@ -40,36 +40,18 @@ public class AssertJExceptionAssertionsTest {
 	}
 
 	@Test
-	public void isThrownBy() {
-		assertThatExceptionOfType(ArithmeticException.class).isThrownBy(() -> divide(1, 0))
-				.withMessageContaining("zero").withMessage("/ by zero");
+	public void exception() {
+		Exception ex = new Exception();
+		assertThatException().isThrownBy(() -> {
+			throw ex;
+		}).isEqualTo(ex).withStackTraceContaining("Exception");
 	}
 
 	@Test
-	public void withMessageContaining() {
-		assertThatExceptionOfType(IndexOutOfBoundsException.class).isThrownBy(() -> {
-			List<Integer> list = Arrays.asList(1, 2);
-			list.get(2);
-		}).withMessageContaining("2");
-	}
-
-	@Test
-	public void withCauseExactlyInstanceOf() {
-		assertThatExceptionOfType(RuntimeException.class).isThrownBy(() -> {
-			try {
-				throw new IOException();
-			} catch (IOException e) {
-				throw new RuntimeException(e);
-			}
-		}).withCauseExactlyInstanceOf(IOException.class).withStackTraceContaining("IOException");
-	}
-
-	@Test
-	public void thrown() {
-		Throwable thrown = catchThrowable(() -> {
-			List<Integer> list = Arrays.asList(1, 2);
-			list.get(2);
-		});
-		assertThat(thrown).isInstanceOf(IndexOutOfBoundsException.class).hasMessageContaining("2");
+	public void illegalArgumentException() {
+		IllegalArgumentException ex = new IllegalArgumentException();
+		assertThatIllegalArgumentException().isThrownBy(() -> {
+			throw ex;
+		}).isEqualTo(ex).withStackTraceContaining("IllegalArgumentException");
 	}
 }
