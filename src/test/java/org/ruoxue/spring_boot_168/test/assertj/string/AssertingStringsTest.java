@@ -21,11 +21,11 @@ public class AssertingStringsTest {
 	public void matchesWithDescription() {
 		String value = "AssertJ 155";
 		System.out.println(value);
-		assertThat(value).matches(s -> s.length() < 12, "lengthLessThan");
+		assertThat(value).matches(s -> s.length() < 12, "length");
 
 		value = "AssertJ";
 		System.out.println(value);
-		assertThat(value).matches(s -> s.length() < 8, "lengthLessThan");
+		assertThat(value).matches(s -> s.length() < 8, "length");
 	}
 
 	@Test
