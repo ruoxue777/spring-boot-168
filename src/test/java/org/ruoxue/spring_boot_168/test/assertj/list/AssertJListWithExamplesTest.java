@@ -29,16 +29,20 @@ public class AssertJListWithExamplesTest {
 	public void hasOnlyOneElementSatisfying() {
 		List<String> list = Arrays.asList("Apple");
 		System.out.println(list);
+		// @Deprecated
 		assertThat(list).hasOnlyOneElementSatisfying(e -> {
 			assertThat(e).hasSize(5);
 		});
+		// use singleElement
 		assertThat(list).singleElement().matches(e -> e.length() == 5);
 
 		List<Integer> intList = Stream.of(10).collect(Collectors.toList());
 		System.out.println(intList);
+		// @Deprecated
 		assertThat(intList).hasOnlyOneElementSatisfying(e -> {
 			assertThat(e).isGreaterThan(9);
 		});
+		// use singleElement
 		assertThat(intList).singleElement().matches(e -> e > 9);
 	}
 
