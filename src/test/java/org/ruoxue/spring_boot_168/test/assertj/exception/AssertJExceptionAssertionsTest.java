@@ -9,27 +9,48 @@ import java.util.List;
 
 public class AssertJExceptionAssertionsTest {
 
-	public int divide(int value1, int value2) {
+	protected int divide(int value1, int value2) {
 		return value1 / value2;
 	}
 
 	@Test
 	public void isInstanceOf() {
-		assertThatThrownBy(() -> divide(1, 0)).isInstanceOf(ArithmeticException.class).hasMessageContaining("zero")
-				.hasMessage("/ by zero");
+		List<String> list = Arrays.asList("AssertJ", "155");
+		assertThatThrownBy(() -> {
+			list.get(2);
+		}).isInstanceOf(IndexOutOfBoundsException.class);
+		assertThatThrownBy(() -> divide(1, 0)).isInstanceOf(ArithmeticException.class);
+
+		assertThatCode(() -> list.get(2)).isInstanceOf(IndexOutOfBoundsException.class);
+		assertThatCode(() -> divide(1, 0)).isInstanceOf(ArithmeticException.class);
 	}
 
 	@Test
-	public void hasMessageContaining() {
+	public void hasMessage() {
+		List<String> list = Arrays.asList("AssertJ", "155");
 		assertThatThrownBy(() -> {
-			List<Integer> list = Arrays.asList(1, 2);
 			list.get(2);
-		}).isInstanceOf(IndexOutOfBoundsException.class).hasMessageContaining("2");
+		}).hasMessage("2").hasMessageContaining("2").hasMessageMatching("2");
+		assertThatThrownBy(() -> divide(1, 0)).hasMessage("/ by zero").hasMessageContaining("zero")
+				.hasMessageMatching("/ by zero");
+
+		assertThatCode(() -> list.get(2)).hasMessage("2").hasMessageContaining("2").hasMessageMatching("2");
+		assertThatCode(() -> divide(1, 0)).hasMessage("/ by zero").hasMessageContaining("zero")
+				.hasMessageMatching("/ by zero");
 	}
 
 	@Test
 	public void hasCauseInstanceOf() {
 		assertThatThrownBy(() -> {
+			try {
+				throw new IOException();
+			} catch (IOException e) {
+				throw new RuntimeException(e);
+			}
+		}).isInstanceOf(RuntimeException.class).hasCauseInstanceOf(IOException.class)
+				.hasStackTraceContaining("IOException");
+		
+		assertThatCode(() -> {
 			try {
 				throw new IOException();
 			} catch (IOException e) {
@@ -54,4 +75,14 @@ public class AssertJExceptionAssertionsTest {
 			throw ex;
 		}).isEqualTo(ex).withStackTraceContaining("IllegalArgumentException");
 	}
+
+	@Test
+	public void noException() {
+		assertThatNoException().isThrownBy(() -> {
+		});
+
+		assertThatCode(() -> {
+		}).doesNotThrowAnyException();
+	}
+
 }
