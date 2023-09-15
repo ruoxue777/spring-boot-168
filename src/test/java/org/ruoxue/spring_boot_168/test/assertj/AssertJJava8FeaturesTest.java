@@ -100,6 +100,13 @@ public class AssertJJava8FeaturesTest {
 			assertThat(s).isNotEmpty();
 			assertThat(s).hasSize(11);
 		});
+
+		int intValue = 155;
+		System.out.println(intValue);
+		assertThat(intValue).satisfies(i -> {
+			assertThat(i).isNotZero();
+			assertThat(i).isLessThan(156);
+		});
 	}
 
 	@Test
@@ -107,5 +114,9 @@ public class AssertJJava8FeaturesTest {
 		String value = "AssertJ 155";
 		System.out.println(value);
 		assertThat(value).matches(s -> s.length() < 12);
+
+		int intValue = 155;
+		System.out.println(intValue);
+		assertThat(intValue).matches(i -> i < 156);
 	}
 }
