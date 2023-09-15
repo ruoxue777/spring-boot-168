@@ -24,6 +24,21 @@ public class AssertJArrayWithExamplesTest {
 	}
 
 	@Test
+	public void hasOnlyOneElementSatisfying() {
+		String[] array = new String[] { "Durian" };
+		System.out.println(Arrays.toString(array));
+		assertThat(array).hasOnlyOneElementSatisfying(e -> {
+			assertThat(e).hasSize(6);
+		});
+
+		Integer[] intArray = new Integer[] { 5 };
+		System.out.println(Arrays.toString(intArray));
+		assertThat(intArray).hasOnlyOneElementSatisfying(e -> {
+			assertThat(e).isGreaterThan(4);
+		});
+	}
+
+	@Test
 	public void hasSize() {
 		int expectedSize = 3;
 		String[] array = new String[] { "Durian", "Guava", "Pitaya" };

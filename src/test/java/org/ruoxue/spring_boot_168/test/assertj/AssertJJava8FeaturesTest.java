@@ -94,11 +94,18 @@ public class AssertJJava8FeaturesTest {
 
 	@Test
 	public void satisfies() {
-
+		String value = "AssertJ 155";
+		System.out.println(value);
+		assertThat(value).satisfies(s -> {
+			assertThat(s).isNotEmpty();
+			assertThat(s).hasSize(11);
+		});
 	}
 
 	@Test
 	public void matches() {
-
+		String value = "AssertJ 155";
+		System.out.println(value);
+		assertThat(value).matches(s -> s.length() < 12);
 	}
 }

@@ -7,4 +7,5 @@
 4. [Testing with AssertJ String in Java](https://www.ruoxue.org/assertj-155-testing-with-assertj-string-in-java/)
 5. [Unit Test String with AssertJ](https://www.ruoxue.org/assertj-155-unit-test-string-with-assertj/)
 6. [Unit Test AssertJ String with Examples](https://www.ruoxue.org/assertj-155-unit-test-assertj-string-with-examples/)
+7. [Asserting Strings with AssertJ](https://www.ruoxue.org/assertj-155-asserting-strings-with-assertj/)
 

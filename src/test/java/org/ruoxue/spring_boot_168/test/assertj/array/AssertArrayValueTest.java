@@ -8,7 +8,6 @@ import java.util.List;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
-import org.assertj.core.api.Condition;
 import org.junit.jupiter.api.Test;
 
 import lombok.Getter;
@@ -78,8 +77,10 @@ public class AssertArrayValueTest {
 		Fruit pitaya = new Fruit("Pitaya", -1, 3);
 		Fruit[] array = new Fruit[] { durian, guava, pitaya };
 		System.out.println(Arrays.deepToString(array));
-		Condition<Fruit[]> length = new Condition<Fruit[]>(a -> a.length > 2, "length");
-		assertThat(array).satisfies(length);
+		assertThat(array).satisfies(a -> {
+			assertThat(a[0].getName().equals("Durian"));
+			assertThat(a[1]).isNotNull();
+		});
 	}
 
 	@Test
@@ -90,7 +91,9 @@ public class AssertArrayValueTest {
 		Fruit[] array = new Fruit[] { durian, guava, pitaya };
 		System.out.println(Arrays.deepToString(array));
 		assertThat(array).satisfiesAnyOf(a -> {
-			assertThat(a[0]).isNotNull();
+			assertThat(a[0].getName().equals("Durian"));
+		}, a -> {
+			assertThat(a[1]).isNull();
 		});
 	}
 

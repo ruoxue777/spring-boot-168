@@ -26,6 +26,23 @@ public class AssertJListWithExamplesTest {
 	}
 
 	@Test
+	public void hasOnlyOneElementSatisfying() {
+		List<String> list = Arrays.asList("Apple");
+		System.out.println(list);
+		assertThat(list).hasOnlyOneElementSatisfying(e -> {
+			assertThat(e).hasSize(5);
+		});
+		assertThat(list).singleElement().matches(e -> e.length() == 5);
+
+		List<Integer> intList = Stream.of(10).collect(Collectors.toList());
+		System.out.println(intList);
+		assertThat(intList).hasOnlyOneElementSatisfying(e -> {
+			assertThat(e).isGreaterThan(9);
+		});
+		assertThat(intList).singleElement().matches(e -> e > 9);
+	}
+
+	@Test
 	public void hasSize() {
 		int expectedSize = 3;
 		List<String> list = Arrays.asList("Apple", "Banana", "Cherry");

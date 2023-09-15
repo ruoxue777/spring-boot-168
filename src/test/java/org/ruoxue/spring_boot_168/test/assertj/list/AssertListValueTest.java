@@ -71,6 +71,19 @@ public class AssertListValueTest {
 	}
 
 	@Test
+	public void satisfies() {
+		Fruit apple = new Fruit("Apple", Double.MAX_VALUE, 1);
+		Fruit banana = new Fruit("Banana", 1, 2);
+		Fruit cherry = new Fruit("Cherry", -1, 3);
+		List<Fruit> list = Arrays.asList(apple, banana, cherry);
+		System.out.println(list);
+		assertThat(list).satisfies(l -> {
+			assertThat(l.get(0).getName().equals("Apple"));
+			assertThat(l.get(1)).isNotNull();
+		});
+	}
+
+	@Test
 	public void satisfiesAnyOf() {
 		Fruit apple = new Fruit("Apple", Double.MAX_VALUE, 1);
 		Fruit banana = new Fruit("Banana", 1, 2);
@@ -78,7 +91,9 @@ public class AssertListValueTest {
 		List<Fruit> list = Arrays.asList(apple, banana, cherry);
 		System.out.println(list);
 		assertThat(list).satisfiesAnyOf(l -> {
-			assertThat(l.get(1)).isNotNull();
+			assertThat(l.get(0).getName().equals("Apple"));
+		}, l -> {
+			assertThat(l.get(1)).isNull();
 		});
 	}
 
