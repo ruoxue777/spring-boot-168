@@ -84,5 +84,4 @@ public class AssertJExceptionAssertionsTest {
 		assertThatCode(() -> {
 		}).doesNotThrowAnyException();
 	}
-
 }
