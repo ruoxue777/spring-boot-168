@@ -1,6 +1,7 @@
 package org.ruoxue.spring_boot_168.test.assertj.optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatCode;
 
 import java.util.Optional;
 
@@ -28,6 +29,21 @@ public class AssertingOptionalsTest {
 		Optional<Integer> intValue = Optional.of(155);
 		System.out.println(intValue);
 		assertThat(intValue).matches(o -> o.get() != null, "notNull");
+	}
+
+	@Test
+	public void matchesThrowError() {
+		assertThatCode(() -> {
+			Optional<String> value = Optional.of("AssertJ");
+			System.out.println(value);
+			assertThat(value).matches(o -> false == o.isPresent(), "isPresent");
+		}).isInstanceOf(AssertionError.class);
+
+		assertThatCode(() -> {
+			Optional<Integer> intValue = Optional.of(155);
+			System.out.println(intValue);
+			assertThat(intValue).matches(o -> o.get() == null, "notNull");
+		}).isInstanceOf(AssertionError.class);
 	}
 
 	@Test
@@ -64,5 +80,27 @@ public class AssertingOptionalsTest {
 		}, o -> {
 			assertThat(o).isIn(Optional.of(0), Optional.of(1));
 		});
+	}
+
+	@Test
+	public void satisfiesThrowError() {
+		assertThatCode(() -> {
+			Optional<String> value = Optional.of("AssertJ");
+			System.out.println(value);
+			assertThat(value).satisfies(o -> {
+				assertThat(o).isNotEmpty();
+				assertThat(o).hasValue("155");
+			});
+		}).isInstanceOf(AssertionError.class);
+
+		assertThatCode(() -> {
+			Optional<Integer> intValue = Optional.of(155);
+			System.out.println(intValue);
+			assertThat(intValue).satisfies(o -> {
+				assertThat(o).isNotNull();
+			}, o -> {
+				assertThat(o).isIn(Optional.of(151), Optional.of(165));
+			});
+		}).isInstanceOf(AssertionError.class);
 	}
 }
