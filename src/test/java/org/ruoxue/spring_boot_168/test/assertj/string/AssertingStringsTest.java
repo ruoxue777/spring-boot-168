@@ -33,7 +33,7 @@ public class AssertingStringsTest {
 		String value = "AssertJ 155";
 		System.out.println(value);
 		assertThat(value).satisfies(s -> {
-			assertThat(s).isNotEmpty();
+			assertThat(s).isNotNull();
 			assertThat(s).hasSize(11);
 		});
 
@@ -51,7 +51,7 @@ public class AssertingStringsTest {
 		String value = "AssertJ 155";
 		System.out.println(value);
 		assertThat(value).satisfiesAnyOf(s -> {
-			assertThat(s).isNotEmpty();
+			assertThat(s).isNotNull();
 			assertThat(s).hasSize(11);
 		});
 
