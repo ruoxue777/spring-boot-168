@@ -63,5 +63,4 @@ public class AssertingStringsTest {
 			assertThat(s).hasSize(99);
 		});
 	}
-
 }

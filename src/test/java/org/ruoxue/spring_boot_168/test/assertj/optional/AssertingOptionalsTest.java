@@ -65,5 +65,4 @@ public class AssertingOptionalsTest {
 			assertThat(o).isIn(Optional.of(0), Optional.of(1));
 		});
 	}
-
 }
