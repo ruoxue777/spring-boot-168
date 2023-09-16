@@ -59,9 +59,11 @@ public class AssertJLocalDateTimeAssertionsTest {
 
 	@Test
 	public void isCloseToThrowError() {
-		LocalDateTime value = LocalDateTime.parse("2023-10-31T05:06:07");
-		System.out.println(value);
-		assertThat(value).isCloseTo("2023-10-31T05:06:01", within(5, ChronoUnit.SECONDS));
+		assertThatCode(() -> {
+			LocalDateTime value = LocalDateTime.parse("2023-10-31T05:06:07");
+			System.out.println(value);
+			assertThat(value).isCloseTo("2023-10-31T05:06:01", within(5, ChronoUnit.SECONDS));
+		}).isInstanceOf(AssertionError.class);
 	}
 
 	@Test
