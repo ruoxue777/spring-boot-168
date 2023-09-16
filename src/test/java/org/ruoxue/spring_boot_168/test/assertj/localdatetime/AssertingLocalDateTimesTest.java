@@ -106,5 +106,4 @@ public class AssertingLocalDateTimesTest {
 			});
 		}).isInstanceOf(AssertionError.class);
 	}
-
 }
