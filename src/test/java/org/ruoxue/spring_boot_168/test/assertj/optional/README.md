@@ -6,4 +6,4 @@
 3. [AssertJ Optional in Java with Examples](https://www.ruoxue.org/assertj-155-assertj-optional-in-java-with-examples/)
 4. [Testing with AssertJ Optional in Java](https://www.ruoxue.org/assertj-155-testing-with-assertj-optional-in-java/)
 5. [Unit Test Optional with AssertJ](https://www.ruoxue.org/assertj-155-unit-test-optional-with-assertj/)
-
+6. [Asserting Optionals with AssertJ](https://www.ruoxue.org/assertj-155-asserting-optionals-with-assertj/)
