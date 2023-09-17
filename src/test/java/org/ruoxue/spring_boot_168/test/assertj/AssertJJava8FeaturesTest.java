@@ -53,7 +53,7 @@ public class AssertJJava8FeaturesTest {
 	}
 
 	@Test
-	public void isPresent() {
+	public void optionalAssertions() {
 		Optional<String> value = Optional.of("AssertJ");
 		System.out.println(value);
 		assertThat(value).isPresent();
@@ -64,7 +64,7 @@ public class AssertJJava8FeaturesTest {
 	}
 
 	@Test
-	public void accepts() {
+	public void predicateAssertions() {
 		Predicate<String> lengthGreaterThan = s -> s.length() > 3;
 		System.out.println(lengthGreaterThan);
 		assertThat(lengthGreaterThan).accepts("AssertJ", "JUnit");
@@ -75,7 +75,7 @@ public class AssertJJava8FeaturesTest {
 	}
 
 	@Test
-	public void isBefore() {
+	public void localDateAssertions() {
 		LocalDateTime value = LocalDateTime.of(2023, 10, 31, 5, 6, 7);
 		System.out.println(value);
 		assertThat(value).isBefore(LocalDateTime.of(2023, 10, 31, 5, 6, 12));
