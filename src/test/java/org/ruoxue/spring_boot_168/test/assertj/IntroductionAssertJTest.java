@@ -101,7 +101,7 @@ public class IntroductionAssertJTest {
 	}
 
 	@Test
-	public void arayAssertions() {
+	public void arrayAssertions() {
 		Fruit durian = new Fruit("Durian", Double.MAX_VALUE, 2);
 		Fruit guava = new Fruit("Guava", 1, 2);
 		Fruit pitaya = new Fruit("Pitaya", -1, 2);
