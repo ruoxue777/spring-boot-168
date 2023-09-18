@@ -6,6 +6,7 @@ import static org.assertj.core.api.Assertions.assertThatCode;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Supplier;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
@@ -53,15 +54,15 @@ public class GettingStartedAssertJTest {
 	@Test
 	public void objectAssertions() {
 		Fruit apple = new Fruit("Apple", Double.MAX_VALUE, 1, Arrays.asList("Australia"));
-		Fruit cloneApple = new Fruit("Apple", Double.MAX_VALUE, 1, Arrays.asList("Australia"));
+		Fruit apple2 = new Fruit("Apple", Double.MAX_VALUE, 1, Arrays.asList("Australia"));
 		System.out.println(apple);
-		System.out.println(cloneApple);
+		System.out.println(apple2);
 
 		assertThatCode(() -> {
-			assertThat(apple).isEqualTo(cloneApple);
+			assertThat(apple).isEqualTo(apple2);
 		}).isInstanceOf(AssertionError.class);
 
-		assertThat(apple).usingRecursiveComparison().isEqualTo(cloneApple);
+		assertThat(apple).usingRecursiveComparison().isEqualTo(apple2);
 	}
 
 	@Test
@@ -86,6 +87,22 @@ public class GettingStartedAssertJTest {
 
 	@Test
 	public void describingAssertions() {
-
+		Fruit banana = new Fruit("Banana", 1, 3);
+		try {
+			assertThat(banana.getType()).as("%s's type should be equal to 2", banana.getName()).isEqualTo(2);
+		} catch (AssertionError e) {
+			e.printStackTrace();
+			assertThat(e).hasMessageContaining("type");
+		}
+		
+		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
+		String text = "Length expected: [" + 3 + "] but was: [" + array.length + "]";
+		try {
+			Supplier<String> desc = () -> text;
+			assertThat(array).as(desc).hasSize(2);
+		} catch (AssertionError e) {
+			e.printStackTrace();
+			assertThat(e).hasMessageContaining(text);
+		}
 	}
 }

@@ -92,6 +92,18 @@ public class TestingAssertJArrayTest {
 	public void as() {
 		int expectedSize = 2;
 		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
+		try {
+			assertThat(array).as("%s's length should be equal to 2", "Array").isEqualTo(expectedSize);
+		} catch (AssertionError e) {
+			e.printStackTrace();
+			assertThat(e).hasMessageContaining("length");
+		}
+	}
+
+	@Test
+	public void asWithSupplier() {
+		int expectedSize = 2;
+		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
 		String text = "Length expected: [" + expectedSize + "] but was: [" + array.length + "]";
 		try {
 			Supplier<String> desc = () -> text;

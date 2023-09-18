@@ -95,6 +95,18 @@ class TestingAssertJListTest {
 	public void as() {
 		int expectedSize = 2;
 		List<String> list = Arrays.asList("Apple", "Banana", "Cherry");
+		try {
+			assertThat(list).as("%s's size should be equal to 2", "List").isEqualTo(expectedSize);
+		} catch (AssertionError e) {
+			e.printStackTrace();
+			assertThat(e).hasMessageContaining("size");
+		}
+	}
+
+	@Test
+	public void asWithSupplier() {
+		int expectedSize = 2;
+		List<String> list = Arrays.asList("Apple", "Banana", "Cherry");
 		String text = "Size expected: [" + expectedSize + "] but was: [" + list.size() + "]";
 		try {
 			Supplier<String> desc = () -> text;

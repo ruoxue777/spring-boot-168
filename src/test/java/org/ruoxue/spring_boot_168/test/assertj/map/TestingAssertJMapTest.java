@@ -132,6 +132,21 @@ public class TestingAssertJMapTest {
 		map.put("Grape", 18);
 		map.put("Kiwifruit", 19);
 		map.put("Lemon", 20);
+		try {
+			assertThat(map).as("%s's size should be equal to 2", "Map").isEqualTo(expectedSize);
+		} catch (AssertionError e) {
+			e.printStackTrace();
+			assertThat(e).hasMessageContaining("size");
+		}
+	}
+
+	@Test
+	public void asWithSupplier() {
+		int expectedSize = 2;
+		Map<String, Integer> map = new HashMap<>();
+		map.put("Grape", 18);
+		map.put("Kiwifruit", 19);
+		map.put("Lemon", 20);
 		String text = "Size expected: [" + expectedSize + "] but was: [" + map.size() + "]";
 		try {
 			Supplier<String> desc = () -> text;
