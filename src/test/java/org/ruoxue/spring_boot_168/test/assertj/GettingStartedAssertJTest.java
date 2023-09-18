@@ -2,7 +2,13 @@ package org.ruoxue.spring_boot_168.test.assertj;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.contentOf;
 
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.InputStream;
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -68,23 +74,48 @@ public class GettingStartedAssertJTest {
 
 	@Test
 	public void classAssertions() {
-		assertThat(List.class).isInterface().isPublic();
-		assertThat(Collection.class).isAssignableFrom(List.class).hasNoSuperclass().hasPublicMethods("add");
+		Class<?> clazz = List.class;
+		System.out.println(clazz);
+		assertThat(clazz).isInterface().isPublic();
+
+		Class<?> clazz2 = Collection.class;
+		System.out.println(clazz2);
+		assertThat(clazz2).isAssignableFrom(clazz).hasNoSuperclass().hasPublicMethods("add");
 	}
 
 	@Test
 	public void fileAssertions() {
+		File file = new File("./build.gradle");
+		System.out.println(file);
+		assertThat(file).exists().isFile().isRelative();
+		assertThat(file).canRead().canWrite();
 
+		File file2 = new File("./README.md");
+		System.out.println(file2);
+		assertThat(contentOf(file2)).startsWith("# Ruoxue").contains("www.ruoxue.org");
 	}
 
 	@Test
 	public void inputStreamAssertions() {
+		byte[] value = "AssertJ".getBytes();
+		System.out.println(Arrays.toString(value));
+		InputStream inputStream = new ByteArrayInputStream(value);
+		assertThat(inputStream).isNotEmpty();
 
+		byte[] intValue = BigInteger.valueOf(155).toByteArray();
+		System.out.println(Arrays.toString(intValue));
+		InputStream inputStream2 = new ByteArrayInputStream(intValue);
+		assertThat(inputStream2).isNotNull();
 	}
 
 	@Test
-	public void exceptionAssertions() {
+	public void throwableAssertions() {
+		List<String> list = Arrays.asList("AssertJ", "155");
+		assertThatThrownBy(() -> {
+			list.get(2);
+		}).isInstanceOf(IndexOutOfBoundsException.class);
 
+		assertThatCode(() -> list.get(2)).isInstanceOf(IndexOutOfBoundsException.class);
 	}
 
 	@Test
