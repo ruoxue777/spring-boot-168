@@ -7,9 +7,12 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
+import org.assertj.core.api.Condition;
 import org.junit.jupiter.api.Test;
 
 import lombok.Builder;
@@ -74,6 +77,19 @@ public class IntroductionAssertJTest {
 	}
 
 	@Test
+	public void stringAssertions() {
+		String value = "AssertJ 155";
+		System.out.println(value);
+		Condition<String> length = new Condition<String>(s -> s.length() > 10, "length");
+		assertThat(value).matches(s -> s.length() < 12).is(length);
+
+		String value2 = "AssertJ";
+		System.out.println(value2);
+		Condition<String> length2 = new Condition<String>(s -> s.length() > 6, "length");
+		assertThat(value2).matches(s -> s.length() < 8).is(length2);
+	}
+
+	@Test
 	public void numberAssertions() {
 		int value = 155;
 		System.out.println(value);
@@ -85,25 +101,31 @@ public class IntroductionAssertJTest {
 	}
 
 	@Test
-	public void objectAssertions() {
-		Fruit apple = new Fruit("Apple", Double.MAX_VALUE, 1, Arrays.asList("Australia"));
-		Fruit cloneApple = new Fruit("Apple", Double.MAX_VALUE, 1, Arrays.asList("Australia"));
-		System.out.println(apple);
-		System.out.println(cloneApple);
+	public void arayAssertions() {
+		Fruit durian = new Fruit("Durian", Double.MAX_VALUE, 2);
+		Fruit guava = new Fruit("Guava", 1, 2);
+		Fruit pitaya = new Fruit("Pitaya", -1, 2);
+		Fruit[] array = new Fruit[] { durian, guava, pitaya };
+		System.out.println(Arrays.deepToString(array));
+		assertThat(array).allMatch(e -> e.getName().length() > 4).contains(durian, guava, pitaya);
+		assertThat(array).allMatch(e -> e.getType() == 2).hasSize(3);
 
-		assertThatCode(() -> {
-			assertThat(apple).isEqualTo(cloneApple);
-		}).isInstanceOf(AssertionError.class);
-
-		assertThat(apple).usingRecursiveComparison().isEqualTo(cloneApple);
+		int[] intArray = new int[] { 1, 2, 3, 4, 5 };
+		System.out.println(Arrays.toString(intArray));
+		assertThat(intArray).isNotNull().containsAnyOf(1, 9).containsSequence(3, 4);
 	}
 
 	@Test
-	public void iterableAssertions() {
+	public void listAssertions() {
 		List<String> list = Arrays.asList("Apple", "Banana", "Cherry");
 		System.out.println(list);
-		assertThat(list).isNotEmpty().contains("Banana", "Apple").doesNotContainNull().containsSequence("Banana",
+		assertThat(list).isNotNull().doesNotContainNull().contains("Banana", "Apple").containsSequence("Banana",
 				"Cherry");
+
+		List<Integer> intList = Stream.of(6, 7, 8, 9, 10).collect(Collectors.toList());
+		System.out.println(intList);
+		Condition<Integer> intValue = new Condition<Integer>(i -> i > 0, "value");
+		assertThat(intList).isNotEmpty().are(intValue);
 	}
 
 	@Test
@@ -113,6 +135,13 @@ public class IntroductionAssertJTest {
 		map.put("Kiwifruit", 19);
 		map.put("Lemon", 20);
 		System.out.println(map);
-		assertThat(map).isNotNull().containsKey("Kiwifruit").doesNotContainEntry("Apple", 19);
+		assertThat(map).isNotNull().containsKey("Kiwifruit").containsAnyOf(entry("Lemon", 20));
+		
+		Map<Integer, Integer> intMap = new HashMap<>();
+		intMap.put(1, 18);
+		intMap.put(2, 19);
+		intMap.put(3, 20);
+		System.out.println(intMap);
+		assertThat(intMap).isNotEmpty().containsEntry(1, 18);
 	}
 }

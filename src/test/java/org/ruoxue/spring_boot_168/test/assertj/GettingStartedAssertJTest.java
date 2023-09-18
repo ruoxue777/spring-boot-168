@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -47,6 +48,20 @@ public class GettingStartedAssertJTest {
 			builder.append("origins", origins);
 			return builder.toString();
 		}
+	}
+
+	@Test
+	public void objectAssertions() {
+		Fruit apple = new Fruit("Apple", Double.MAX_VALUE, 1, Arrays.asList("Australia"));
+		Fruit cloneApple = new Fruit("Apple", Double.MAX_VALUE, 1, Arrays.asList("Australia"));
+		System.out.println(apple);
+		System.out.println(cloneApple);
+
+		assertThatCode(() -> {
+			assertThat(apple).isEqualTo(cloneApple);
+		}).isInstanceOf(AssertionError.class);
+
+		assertThat(apple).usingRecursiveComparison().isEqualTo(cloneApple);
 	}
 
 	@Test
