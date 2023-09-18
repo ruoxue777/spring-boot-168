@@ -2,102 +2,89 @@ package org.ruoxue.spring_boot_168.test.assertj.clazz;
 
 import static org.assertj.core.api.Assertions.*;
 
-import java.util.Arrays;
-import java.util.List;
-
 import org.junit.jupiter.api.Test;
 
 public class AssertJClassAssertionsTest {
 
 	@Test
-	public void contains() {
-		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
-		System.out.println(Arrays.toString(array));
-		assertThat(array).contains("Guava", "Durian");
+	public void isNull() {
+		Class<?> clazz = null;
+		System.out.println(clazz);
+		assertThat(clazz).isNull();
 
-		int[] intArray = new int[] { 1, 2, 3, 4, 5 };
-		System.out.println(Arrays.toString(intArray));
-		assertThat(intArray).contains(1, 2, 3);
+		Class<?> intClazz = null;
+		System.out.println(intClazz);
+		assertThat(intClazz).isNull();
 	}
 
 	@Test
-	public void doesNotContain() {
-		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
-		System.out.println(Arrays.toString(array));
-		assertThat(array).doesNotContain("Mango");
+	public void isNotNull() {
+		Class<?> clazz = String.class;
+		System.out.println(clazz);
+		assertThat(clazz).isNotNull();
 
-		int[] intArray = new int[] { 1, 2, 3, 4, 5 };
-		System.out.println(Arrays.toString(intArray));
-		assertThat(intArray).doesNotContain(9);
+		Class<?> intClazz = Integer.class;
+		System.out.println(intClazz);
+		assertThat(intClazz).isNotNull();
 	}
 
 	@Test
-	public void containsOnly() {
-		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
-		System.out.println(Arrays.toString(array));
-		assertThat(array).containsOnly("Guava", "Pitaya", "Durian");
+	public void isEqualTo() {
+		Class<?> clazz = String.class;
+		Class<?> clazz2 = String.class;
+		System.out.println(clazz);
+		System.out.println(clazz2);
+		assertThat(clazz).isEqualTo(clazz2);
 
-		int[] intArray = new int[] { 1, 2, 3, 4, 5 };
-		System.out.println(Arrays.toString(intArray));
-		assertThat(intArray).containsOnly(5, 4, 1, 2, 3);
+		Class<?> intClazz = Integer.class;
+		Class<?> intClazz2 = Integer.class;
+		System.out.println(intClazz);
+		System.out.println(intClazz2);
+		assertThat(intClazz).isEqualTo(intClazz2);
 	}
 
 	@Test
-	public void containsOnlyOnce() {
-		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
-		System.out.println(Arrays.toString(array));
-		assertThat(array).containsOnlyOnce("Guava");
+	public void isNotEqualTo() {
+		Class<?> clazz = String.class;
+		Class<?> clazz2 = Character.class;
+		System.out.println(clazz);
+		System.out.println(clazz2);
+		assertThat(clazz).isNotEqualTo(clazz2);
 
-		int[] intArray = new int[] { 1, 2, 3, 4, 5 };
-		System.out.println(Arrays.toString(intArray));
-		assertThat(intArray).containsOnlyOnce(3);
+		Class<?> intClazz = Integer.class;
+		Class<?> doubleClazz2 = Double.class;
+		System.out.println(intClazz);
+		System.out.println(doubleClazz2);
+		assertThat(intClazz).isNotEqualTo(doubleClazz2);
 	}
 
 	@Test
-	public void containsOnlyNulls() {
-		String[] array = new String[] { null, null, null };
-		System.out.println(Arrays.toString(array));
-		assertThat(array).containsOnlyNulls();
+	public void isSameAs() {
+		Class<?> clazz = String.class;
+		Class<?> clazz2 = clazz;
+		System.out.println(clazz);
+		System.out.println(clazz2);
+		assertThat(clazz).isSameAs(clazz2);
 
-		Integer[] intArray = new Integer[] { null, null, null, null, null };
-		System.out.println(Arrays.toString(intArray));
-		assertThat(intArray).containsOnlyNulls();
+		Class<?> intClazz = Integer.class;
+		Class<?> intClazz2 = intClazz;
+		System.out.println(intClazz);
+		System.out.println(intClazz2);
+		assertThat(intClazz).isSameAs(intClazz2);
 	}
 
 	@Test
-	public void containsAll() {
-		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
-		List<String> list = Arrays.asList("Durian", "Guava");
-		System.out.println(Arrays.toString(array));
-		System.out.println(list);
-		assertThat(array).containsAll(list);
+	public void isNotSameAs() {
+		Class<?> clazz = String.class;
+		Class<?> clazz2 = Character.class;
+		System.out.println(clazz);
+		System.out.println(clazz2);
+		assertThat(clazz).isNotSameAs(clazz2);
 
-		Integer[] intArray = new Integer[] { 1, 2, 3, 4, 5 };
-		List<Integer> intList = Arrays.asList(1, 2, 3);
-		System.out.println(Arrays.toString(intArray));
-		System.out.println(intList);
-		assertThat(intArray).containsAll(intList);
-	}
-
-	@Test
-	public void containsExactly() {
-		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
-		System.out.println(Arrays.toString(array));
-		assertThat(array).containsExactly("Durian", "Guava", "Pitaya");
-
-		int[] intArray = new int[] { 1, 2, 3, 4, 5 };
-		System.out.println(Arrays.toString(intArray));
-		assertThat(intArray).containsOnly(1, 2, 3, 4, 5);
-	}
-
-	@Test
-	public void containsExactlyInAnyOrder() {
-		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
-		System.out.println(Arrays.toString(array));
-		assertThat(array).containsExactlyInAnyOrder("Guava", "Pitaya", "Durian");
-
-		int[] intArray = new int[] { 1, 2, 3, 4, 5 };
-		System.out.println(Arrays.toString(intArray));
-		assertThat(intArray).containsExactlyInAnyOrder(5, 4, 1, 2, 3);
+		Class<?> intClazz = Integer.class;
+		Class<?> doubleClazz2 = Double.class;
+		System.out.println(intClazz);
+		System.out.println(doubleClazz2);
+		assertThat(intClazz).isNotSameAs(doubleClazz2);
 	}
 }
