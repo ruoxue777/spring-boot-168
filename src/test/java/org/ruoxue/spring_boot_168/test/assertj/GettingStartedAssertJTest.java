@@ -69,6 +69,9 @@ public class GettingStartedAssertJTest {
 			assertThat(apple).isEqualTo(apple2);
 		}).isInstanceOf(AssertionError.class);
 
+		// @Deprecated
+		assertThat(apple).isEqualToComparingFieldByFieldRecursively(apple2);
+		// use
 		assertThat(apple).usingRecursiveComparison().isEqualTo(apple2);
 	}
 
