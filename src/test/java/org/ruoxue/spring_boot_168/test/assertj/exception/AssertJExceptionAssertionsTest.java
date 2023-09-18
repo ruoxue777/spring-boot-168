@@ -2,6 +2,8 @@ package org.ruoxue.spring_boot_168.test.assertj.exception;
 
 import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.BDDAssertions.thenNoException;
+import static org.assertj.core.api.BDDAssertions.thenCode;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -49,7 +51,7 @@ public class AssertJExceptionAssertionsTest {
 			}
 		}).isInstanceOf(RuntimeException.class).hasCauseInstanceOf(IOException.class)
 				.hasStackTraceContaining("IOException");
-		
+
 		assertThatCode(() -> {
 			try {
 				throw new IOException();
@@ -62,18 +64,17 @@ public class AssertJExceptionAssertionsTest {
 
 	@Test
 	public void exception() {
-		Exception ex = new Exception();
 		assertThatException().isThrownBy(() -> {
-			throw ex;
-		}).isEqualTo(ex).withStackTraceContaining("Exception");
+			throw new Exception("ex");
+		}).withMessage("ex").withStackTraceContaining("Exception");
 	}
 
 	@Test
 	public void illegalArgumentException() {
 		IllegalArgumentException ex = new IllegalArgumentException();
 		assertThatIllegalArgumentException().isThrownBy(() -> {
-			throw ex;
-		}).isEqualTo(ex).withStackTraceContaining("IllegalArgumentException");
+			throw new IllegalArgumentException("illegal");
+		}).withMessage("illegal").withStackTraceContaining("IllegalArgumentException");
 	}
 
 	@Test
@@ -81,7 +82,13 @@ public class AssertJExceptionAssertionsTest {
 		assertThatNoException().isThrownBy(() -> {
 		});
 
+		thenNoException().isThrownBy(() -> {
+		});
+
 		assertThatCode(() -> {
+		}).doesNotThrowAnyException();
+
+		thenCode(() -> {
 		}).doesNotThrowAnyException();
 	}
 }
