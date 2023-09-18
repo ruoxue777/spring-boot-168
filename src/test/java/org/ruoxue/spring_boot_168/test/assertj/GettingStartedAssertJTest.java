@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThatCode;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 import java.util.function.Supplier;
 
@@ -67,7 +68,8 @@ public class GettingStartedAssertJTest {
 
 	@Test
 	public void classAssertions() {
-
+		assertThat(List.class).isInterface().isPublic();
+		assertThat(Collection.class).isAssignableFrom(List.class).hasNoSuperclass().hasPublicMethods("add");
 	}
 
 	@Test
@@ -81,7 +83,7 @@ public class GettingStartedAssertJTest {
 	}
 
 	@Test
-	public void throwableAssertions() {
+	public void exceptionAssertions() {
 
 	}
 
@@ -94,7 +96,7 @@ public class GettingStartedAssertJTest {
 			e.printStackTrace();
 			assertThat(e).hasMessageContaining("type");
 		}
-		
+
 		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
 		String text = "Length expected: [" + 3 + "] but was: [" + array.length + "]";
 		try {
