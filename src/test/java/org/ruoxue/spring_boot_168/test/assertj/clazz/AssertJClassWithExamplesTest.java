@@ -2,8 +2,14 @@ package org.ruoxue.spring_boot_168.test.assertj.clazz;
 
 import static org.assertj.core.api.Assertions.*;
 
-import java.util.Arrays;
+import java.lang.annotation.Target;
+import java.util.Collection;
 import java.util.List;
+import java.util.function.BiConsumer;
+import java.util.function.Consumer;
+import java.util.function.Function;
+import java.util.function.UnaryOperator;
+import java.util.stream.IntStream;
 
 import org.assertj.core.api.Condition;
 import org.junit.jupiter.api.Test;
@@ -12,147 +18,73 @@ public class AssertJClassWithExamplesTest {
 
 	@Test
 	public void has() {
+		Class<?> clazz = Consumer.class;
+		System.out.println(clazz);
+		Condition<Class<?>> iface = new Condition<Class<?>>(c -> c.isInterface(), "iface");
+		assertThat(clazz).has(iface);
 
+		Class<?> clazz2 = int.class;
+		System.out.println(clazz2);
+		Condition<Class<?>> primitive = new Condition<Class<?>>(c -> c.isPrimitive(), "primitive");
+		assertThat(clazz2).has(primitive);
 	}
 
 	@Test
 	public void hasPackage() {
-		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
-		System.out.println(Arrays.toString(array));
-		Condition<String[]> length = new Condition<String[]>(s -> s.length > 2, "length");
-		assertThat(array).has(length);
+		Class<?> clazz = Function.class;
+		System.out.println(clazz);
+		assertThat(clazz).hasPackage("java.util.function");
+		assertThat(clazz).hasPackage(Package.getPackage("java.util.function"));
 
-		int[] intArray = new int[] { 1, 2, 3, 4, 5 };
-		System.out.println(Arrays.toString(intArray));
-		Condition<int[]> intLength = new Condition<int[]>(i -> i.length > 2, "length");
-		assertThat(intArray).has(intLength);
+		Class<?> clazz2 = IntStream.class;
+		System.out.println(clazz2);
+		assertThat(clazz2).hasPackage("java.util.stream");
+		assertThat(clazz2).hasPackage(Package.getPackage("java.util.stream"));
 	}
 
 	@Test
-	public void hasOnlyOneElementSatisfying() {
-		String[] array = new String[] { "Durian" };
-		System.out.println(Arrays.toString(array));
-		assertThat(array).hasOnlyOneElementSatisfying(e -> {
-			assertThat(e).hasSize(6);
-		});
+	public void hasAnnotation() {
+		Class<?> clazz = UnaryOperator.class;
+		System.out.println(clazz);
+		assertThat(clazz).hasAnnotation(FunctionalInterface.class);
 
-		Integer[] intArray = new Integer[] { 5 };
-		System.out.println(Arrays.toString(intArray));
-		assertThat(intArray).hasOnlyOneElementSatisfying(e -> {
-			assertThat(e).isGreaterThan(4);
-		});
+		Class<?> clazz2 = FunctionalInterface.class;
+		System.out.println(clazz2);
+		assertThat(clazz2).hasAnnotation(Target.class);
 	}
 
 	@Test
-	public void hasSize() {
-		int expectedSize = 3;
-		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
-		System.out.println(Arrays.toString(array));
-		assertThat(array).hasSize(expectedSize);
+	public void hasSuperclass() {
+		Class<?> clazz = String.class;
+		System.out.println(clazz);
+		assertThat(clazz).hasSuperclass(Object.class);
 
-		int[] intArray = new int[] { 1, 2, 3, 4, 5 };
-		System.out.println(Arrays.toString(intArray));
-		assertThat(intArray).hasSize(5);
+		Class<?> clazz2 = Integer.class;
+		System.out.println(clazz2);
+		assertThat(clazz2).hasSuperclass(Number.class);
 	}
 
 	@Test
-	public void hasSizeBetween() {
-		int expectedSize = 3;
-		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
-		System.out.println(Arrays.toString(array));
-		assertThat(array).hasSizeBetween(1, expectedSize);
+	public void hasNoSuperclass() {
+		Class<?> clazz = List.class;
+		System.out.println(clazz);
+		assertThat(clazz).hasNoSuperclass();
 
-		int[] intArray = new int[] { 1, 2, 3, 4, 5 };
-		System.out.println(Arrays.toString(intArray));
-		assertThat(intArray).hasSizeBetween(1, 5);
-	}
-
-	@Test
-	public void hasSizeGreaterThan() {
-		int expectedSize = 2;
-		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
-		System.out.println(Arrays.toString(array));
-		assertThat(array).hasSizeGreaterThan(expectedSize);
-
-		int[] intArray = new int[] { 1, 2, 3, 4, 5 };
-		System.out.println(Arrays.toString(intArray));
-		assertThat(intArray).hasSizeGreaterThan(expectedSize);
-	}
-
-	@Test
-	public void hasSizeLessThan() {
-		int expectedSize = 4;
-		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
-		System.out.println(Arrays.toString(array));
-		assertThat(array).hasSizeLessThan(expectedSize);
-
-		int[] intArray = new int[] { 1, 2, 3, 4, 5 };
-		System.out.println(Arrays.toString(intArray));
-		assertThat(intArray).hasSizeLessThan(6);
-	}
-
-	@Test
-	public void hasToString() {
-		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
-		System.out.println(Arrays.toString(array));
-		assertThat(array).hasToString(array.toString());
-
-		int[] intArray = new int[] { 1, 2, 3, 4, 5 };
-		System.out.println(Arrays.toString(intArray));
-		assertThat(intArray).hasToString(intArray.toString());
-	}
-
-	@Test
-	public void hasSameSizeAs() {
-		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
-		List<String> list = Arrays.asList("Durian", "Guava", "Pitaya");
-		System.out.println(Arrays.toString(array));
-		System.out.println(list);
-		assertThat(array).hasSameSizeAs(list);
-
-		int[] intArray = new int[] { 1, 2, 3, 4, 5 };
-		List<Integer> intList = Arrays.asList(1, 2, 3, 4, 5);
-		System.out.println(Arrays.toString(intArray));
-		System.out.println(intList);
-		assertThat(intArray).hasSameSizeAs(intList);
-	}
-
-	@Test
-	public void hasSameElementsAs() {
-		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
-		List<String> list = Arrays.asList("Durian", "Guava", "Pitaya");
-		System.out.println(Arrays.toString(array));
-		System.out.println(list);
-		assertThat(array).hasSameElementsAs(list);
-
-		Integer[] intArray = new Integer[] { 1, 2, 3, 4, 5 };
-		List<Integer> intList = Arrays.asList(1, 2, 3, 4, 5);
-		System.out.println(Arrays.toString(intArray));
-		System.out.println(intList);
-		assertThat(intArray).hasSameElementsAs(intList);
+		Class<?> clazz2 = Collection.class;
+		System.out.println(clazz2);
+		assertThat(clazz2).hasNoSuperclass();
 	}
 
 	@Test
 	public void doesNotHave() {
-		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
-		System.out.println(Arrays.toString(array));
-		Condition<String[]> length = new Condition<String[]>(s -> s.length > 3, "length");
-		assertThat(array).doesNotHave(length);
+		Class<?> clazz = BiConsumer.class;
+		System.out.println(clazz);
+		Condition<Class<?>> anno = new Condition<Class<?>>(c -> c.isAnnotation(), "annotation");
+		assertThat(clazz).doesNotHave(anno);
 
-		int[] intArray = new int[] { 1, 2, 3, 4, 5 };
-		System.out.println(Arrays.toString(intArray));
-		Condition<int[]> intLength = new Condition<int[]>(i -> i.length > 5, "length");
-		assertThat(intArray).doesNotHave(intLength);
-	}
-
-	@Test
-	public void doesNotHaveDuplicates() {
-		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
-		System.out.println(Arrays.toString(array));
-		assertThat(array).doesNotHaveDuplicates();
-
-		int[] intArray = new int[] { 1, 2, 3, 4, 5 };
-		System.out.println(Arrays.toString(intArray));
-		assertThat(intArray).doesNotHaveDuplicates();
+		Class<?> clazz2 = Integer.class;
+		System.out.println(clazz2);
+		Condition<Class<?>> primitive = new Condition<Class<?>>(c -> c.isEnum(), "enum");
+		assertThat(clazz2).doesNotHave(primitive);
 	}
 }

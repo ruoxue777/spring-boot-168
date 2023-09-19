@@ -2,6 +2,7 @@ package org.ruoxue.spring_boot_168.test.assertj.clazz;
 
 import static org.assertj.core.api.Assertions.*;
 
+import java.lang.annotation.Retention;
 import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.function.BiPredicate;
@@ -19,9 +20,9 @@ public class AssertJClassAssertionsTest {
 		System.out.println(clazz);
 		assertThat(clazz).isAbstract();
 
-		Class<?> numberClazz = Number.class;
-		System.out.println(numberClazz);
-		assertThat(numberClazz).isAbstract();
+		Class<?> clazz2 = Number.class;
+		System.out.println(clazz2);
+		assertThat(clazz2).isAbstract();
 	}
 
 	@Test
@@ -30,9 +31,9 @@ public class AssertJClassAssertionsTest {
 		System.out.println(clazz);
 		assertThat(clazz).isInterface();
 
-		Class<?> biPredicateClazz = BiPredicate.class;
-		System.out.println(biPredicateClazz);
-		assertThat(biPredicateClazz).isInterface();
+		Class<?> clazz2 = BiPredicate.class;
+		System.out.println(clazz2);
+		assertThat(clazz2).isInterface();
 	}
 
 	@Test
@@ -41,9 +42,9 @@ public class AssertJClassAssertionsTest {
 		System.out.println(clazz);
 		assertThat(clazz).isNotInterface();
 
-		Class<?> intClazz = Integer.class;
-		System.out.println(intClazz);
-		assertThat(intClazz).isNotInterface();
+		Class<?> clazz2 = Integer.class;
+		System.out.println(clazz2);
+		assertThat(clazz2).isNotInterface();
 	}
 
 	@Test
@@ -52,9 +53,9 @@ public class AssertJClassAssertionsTest {
 		System.out.println(clazz);
 		assertThat(clazz).isFinal();
 
-		Class<?> ldtClazz = LocalDateTime.class;
-		System.out.println(ldtClazz);
-		assertThat(ldtClazz).isFinal();
+		Class<?> clazz2 = LocalDateTime.class;
+		System.out.println(clazz2);
+		assertThat(clazz2).isFinal();
 	}
 
 	@Test
@@ -63,9 +64,9 @@ public class AssertJClassAssertionsTest {
 		System.out.println(clazz);
 		assertThat(clazz).isNotFinal();
 
-		Class<?> threadClazz = Thread.class;
-		System.out.println(threadClazz);
-		assertThat(threadClazz).isNotFinal();
+		Class<?> clazz2 = Thread.class;
+		System.out.println(clazz2);
+		assertThat(clazz2).isNotFinal();
 	}
 
 	@Test
@@ -74,9 +75,9 @@ public class AssertJClassAssertionsTest {
 		System.out.println(clazz);
 		assertThat(clazz).isAnnotation();
 
-		Class<?> deprecatedClazz = Deprecated.class;
-		System.out.println(deprecatedClazz);
-		assertThat(deprecatedClazz).isAnnotation();
+		Class<?> clazz2 = Retention.class;
+		System.out.println(clazz2);
+		assertThat(clazz2).isAnnotation();
 	}
 
 	@Test
@@ -85,8 +86,8 @@ public class AssertJClassAssertionsTest {
 		System.out.println(clazz);
 		assertThat(clazz).isNotAnnotation();
 
-		Class<?> streamClazz = Stream.class;
-		System.out.println(streamClazz);
-		assertThat(streamClazz).isNotAnnotation();
+		Class<?> clazz2 = Stream.class;
+		System.out.println(clazz2);
+		assertThat(clazz2).isNotAnnotation();
 	}
 }

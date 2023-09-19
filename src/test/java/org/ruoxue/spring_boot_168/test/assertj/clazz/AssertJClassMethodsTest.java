@@ -12,9 +12,9 @@ public class AssertJClassMethodsTest {
 		System.out.println(clazz);
 		assertThat(clazz).isNull();
 
-		Class<?> intClazz = null;
-		System.out.println(intClazz);
-		assertThat(intClazz).isNull();
+		Class<?> clazz2 = null;
+		System.out.println(clazz2);
+		assertThat(clazz2).isNull();
 	}
 
 	@Test
@@ -23,9 +23,9 @@ public class AssertJClassMethodsTest {
 		System.out.println(clazz);
 		assertThat(clazz).isNotNull();
 
-		Class<?> intClazz = Integer.class;
-		System.out.println(intClazz);
-		assertThat(intClazz).isNotNull();
+		Class<?> clazz2 = Integer.class;
+		System.out.println(clazz2);
+		assertThat(clazz2).isNotNull();
 	}
 
 	@Test
@@ -52,10 +52,10 @@ public class AssertJClassMethodsTest {
 		assertThat(clazz).isNotEqualTo(clazz2);
 
 		Class<?> intClazz = Integer.class;
-		Class<?> doubleClazz = Double.class;
+		Class<?> intClazz2 = Double.class;
 		System.out.println(intClazz);
-		System.out.println(doubleClazz);
-		assertThat(intClazz).isNotEqualTo(doubleClazz);
+		System.out.println(intClazz2);
+		assertThat(intClazz).isNotEqualTo(intClazz2);
 	}
 
 	@Test
@@ -82,9 +82,9 @@ public class AssertJClassMethodsTest {
 		assertThat(clazz).isNotSameAs(clazz2);
 
 		Class<?> intClazz = Integer.class;
-		Class<?> doubleClazz = Double.class;
+		Class<?> intClazz2 = Double.class;
 		System.out.println(intClazz);
-		System.out.println(doubleClazz);
-		assertThat(intClazz).isNotSameAs(doubleClazz);
+		System.out.println(intClazz2);
+		assertThat(intClazz).isNotSameAs(intClazz2);
 	}
 }
