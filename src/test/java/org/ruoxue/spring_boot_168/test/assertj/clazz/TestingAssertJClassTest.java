@@ -2,11 +2,8 @@ package org.ruoxue.spring_boot_168.test.assertj.clazz;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import java.util.Arrays;
-
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
-import org.assertj.core.api.Condition;
 import org.junit.jupiter.api.Test;
 
 import lombok.Builder;
@@ -60,7 +57,7 @@ public class TestingAssertJClassTest {
 	public void hasDeclaredMethods() {
 		Class<?> clazz = String.class;
 		System.out.println(clazz);
-		assertThat(clazz).hasDeclaredMethods("concat","nonSyncContentEquals");
+		assertThat(clazz).hasDeclaredMethods("concat", "nonSyncContentEquals");
 
 		Class<?> clazz2 = Fruit.class;
 		System.out.println(clazz2);

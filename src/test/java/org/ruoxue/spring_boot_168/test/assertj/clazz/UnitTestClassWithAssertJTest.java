@@ -2,12 +2,6 @@ package org.ruoxue.spring_boot_168.test.assertj.clazz;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import java.math.BigInteger;
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
 import org.assertj.core.api.Condition;
 import org.junit.jupiter.api.Test;
 
@@ -17,69 +11,69 @@ public class UnitTestClassWithAssertJTest {
 	public void is() {
 		Class<?> clazz = CharSequence.class;
 		System.out.println(clazz);
-		Condition<Class<?>> iface = new Condition<Class<?>>(s -> s.isInterface(), "interface");
+		Condition<Class<?>> iface = new Condition<Class<?>>(c -> c.isInterface(), "interface");
 		assertThat(clazz).is(iface);
 
 		Class<?> intClazz = int.class;
 		System.out.println(intClazz);
-		Condition<Class<?>> primitive = new Condition<Class<?>>(s -> s.isPrimitive(), "primitive");
+		Condition<Class<?>> primitive = new Condition<Class<?>>(c -> c.isPrimitive(), "primitive");
 		assertThat(intClazz).is(primitive);
 	}
 
 	@Test
 	public void isNot() {
-		List<String> list = Arrays.asList("Apple", "Banana", "Cherry");
-		System.out.println(list);
-		Condition<List<?>> size = new Condition<List<?>>(s -> s.size() > 3, "size");
-		assertThat(list).isNot(size);
+		Class<?> clazz = CharSequence.class;
+		System.out.println(clazz);
+		Condition<Class<?>> iface = new Condition<Class<?>>(c -> c.isPrimitive(), "interface");
+		assertThat(clazz).isNot(iface);
 
-		List<Integer> intList = Stream.of(6, 7, 8, 9, 10).collect(Collectors.toList());
-		System.out.println(intList);
-		Condition<List<?>> intSize = new Condition<List<?>>(s -> s.size() > 5, "size");
-		assertThat(intList).isNot(intSize);
+		Class<?> intClazz = int.class;
+		System.out.println(intClazz);
+		Condition<Class<?>> primitive = new Condition<Class<?>>(c -> c.isInterface(), "primitive");
+		assertThat(intClazz).isNot(primitive);
 	}
 
 	@Test
 	public void isIn() {
-		List<String> list = Arrays.asList("Apple", "Banana", "Cherry");
-		System.out.println(list);
-		assertThat("Banana").isIn(list);
+		Class<?> clazz = CharSequence.class;
+		System.out.println(clazz);
+		assertThat(clazz).isIn(CharSequence.class, String.class);
 
-		List<Integer> intList = Stream.of(6, 7, 8, 9, 10).collect(Collectors.toList());
-		System.out.println(intList);
-		assertThat(8).isIn(intList);
+		Class<?> intClazz = int.class;
+		System.out.println(intClazz);
+		assertThat(intClazz).isIn(int.class, Integer.class);
 	}
 
 	@Test
 	public void isNotIn() {
-		List<String> list = Arrays.asList("Apple", "Banana", "Cherry");
-		System.out.println(list);
-		assertThat("Grape").isNotIn(list);
+		Class<?> clazz = CharSequence.class;
+		System.out.println(clazz);
+		assertThat(clazz).isNotIn(int.class, Integer.class);
 
-		List<Integer> intList = Stream.of(6, 7, 8, 9, 10).collect(Collectors.toList());
-		System.out.println(intList);
-		assertThat(1).isNotIn(intList);
+		Class<?> intClazz = int.class;
+		System.out.println(intClazz);
+		assertThat(intClazz).isNotIn(CharSequence.class, String.class);
 	}
 
 	@Test
 	public void isInstanceOf() {
-		List<String> list = Arrays.asList("Apple", "Banana", "Cherry");
-		System.out.println(list);
-		assertThat(list).isInstanceOf(List.class);
+		Class<?> clazz = CharSequence.class;
+		System.out.println(clazz);
+		assertThat(new String()).isInstanceOf(clazz);
 
-		List<Integer> intList = Stream.of(6, 7, 8, 9, 10).collect(Collectors.toList());
-		System.out.println(intList);
-		assertThat(intList).isInstanceOf(List.class);
+		Class<?> intClazz = Integer.class;
+		System.out.println(intClazz);
+		assertThat(1).isInstanceOf(intClazz);
 	}
 
 	@Test
 	public void isNotInstanceOf() {
-		List<String> list = Arrays.asList("Apple", "Banana", "Cherry");
-		System.out.println(list);
-		assertThat(list).isNotInstanceOf(String.class);
+		Class<?> clazz = CharSequence.class;
+		System.out.println(clazz);
+		assertThat(1).isNotInstanceOf(clazz);
 
-		List<Integer> intList = Stream.of(6, 7, 8, 9, 10).collect(Collectors.toList());
-		System.out.println(intList);
-		assertThat(intList).isNotInstanceOf(Integer.class);
+		Class<?> intClazz = Integer.class;
+		System.out.println(intClazz);
+		assertThat(new String()).isNotInstanceOf(intClazz);
 	}
 }
