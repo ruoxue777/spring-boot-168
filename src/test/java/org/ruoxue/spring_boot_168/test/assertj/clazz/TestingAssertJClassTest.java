@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 public class TestingAssertJClassTest {
 
 	@Test
-	public void are() {
+	public void hasDeclaredFields() {
 		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
 		System.out.println(Arrays.toString(array));
 		Condition<String> length = new Condition<String>(s -> s.length() > 4, "length");

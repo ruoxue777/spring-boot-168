@@ -8,6 +8,3 @@
 5. [Unit Test Class with AssertJ](https://www.ruoxue.org/assertj-155-unit-test-class-with-assertj/)
 6. [Unit Test AssertJ Class with Examples](https://www.ruoxue.org/assertj-155-unit-test-assertj-class-with-examples/)
 7. [Asserting Classes with AssertJ](https://www.ruoxue.org/assertj-155-asserting-classees-with-assertj/)
-8. [Asserting Classes Methods](https://www.ruoxue.org/assertj-155-asserting-classees-methods/)
-9. [Asserting Classes in Java with Examples](https://www.ruoxue.org/assertj-155-asserting-classees-in-java-with-examples/)
-10. [Assert Class Value in Java](https://www.ruoxue.org/assertj-155-assert-class-value-in-java/)

@@ -43,88 +43,96 @@ public class AssertingClassesTest {
 	}
 
 	@Test
-	public void filteredOn() {
-		int expectedSize = 1;
-		Fruit apple = new Fruit("Apple", Double.MAX_VALUE, 1);
-		Fruit banana = new Fruit("Banana", 1, 2);
-		Fruit cherry = new Fruit("Cherry", -1, 3);
-		List<Fruit> list = Arrays.asList(apple, banana, cherry);
-		System.out.println(list);
-		assertThat(list).filteredOn(Fruit::getName, "Banana").hasSize(expectedSize);
-		assertThat(list).filteredOn(Fruit::getType, 2).hasSize(expectedSize);
+	public void matches() {
+		String value = "AssertJ 155";
+		System.out.println(value);
+		assertThat(value).matches(s -> s.length() < 12);
+
+		value = "AssertJ";
+		System.out.println(value);
+		assertThat(value).matches(s -> s.length() < 8);
 	}
 
 	@Test
-	public void filteredOnWithPredicate() {
-		int expectedSize = 2;
-		Fruit apple = new Fruit("Apple", Double.MAX_VALUE, 1);
-		Fruit banana = new Fruit("Banana", 1, 2);
-		Fruit cherry = new Fruit("Cherry", -1, 3);
-		List<Fruit> list = Arrays.asList(apple, banana, cherry);
-		System.out.println(list);
-		assertThat(list).filteredOn(e -> e.getName().length() > 5).hasSize(expectedSize);
-		assertThat(list).filteredOn(e -> e.getQuantity() > 0).hasSize(expectedSize);
+	public void matchesWithDescription() {
+		String value = "AssertJ 155";
+		System.out.println(value);
+		assertThat(value).matches(s -> s.length() < 12, "length");
+
+		value = "AssertJ";
+		System.out.println(value);
+		assertThat(value).matches(s -> s.length() < 8, "length");
 	}
 
 	@Test
-	public void filteredOnWithFieldName() {
-		int expectedSize = 1;
-		Fruit apple = new Fruit("Apple", Double.MAX_VALUE, 1);
-		Fruit banana = new Fruit("Banana", 1, 2);
-		Fruit cherry = new Fruit("Cherry", -1, 3);
-		List<Fruit> list = Arrays.asList(apple, banana, cherry);
-		System.out.println(list);
-		assertThat(list).filteredOn("name", "Banana").hasSize(expectedSize);
-		assertThat(list).filteredOn("type", 2).hasSize(expectedSize);
+	public void matchesThrowError() {
+		assertThatCode(() -> {
+			String value = "AssertJ 155";
+			System.out.println(value);
+			assertThat(value).matches(s -> s.length() > 12, "length");
+		}).isInstanceOf(AssertionError.class);
+
+		assertThatCode(() -> {
+			String value = "AssertJ";
+			System.out.println(value);
+			assertThat(value).matches(s -> s.length() > 8, "length");
+		}).isInstanceOf(AssertionError.class);
 	}
 
 	@Test
-	public void filteredOnWithFilterOperator() {
-		int expectedSize = 1;
-		Fruit apple = new Fruit("Apple", Double.MAX_VALUE, 1);
-		Fruit banana = new Fruit("Banana", 1, 2);
-		Fruit cherry = new Fruit("Cherry", -1, 3);
-		List<Fruit> list = Arrays.asList(apple, banana, cherry);
-		System.out.println(list);
-		assertThat(list).filteredOn("name", in("Banana", "Cherry")).filteredOn(Fruit::getType, 2).hasSize(expectedSize);
-		assertThat(list).filteredOn("type", notIn(1, 2)).filteredOn(e -> e.getQuantity() < 0).hasSize(expectedSize);
-	}
+	public void satisfies() {
+		String value = "AssertJ 155";
+		System.out.println(value);
+		assertThat(value).satisfies(s -> {
+			assertThat(s).isNotNull();
+			assertThat(s).hasSize(11);
+		});
 
-	@Test
-	public void filteredOnWithCondition() {
-		int expectedSize = 2;
-		Fruit apple = new Fruit("Apple", Double.MAX_VALUE, 1);
-		Fruit banana = new Fruit("Banana", 1, 2);
-		Fruit cherry = new Fruit("Cherry", -1, 3);
-		List<Fruit> list = Arrays.asList(apple, banana, cherry);
-		System.out.println(list);
-		Condition<Fruit> length = new Condition<Fruit>(o -> o.name.length() > 5, "length");
-		assertThat(list).filteredOn(length).hasSize(expectedSize);
-
-		Condition<Fruit> quantity = new Condition<Fruit>(o -> o.quantity > 0, "quantity");
-		assertThat(list).filteredOn(quantity).hasSize(expectedSize);
-	}
-
-	@Test
-	public void filteredOnAssertions() {
-		Fruit apple = new Fruit("Apple", Double.MAX_VALUE, 1);
-		Fruit banana = new Fruit("Banana", 1, 2);
-		Fruit cherry = new Fruit("Cherry", -1, 3);
-		List<Fruit> list = Arrays.asList(apple, banana, cherry);
-		System.out.println(list);
-		assertThat(list).filteredOnAssertions(e -> {
-			double result = 1 / 0;
+		value = "AssertJ";
+		System.out.println(value);
+		assertThat(value).satisfies(s -> {
+			assertThat(s).isNotEmpty();
+		}, s -> {
+			assertThat(s).hasSize(7);
 		});
 	}
 
 	@Test
-	public void filteredOnNull() {
-		int expectedSize = 1;
-		Fruit apple = new Fruit("Apple", Double.MAX_VALUE, 1);
-		Fruit banana = new Fruit(null, 1, 2);
-		Fruit cherry = new Fruit("Cherry", -1, 3);
-		List<Fruit> list = Arrays.asList(apple, banana, cherry);
-		System.out.println(list);
-		assertThat(list).filteredOnNull("name").hasSize(expectedSize);
+	public void satisfiesAnyOf() {
+		String value = "AssertJ 155";
+		System.out.println(value);
+		assertThat(value).satisfiesAnyOf(s -> {
+			assertThat(s).isNotNull();
+			assertThat(s).hasSize(11);
+		});
+
+		value = "AssertJ";
+		System.out.println(value);
+		assertThat(value).satisfiesAnyOf(s -> {
+			assertThat(s).isNotEmpty();
+		}, s -> {
+			assertThat(s).hasSize(99);
+		});
 	}
-}
+
+	@Test
+	public void satisfiesThrowError() {
+		assertThatCode(() -> {
+			String value = "AssertJ 155";
+			System.out.println(value);
+			assertThat(value).satisfies(s -> {
+				assertThat(s).isNotNull();
+				assertThat(s).hasSize(12);
+			});
+		}).isInstanceOf(AssertionError.class);
+
+		assertThatCode(() -> {
+			String value = "AssertJ";
+			System.out.println(value);
+			assertThat(value).satisfies(s -> {
+				assertThat(s).isNotEmpty();
+			}, s -> {
+				assertThat(s).hasSize(8);
+			});
+		}).isInstanceOf(AssertionError.class);
+	}}

@@ -12,6 +12,11 @@ public class AssertJClassWithExamplesTest {
 
 	@Test
 	public void has() {
+
+	}
+
+	@Test
+	public void hasPackage() {
 		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
 		System.out.println(Arrays.toString(array));
 		Condition<String[]> length = new Condition<String[]>(s -> s.length > 2, "length");

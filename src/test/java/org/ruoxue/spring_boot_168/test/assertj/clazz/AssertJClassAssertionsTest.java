@@ -7,14 +7,14 @@ import org.junit.jupiter.api.Test;
 public class AssertJClassAssertionsTest {
 
 	@Test
-	public void isNull() {
-		Class<?> clazz = null;
+	public void isAbstract() {
+		Class<?> clazz = CharSequence.class;
 		System.out.println(clazz);
-		assertThat(clazz).isNull();
+		assertThat(clazz).isAbstract();
 
-		Class<?> intClazz = null;
+		Class<?> intClazz = Number.class;
 		System.out.println(intClazz);
-		assertThat(intClazz).isNull();
+		assertThat(intClazz).isAbstract();
 	}
 
 	@Test
