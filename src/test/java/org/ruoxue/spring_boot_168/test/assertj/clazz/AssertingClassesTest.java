@@ -2,9 +2,9 @@ package org.ruoxue.spring_boot_168.test.assertj.clazz;
 
 import static org.assertj.core.api.Assertions.*;
 
-
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
+import org.assertj.core.api.Condition;
 import org.junit.jupiter.api.Test;
 
 import lombok.Builder;
@@ -41,95 +41,96 @@ public class AssertingClassesTest {
 
 	@Test
 	public void matches() {
-		String value = "AssertJ 155";
-		System.out.println(value);
-		assertThat(value).matches(s -> s.length() < 12);
+		Class<?> clazz = CharSequence.class;
+		System.out.println(clazz);
+		assertThat(clazz).matches(c -> c.isInterface());
 
-		value = "AssertJ";
-		System.out.println(value);
-		assertThat(value).matches(s -> s.length() < 8);
+		Class<?> clazz2 = int.class;
+		System.out.println(clazz2);
+		assertThat(clazz2).matches(c -> c.isPrimitive());
 	}
 
 	@Test
 	public void matchesWithDescription() {
-		String value = "AssertJ 155";
-		System.out.println(value);
-		assertThat(value).matches(s -> s.length() < 12, "length");
+		Class<?> clazz = CharSequence.class;
+		System.out.println(clazz);
+		assertThat(clazz).matches(c -> c.isInterface(), "interface");
 
-		value = "AssertJ";
-		System.out.println(value);
-		assertThat(value).matches(s -> s.length() < 8, "length");
+		Class<?> clazz2 = int.class;
+		System.out.println(clazz2);
+		assertThat(clazz2).matches(c -> c.isPrimitive(), "primitive");
 	}
 
 	@Test
 	public void matchesThrowError() {
 		assertThatCode(() -> {
-			String value = "AssertJ 155";
-			System.out.println(value);
-			assertThat(value).matches(s -> s.length() > 12, "length");
+			Class<?> clazz = CharSequence.class;
+			System.out.println(clazz);
+			assertThat(clazz).matches(c -> c.isPrimitive(), "primitive");
 		}).isInstanceOf(AssertionError.class);
 
 		assertThatCode(() -> {
-			String value = "AssertJ";
-			System.out.println(value);
-			assertThat(value).matches(s -> s.length() > 8, "length");
+			Class<?> clazz = int.class;
+			System.out.println(clazz);
+			assertThat(clazz).matches(c -> c.isInterface(), "interface");
 		}).isInstanceOf(AssertionError.class);
 	}
 
 	@Test
 	public void satisfies() {
-		String value = "AssertJ 155";
-		System.out.println(value);
-		assertThat(value).satisfies(s -> {
-			assertThat(s).isNotNull();
-			assertThat(s).hasSize(11);
+		Class<?> clazz = CharSequence.class;
+		System.out.println(clazz);
+		assertThat(clazz).satisfies(c -> {
+			assertThat(c).isInterface();
+			assertThat(c).isPublic();
 		});
 
-		value = "AssertJ";
-		System.out.println(value);
-		assertThat(value).satisfies(s -> {
-			assertThat(s).isNotEmpty();
-		}, s -> {
-			assertThat(s).hasSize(7);
+		clazz = int.class;
+		System.out.println(clazz);
+		assertThat(clazz).satisfies(c -> {
+			assertThat(c).isAbstract();
+		}, c -> {
+			assertThat(c).isFinal();
 		});
 	}
 
 	@Test
 	public void satisfiesAnyOf() {
-		String value = "AssertJ 155";
-		System.out.println(value);
-		assertThat(value).satisfiesAnyOf(s -> {
-			assertThat(s).isNotNull();
-			assertThat(s).hasSize(11);
+		Class<?> clazz = CharSequence.class;
+		System.out.println(clazz);
+		assertThat(clazz).satisfiesAnyOf(c -> {
+			assertThat(c).isInterface();
+			assertThat(c).isPublic();
 		});
 
-		value = "AssertJ";
-		System.out.println(value);
-		assertThat(value).satisfiesAnyOf(s -> {
-			assertThat(s).isNotEmpty();
-		}, s -> {
-			assertThat(s).hasSize(99);
+		clazz = int.class;
+		System.out.println(clazz);
+		assertThat(clazz).satisfiesAnyOf(c -> {
+			assertThat(c).isAbstract();
+		}, c -> {
+			assertThat(c).isAnnotation();
 		});
 	}
 
 	@Test
 	public void satisfiesThrowError() {
 		assertThatCode(() -> {
-			String value = "AssertJ 155";
-			System.out.println(value);
-			assertThat(value).satisfies(s -> {
-				assertThat(s).isNotNull();
-				assertThat(s).hasSize(12);
+			Class<?> clazz = CharSequence.class;
+			System.out.println(clazz);
+			assertThat(clazz).satisfies(c -> {
+				assertThat(c).isInterface();
+				assertThat(c).isProtected();
 			});
 		}).isInstanceOf(AssertionError.class);
 
 		assertThatCode(() -> {
-			String value = "AssertJ";
-			System.out.println(value);
-			assertThat(value).satisfies(s -> {
-				assertThat(s).isNotEmpty();
-			}, s -> {
-				assertThat(s).hasSize(8);
+			Class<?>clazz = int.class;
+			System.out.println(clazz);
+			assertThat(clazz).satisfies(c -> {
+				assertThat(c).isAbstract();
+			}, c -> {
+				assertThat(c).isAnnotation();
 			});
 		}).isInstanceOf(AssertionError.class);
-	}}
+	}
+}
