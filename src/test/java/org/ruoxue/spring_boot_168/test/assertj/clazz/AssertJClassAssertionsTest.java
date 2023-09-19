@@ -42,7 +42,7 @@ public class AssertJClassAssertionsTest {
 		System.out.println(clazz);
 		assertThat(clazz).isNotInterface();
 
-		Class<?> clazz2 = Integer.class;
+		Class<?> clazz2 = int.class;
 		System.out.println(clazz2);
 		assertThat(clazz2).isNotInterface();
 	}
