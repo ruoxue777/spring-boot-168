@@ -3,114 +3,114 @@ package org.ruoxue.spring_boot_168.test.assertj.clazz;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Arrays;
-import java.util.function.Supplier;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 import org.assertj.core.api.Condition;
 import org.junit.jupiter.api.Test;
 
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 public class TestingAssertJClassTest {
+
+	@NoArgsConstructor
+	@Getter
+	@Setter
+	@Builder
+	public static class Fruit {
+		public String name;
+		public double quantity;
+		private int type;
+
+		public Fruit(String name, double quantity, int type) {
+			this.name = name;
+			this.quantity = quantity;
+			this.type = type;
+		}
+
+		public String toString() {
+			ToStringBuilder builder = new ToStringBuilder(this, ToStringStyle.JSON_STYLE);
+			builder.appendSuper(super.toString());
+			builder.append("name", name);
+			builder.append("quantity", quantity);
+			builder.append("type", type);
+			return builder.toString();
+		}
+
+		private void toFormat() {
+
+		}
+	}
 
 	@Test
 	public void hasDeclaredFields() {
-		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
-		System.out.println(Arrays.toString(array));
-		Condition<String> length = new Condition<String>(s -> s.length() > 4, "length");
-		assertThat(array).are(length);
+		Class<?> clazz = String.class;
+		System.out.println(clazz);
+		assertThat(clazz).hasDeclaredFields("value");
 
-		Integer[] intArray = new Integer[] { 1, 2, 3, 4, 5 };
-		System.out.println(Arrays.toString(intArray));
-		Condition<Integer> intValue = new Condition<Integer>(i -> i > 0, "value");
-		assertThat(intArray).are(intValue);
+		Class<?> clazz2 = Fruit.class;
+		System.out.println(clazz2);
+		assertThat(clazz2).hasDeclaredFields("name", "quantity");
 	}
 
 	@Test
-	public void areAtLeast() {
-		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
-		System.out.println(Arrays.toString(array));
-		Condition<String> length = new Condition<String>(s -> s.length() > 5, "length");
-		assertThat(array).areAtLeast(2, length);
+	public void hasDeclaredMethods() {
+		Class<?> clazz = String.class;
+		System.out.println(clazz);
+		assertThat(clazz).hasDeclaredMethods("concat","nonSyncContentEquals");
 
-		Integer[] intArray = new Integer[] { 1, 2, 3, 4, 5 };
-		System.out.println(Arrays.toString(intArray));
-		Condition<Integer> intValue = new Condition<Integer>(i -> i > 1, "value");
-		assertThat(intArray).areAtLeast(2, intValue);
+		Class<?> clazz2 = Fruit.class;
+		System.out.println(clazz2);
+		assertThat(clazz2).hasDeclaredMethods("getName", "toFormat");
 	}
 
 	@Test
-	public void areAtLeastOne() {
-		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
-		System.out.println(Arrays.toString(array));
-		Condition<String> length = new Condition<String>(s -> s.length() > 5, "length");
-		assertThat(array).areAtLeastOne(length);
+	public void hasPublicFields() {
+		Class<?> clazz = String.class;
+		System.out.println(clazz);
+		assertThat(clazz).hasPublicFields("CASE_INSENSITIVE_ORDER");
 
-		Integer[] intArray = new Integer[] { 1, 2, 3, 4, 5 };
-		System.out.println(Arrays.toString(intArray));
-		Condition<Integer> intValue = new Condition<Integer>(i -> i > 4, "value");
-		assertThat(intArray).areAtLeastOne(intValue);
+		Class<?> clazz2 = Fruit.class;
+		System.out.println(clazz2);
+		assertThat(clazz2).hasPublicFields("name");
 	}
 
 	@Test
-	public void areAtMost() {
-		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
-		System.out.println(Arrays.toString(array));
-		Condition<String> length = new Condition<String>(s -> s.length() > 5, "length");
-		assertThat(array).areAtMost(2, length);
+	public void hasPublicMethods() {
+		Class<?> clazz = String.class;
+		System.out.println(clazz);
+		assertThat(clazz).hasPublicMethods("concat");
 
-		Integer[] intArray = new Integer[] { 1, 2, 3, 4, 5 };
-		System.out.println(Arrays.toString(intArray));
-		Condition<Integer> intValue = new Condition<Integer>(i -> i > 3, "value");
-		assertThat(intArray).areAtMost(2, intValue);
+		Class<?> clazz2 = Fruit.class;
+		System.out.println(clazz2);
+		assertThat(clazz2).hasPublicMethods("getName");
 	}
 
 	@Test
-	public void areExactly() {
-		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
-		System.out.println(Arrays.toString(array));
-		Condition<String> length = new Condition<String>(s -> s.length() > 5, "length");
-		assertThat(array).areExactly(2, length);
+	public void hasOnlyDeclaredFields() {
+		Class<?> clazz = String.class;
+		System.out.println(clazz);
+		assertThat(clazz).hasOnlyDeclaredFields("value", "hash", "serialVersionUID", "serialPersistentFields",
+				"CASE_INSENSITIVE_ORDER").hasOnlyDeclaredFields("hash", "value", "serialVersionUID",
+						"serialPersistentFields", "CASE_INSENSITIVE_ORDER");
 
-		Integer[] intArray = new Integer[] { 1, 2, 3, 4, 5 };
-		System.out.println(Arrays.toString(intArray));
-		Condition<Integer> intValue = new Condition<Integer>(i -> i > 3, "value");
-		assertThat(intArray).areExactly(2, intValue);
+		Class<?> clazz2 = Fruit.class;
+		System.out.println(clazz2);
+		assertThat(clazz2).hasOnlyDeclaredFields("name", "quantity", "type").hasOnlyDeclaredFields("quantity", "name",
+				"type");
 	}
 
 	@Test
-	public void areNot() {
-		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
-		System.out.println(Arrays.toString(array));
-		Condition<String> length = new Condition<String>(s -> s.length() > 6, "length");
-		assertThat(array).areNot(length);
+	public void hasOnlyPublicFields() {
+		Class<?> clazz = String.class;
+		System.out.println(clazz);
+		assertThat(clazz).hasOnlyPublicFields("CASE_INSENSITIVE_ORDER");
 
-		Integer[] intArray = new Integer[] { 1, 2, 3, 4, 5 };
-		System.out.println(Arrays.toString(intArray));
-		Condition<Integer> intValue = new Condition<Integer>(i -> i > 6, "value");
-		assertThat(intArray).areNot(intValue);
-	}
-
-	@Test
-	public void as() {
-		int expectedSize = 2;
-		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
-		try {
-			assertThat(array).as("%s's length should be equal to 2", "Array").isEqualTo(expectedSize);
-		} catch (AssertionError e) {
-			e.printStackTrace();
-			assertThat(e).hasMessageContaining("length");
-		}
-	}
-
-	@Test
-	public void asWithSupplier() {
-		int expectedSize = 2;
-		String[] array = new String[] { "Durian", "Guava", "Pitaya" };
-		String text = "Length expected: [" + expectedSize + "] but was: [" + array.length + "]";
-		try {
-			Supplier<String> desc = () -> text;
-			assertThat(array).as(desc).hasSize(expectedSize);
-		} catch (AssertionError e) {
-			e.printStackTrace();
-			assertThat(e).hasMessageContaining(text);
-		}
+		Class<?> clazz2 = Fruit.class;
+		System.out.println(clazz2);
+		assertThat(clazz2).hasOnlyPublicFields("name", "quantity").hasOnlyPublicFields("quantity", "name");
 	}
 }

@@ -2,12 +2,9 @@ package org.ruoxue.spring_boot_168.test.assertj.clazz;
 
 import static org.assertj.core.api.Assertions.*;
 
-import java.util.Arrays;
-import java.util.List;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
-import org.assertj.core.api.Condition;
 import org.junit.jupiter.api.Test;
 
 import lombok.Builder;
