@@ -14,10 +14,10 @@ public class UnitTestClassWithAssertJTest {
 		Condition<Class<?>> iface = new Condition<Class<?>>(c -> c.isInterface(), "interface");
 		assertThat(clazz).is(iface);
 
-		Class<?> intClazz = int.class;
-		System.out.println(intClazz);
+		Class<?> clazz2 = int.class;
+		System.out.println(clazz2);
 		Condition<Class<?>> primitive = new Condition<Class<?>>(c -> c.isPrimitive(), "primitive");
-		assertThat(intClazz).is(primitive);
+		assertThat(clazz2).is(primitive);
 	}
 
 	@Test
@@ -27,10 +27,10 @@ public class UnitTestClassWithAssertJTest {
 		Condition<Class<?>> iface = new Condition<Class<?>>(c -> c.isPrimitive(), "interface");
 		assertThat(clazz).isNot(iface);
 
-		Class<?> intClazz = int.class;
-		System.out.println(intClazz);
+		Class<?> clazz2 = int.class;
+		System.out.println(clazz2);
 		Condition<Class<?>> primitive = new Condition<Class<?>>(c -> c.isInterface(), "primitive");
-		assertThat(intClazz).isNot(primitive);
+		assertThat(clazz2).isNot(primitive);
 	}
 
 	@Test
@@ -39,9 +39,9 @@ public class UnitTestClassWithAssertJTest {
 		System.out.println(clazz);
 		assertThat(clazz).isIn(CharSequence.class, String.class);
 
-		Class<?> intClazz = int.class;
-		System.out.println(intClazz);
-		assertThat(intClazz).isIn(int.class, Integer.class);
+		Class<?> clazz2 = int.class;
+		System.out.println(clazz2);
+		assertThat(clazz2).isIn(int.class, Integer.class);
 	}
 
 	@Test
@@ -50,9 +50,9 @@ public class UnitTestClassWithAssertJTest {
 		System.out.println(clazz);
 		assertThat(clazz).isNotIn(int.class, Integer.class);
 
-		Class<?> intClazz = int.class;
-		System.out.println(intClazz);
-		assertThat(intClazz).isNotIn(CharSequence.class, String.class);
+		Class<?> clazz2 = int.class;
+		System.out.println(clazz2);
+		assertThat(clazz2).isNotIn(CharSequence.class, String.class);
 	}
 
 	@Test
@@ -61,9 +61,9 @@ public class UnitTestClassWithAssertJTest {
 		System.out.println(clazz);
 		assertThat(new String()).isInstanceOf(clazz);
 
-		Class<?> intClazz = Integer.class;
-		System.out.println(intClazz);
-		assertThat(1).isInstanceOf(intClazz);
+		Class<?> clazz2 = Integer.class;
+		System.out.println(clazz2);
+		assertThat(1).isInstanceOf(clazz2);
 	}
 
 	@Test
@@ -72,8 +72,8 @@ public class UnitTestClassWithAssertJTest {
 		System.out.println(clazz);
 		assertThat(1).isNotInstanceOf(clazz);
 
-		Class<?> intClazz = Integer.class;
-		System.out.println(intClazz);
-		assertThat(new String()).isNotInstanceOf(intClazz);
+		Class<?> clazz2 = Integer.class;
+		System.out.println(clazz2);
+		assertThat(new String()).isNotInstanceOf(clazz2);
 	}
 }

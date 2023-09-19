@@ -2,134 +2,101 @@ package org.ruoxue.spring_boot_168.test.assertj.clazz;
 
 import static org.assertj.core.api.Assertions.*;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 import org.junit.jupiter.api.Test;
+
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 public class UnitTestAssertJClassWithExamplesTest {
 
-	@Test
-	public void containsAnyOf() {
-		List<String> list = Arrays.asList("Apple", "Banana", "Cherry");
-		System.out.println(list);
-		assertThat(list).containsAnyOf("Grape", "Banana", "Kiwifruit");
+	@NoArgsConstructor
+	@Getter
+	@Setter
+	static class SuperFruit {
+		private String id;
 
-		List<Integer> intList = Stream.of(6, 7, 8, 9, 10).collect(Collectors.toList());
-		System.out.println(intList);
-		assertThat(intList).containsAnyOf(6, 1);
+		public String toString() {
+			ToStringBuilder builder = new ToStringBuilder(this, ToStringStyle.JSON_STYLE);
+			builder.appendSuper(super.toString());
+			builder.append("id", id);
+			return builder.toString();
+		}
+	}
+
+	@NoArgsConstructor
+	@Getter
+	@Setter
+	protected class Fruit extends SuperFruit {
+		private String name;
+		private double quantity;
+		private int type;
+
+		public Fruit(String name, double quantity, int type) {
+			this.name = name;
+			this.quantity = quantity;
+			this.type = type;
+		}
+
+		public String toString() {
+			ToStringBuilder builder = new ToStringBuilder(this, ToStringStyle.JSON_STYLE);
+			builder.appendSuper(super.toString());
+			builder.append("name", name);
+			builder.append("quantity", quantity);
+			builder.append("type", type);
+			return builder.toString();
+		}
 	}
 
 	@Test
-	public void containsAtIndex() {
-		List<String> list = Arrays.asList("Apple", "Banana", "Cherry");
-		System.out.println(list);
-		assertThat(list).contains("Apple", atIndex(0)).contains("Banana", atIndex(1)).contains("Cherry", atIndex(2));
+	public void isAssignableFrom() {
+		Class<?> clazz = CharSequence.class;
+		System.out.println(clazz);
+		assertThat(clazz).isAssignableFrom(String.class);
 
-		List<Integer> intList = Stream.of(6, 7, 8, 9, 10).collect(Collectors.toList());
-		System.out.println(intList);
-		assertThat(intList).contains(6, atIndex(0)).contains(8, atIndex(2));
+		Class<?> clazz2 = Number.class;
+		System.out.println(clazz2);
+		assertThat(clazz2).isAssignableFrom(Integer.class);
 	}
 
 	@Test
-	public void containsSequence() {
-		List<String> list = Arrays.asList("Apple", "Banana", "Cherry");
-		System.out.println(list);
-		assertThat(list).containsSequence("Banana", "Cherry");
-
-		List<Integer> intList = Stream.of(6, 7, 8, 9, 10).collect(Collectors.toList());
-		System.out.println(intList);
-		assertThat(intList).containsSequence(9, 10);
+	public void isPackagePrivate() {
+		Class<?> clazz = SuperFruit.class;
+		System.out.println(clazz);
+		assertThat(clazz).isPackagePrivate();
 	}
 
 	@Test
-	public void doesNotContainSequence() {
-		List<String> list = Arrays.asList("Apple", "Banana", "Cherry");
-		System.out.println(list);
-		assertThat(list).doesNotContainSequence("Grape", "Banana");
-
-		List<Integer> intList = Stream.of(6, 7, 8, 9, 10).collect(Collectors.toList());
-		System.out.println(intList);
-		assertThat(intList).doesNotContainSequence(1, 8);
+	public void isProtected() {
+		Class<?> clazz = Fruit.class;
+		System.out.println(clazz);
+		assertThat(clazz).isProtected();
 	}
 
 	@Test
-	public void containsSubsequence() {
-		List<String> list = Arrays.asList("Apple", "Banana", "Cherry");
-		System.out.println(list);
-		assertThat(list).containsSubsequence("Apple", "Cherry");
+	public void isPublic() {
+		Class<?> clazz = String.class;
+		System.out.println(clazz);
+		assertThat(clazz).isPublic();
 
-		List<Integer> intList = Stream.of(6, 7, 8, 9, 10).collect(Collectors.toList());
-		System.out.println(intList);
-		assertThat(intList).containsSubsequence(6, 10);
+		Class<?> clazz2 = Integer.class;
+		System.out.println(clazz2);
+		assertThat(clazz2).isPublic();
 	}
 
 	@Test
-	public void doesNotContainSubsequence() {
-		List<String> list = Arrays.asList("Apple", "Banana", "Cherry");
-		System.out.println(list);
-		assertThat(list).doesNotContainSubsequence("Cherry", "Apple");
-
-		List<Integer> intList = Stream.of(6, 7, 8, 9, 10).collect(Collectors.toList());
-		System.out.println(intList);
-		assertThat(intList).doesNotContainSubsequence(10, 6);
+	public void isStatic() {
+		Class<?> clazz = SuperFruit.class;
+		System.out.println(clazz);
+		assertThat(clazz).isStatic();
 	}
 
 	@Test
-	public void doesNotContainAnyElementsOf() {
-		List<String> list = Arrays.asList("Apple", "Banana", "Cherry");
-		List<String> list2 = Arrays.asList("Grape", "Kiwifruit");
-		System.out.println(list);
-		System.out.println(list2);
-		assertThat(list).doesNotContainAnyElementsOf(list2);
-
-		List<Integer> intList = Arrays.asList(1, 2, 3, 4, 5);
-		List<Integer> intList2 = Arrays.asList(8, 9);
-		System.out.println(intList);
-		System.out.println(intList2);
-		assertThat(intList).doesNotContainAnyElementsOf(intList2);
-	}
-
-	@Test
-	public void containsNull() {
-		List<String> list = Arrays.asList("Apple", "Banana", null);
-		System.out.println(list);
-		assertThat(list).containsNull();
-
-		List<Integer> intList = Stream.of(6, 7, 8, 9, null).collect(Collectors.toList());
-		System.out.println(intList);
-		assertThat(intList).containsNull();
-	}
-
-	@Test
-	public void doesNotContainNull() {
-		List<String> list = Arrays.asList("Apple", "Banana", "Cherry");
-		System.out.println(list);
-		assertThat(list).doesNotContainNull();
-
-		List<Integer> intList = Stream.of(6, 7, 8, 9, 10).collect(Collectors.toList());
-		System.out.println(intList);
-		assertThat(intList).doesNotContainNull();
-	}
-
-	@Test
-	public void contains() {
-		List<String> list = Arrays.asList("Apple", "Banana", "Cherry");
-		System.out.println(list);
-		Set<String> set = new HashSet<String>();
-		set.add("Banana");
-		set.add("Grape");
-		System.out.println(set);
-		
-		assertThat(list)
-			.contains("Apple")
-			.containsAnyOf("Apple", "Grape")
-			.containsExactly("Apple", "Banana", "Cherry")
-			.doesNotContain("Grape")
-			.anyMatch(set::contains);
+	public void isNotStatic() {
+		Class<?> clazz = Fruit.class;
+		System.out.println(clazz);
+		assertThat(clazz).isNotStatic();
 	}
 }
