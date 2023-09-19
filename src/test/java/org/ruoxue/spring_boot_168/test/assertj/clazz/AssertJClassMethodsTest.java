@@ -52,10 +52,10 @@ public class AssertJClassMethodsTest {
 		assertThat(clazz).isNotEqualTo(clazz2);
 
 		Class<?> intClazz = Integer.class;
-		Class<?> doubleClazz2 = Double.class;
+		Class<?> doubleClazz = Double.class;
 		System.out.println(intClazz);
-		System.out.println(doubleClazz2);
-		assertThat(intClazz).isNotEqualTo(doubleClazz2);
+		System.out.println(doubleClazz);
+		assertThat(intClazz).isNotEqualTo(doubleClazz);
 	}
 
 	@Test
@@ -82,9 +82,9 @@ public class AssertJClassMethodsTest {
 		assertThat(clazz).isNotSameAs(clazz2);
 
 		Class<?> intClazz = Integer.class;
-		Class<?> doubleClazz2 = Double.class;
+		Class<?> doubleClazz = Double.class;
 		System.out.println(intClazz);
-		System.out.println(doubleClazz2);
-		assertThat(intClazz).isNotSameAs(doubleClazz2);
+		System.out.println(doubleClazz);
+		assertThat(intClazz).isNotSameAs(doubleClazz);
 	}
 }

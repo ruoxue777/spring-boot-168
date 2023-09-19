@@ -2,6 +2,13 @@ package org.ruoxue.spring_boot_168.test.assertj.clazz;
 
 import static org.assertj.core.api.Assertions.*;
 
+import java.time.LocalDateTime;
+import java.util.Optional;
+import java.util.function.BiPredicate;
+import java.util.function.Predicate;
+import java.util.stream.Collector;
+import java.util.stream.Stream;
+
 import org.junit.jupiter.api.Test;
 
 public class AssertJClassAssertionsTest {
@@ -12,79 +19,74 @@ public class AssertJClassAssertionsTest {
 		System.out.println(clazz);
 		assertThat(clazz).isAbstract();
 
-		Class<?> intClazz = Number.class;
-		System.out.println(intClazz);
-		assertThat(intClazz).isAbstract();
+		Class<?> numberClazz = Number.class;
+		System.out.println(numberClazz);
+		assertThat(numberClazz).isAbstract();
 	}
 
 	@Test
-	public void isNotNull() {
-		Class<?> clazz = String.class;
+	public void isInterface() {
+		Class<?> clazz = Predicate.class;
 		System.out.println(clazz);
-		assertThat(clazz).isNotNull();
+		assertThat(clazz).isInterface();
 
-		Class<?> intClazz = Integer.class;
-		System.out.println(intClazz);
-		assertThat(intClazz).isNotNull();
+		Class<?> biPredicateClazz = BiPredicate.class;
+		System.out.println(biPredicateClazz);
+		assertThat(biPredicateClazz).isInterface();
 	}
 
 	@Test
-	public void isEqualTo() {
+	public void isNotInterface() {
 		Class<?> clazz = String.class;
-		Class<?> clazz2 = String.class;
 		System.out.println(clazz);
-		System.out.println(clazz2);
-		assertThat(clazz).isEqualTo(clazz2);
+		assertThat(clazz).isNotInterface();
 
 		Class<?> intClazz = Integer.class;
-		Class<?> intClazz2 = Integer.class;
 		System.out.println(intClazz);
-		System.out.println(intClazz2);
-		assertThat(intClazz).isEqualTo(intClazz2);
+		assertThat(intClazz).isNotInterface();
 	}
 
 	@Test
-	public void isNotEqualTo() {
-		Class<?> clazz = String.class;
-		Class<?> clazz2 = Character.class;
+	public void isFinal() {
+		Class<?> clazz = Optional.class;
 		System.out.println(clazz);
-		System.out.println(clazz2);
-		assertThat(clazz).isNotEqualTo(clazz2);
+		assertThat(clazz).isFinal();
 
-		Class<?> intClazz = Integer.class;
-		Class<?> doubleClazz2 = Double.class;
-		System.out.println(intClazz);
-		System.out.println(doubleClazz2);
-		assertThat(intClazz).isNotEqualTo(doubleClazz2);
+		Class<?> ldtClazz = LocalDateTime.class;
+		System.out.println(ldtClazz);
+		assertThat(ldtClazz).isFinal();
 	}
 
 	@Test
-	public void isSameAs() {
-		Class<?> clazz = String.class;
-		Class<?> clazz2 = clazz;
+	public void isNotFinal() {
+		Class<?> clazz = Object.class;
 		System.out.println(clazz);
-		System.out.println(clazz2);
-		assertThat(clazz).isSameAs(clazz2);
+		assertThat(clazz).isNotFinal();
 
-		Class<?> intClazz = Integer.class;
-		Class<?> intClazz2 = intClazz;
-		System.out.println(intClazz);
-		System.out.println(intClazz2);
-		assertThat(intClazz).isSameAs(intClazz2);
+		Class<?> threadClazz = Thread.class;
+		System.out.println(threadClazz);
+		assertThat(threadClazz).isNotFinal();
 	}
 
 	@Test
-	public void isNotSameAs() {
-		Class<?> clazz = String.class;
-		Class<?> clazz2 = Character.class;
+	public void isAnnotation() {
+		Class<?> clazz = FunctionalInterface.class;
 		System.out.println(clazz);
-		System.out.println(clazz2);
-		assertThat(clazz).isNotSameAs(clazz2);
+		assertThat(clazz).isAnnotation();
 
-		Class<?> intClazz = Integer.class;
-		Class<?> doubleClazz2 = Double.class;
-		System.out.println(intClazz);
-		System.out.println(doubleClazz2);
-		assertThat(intClazz).isNotSameAs(doubleClazz2);
+		Class<?> deprecatedClazz = Deprecated.class;
+		System.out.println(deprecatedClazz);
+		assertThat(deprecatedClazz).isAnnotation();
+	}
+
+	@Test
+	public void isNotAnnotation() {
+		Class<?> clazz = Collector.class;
+		System.out.println(clazz);
+		assertThat(clazz).isNotAnnotation();
+
+		Class<?> streamClazz = Stream.class;
+		System.out.println(streamClazz);
+		assertThat(streamClazz).isNotAnnotation();
 	}
 }
