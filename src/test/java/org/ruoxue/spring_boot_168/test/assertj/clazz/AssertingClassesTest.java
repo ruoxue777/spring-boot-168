@@ -4,7 +4,6 @@ import static org.assertj.core.api.Assertions.*;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
-import org.assertj.core.api.Condition;
 import org.junit.jupiter.api.Test;
 
 import lombok.Builder;
@@ -124,7 +123,7 @@ public class AssertingClassesTest {
 		}).isInstanceOf(AssertionError.class);
 
 		assertThatCode(() -> {
-			Class<?>clazz = int.class;
+			Class<?> clazz = int.class;
 			System.out.println(clazz);
 			assertThat(clazz).satisfies(c -> {
 				assertThat(c).isAbstract();
