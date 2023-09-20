@@ -13,12 +13,12 @@ public class AssertJObjectWithExamplesTest {
 	public void has() {
 		Object value = "AssertJ";
 		System.out.println(value);
-		Condition<Object> equals = new Condition<Object>(s -> s.equals("AssertJ"), "equals");
+		Condition<Object> equals = new Condition<Object>(o -> o.equals("AssertJ"), "equals");
 		assertThat(value).has(equals);
 
 		value = BigDecimal.valueOf(155);
 		System.out.println(value.toString());
-		Condition<Object> toString = new Condition<Object>(s -> s.toString().equals("155"), "toString");
+		Condition<Object> toString = new Condition<Object>(o -> o.toString().equals("155"), "toString");
 		assertThat(value).has(toString);
 	}
 
