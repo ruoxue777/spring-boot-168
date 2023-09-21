@@ -40,12 +40,12 @@ public class AssertJObjectAssertionsTest {
 			return builder.toString();
 		}
 	}
-	
+
 	@Test
 	public void contains() {
 		Object value = new Fruit("Litchi", Double.MAX_VALUE, 1);
 		System.out.println(value);
-		assertThat(value).extracting("name");
+		assertThat(value).extracting("name").asInstanceOf(STRING).contains("Litchi");
 	}
 
 //	@Test
