@@ -1,84 +1,120 @@
 package org.ruoxue.spring_boot_168.test.assertj.object;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.InstanceOfAssertFactories.STRING;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 import org.junit.jupiter.api.Test;
+
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 public class UnitTestAssertJObjectWithExamplesTest {
 
-//	@Test
-//	public void containsAnyOf() {
-//		Object value = "AssertJ 155";
-//		System.out.println(value);
-//		assertThat(value).containsAnyOf("AssertJ", "JUnit");
-//		assertThat(value).containsAnyOf("155", "151");
-//	}
-//
-//	@Test
-//	public void containsIgnoringCase() {
-//		Object value = "AssertJ 155";
-//		System.out.println(value);
-//		assertThat(value).containsIgnoringCase("assertj");
-//		assertThat(value).containsIgnoringCase("RTJ");
-//	}
-//
-//	@Test
-//	public void doesNotContainIgnoringCase() {
-//		Object value = "AssertJ 155";
-//		System.out.println(value);
-//		assertThat(value).doesNotContainIgnoringCase("junit");
-//		assertThat(value).doesNotContainIgnoringCase("NIT");
-//	}
-//
-//	@Test
-//	public void containsIgnoringWhitespaces() {
-//		Object value = "AssertJ 155";
-//		System.out.println(value);
-//		assertThat(value).containsIgnoringWhitespaces("AssertJ ");
-//		assertThat(value).containsIgnoringWhitespaces(" 155");
-//	}
-//
-//	@Test
-//	public void containsIgnoringNewLines() {
-//		Object value = "Asser\ntJ 1\n55\n ";
-//		System.out.println(value);
-//		assertThat(value).containsIgnoringNewLines("AssertJ", "155");
-//		assertThat(value).containsIgnoringNewLines("rtJ", "155");
-//	}
-//
-//	@Test
-//	public void containsPattern() {
-//		Object value = "AssertJ 155";
-//		System.out.println(value);
-//		assertThat(value).containsPattern("As.e");
-//		assertThat(value).containsPattern("1\\d5");
-//	}
-//	
-//	@Test
-//	public void doesNotContainPattern() {
-//		Object value = "AssertJ 155";
-//		System.out.println(value);
-//		assertThat(value).doesNotContainPattern("As.x");
-//		assertThat(value).doesNotContainPattern("1\\d9");
-//	}
-//
-//	@Test
-//	public void containsSequence() {
-//		Object value = "AssertJ 155 JUnit 151";
-//		System.out.println(value);
-//		assertThat(value).containsSequence("AssertJ", " ", "155");
-//		assertThat(value).containsSequence(Arrays.asList("AssertJ", " ", "155"));
-//		assertThat(value).containsSequence("JUnit", " ", "151");
-//	}
-//
-//	@Test
-//	public void containsSubsequence() {
-//		Object value = "AssertJ 155 JUnit 151";
-//		System.out.println(value);
-//		assertThat(value).containsSubsequence("AssertJ", "JUnit");
-//		assertThat(value).containsSubsequence(Arrays.asList("AssertJ", "JUnit"));
-//		assertThat(value).containsSubsequence("155", " ", "151");
-//	}
+	@NoArgsConstructor
+	@Getter
+	@Setter
+	public static class Fruit {
+		private String name;
+		private double quantity;
+		private int type;
+		private List<String> origins = new ArrayList<>();
+
+		public Fruit(String name, double quantity, int type) {
+			this.name = name;
+			this.quantity = quantity;
+			this.type = type;
+		}
+
+		public String toString() {
+			ToStringBuilder builder = new ToStringBuilder(this, ToStringStyle.JSON_STYLE);
+			builder.appendSuper(super.toString());
+			builder.append("name", name);
+			builder.append("quantity", quantity);
+			builder.append("type", type);
+			builder.append("origins", origins);
+			return builder.toString();
+		}
+	}
+
+	@Test
+	public void containsAnyOf() {
+		Object value = new Fruit("Litchi 101", Double.MAX_VALUE, 1);
+		System.out.println(value);
+		assertThat(value).extracting("name").asInstanceOf(STRING).containsAnyOf("Litchi", "Pomelo");
+		assertThat(value).extracting("name").asInstanceOf(STRING).containsAnyOf("101", "99");
+	}
+
+	@Test
+	public void containsIgnoringCase() {
+		Object value = new Fruit("Litchi 101", Double.MAX_VALUE, 1);
+		System.out.println(value);
+		assertThat(value).extracting("name").asInstanceOf(STRING).containsIgnoringCase("litchi");
+		assertThat(value).extracting("name").asInstanceOf(STRING).containsIgnoringCase("CHI");
+	}
+
+	@Test
+	public void doesNotContainIgnoringCase() {
+		Object value = new Fruit("Litchi 101", Double.MAX_VALUE, 1);
+		System.out.println(value);
+		assertThat(value).extracting("name").asInstanceOf(STRING).doesNotContainIgnoringCase("pomelo");
+		assertThat(value).extracting("name").asInstanceOf(STRING).doesNotContainIgnoringCase("ELO");
+	}
+
+	@Test
+	public void containsIgnoringWhitespaces() {
+		Object value = new Fruit("Litchi 101", Double.MAX_VALUE, 1);
+		System.out.println(value);
+		assertThat(value).extracting("name").asInstanceOf(STRING).containsIgnoringWhitespaces("Litchi ");
+		assertThat(value).extracting("name").asInstanceOf(STRING).containsIgnoringWhitespaces(" 101");
+	}
+
+	@Test
+	public void containsIgnoringNewLines() {
+		Object value = new Fruit("Litc\nhi 1\n01\n", Double.MAX_VALUE, 1);
+		System.out.println(value);
+		assertThat(value).extracting("name").asInstanceOf(STRING).containsIgnoringNewLines("Litchi", "101");
+		assertThat(value).extracting("name").asInstanceOf(STRING).containsIgnoringNewLines("chi", "101");
+	}
+
+	@Test
+	public void containsPattern() {
+		Object value = new Fruit("Litchi 101", Double.MAX_VALUE, 1);
+		System.out.println(value);
+		assertThat(value).extracting("name").asInstanceOf(STRING).containsPattern("Li.c");
+		assertThat(value).extracting("name").asInstanceOf(STRING).containsPattern("1\\d1");
+	}
+
+	@Test
+	public void doesNotContainPattern() {
+		Object value = new Fruit("Litchi 101", Double.MAX_VALUE, 1);
+		System.out.println(value);
+		assertThat(value).extracting("name").asInstanceOf(STRING).doesNotContainPattern("Li.x");
+		assertThat(value).extracting("name").asInstanceOf(STRING).doesNotContainPattern("1\\d9");
+	}
+
+	@Test
+	public void containsSequence() {
+		Object value = new Fruit("Litchi 101 Pomelo 99", Double.MAX_VALUE, 1);
+		System.out.println(value);
+		assertThat(value).extracting("name").asInstanceOf(STRING).containsSequence("Litchi", " ", "101");
+		assertThat(value).extracting("name").asInstanceOf(STRING).containsSequence(Arrays.asList("Litchi", " ", "101"));
+		assertThat(value).extracting("name").asInstanceOf(STRING).containsSequence("Pomelo", " ", "99");
+	}
+
+	@Test
+	public void containsSubsequence() {
+		Object value = new Fruit("Litchi 101 Pomelo 99", Double.MAX_VALUE, 1);
+		System.out.println(value);
+		assertThat(value).extracting("name").asInstanceOf(STRING).containsSubsequence("Litchi", "Pomelo");
+		assertThat(value).extracting("name").asInstanceOf(STRING)
+				.containsSubsequence(Arrays.asList("Litchi", "Pomelo"));
+		assertThat(value).extracting("name").asInstanceOf(STRING).containsSubsequence("101", " ", "99");
+	}
 }

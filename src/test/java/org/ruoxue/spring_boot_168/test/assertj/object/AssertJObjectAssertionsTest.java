@@ -53,8 +53,8 @@ public class AssertJObjectAssertionsTest {
 	public void doesNotContain() {
 		Object value = new Fruit("Litchi 101", Double.MAX_VALUE, 1);
 		System.out.println(value);
-		assertThat(value).extracting("name").asInstanceOf(STRING).doesNotContain("Blueberry", "99");
-		assertThat(value).extracting("name").asInstanceOf(STRING).doesNotContain("rry", "9");
+		assertThat(value).extracting("name").asInstanceOf(STRING).doesNotContain("Pomelo", "99");
+		assertThat(value).extracting("name").asInstanceOf(STRING).doesNotContain("elo", "9");
 	}
 
 	@Test
