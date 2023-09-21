@@ -14,15 +14,12 @@ public class UnitTestObjectWithAssertJTest {
 		Object value = "AssertJ";
 		System.out.println(value);
 		Condition<Object> equals = new Condition<Object>(o -> o.equals("AssertJ"), "equals");
-		System.out.println(value);
 		assertThat(value).is(equals);
 
 		value = BigDecimal.valueOf(155);
 		System.out.println(value);
 		Condition<Object> toString = new Condition<Object>(o -> o.toString().equals("155"), "toString");
-		System.out.println(value);
 		assertThat(value).is(toString);
-
 	}
 
 	@Test
@@ -30,13 +27,11 @@ public class UnitTestObjectWithAssertJTest {
 		Object value = "AssertJ";
 		System.out.println(value);
 		Condition<Object> equals = new Condition<Object>(o -> o.equals("155"), "equals");
-		System.out.println(value);
 		assertThat(value).isNot(equals);
 
 		value = BigDecimal.valueOf(155);
 		System.out.println(value);
 		Condition<Object> toString = new Condition<Object>(o -> o.toString().equals("AssertJ"), "toString");
-		System.out.println(value);
 		assertThat(value).isNot(toString);
 	}
 

@@ -63,7 +63,7 @@ public class AssertJObjectWithExamplesTest {
 		assertThat(value).doesNotHave(equals);
 
 		value = BigDecimal.valueOf(155);
-		System.out.println(value.toString());
+		System.out.println(value);
 		Condition<Object> toString = new Condition<Object>(o -> o.toString().equals("AssertJ"), "toString");
 		assertThat(value).doesNotHave(toString);
 	}

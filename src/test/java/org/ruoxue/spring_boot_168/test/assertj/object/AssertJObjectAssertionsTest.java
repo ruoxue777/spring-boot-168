@@ -2,9 +2,6 @@ package org.ruoxue.spring_boot_168.test.assertj.object;
 
 import static org.assertj.core.api.Assertions.*;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import org.junit.jupiter.api.Test;
@@ -22,7 +19,6 @@ public class AssertJObjectAssertionsTest {
 		private String name;
 		private double quantity;
 		private int type;
-		private List<String> origins = new ArrayList<>();
 
 		public Fruit(String name, double quantity, int type) {
 			this.name = name;
@@ -36,7 +32,6 @@ public class AssertJObjectAssertionsTest {
 			builder.append("name", name);
 			builder.append("quantity", quantity);
 			builder.append("type", type);
-			builder.append("origins", origins);
 			return builder.toString();
 		}
 	}
