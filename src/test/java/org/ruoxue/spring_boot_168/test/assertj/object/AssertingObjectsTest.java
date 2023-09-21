@@ -46,61 +46,61 @@ public class AssertingObjectsTest {
 		}).isInstanceOf(AssertionError.class);
 	}
 
-//	@Test
-//	public void satisfies() {
-//		Object value = "AssertJ 155";
-//		System.out.println(value);
-//		assertThat(value).satisfies(s -> {
-//			assertThat(s).isNotNull();
-//			assertThat(s).hasSize(11);
-//		});
-//
-//		value = "AssertJ";
-//		System.out.println(value);
-//		assertThat(value).satisfies(s -> {
-//			assertThat(s).isNotEmpty();
-//		}, s -> {
-//			assertThat(s).hasSize(7);
-//		});
-//	}
-//
-//	@Test
-//	public void satisfiesAnyOf() {
-//		Object value = "AssertJ 155";
-//		System.out.println(value);
-//		assertThat(value).satisfiesAnyOf(s -> {
-//			assertThat(s).isNotNull();
-//			assertThat(s).hasSize(11);
-//		});
-//
-//		value = "AssertJ";
-//		System.out.println(value);
-//		assertThat(value).satisfiesAnyOf(s -> {
-//			assertThat(s).isNotEmpty();
-//		}, s -> {
-//			assertThat(s).hasSize(99);
-//		});
-//	}
-//
-//	@Test
-//	public void satisfiesThrowError() {
-//		assertThatCode(() -> {
-//			Object value = "AssertJ 155";
-//			System.out.println(value);
-//			assertThat(value).satisfies(s -> {
-//				assertThat(s).isNotNull();
-//				assertThat(s).hasSize(12);
-//			});
-//		}).isInstanceOf(AssertionError.class);
-//
-//		assertThatCode(() -> {
-//			Object value = "AssertJ";
-//			System.out.println(value);
-//			assertThat(value).satisfies(s -> {
-//				assertThat(s).isNotEmpty();
-//			}, s -> {
-//				assertThat(s).hasSize(8);
-//			});
-//		}).isInstanceOf(AssertionError.class);
-//	}
+	@Test
+	public void satisfies() {
+		Object value = "AssertJ";
+		System.out.println(value);
+		assertThat(value).satisfies(o -> {
+			assertThat(o).isNotNull();
+			assertThat(o).isEqualTo("AssertJ");
+		});
+
+		value = BigDecimal.valueOf(155);
+		System.out.println(value);
+		assertThat(value).satisfies(o -> {
+			assertThat(o).isNotNull();
+		}, o -> {
+			assertThat(o).hasToString("155");
+		});
+	}
+
+	@Test
+	public void satisfiesAnyOf() {
+		Object value = "AssertJ";
+		System.out.println(value);
+		assertThat(value).satisfiesAnyOf(o -> {
+			assertThat(o).isNotNull();
+			assertThat(o).isEqualTo("AssertJ");
+		});
+
+		value = BigDecimal.valueOf(155);
+		System.out.println(value);
+		assertThat(value).satisfiesAnyOf(o -> {
+			assertThat(o).isNotNull();
+		}, o -> {
+			assertThat(o).hasToString("151");
+		});
+	}
+
+	@Test
+	public void satisfiesThrowError() {
+		assertThatCode(() -> {
+			Object value = "AssertJ";
+			System.out.println(value);
+			assertThat(value).satisfies(o -> {
+				assertThat(o).isNotNull();
+				assertThat(o).isEqualTo("JUnit");
+			});
+		}).isInstanceOf(AssertionError.class);
+
+		assertThatCode(() -> {
+			Object value = BigDecimal.valueOf(155);
+			System.out.println(value);
+			assertThat(value).satisfies(o -> {
+				assertThat(o).isNotNull();
+			}, o -> {
+				assertThat(o).hasToString("151");
+			});
+		}).isInstanceOf(AssertionError.class);
+	}
 }
