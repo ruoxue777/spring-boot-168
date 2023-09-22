@@ -24,7 +24,6 @@ public class UnitTestAssertJObjectWithExamplesTest {
 		private String name;
 		private double quantity;
 		private int type;
-		private List<String> origins = new ArrayList<>();
 
 		public Fruit(String name, double quantity, int type) {
 			this.name = name;
@@ -38,7 +37,6 @@ public class UnitTestAssertJObjectWithExamplesTest {
 			builder.append("name", name);
 			builder.append("quantity", quantity);
 			builder.append("type", type);
-			builder.append("origins", origins);
 			return builder.toString();
 		}
 	}
