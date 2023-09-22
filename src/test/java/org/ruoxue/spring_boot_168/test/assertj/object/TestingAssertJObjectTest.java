@@ -1,7 +1,6 @@
 package org.ruoxue.spring_boot_168.test.assertj.object;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.InstanceOfAssertFactories.STRING;
+import static org.assertj.core.api.Assertions.*;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -44,77 +43,68 @@ public class TestingAssertJObjectTest {
 	}
 
 	@Test
-	// L=76, l=108
 	public void isLessThan() {
-		Object value = new Fruit("Litchi 101", Double.MAX_VALUE, 1);
+		Object value = new Fruit("Pomelo", 1, 2);
 		System.out.println(value);
-		assertThat(value).extracting("name").asInstanceOf(STRING).isLessThan("li").isLessThan("mi");
-		assertThat(value).extracting("name").asInstanceOf(STRING).isLessThan("lI").isLessThan("Lj");
+		assertThat(value).extracting("type").asInstanceOf(INTEGER).isLessThan(3);
+		assertThat(value).extracting("quantity").asInstanceOf(DOUBLE).isLessThan(2d);
 	}
 
 	@Test
-	// L=76, l=108
 	public void isLessThanOrEqualTo() {
-		Object value = new Fruit("Litchi 101", Double.MAX_VALUE, 1);
+		Object value = new Fruit("Pomelo", 1, 2);
 		System.out.println(value);
-		assertThat(value).extracting("name").asInstanceOf(STRING).isLessThanOrEqualTo("Litchi 101")
-				.isLessThanOrEqualTo("ms");
-		assertThat(value).extracting("name").asInstanceOf(STRING).isLessThanOrEqualTo("litchi 101")
-				.isLessThanOrEqualTo("Lj");
+		assertThat(value).extracting("type").asInstanceOf(INTEGER).isLessThanOrEqualTo(2).isLessThanOrEqualTo(3);
+		assertThat(value).extracting("quantity").asInstanceOf(DOUBLE).isLessThanOrEqualTo(1d).isLessThanOrEqualTo(2d);
 	}
 
 	@Test
-	// L=76, l=108
 	public void isGreaterThan() {
-		Object value = new Fruit("litchi 101", Double.MAX_VALUE, 1);
+		Object value = new Fruit("Pomelo", 1, 2);
 		System.out.println(value);
-		assertThat(value).extracting("name").asInstanceOf(STRING).isGreaterThan("As").isGreaterThan("Bs");
-		assertThat(value).extracting("name").asInstanceOf(STRING).isGreaterThan("aS").isGreaterThan("aT");
+		assertThat(value).extracting("type").asInstanceOf(INTEGER).isGreaterThan(1);
+		assertThat(value).extracting("quantity").asInstanceOf(DOUBLE).isGreaterThan(0d);
 	}
 
 	@Test
-	// L=76, l=108
 	public void isGreaterThanOrEqualTo() {
-		Object value = new Fruit("litchi 101", Double.MAX_VALUE, 1);
+		Object value = new Fruit("Pomelo", 1, 2);
 		System.out.println(value);
-		assertThat(value).extracting("name").asInstanceOf(STRING).isGreaterThanOrEqualTo("Litchi 101")
-				.isGreaterThanOrEqualTo("Mj");
-		assertThat(value).extracting("name").asInstanceOf(STRING).isGreaterThanOrEqualTo("litchi 101")
-				.isGreaterThanOrEqualTo("lJ");
+		assertThat(value).extracting("type").asInstanceOf(INTEGER).isGreaterThanOrEqualTo(2).isGreaterThanOrEqualTo(1);
+		assertThat(value).extracting("quantity").asInstanceOf(DOUBLE).isGreaterThanOrEqualTo(1d)
+				.isGreaterThanOrEqualTo(0d);
 	}
 
 	@Test
 	public void usingDefaultComparator() {
-		Object value = new Fruit("Litchi 101", Double.MAX_VALUE, 1);
+		Object value = new Fruit("Pomelo", 1, 2);
 		System.out.println(value);
-		assertThat(value).usingDefaultComparator().extracting("name").asInstanceOf(STRING).contains("Litchi", "101")
-				.doesNotContain("chix");
-		value = new Fruit("Litchi 101", Double.MAX_VALUE, 1);
-		assertThat(value).usingDefaultComparator().extracting("name").asInstanceOf(STRING).startsWith("Lit")
-				.endsWith("101");
+		assertThat(value).extracting("type").asInstanceOf(INTEGER).isPositive().isCloseTo(-3, within(5)).isCloseTo(7,
+				within(5));
+		assertThat(value).extracting("quantity").asInstanceOf(DOUBLE).isPositive().isCloseTo(-4d, within(5d))
+				.isCloseTo(-4d, within(6d));
 	}
 
 	@Test
 	public void usingComparator() {
-		Object value = new Fruit("Litchi 101", Double.MAX_VALUE, 1);
+		Object value = new Fruit("Pomelo", 1, 2);
 		System.out.println(value);
-		Comparator<String> ignoreCase = (s1, s2) -> s1.toLowerCase().compareTo(s2.toLowerCase());
-		assertThat(value).extracting("name").asInstanceOf(STRING).usingComparator(ignoreCase).contains("LITCHI", "101")
-				.doesNotContain("CHIX");
-		value = new Fruit("Litchi", Double.MAX_VALUE, 1);
-		assertThat(value).extracting("name").asInstanceOf(STRING).usingComparator(ignoreCase).startsWith("LIT")
-				.endsWith("chi");
+		Comparator<Integer> abs = (i1, i2) -> Integer.compare(i1, Math.abs(i2));
+		assertThat(value).extracting("type").asInstanceOf(INTEGER).usingComparator(abs).isEqualTo(-2);
+
+		Comparator<Double> doubleAbs = (d1, d2) -> Double.compare(d1, Math.abs(d2));
+		assertThat(value).extracting("quantity").asInstanceOf(DOUBLE).usingComparator(doubleAbs).isEqualTo(-1d);
 	}
 
 	@Test
 	public void usingComparatorWithDescription() {
-		Object value = new Fruit("Litchi 101", Double.MAX_VALUE, 1);
+		Object value = new Fruit("Pomelo", 1, 2);
 		System.out.println(value);
-		Comparator<String> ignoreCase = (s1, s2) -> s1.toLowerCase().compareTo(s2.toLowerCase());
-		assertThat(value).extracting("name").asInstanceOf(STRING).usingComparator(ignoreCase, "ignoreCase")
-				.contains("LITCHI", "101").doesNotContain("CHIX");
-		value = new Fruit("Litchi", Double.MAX_VALUE, 1);
-		assertThat(value).extracting("name").asInstanceOf(STRING).usingComparator(ignoreCase, "ignoreCase")
-				.startsWith("LIT").endsWith("chi");
+		Comparator<Integer> abs = (i1, i2) -> Integer.compare(i1, Math.abs(i2));
+		assertThat(value).extracting("type").asInstanceOf(INTEGER).usingComparator(abs, "abs").isEqualTo(-2);
+
+		Comparator<Double> doubleAbs = (d1, d2) -> Double.compare(d1, Math.abs(d2));
+		assertThat(value).extracting("quantity").asInstanceOf(DOUBLE).usingComparator(doubleAbs, "doubleAbs")
+				.isEqualTo(-1d);
 	}
 }
