@@ -3,6 +3,7 @@ package org.ruoxue.spring_boot_168.test.assertj.list;
 import static org.assertj.core.api.Assertions.*;
 
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -39,6 +40,28 @@ public class AssertingListUsingRecursiveComparisonTest {
 			builder.append("type", type);
 			return builder.toString();
 		}
+	}
+
+	@Test
+	public void usingComparator() {
+		Fruit apple = new Fruit("Apple", Double.MAX_VALUE, 1);
+		Fruit banana = new Fruit("Banana", 1, 2);
+		Fruit cherry = new Fruit("Cherry", -1, 3);
+		List<Fruit> list = Arrays.asList(apple, banana, cherry);
+		System.out.println(list);
+
+		Fruit apple2 = new Fruit("Apple", Double.MAX_VALUE, 1);
+		Fruit banana2 = new Fruit("Banana", 1, 2);
+		Fruit cherry2 = new Fruit("Cherry", -1, 3);
+		List<Fruit> list2 = Arrays.asList(apple2, banana2, cherry2);
+		System.out.println(list2);
+
+		assertThatCode(() -> {
+			assertThat(list).isEqualTo(list2);
+		}).isInstanceOf(AssertionError.class);
+
+		Comparator<List<?>> size = (l1, s2) -> Integer.compare(l1.size(), s2.size());
+		assertThat(list).usingComparator(size).isEqualTo(list2);
 	}
 
 	@Test
