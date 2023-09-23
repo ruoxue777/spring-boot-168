@@ -2,8 +2,6 @@ package org.ruoxue.spring_boot_168.test.assertj.exception;
 
 import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.*;
-import static org.assertj.core.api.BDDAssertions.thenNoException;
-import static org.assertj.core.api.BDDAssertions.thenCode;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -63,32 +61,42 @@ public class AssertJExceptionAssertionsTest {
 	}
 
 	@Test
-	public void exception() {
-		assertThatException().isThrownBy(() -> {
-			throw new Exception("ex");
-		}).withMessage("ex").withStackTraceContaining("Exception");
+	public void hasCause() {
+		Exception cause = new Exception("cause");
+		Exception runtimeException = new RuntimeException("runtime", cause);
+		assertThat(runtimeException).hasCause(cause).hasCauseReference(cause).hasCauseInstanceOf(Exception.class);
+
+		cause = new NullPointerException("null");
+		Throwable throwable = new Throwable(cause);
+		assertThat(throwable).hasCause(cause).hasCauseInstanceOf(NullPointerException.class)
+				.hasCauseInstanceOf(RuntimeException.class).hasCauseExactlyInstanceOf(NullPointerException.class);
 	}
 
 	@Test
-	public void illegalArgumentException() {
-		IllegalArgumentException ex = new IllegalArgumentException();
-		assertThatIllegalArgumentException().isThrownBy(() -> {
-			throw new IllegalArgumentException("illegal");
-		}).withMessage("illegal").withStackTraceContaining("IllegalArgumentException");
+	public void cause() {
+		Exception cause = new Exception("cause");
+		Exception runtimeException = new RuntimeException("runtime", cause);
+		assertThat(runtimeException).cause().hasMessage("cause").hasMessageMatching("ca.se");
+
+		cause = new NullPointerException("null");
+		Throwable throwable = new Throwable(cause);
+		assertThat(throwable).cause().hasMessage("null").hasMessageMatching("nu..");
 	}
 
 	@Test
-	public void noException() {
-		assertThatNoException().isThrownBy(() -> {
-		});
+	public void hasRootCause() {
+		Exception cause = new Exception("cause");
+		Exception parentCause = new IllegalStateException(cause);
+		Exception runtimeException = new RuntimeException("runtime", parentCause);
+		assertThat(runtimeException).hasRootCause(cause).hasRootCauseInstanceOf(Exception.class).hasCause(parentCause)
+				.hasCauseInstanceOf(IllegalStateException.class);
 
-		thenNoException().isThrownBy(() -> {
-		});
-
-		assertThatCode(() -> {
-		}).doesNotThrowAnyException();
-
-		thenCode(() -> {
-		}).doesNotThrowAnyException();
+		cause = new NullPointerException("null");
+		parentCause = new IllegalStateException(cause);
+		Throwable throwable = new Throwable(parentCause);
+		assertThat(throwable).hasRootCause(cause).hasRootCauseInstanceOf(NullPointerException.class)
+				.hasRootCauseInstanceOf(RuntimeException.class)
+				.hasRootCauseExactlyInstanceOf(NullPointerException.class).hasCause(parentCause)
+				.hasCauseInstanceOf(IllegalStateException.class);
 	}
 }
