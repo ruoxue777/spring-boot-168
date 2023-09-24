@@ -14,43 +14,9 @@ public class AssertJExceptionWithExamplesTest {
 	}
 
 	@Test
-	public void isInstanceOf() {
-		assertThatThrownBy(() -> divide(1, 0)).isInstanceOf(ArithmeticException.class).hasMessageContaining("zero")
-				.hasMessage("/ by zero");
-	}
-
-	@Test
-	public void hasMessageContaining() {
-		assertThatThrownBy(() -> {
-			List<Integer> list = Arrays.asList(1, 2);
-			list.get(2);
-		}).isInstanceOf(IndexOutOfBoundsException.class).hasMessageContaining("2");
-	}
-
-	@Test
-	public void hasCauseInstanceOf() {
-		assertThatThrownBy(() -> {
-			try {
-				throw new IOException();
-			} catch (IOException e) {
-				throw new RuntimeException(e);
-			}
-		}).isInstanceOf(RuntimeException.class).hasCauseInstanceOf(IOException.class)
-				.hasStackTraceContaining("IOException");
-	}
-
-	@Test
 	public void isThrownBy() {
 		assertThatExceptionOfType(ArithmeticException.class).isThrownBy(() -> divide(1, 0))
 				.withMessageContaining("zero").withMessage("/ by zero");
-	}
-
-	@Test
-	public void withMessageContaining() {
-		assertThatExceptionOfType(IndexOutOfBoundsException.class).isThrownBy(() -> {
-			List<Integer> list = Arrays.asList(1, 2);
-			list.get(2);
-		}).withMessageContaining("2");
 	}
 
 	@Test
