@@ -3,7 +3,7 @@ package org.ruoxue.spring_boot_168.config;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.hc.client5.http.impl.classic.CloseableHttpClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;

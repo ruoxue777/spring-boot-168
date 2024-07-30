@@ -21,6 +21,7 @@ public class GggListReponse {
 	/** 錯誤碼 */
 	private int errorCode;
 	/** 名稱 */
+	@Builder.Default
 	private List<String> names = new ArrayList<String>();
 
 	@Override

@@ -2,17 +2,17 @@ buildscript {
 	group 'org.ruoxue.spring-boot-168'
 	version = '0.0.1-SNAPSHOT'
 	ext {
-		dependencyManagementPluginVersion = '1.0.15.RELEASE'
+		dependencyManagementPluginVersion = '1.1.6'
 		commonsLang3Version = '3.8.1'
-		springBootVersion = '2.1.7.RELEASE'
+		springBootVersion = '3.3.1'
 		swaggerVersion = '3.0.0'
 		knife4jVersion = '3.0.3'
-		lombokVersion = '1.18.24'
-		springCloudVersion = '2.1.2.RELEASE'
-		springCloudDependenciesVersion = 'Greenwich.RELEASE'
+		lombokVersion = '1.18.34'
+		springCloudVersion = '4.1.2'
+		springCloudDependenciesVersion = '2023.0.3'
 		mariadbJavaClientVersion = '2.4.3'
 		redissonVersion = '3.11.5'
-		httpClientVersion = '4.5.13'
+		httpClientVersion = '5.3.1'
 		httpAsyncClientVersion = '4.1.5'
 		gsonVersion = '2.10'
 		lmaxVersion = '3.4.4'
@@ -41,8 +41,8 @@ plugins {
 	id 'java-library'
 	id 'eclipse'
 	id 'idea'
-	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
-	id 'org.springframework.boot' version '2.1.7.RELEASE'
+	id 'io.spring.dependency-management' version '1.1.6'
+	id 'org.springframework.boot' version '3.3.1'
 }
 
 dependencyManagement {
@@ -64,8 +64,8 @@ task copyDependencies(type: Copy) {
 	into "${buildDir}/dependencies"
 }
 
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
+sourceCompatibility = 21
+targetCompatibility = 21
 [compileJava, javadoc, compileTestJava]*.options*.encoding = 'UTF-8'
 
 configurations.all {
@@ -90,7 +90,7 @@ dependencies {
 	implementation "io.springfox:springfox-boot-starter:${swaggerVersion}"
 	implementation "com.github.xiaoymin:knife4j-spring-boot-starter:${knife4jVersion}"
 
-	compileOnly "org.projectlombok:lombok:${lombokVersion}"
+	implementation "org.projectlombok:lombok:${lombokVersion}"
 	annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
 
 	implementation "org.springframework.cloud:spring-cloud-starter-consul-discovery:${springCloudVersion}"
@@ -111,10 +111,7 @@ dependencies {
 
 	implementation "org.springframework.boot:spring-boot-starter-amqp:${springBootVersion}"
 
-	implementation ("org.apache.httpcomponents:httpclient:${httpClientVersion}") {
-		exclude group: 'commons-logging', module: 'commons-logging'
-	}
-	implementation ("org.apache.httpcomponents:httpmime:${httpClientVersion}") {
+	implementation ("org.apache.httpcomponents.client5:httpclient5:${httpClientVersion}") {
 		exclude group: 'commons-logging', module: 'commons-logging'
 	}
 	
