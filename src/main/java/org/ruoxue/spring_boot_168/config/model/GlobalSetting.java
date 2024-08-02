@@ -3,7 +3,7 @@ package org.ruoxue.spring_boot_168.config.model;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.cloud.context.config.annotation.RefreshScope;
+//import org.springframework.cloud.context.config.annotation.RefreshScope;
 
 import org.springframework.context.annotation.Configuration;
 
@@ -17,7 +17,7 @@ import lombok.Setter;
 
 //@Configuration
 @ConfigurationProperties("global-setting")
-@RefreshScope
+//@RefreshScope
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
