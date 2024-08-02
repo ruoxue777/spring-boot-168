@@ -28,8 +28,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
-@ConfigurationProperties("http-async-client")
-@Configuration
+//@ConfigurationProperties("http-async-client")
+//@Configuration
 @Slf4j
 public class HttpAsyncClientConfig {
 

@@ -23,11 +23,11 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 
 import lombok.extern.slf4j.Slf4j;
 
-@EnableMongoRepositories(mongoTemplateRef = "mongoTemplate", //
-		basePackages = { //
-				"org.ruoxue.spring_boot_168.chat.chat_message.repository, " //
-		})
-@Configuration
+//@EnableMongoRepositories(mongoTemplateRef = "mongoTemplate", //
+//		basePackages = { //
+//				"org.ruoxue.spring_boot_168.chat.chat_message.repository, " //
+//		})
+//@Configuration
 @Slf4j
 public class MongoDBConfig {
 

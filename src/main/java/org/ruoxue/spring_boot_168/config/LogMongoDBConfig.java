@@ -29,11 +29,11 @@ import lombok.extern.slf4j.Slf4j;
 
 //import com.mongodb.MongoClientURI;
 
-@EnableMongoRepositories(mongoTemplateRef = "logMongoTemplate", //
-		basePackages = { //
-				"org.ruoxue.spring_boot_168.sso.login_account_log.repository, " //
-		})
-@Configuration
+//@EnableMongoRepositories(mongoTemplateRef = "logMongoTemplate", //
+//		basePackages = { //
+//				"org.ruoxue.spring_boot_168.sso.login_account_log.repository, " //
+//		})
+//@Configuration
 @Slf4j
 public class LogMongoDBConfig {
 

@@ -35,7 +35,7 @@ import com.google.gson.JsonObject;
 
 import lombok.extern.slf4j.Slf4j;
 
-@Component
+//@Component
 @Slf4j
 public class GggClient {
 

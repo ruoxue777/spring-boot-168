@@ -13,10 +13,10 @@ import springfox.documentation.service.Contact;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 
-@EnableOpenApi
-@EnableKnife4j
-@Configuration
-@ConditionalOnProperty(name = "springfox.documentation.enabled", havingValue = "true")
+//@EnableOpenApi
+//@EnableKnife4j
+//@Configuration
+//@ConditionalOnProperty(name = "springfox.documentation.enabled", havingValue = "true")
 public class Swagger3Config {
 	
 	public Swagger3Config() {

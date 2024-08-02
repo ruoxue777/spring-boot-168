@@ -7,7 +7,7 @@ import org.ruoxue.spring_boot_168.game.ggg.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-@Service
+//@Service
 public class GggServiceImpl implements GggService {
 
 	@Autowired

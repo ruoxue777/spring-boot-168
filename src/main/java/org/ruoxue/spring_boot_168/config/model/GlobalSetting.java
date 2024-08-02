@@ -15,7 +15,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
-@Configuration
+//@Configuration
 @ConfigurationProperties("global-setting")
 @RefreshScope
 @AllArgsConstructor

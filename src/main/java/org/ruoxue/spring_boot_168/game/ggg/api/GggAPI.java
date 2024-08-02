@@ -15,7 +15,7 @@ import org.springframework.web.context.request.WebRequest;
 
 import lombok.extern.slf4j.Slf4j;
 
-@RestController
+//@RestController
 @Slf4j
 public class GggAPI {
 
